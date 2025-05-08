@@ -6,7 +6,8 @@ class CustomDropDown extends StatefulWidget {
   final String title;
   final List<String> list;
   final String selected;
-  const CustomDropDown({super.key, required this.title, required this.list, required this.selected});
+  final double width;
+  const CustomDropDown({super.key, required this.title, required this.list, required this.selected, required this.width});
 
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
@@ -20,7 +21,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
       child: Column(
         children: [
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: MediaQuery.of(context).size.width * widget.width,
             child: Directionality(
               textDirection: TextDirection.rtl,
               child: DropdownButtonFormField(

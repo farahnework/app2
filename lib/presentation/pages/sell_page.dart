@@ -1,4 +1,6 @@
+import 'package:app/presentation/widgets/custom_drop_down.dart';
 import 'package:app/presentation/widgets/custom_icon_button.dart';
+import 'package:app/presentation/widgets/custom_search_field.dart';
 import 'package:app/shared/app_colors.dart';
 import 'package:app/shared/app_sizes.dart';
 import 'package:flutter/cupertino.dart';
@@ -75,7 +77,10 @@ class Body extends StatelessWidget {
       children: [
         Expanded(
           child: Column(children: [
-            
+            Row(children: [
+              CustomSearchField(),
+              CustomDropDown(title: "المنتجات", list: [], selected: '', width: 0.1 )
+            ],)
           ],),),
         Expanded(child: Column(children: [],),),
       ],
