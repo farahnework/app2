@@ -7,6 +7,7 @@ class AppColors{
   static final Color backGround = Color.fromARGB(255,251, 252, 255);
   static final Color grey = Color.fromARGB(255,217, 217, 217);
   static final Color white = Colors.white;
-  static final Color black = Colors.black;
+ static final Color black = Colors.black;
+ static final Color red = Colors.red;
 
 }

@@ -1,7 +1,7 @@
 import 'package:app/presentation/pages/sell_page.dart';
 import 'package:app/presentation/widgets/custom_app_bar.dart';
 import 'package:app/presentation/widgets/custom_button.dart';
-import 'package:app/presentation/widgets/custom_icon_button.dart';
+import 'package:app/presentation/widgets/custom_icon_text_button.dart';
 import 'package:app/presentation/widgets/custom_container.dart';
 import 'package:app/presentation/widgets/custom_drop_down.dart';
 import 'package:app/presentation/widgets/custom_outlined_button.dart';
@@ -62,7 +62,7 @@ Widget container1() {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomIconButton(text: 'جلسة جديدة', icon: Icons.add, onPressed:SellPage),
+        CustomIconTextButton(text: 'جلسة جديدة', icon: Icons.add, onPressed:SellPage),
         Text('بحث', style: CustomTextStyles.header),
       ],
     ),
