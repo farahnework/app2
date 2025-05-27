@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
-
 class HomePage extends StatefulWidget {
   HomePage({super.key});
 
@@ -24,13 +23,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
-    @override
- void initState(){
-   super.initState();
-   WidgetsBinding.instance.addPostFrameCallback((_) {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       scaffoldKey.currentState?.openDrawer(); // Opens drawer after build
     });
- }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,20 +40,15 @@ class _HomePageState extends State<HomePage> {
       // appBar: AppBar(),
       // drawer: Expanded(child: CustomDrawer()),
       backgroundColor: AppColors.lightGrey,
-      body: 
-      Row(
+      body: Row(
         children: [
-          Expanded(
-            flex: 2,
-            child: SideBar()),
+          Expanded(flex: 2, child: SideBar()),
           Expanded(
             flex: 10,
-            child: SingleChildScrollView(child: Column(
-              children: [
-                HomeAppBar(),
-                HomeBody(),
-              ],
-            ))),
+            child: SingleChildScrollView(
+              child: Column(children: [HomeAppBar(), HomeBody()]),
+            ),
+          ),
         ],
       ),
     );
@@ -136,7 +130,7 @@ class HomeBody extends StatelessWidget {
                         children: [
                           CustomDropDownButton(
                             icon: IconsaxPlusLinear.tag,
-
+                            color: AppColors.white,
                             title: "Shift",
                             list: ["Any Shift", "Main Shift"],
                             selected: 'Any Shift',
@@ -146,7 +140,7 @@ class HomeBody extends StatelessWidget {
                           SizedBox(width: AppSizes.horiSpacesBetweenElements),
                           CustomDropDownButton(
                             icon: IconsaxPlusLinear.tag,
-
+                            color: AppColors.white,
                             title: "Device",
                             list: ["Any Device", "Device 1", 'Device 2'],
                             selected: 'اي جهاز',
@@ -157,7 +151,7 @@ class HomeBody extends StatelessWidget {
 
                           CustomDropDownButton(
                             icon: IconsaxPlusLinear.tag,
-
+                            color: AppColors.white,
                             title: "Status",
                             list: [" Any Status ", "Status 2", 'Status1 '],
                             selected: " Any Status ",
@@ -291,8 +285,6 @@ class _CustomServiceCardState extends State<CustomServiceCard> {
     );
   }
 }
-
-
 
 class CustomListTile extends StatefulWidget {
   final IconData icon;

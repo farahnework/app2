@@ -4,6 +4,8 @@ import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 class AddCustomerButton extends StatefulWidget {
@@ -54,7 +56,11 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                     
                       children: [Row(
                         children: [
-                          Icon(IconsaxPlusLinear.close_circle),
+                          InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Icon(IconsaxPlusLinear.close_circle)),
                           SizedBox(width: AppSizes.horiSpacesBetweenElements,),
                                   Text("Add Customer", style: CustomTextStyles.header2,),
                         ],
@@ -116,6 +122,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                               width: width / 3.8,
                               height: AppSizes.widgetHeight,
                               icon: IconsaxPlusLinear.user_tag,
+                              color: AppColors.white,
                             ),
                             CustomTextField(
                               hintText: 'Address',
@@ -238,6 +245,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                               width: width / 3.8,
                               height: AppSizes.widgetHeight,
                               icon: Icons.add_ic_call,
+                              color: AppColors.white,
                             ),
                           ],
                         ),

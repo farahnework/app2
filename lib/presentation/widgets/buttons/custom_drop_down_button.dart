@@ -12,6 +12,7 @@ class CustomDropDownButton extends StatefulWidget {
   final double width;
   final double height;
   final IconData icon;
+  final Color color;
 
   const CustomDropDownButton({
     super.key,
@@ -20,7 +21,7 @@ class CustomDropDownButton extends StatefulWidget {
     required this.selected,
     required this.width,
     required this.height,
-    required this.icon,
+    required this.icon, required this.color,
   });
 
   @override
@@ -53,7 +54,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
             buttonStyleData: ButtonStyleData(
               
               decoration: BoxDecoration(
-                color: AppColors.white,
+                color: widget.color,
                 border: Border.all(
                   color: currentColor,
                   width: AppSizes.borderSize,

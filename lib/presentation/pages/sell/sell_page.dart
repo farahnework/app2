@@ -1,15 +1,12 @@
-import 'package:app/presentation/pages/home/home_page.dart';
 import 'package:app/presentation/pages/sell/widgets/add_customer_button.dart';
-import 'package:app/presentation/pages/sell/widgets/close_dialog_button.dart';
+import 'package:app/presentation/pages/sell/widgets/choose_device_dialog.dart';
 import 'package:app/presentation/pages/sell/widgets/sell_app_bar.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_cancel_outlined_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_drop_down_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_icon_button.dart';
-import 'package:app/presentation/widgets/buttons/custom_outlined_button.dart';
 import 'package:app/presentation/widgets/crads/category_card.dart';
 import 'package:app/presentation/widgets/crads/order_number_card.dart';
-import 'package:app/presentation/widgets/custom_drop_down_list.dart';
 import 'package:app/presentation/widgets/fields/custom_search_field.dart';
 import 'package:app/presentation/widgets/fields/custom_text_field.dart';
 import 'package:app/presentation/widgets/crads/sell_product_card.dart';
@@ -45,7 +42,7 @@ class _SellPageState extends State<SellPage> {
           children: [
             Expanded(
               flex: 2,
-              child: Column(children: [CustomAppBar(), LiftSide()]),
+              child: Column(children: [CustomAppBar(), LeftSide()]),
             ),
             RightSide(),
           ],
@@ -55,77 +52,14 @@ class _SellPageState extends State<SellPage> {
   }
 }
 
-void chooseDeviceDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext dialogContext) {
-      return Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        backgroundColor: AppColors.white,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Container(
-          color: AppColors.white,
-          width: MediaQuery.of(context).size.width * 0.4,
-          height: MediaQuery.of(context).size.width * 0.25,
-          padding: EdgeInsets.symmetric(
-            horizontal: AppSizes.screenPadding,
-            vertical: AppSizes.screenPadding / 2,
-          ),
-          child: Column(
-            children: [
-              SizedBox(height: AppSizes.verSpacesBetweenContainers),
-              Text('Select session details', style: CustomTextStyles.header1),
-              SizedBox(height: AppSizes.verSpacesBetweenContainers),
-
-              CustomDropDownButton(
-                title: 'Shift',
-                list: ['Main Shift', 'Shift 2'],
-                selected: 'Main Shift',
-                width: 400,
-                height: AppSizes.widgetHeight,
-                icon: Iconsax.devices,
-              ),
-              SizedBox(height: AppSizes.verSpacesBetweenElements),
-
-              CustomDropDownButton(
-                title: 'Device',
-                list: ['Device 1', 'Device 2'],
-                selected: 'Device 1',
-                width: 400,
-                height: AppSizes.widgetHeight,
-                icon: Iconsax.devices,
-              ),
-              SizedBox(height: AppSizes.verSpacesBetweenContainers),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CloseDialogButton(
-                    text: 'Start the session',
-                    radius: true,
-                    width: 200,
-                    context: dialogContext,
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                  CustomOutlinedButton(text: 'Cancel', page: HomePage()),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
-}
-
-class LiftSide extends StatefulWidget {
-  const LiftSide({super.key});
+class LeftSide extends StatefulWidget {
+  const LeftSide({super.key});
 
   @override
-  State<LiftSide> createState() => _LiftSideState();
+  State<LeftSide> createState() => _LeftSideState();
 }
 
-class _LiftSideState extends State<LiftSide> {
+class _LeftSideState extends State<LeftSide> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -144,29 +78,28 @@ class _LiftSideState extends State<LiftSide> {
                   children: [
                     CustomSearchField(text: 'Search'),
                     SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                    CustomIconButton(icon: IconsaxPlusLinear.scan_barcode, color: AppColors.lightPurple, iconColor: AppColors.darkPurple, size: AppSizes.widgetHeight),
+                    CustomIconButton(
+                      icon: IconsaxPlusLinear.scan_barcode,
+                      color: AppColors.lightPurple,
+                      iconColor: AppColors.darkPurple,
+                      size: AppSizes.widgetHeight,
+                    ),
                   ],
                 ),
                 Row(
                   children: [
-                  // Icon(IconsaxPlusLinear.arrow_left_1, color: AppColors.darkGray,),
-                  // SizedBox(width: AppSizes.horiSpacesBetweenElements,),
-                  Icon(IconsaxPlusLinear.home_2, color: AppColors.darkPurple,),
-                ],)
+                    Icon(IconsaxPlusLinear.home_2, color: AppColors.darkPurple),
+                  ],
+                ),
               ],
             ),
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
             Row(
-              children: [
-                Text(
-                  'Categories',
-                  style: CustomTextStyles.header2,
-                ),
-              ],
+              children: [Text('Categories', style: CustomTextStyles.header2)],
             ),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
             SizedBox(
-              height: AppSizes.widgetHeight *1.5,
+              height: AppSizes.widgetHeight * 1.5,
 
               child: Expanded(
                 child: ListView(
@@ -178,45 +111,38 @@ class _LiftSideState extends State<LiftSide> {
                       categoryName: 'Pens',
                       itemsNum: 10,
                     ),
-                  CategoryCard(
-                    image: 'lib/assets/images/pencils.webp',
-                    categoryName: 'Pencils',
-                    itemsNum: 23,
-                  ),
-                 
-                  CategoryCard(
-                    image: 'lib/assets/images/notebooks.jpg',
-                    categoryName: 'Notebooks',
-                    itemsNum: 12,
-                  ),
-                  CategoryCard(
-                    image: 'lib/assets/images/highlights.jpg',
-                    categoryName: 'Highlights',
-                    itemsNum: 3,
-                  ),
-                  CategoryCard(
-                    image: 'lib/assets/images/pens.webp',
-                    categoryName: 'Pens',
-                    itemsNum: 10,
-                  ),
-                  CategoryCard(
-                    image: 'lib/assets/images/eraser.jpg',
-                    categoryName: 'Eraser',
-                    itemsNum: 6,
-                  ),
+                    CategoryCard(
+                      image: 'lib/assets/images/pencils.webp',
+                      categoryName: 'Pencils',
+                      itemsNum: 23,
+                    ),
+
+                    CategoryCard(
+                      image: 'lib/assets/images/notebooks.jpg',
+                      categoryName: 'Notebooks',
+                      itemsNum: 12,
+                    ),
+                    CategoryCard(
+                      image: 'lib/assets/images/highlights.jpg',
+                      categoryName: 'Highlights',
+                      itemsNum: 3,
+                    ),
+                    CategoryCard(
+                      image: 'lib/assets/images/pens.webp',
+                      categoryName: 'Pens',
+                      itemsNum: 10,
+                    ),
+                    CategoryCard(
+                      image: 'lib/assets/images/eraser.jpg',
+                      categoryName: 'Eraser',
+                      itemsNum: 6,
+                    ),
                   ],
                 ),
               ),
             ),
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
-            Row(
-              children: [
-                Text(
-                  'Products',
-                  style: CustomTextStyles.header2,
-                ),
-              ],
-            ),
+            Row(children: [Text('Products', style: CustomTextStyles.header2)]),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
 
             Expanded(
@@ -228,22 +154,70 @@ class _LiftSideState extends State<LiftSide> {
                   childAspectRatio: 0.9,
                 ),
                 children: [
-                  
                   ProductCard(
                     image: 'lib/assets/images/eraser.jpg',
                     productName: 'Color Pencils',
+                    price: 6,
                   ),
                   ProductCard(
                     image: 'lib/assets/images/eraser2.jpg',
                     productName: 'Color Pencils',
+                    price: 3,
                   ),
                   ProductCard(
-                    image: 'lib/assets/images/eraser2.jpg',
+                    image: 'lib/assets/images/image8.jpg',
                     productName: 'Color Pencils',
+                    price: 5,
                   ),
                   ProductCard(
                     image: 'lib/assets/images/highlights.jpg',
                     productName: 'Color Pencils',
+                    price: 6,
+                  ),
+                  ProductCard(
+                    image: 'lib/assets/images/image2.jpg',
+                    productName: 'Color Pencils',
+                    price: 2,
+                  ),
+                  ProductCard(
+                    image: 'lib/assets/images/image4.jpg',
+                    productName: 'Color Pencils',
+                    price: 8,
+                  ),
+                  ProductCard(
+                    image: 'lib/assets/images/image3.jpg',
+                    productName: 'Color Pencils',
+                    price: 11,
+                  ),
+                  ProductCard(
+                    image: 'lib/assets/images/image6.jpg',
+                    productName: 'Color Pencils',
+                    price: 4,
+                  ),
+                  ProductCard(
+                    image: 'lib/assets/images/image5.jpg',
+                    productName: 'Color Pencils',
+                    price: 9,
+                  ),
+                  ProductCard(
+                    image: 'lib/assets/images/image1.jpg',
+                    productName: 'Color Pencils',
+                    price: 7,
+                  ),
+                  ProductCard(
+                    image: 'lib/assets/images/image2.jpg',
+                    productName: 'Color Pencils',
+                    price: 5,
+                  ),
+                  ProductCard(
+                    image: 'lib/assets/images/image8.jpg',
+                    productName: 'Color Pencils',
+                    price: 12,
+                  ),
+                  ProductCard(
+                    image: 'lib/assets/images/image7.jpg',
+                    productName: 'Color Pencils',
+                    price: 22,
                   ),
                 ],
               ),
@@ -372,17 +346,41 @@ class _RightSideState extends State<RightSide> {
             SizedBox(height: AppSizes.verSpacesBetweenElements),
 
             Expanded(
-              child: ListView.builder(
+              child: ListView(
                 scrollDirection: Axis.vertical,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return SellProductCard(
+
+                children: [
+                  SellProductCard(
                     image: 'lib/assets/images/eraser.jpg',
                     amount: 1,
                     price: 2000,
                     productName: "Asus Laptop",
-                  );
-                },
+                  ),
+                  SellProductCard(
+                    image: 'lib/assets/images/image1.jpg',
+                    amount: 2,
+                    price: 20,
+                    productName: "Pens",
+                  ),
+                  SellProductCard(
+                    image: 'lib/assets/images/image2.jpg',
+                    amount: 2,
+                    price: 3,
+                    productName: "Pens",
+                  ),
+                  SellProductCard(
+                    image: 'lib/assets/images/image3.jpg',
+                    amount: 1,
+                    price: 5,
+                    productName: "Pens",
+                  ),
+                  SellProductCard(
+                    image: 'lib/assets/images/image4.jpg',
+                    amount: 2,
+                    price: 7,
+                    productName: "Pens",
+                  ),
+                ],
               ),
             ),
 
@@ -564,17 +562,18 @@ class _DialogBodyState extends State<DialogBody> {
       padding: EdgeInsets.all(AppSizes.screenPadding),
       child: Row(
         children: [
-          Expanded(child: dialogLiftSide()),
+          Expanded(flex: 2, child: dialogleftSide()),
           Container(
             width: 40,
             decoration: BoxDecoration(color: AppColors.black),
           ),
 
           Expanded(
+            flex: 3,
             child: StatefulBuilder(
               builder: (context, setState) {
                 TabController tabController = TabController(
-                  length: 3,
+                  length: 4,
                   vsync: Navigator.of(context),
                 );
                 return dialogRightSide(tabController);
@@ -720,16 +719,56 @@ Widget tab3() {
   );
 }
 
-Widget dialogLiftSide() {
+Widget tab4() {
+  return Center(
+    child: Container(
+      padding: EdgeInsets.all(AppSizes.cardPadding),
+      decoration: BoxDecoration(
+        color: AppColors.lightPurple,
+        borderRadius: BorderRadius.all(
+          Radius.circular(AppSizes.textFieldRadius),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Payed:", style: CustomTextStyles.header2),
+          SizedBox(height: AppSizes.verSpacesBetweenElements),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: AppSizes.fontSize1,
+                height: AppSizes.fontSize1,
+                child: SvgPicture.asset(AppImages.rial),
+              ),
+              SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+
+              Text("2000", style: CustomTextStyles.header1),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget dialogleftSide() {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          AddCustomerButton(color: AppColors.lightPurple, iconColor: AppColors.darkPurple, size: AppSizes.iconButtonSize),
+          AddCustomerButton(
+            color: AppColors.lightPurple,
+            iconColor: AppColors.darkPurple,
+            size: AppSizes.iconButtonSize,
+          ),
           CustomDropDownButton(
             icon: IconsaxPlusLinear.tag,
+            color: AppColors.white,
 
             title: 'General Customer',
             list: ['Customer 1', 'Customer 2'],
@@ -770,6 +809,7 @@ Widget dialogLiftSide() {
       ),
       SizedBox(height: AppSizes.verSpacesBetweenContainers),
       Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -893,6 +933,7 @@ Widget dialogRightSide(TabController tabController) {
             Tab(text: 'Cash'),
             Tab(text: 'Card'),
             Tab(text: 'Cash + Card'),
+            Tab(text: 'Debt'),
           ],
         ),
       ),
@@ -901,7 +942,7 @@ Widget dialogRightSide(TabController tabController) {
         height: 200,
         child: TabBarView(
           controller: tabController,
-          children: [tab1(), tab2(), tab3()],
+          children: [tab1(), tab2(), tab3(), tab4()],
         ),
       ),
       SizedBox(height: AppSizes.verSpacesBetweenContainers),

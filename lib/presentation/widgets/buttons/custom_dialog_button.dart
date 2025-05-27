@@ -1,25 +1,26 @@
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class CustomButton extends StatefulWidget {
+class CustomDialogButton extends StatefulWidget {
   final String text;
-  final bool radius;
   final double width;
   final double height;
-  final Widget? page;
-  const CustomButton({super.key, required this.text, required this.radius, required this.width, this.page, required this.height});
+  final  dialog;
+  final Color color;
+  final Color textColor;
+  const CustomDialogButton({super.key, required this.text,  required this.width,required this.dialog, required this.height, required this.color, required this.textColor});
 
   @override
-  State<CustomButton> createState() => _CustomButtonState();
+  State<CustomDialogButton> createState() => _CustomDialogButtonState();
 }
 
-class _CustomButtonState extends State<CustomButton> {
-  Color color = AppColors.darkPurple;
+class _CustomDialogButtonState extends State<CustomDialogButton> {
   @override
   Widget build(BuildContext context) {
+  Color color = widget.color;
+
     return MouseRegion(
       onEnter: (event) {
         setState(() {
@@ -28,27 +29,26 @@ class _CustomButtonState extends State<CustomButton> {
       },
         onExit: (event) {
         setState(() {
-          color = AppColors.darkPurple;
+          color = widget.color;
         });
       },
       child: Container(
         height: widget.height,
+        width: widget.width,
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: color,
-            shape:  widget.radius?
+            shape:  
             RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(15)),
-            ):
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(0)),
-            )
-          ),
+            ),
+            ),
+          
         
           onPressed: () {
-            Get.to(widget.page);
+           widget.dialog(context);
           },
-          child: Text(widget.text, style: CustomTextStyles.buttonTextStyle),
+          child: Text(widget.text, style: TextStyle(color: widget.textColor, fontSize: AppSizes.fontSize2)),
         ),
       ),
     );

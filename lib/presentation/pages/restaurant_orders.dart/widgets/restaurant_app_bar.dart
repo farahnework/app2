@@ -1,4 +1,7 @@
+import 'package:app/presentation/pages/orders/orders_page.dart';
 import 'package:app/presentation/pages/sell/widgets/close_session_buton.dart';
+import 'package:app/presentation/pages/session_details/session_details_page.dart';
+import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/utils/app_sizes.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
@@ -6,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
 
-class SessionAppBar extends StatelessWidget {
-  const SessionAppBar({super.key});
+class RestaurantAppBar extends StatelessWidget {
+  const RestaurantAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +33,7 @@ class SessionAppBar extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // CustomMenuButton(icon: Icons.settings),
                 Container(
                   height: AppSizes.iconButtonSize,
                   width: AppSizes.iconButtonSize,
@@ -80,6 +84,23 @@ class SessionAppBar extends StatelessWidget {
                   size: AppSizes.iconButtonSize,
                 ),
                 SizedBox(width: AppSizes.horiSpacesBetweenElements),
+
+                CustomButton(
+                  text: 'Session Details',
+                  radius: true,
+                  width: 150,
+                  page: SessionDetailsPage(),
+                  height: AppSizes.iconButtonSize,
+                ),
+                SizedBox(width: AppSizes.horiSpacesBetweenElements),
+
+                  CustomButton(
+                  text: 'Orders',
+                  radius: true,
+                  width: 100,
+                  page: OrdersPage(),
+                  height: AppSizes.iconButtonSize,
+                ),
               ],
             ),
           ],

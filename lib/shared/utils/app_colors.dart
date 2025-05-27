@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppColors{
- static final Color darkPurple = Color.fromARGB(255,98, 63, 181);
-//  static final Color darkPurple = Colors.green;
- static final Color darkPurple2 = Color.fromARGB(255, 82, 41, 177);
+//  static final Color darkPurple = Color(0xFF752092);   
+ static final Color darkPurple = Color.fromARGB(255,98, 63, 181);   
+ static final Color darkPurple2 = Color.fromRGBO(82, 41, 177, 1);
   static final Color lightPurple = Color.fromARGB(255, 242, 233, 255);
   static final Color lightPurple2 = Color.fromARGB(255, 244, 239, 252);
   // static final Color lightPurple = const Color.fromARGB(255, 228, 255, 229);
@@ -14,6 +14,6 @@ class AppColors{
  static final Color black = Colors.black;
  static final Color red = Colors.red;
  static final Color green = Colors.green;
- static final Color yellow = Colors.amber;
- static final Color lightYellow = const Color.fromARGB(255, 255, 243, 206);
+ static final Color yellow = const Color(0xFFFFC872);
+ static final Color lightYellow = const Color.fromARGB(255, 255, 239, 213);
 }

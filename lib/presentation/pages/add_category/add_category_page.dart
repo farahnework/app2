@@ -121,6 +121,7 @@ class _AddCategoryBodyState extends State<AddCategoryBody> {
                       selected: 'Category 1',
                       width: width / 3,
                       height: AppSizes.widgetHeight,
+                      color: AppColors.white,
                     ),
 
                     CustomDropDownButton(
@@ -131,6 +132,7 @@ class _AddCategoryBodyState extends State<AddCategoryBody> {
                       selected: 'Brand 1',
                       width: width / 3,
                       height: AppSizes.widgetHeight,
+                      color: AppColors.white,
                     ),
                   ],
                 ),
@@ -181,6 +183,7 @@ class _AddCategoryBodyState extends State<AddCategoryBody> {
                       selected: 'القيمة المضافة',
                       width: width / 3,
                       height: AppSizes.widgetHeight,
+                      color: AppColors.white,
                     ),
 
                     CustomDropDownButton(
@@ -191,6 +194,7 @@ class _AddCategoryBodyState extends State<AddCategoryBody> {
                       selected: 'القيمة المضافة',
                       width: width / 3,
                       height: AppSizes.widgetHeight,
+                      color: AppColors.white,
                     ),
                   ],
                 ),
@@ -220,6 +224,7 @@ class _AddCategoryBodyState extends State<AddCategoryBody> {
                           width: width/8,
                           height: AppSizes.widgetHeight,
                           icon: Icons.dangerous,
+                          color: AppColors.white,
                         ),
                       ],
                     ),

@@ -27,7 +27,14 @@ class _ProductsPageState extends State<ProductsPage> {
       body: Row(
         children: [
           SideBar(),
-          Expanded(child: Column(children: [ProductsAppBar(), Expanded(child: SingleChildScrollView(child: ProductsBody()))])),
+          Expanded(
+            child: Column(
+              children: [
+                ProductsAppBar(),
+                Expanded(child: SingleChildScrollView(child: ProductsBody())),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -105,6 +112,7 @@ class _ProductsBodyState extends State<ProductsBody> {
 
                           CustomDropDownButton(
                             icon: IconsaxPlusLinear.tag,
+                            color: AppColors.white,
 
                             title: 'Category',
                             list: ['Category 1', 'Category 2', 'Category 3'],
@@ -116,6 +124,7 @@ class _ProductsBodyState extends State<ProductsBody> {
 
                           CustomDropDownButton(
                             icon: IconsaxPlusLinear.tag,
+                            color: AppColors.white,
 
                             title: 'Brand',
                             list: ['Brand 1', 'Brand 2', 'Brand 3'],
@@ -127,6 +136,7 @@ class _ProductsBodyState extends State<ProductsBody> {
 
                           CustomDropDownButton(
                             icon: IconsaxPlusLinear.tag,
+                            color: AppColors.white,
 
                             title: 'Status',
                             list: ['Status 1', 'Status 2', 'Status 3'],
@@ -136,7 +146,9 @@ class _ProductsBodyState extends State<ProductsBody> {
                           ),
                         ],
                       ),
-                      ProductsPageIconButton(icon:  IconsaxPlusLinear.search_normal_1),
+                      ProductsPageIconButton(
+                        icon: IconsaxPlusLinear.search_normal_1,
+                      ),
                     ],
                   ),
                   SizedBox(height: AppSizes.verSpacesBetweenElements),
@@ -144,9 +156,8 @@ class _ProductsBodyState extends State<ProductsBody> {
                     children: [
                       Expanded(
                         child: Container(
-                         height: MediaQuery.of(context).size.height * 0.5, 
+                          height: MediaQuery.of(context).size.height * 0.5,
                           child: ListView.builder(
-                            
                             itemCount: 10,
                             itemBuilder: (context, i) {
                               return ProductCard(

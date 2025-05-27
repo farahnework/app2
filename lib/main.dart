@@ -1,7 +1,5 @@
-import 'package:app/presentation/pages/home/home_page.dart';
-import 'package:app/presentation/pages/products/products_page.dart';
-import 'package:app/presentation/pages/sell/sell_page.dart';
-import 'package:app/presentation/pages/session_details/session_details_page.dart';
+import 'package:app/presentation/pages/kitchen_display/kichen_display_page.dart';
+import 'package:app/presentation/pages/restaurant_orders.dart/restaurant_orders_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
  
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: SellPage(),
+      home: KitchenDisplayPage(),
     );
   }
 }

@@ -117,11 +117,12 @@ class _AddProductBodyState extends State<AddProductBody> {
                       selected: 'Category 1',
                       width: width / 3,
                       height: AppSizes.widgetHeight,
+                      color: AppColors.white,
                     ),
 
                     CustomDropDownButton(
                       icon: IconsaxPlusLinear.tag,
-
+                      color: AppColors.white,
                       title: 'Brand',
                       list: ['Brand 1', 'Brand 2', 'Brand 3'],
                       selected: 'Brand 1',
@@ -172,6 +173,7 @@ class _AddProductBodyState extends State<AddProductBody> {
                   children: [
                     CustomDropDownButton(
                       icon: IconsaxPlusLinear.tag,
+                      color: AppColors.white,
                       title: 'First Tax',
                       list: ['القيمة المضافة', 'صفرية', 'معافاة'],
                       selected: 'القيمة المضافة',
@@ -181,7 +183,7 @@ class _AddProductBodyState extends State<AddProductBody> {
 
                     CustomDropDownButton(
                       icon: IconsaxPlusLinear.tag,
-
+                      color: AppColors.white,
                       title: 'Second Tax',
                       list: ['القيمة المضافة', 'صفرية', 'معافاة'],
                       selected: 'القيمة المضافة',
@@ -208,12 +210,13 @@ class _AddProductBodyState extends State<AddProductBody> {
                           enabled: true,
                           icon: Iconsax.discount_shape,
                         ),
-                        SizedBox(width: AppSizes.horiSpacesBetweenElements,),
+                        SizedBox(width: AppSizes.horiSpacesBetweenElements),
                         CustomDropDownButton(
                           title: 'Discount Type',
                           list: ['Riyal', '%'],
                           selected: '%',
-                          width: width/8,
+                          width: width / 8,
+                          color: AppColors.white,
                           height: AppSizes.widgetHeight,
                           icon: Icons.dangerous,
                         ),

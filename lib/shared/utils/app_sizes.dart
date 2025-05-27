@@ -20,7 +20,7 @@ class  AppSizes{
     static final double iconSize = 20;
     static final double iconSize2 = 25;
     static final double iconButtonSize = 40;
-    static final double borderSize = 0.5;
+    static final double borderSize = 0.7;
     static final double fontSize1 = 20;
     static final double fontSize2 = 16;
     static final double fontSize3 = 14;

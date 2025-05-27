@@ -1,3 +1,4 @@
+import 'package:app/presentation/pages/restaurant_orders.dart/widgets/add_extras_dialog.dart';
 import 'package:app/presentation/pages/sell/widgets/product_info_dialog.dart';
 import 'package:app/shared/utils/app_images.dart';
 import 'package:app/shared/utils/app_sizes.dart';
@@ -9,39 +10,54 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../shared/utils/app_colors.dart';
 
-class ProductCard extends StatefulWidget {
+class FoodCard extends StatefulWidget {
   final String image;
   final String productName;
   final double price;
-  const ProductCard({
+  const FoodCard({
     super.key,
     required this.image,
-    required this.productName, required this.price,
+    required this.productName,
+    required this.price,
   });
 
   @override
-  State<ProductCard> createState() => _ProductCardState();
+  State<FoodCard> createState() => _FoodCardState();
 }
 
-class _ProductCardState extends State<ProductCard> {
-  var currentColor = AppColors.grey;
+class _FoodCardState extends State<FoodCard> {
+  Color currentColor = AppColors.white;
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (event) {
         setState(() {
-          currentColor = AppColors.darkPurple;
+          currentColor = AppColors.lightYellow.withOpacity(0.3);
         });
       },
       onExit: (event) {
         setState(() {
-          currentColor = AppColors.grey;
+          currentColor = AppColors.white;
         });
       },
       child: Container(
         margin: EdgeInsets.only(right: AppSizes.horiSpacesBetweenElements),
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        decoration: CustomBoxDecoration.boxDecoration,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 10,
+              offset: Offset(0, 0.5),
+              color: AppColors.darkPurple.withOpacity(0.05),
+              spreadRadius: 1,
+            ),
+          ],
+          color: currentColor,
+          border: Border.all(color: AppColors.grey, width: 0.4),
+          borderRadius: BorderRadius.all(
+            Radius.circular(AppSizes.textFieldRadius),
+          ),
+        ),
 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,11 +76,11 @@ class _ProductCardState extends State<ProductCard> {
                 ),
                 InkWell(
                   onTap: () {
-                    productInfoDialog(context);
+                    addExtrasDialog(context, 'lib/assets/images/food5.jpg');
                   },
                   child: CircleAvatar(
-                    child: Icon(Iconsax.info_circle),
-                    backgroundColor: Colors.amberAccent,
+                    child: Icon(Iconsax.add, size: AppSizes.iconSize2),
+                    backgroundColor: AppColors.yellow,
                   ),
                 ),
               ],
@@ -85,8 +101,8 @@ class _ProductCardState extends State<ProductCard> {
                 Text("Price: "),
                 Row(
                   children: [
-                    SvgPicture.asset(AppImages.rial, width: AppSizes.fontSize3,),
-                    SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
+                    SvgPicture.asset(AppImages.rial, width: AppSizes.fontSize3),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                     Text(
                       widget.price.toString(),
                       style: TextStyle(

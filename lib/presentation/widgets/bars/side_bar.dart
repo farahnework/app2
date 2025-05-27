@@ -1,10 +1,10 @@
 import 'package:app/presentation/pages/customers/customers_page.dart';
-import 'package:app/presentation/pages/products/products_page.dart';
+import 'package:app/presentation/pages/kitchen_display/kichen_display_page.dart';
+import 'package:app/presentation/pages/restaurant_orders.dart/restaurant_orders_page.dart';
 import 'package:app/presentation/pages/sell/sell_page.dart';
 import 'package:app/presentation/pages/signin_page.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/utils/app_sizes.dart';
-import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
@@ -20,14 +20,22 @@ class _SideBarState extends State<SideBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.lightPurple2,
+      decoration: BoxDecoration(
+        color: AppColors.white,
+
+        border: Border(
+          right: BorderSide(color: AppColors.grey, width: AppSizes.borderSize),
+        ),
+      ),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: AppSizes.screenPadding,
-        horizontal: AppSizes.screenPadding),
+        padding: EdgeInsets.symmetric(
+          vertical: AppSizes.screenPadding,
+          horizontal: AppSizes.screenPadding / 2,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-                
+          crossAxisAlignment: CrossAxisAlignment.center,
+
           children: [
             Column(
               children: [
@@ -36,31 +44,48 @@ class _SideBarState extends State<SideBar> {
                   child: Image.asset('lib/assets/images/logo.png'),
                 ),
                 // Divider(color: AppColors.grey),
-                SizedBox(height: AppSizes.verSpacesBetweenContainers*2,),
+                SizedBox(height: AppSizes.verSpacesBetweenContainers * 2),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CustomListTile(
-                      icon: IconsaxPlusLinear.status,
-                      text: 'Dashboard',
-                      page: CustomersPage(),
-                      to: true,
+                    Container(
+                      child: CustomListTile(
+                        icon: IconsaxPlusLinear.status,
+                        text: 'Dashboard',
+                        page: CustomersPage(),
+                        to: true,
+                        selected: true,
+                      ),
                     ),
                     CustomListTile(
                       icon: IconsaxPlusLinear.shop,
                       text: 'Start Selling',
                       page: SellPage(),
                       to: true,
+                      selected: false,
+                    ),
+                    CustomListTile(
+                      icon: IconsaxPlusLinear.receipt_2_1,
+                      text: 'Restaurant Orders',
+                      page: RestaurantOrdersPage(),
+                      to: true,
+                      selected: false,
+                    ),
+                    CustomListTile(
+                      icon: IconsaxPlusLinear.receipt_2_1,
+                      text: 'Kitchen Display',
+                      page: KitchenDisplayPage(),
+                      to: true,
+                      selected: false,
                     ),
                     CustomListTile(
                       icon: IconsaxPlusLinear.user,
                       text: 'Customers',
                       page: CustomersPage(),
                       to: true,
+                      selected: false,
                     ),
-                    
-                   
                   ],
                 ),
               ],
@@ -92,12 +117,14 @@ class _SideBarState extends State<SideBar> {
                   text: 'Help',
                   page: SigninPage(),
                   to: false,
+                  selected: false,
                 ),
                 CustomListTile(
                   icon: IconsaxPlusLinear.logout,
                   text: 'Log Out',
                   page: SigninPage(),
                   to: false,
+                  selected: false,
                 ),
               ],
             ),
@@ -113,12 +140,15 @@ class CustomListTile extends StatefulWidget {
   final String text;
   final Widget page;
   final bool to;
+  final bool selected;
+
   const CustomListTile({
     super.key,
     required this.icon,
     required this.text,
     required this.page,
     required this.to,
+    required this.selected,
   });
 
   @override
@@ -145,18 +175,55 @@ class _CustomListTileState extends State<CustomListTile> {
             isHovered = false;
           });
         },
-        child: Container(
-          margin: EdgeInsets.only(bottom: AppSizes.verSpacesBetweenElements),
-          color: isHovered ? AppColors.white : AppColors.lightPurple2,
-          child: ListTile(
-            leading: Icon(
-              widget.icon,
-              size: AppSizes.iconSize,
-              color: AppColors.darkGray,
-            ),
-            title: Text(widget.text, style: TextStyle(color: AppColors.darkGray, fontWeight: FontWeight.w900, fontSize: AppSizes.fontSize2)),
-          ),
-        ),
+        child:
+            widget.selected
+                ? Container(
+                  margin: EdgeInsets.only(
+                    bottom: AppSizes.verSpacesBetweenElements,
+                  ),
+
+                  decoration: BoxDecoration(
+                    color: AppColors.darkPurple,
+                    borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),
+                    ),
+                  child: ListTile(
+                    leading: Icon(
+                      widget.icon,
+                      size: AppSizes.iconSize,
+                      color: AppColors.white,
+                    ),
+                    title: Text(
+                      widget.text,
+                      style: TextStyle(
+                        letterSpacing: 1.1,
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w900,
+                        fontSize: AppSizes.fontSize2,
+                      ),
+                    ),
+                  ),
+                )
+                : Container(
+                  margin: EdgeInsets.only(
+                    bottom: AppSizes.verSpacesBetweenElements,
+                  ),
+                  color: isHovered ? AppColors.lightPurple : AppColors.white,
+                  child: ListTile(
+                    leading: Icon(
+                      widget.icon,
+                      size: AppSizes.iconSize,
+                      color: AppColors.darkGray,
+                    ),
+                    title: Text(
+                      widget.text,
+                      style: TextStyle(
+                        color: AppColors.darkGray,
+                        fontWeight: FontWeight.w500,
+                        fontSize: AppSizes.fontSize2,
+                      ),
+                    ),
+                  ),
+                ),
       ),
     );
   }

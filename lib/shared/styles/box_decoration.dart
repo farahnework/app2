@@ -11,7 +11,7 @@ class CustomBoxDecoration{
     ),
     ],
         color: AppColors.white,
-        // border: Border.all(color: AppColors.grey, width: 0.4),
+        border: Border.all(color: AppColors.grey, width: 0.4),
 
         borderRadius: BorderRadius.all(Radius.circular(AppSizes.textFieldRadius)),
       );

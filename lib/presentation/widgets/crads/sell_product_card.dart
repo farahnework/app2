@@ -34,7 +34,7 @@ class _SellProductCardState extends State<SellProductCard> {
     return MouseRegion(
       onEnter: (event) {
         setState(() {
-          currentColor = AppColors.lightPurple.withOpacity(0.2);
+          currentColor = AppColors.lightYellow.withOpacity(0.2);
         });
       },
       onExit: (event) {
@@ -81,8 +81,8 @@ class _SellProductCardState extends State<SellProductCard> {
                         Text(
                           widget.productName,
                           style: TextStyle(
-                            fontSize: AppSizes.fontSize1,
-                            fontWeight: FontWeight.w500,
+                            fontSize: AppSizes.fontSize2,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         IconButton(
@@ -131,7 +131,7 @@ class _SellProductCardState extends State<SellProductCard> {
                             SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                             CustomDropDownButton(
                               icon: IconsaxPlusLinear.tag,
-
+                              color: AppColors.white,
                               height: 30,
                               title: "Unit",
                               list: ["Kilo", "Peace"],
