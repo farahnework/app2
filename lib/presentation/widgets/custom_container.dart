@@ -15,7 +15,10 @@ class _CustomContainerState extends State<CustomContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(AppSizes.screenPadding),
+      padding: EdgeInsets.symmetric(
+        horizontal: 
+        AppSizes.horiScreenPadding,
+         vertical: AppSizes.verScreenPadding),
       decoration: CustomBoxDecoration.boxDecoration,
       child: widget.child,
     );

@@ -1,10 +1,11 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/home/home_page.dart';
 import 'package:app/presentation/pages/sell/widgets/close_dialog_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_drop_down_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_outlined_button.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -18,16 +19,16 @@ void chooseDeviceDialog(BuildContext context) {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
           color: AppColors.lightGrey,
-          width: MediaQuery.of(context).size.width * 0.4,
-          height: MediaQuery.of(context).size.width * 0.25,
+          width: context.screenWidth* 0.6,
+          height: context.screenHeight *( context.isDesktop? 0.5: 0.6) ,
           padding: EdgeInsets.symmetric(
-            horizontal: AppSizes.screenPadding,
-            vertical: AppSizes.screenPadding / 2,
+            horizontal: AppSizes.horizontalPadding *4,
+            vertical: AppSizes.verticalPadding / 2,
           ),
           child: Column(
             children: [
               SizedBox(height: AppSizes.verSpacesBetweenContainers),
-              Text('Select session details', style: CustomTextStyles.header1),
+              Text('Select session details', style: CustomTextStyles.titleText(context)),
               SizedBox(height: AppSizes.verSpacesBetweenContainers),
 
               Row(
@@ -45,7 +46,7 @@ void chooseDeviceDialog(BuildContext context) {
                   ),
                 ],
               ),
-              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              SizedBox(height: AppSizes.verSpacesBetweenElements*2),
 
               Row(
                 children: [
@@ -62,7 +63,7 @@ void chooseDeviceDialog(BuildContext context) {
                   ),
                 ],
               ),
-              SizedBox(height: AppSizes.verSpacesBetweenContainers),
+              SizedBox(height: AppSizes.verSpacesBetweenContainers*1.5),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

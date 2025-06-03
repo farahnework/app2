@@ -1,5 +1,8 @@
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../core/responsive/app_sizes.dart';
 
 class CustomOutlinedButton extends StatefulWidget {
   final String text;
@@ -15,12 +18,11 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      width: 150,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           
           shape:RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))), ),
-        onPressed: (){ Get.off(widget.page);}, child: Text(widget.text,)),
+        onPressed: (){ Get.off(widget.page);}, child: Text(widget.text, style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize3)),)),
     );
   }
 }

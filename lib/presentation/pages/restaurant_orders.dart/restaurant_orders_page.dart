@@ -1,8 +1,14 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
+import 'package:app/core/responsive/responsive_sizing.dart';
+import 'package:app/core/responsive/screen_layouts.dart';
+import 'package:app/presentation/pages/orders/orders_page.dart';
 import 'package:app/presentation/pages/restaurant_orders.dart/widgets/add_caurse_button.dart';
 import 'package:app/presentation/pages/restaurant_orders.dart/widgets/add_note_dialog.dart';
 import 'package:app/presentation/pages/restaurant_orders.dart/widgets/restaurant_app_bar.dart';
 import 'package:app/presentation/pages/sell/sell_page.dart';
 import 'package:app/presentation/pages/sell/widgets/choose_device_dialog.dart';
+import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_dialog_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_drop_down_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_icon_button.dart';
@@ -15,7 +21,6 @@ import 'package:app/presentation/widgets/numbers_palette.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/utils/app_images.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
@@ -60,12 +65,25 @@ class LeftSide extends StatefulWidget {
 class _LeftSideState extends State<LeftSide> {
   @override
   Widget build(BuildContext context) {
+    int crossAxisCount =
+        context.isMobile
+            ? ScreenLayouts.mobileCrossAxisCount
+            : ResponsiveSizing.isTablet(context)
+            ? ScreenLayouts.tabletCrossAxisCount
+            : ScreenLayouts.desktopCrossAxisCount;
+
+    double spacing =
+        context.isMobile
+            ? ScreenLayouts.mobileSpacing
+            : ResponsiveSizing.isTablet(context)
+            ? ScreenLayouts.tabletSpacing
+            : ScreenLayouts.desktopSpacing;
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
-          left: AppSizes.screenPadding,
-          right: AppSizes.screenPadding,
-          top: AppSizes.screenPadding / 2,
+          left: AppSizes.horizontalPadding,
+          right: AppSizes.horizontalPadding,
+          top: AppSizes.verticalPadding ,
         ),
         child: Column(
           children: [
@@ -76,12 +94,16 @@ class _LeftSideState extends State<LeftSide> {
                   children: [
                     CustomSearchField(text: 'Search'),
                     SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                    CustomIconButton(
-                      icon: IconsaxPlusLinear.scan_barcode,
-                      color: AppColors.lightPurple,
-                      iconColor: AppColors.darkPurple,
-                      size: AppSizes.widgetHeight,
-                    ),
+                    CustomButton(
+                  text: 'Orders',
+                  radius: true,
+                  width: 100,
+                  page: OrdersPage(),
+                  height: AppSizes.iconButtonSize,
+                  color: AppColors.darkPurple,
+                  textColor: AppColors.white,
+                ),
+                   
                   ],
                 ),
                 Row(
@@ -95,11 +117,11 @@ class _LeftSideState extends State<LeftSide> {
             ),
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
             Row(
-              children: [Text('Categories', style: CustomTextStyles.header2)],
+              children: [Text('Categories', style: CustomTextStyles.titleText(context))],
             ),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
             SizedBox(
-              height: AppSizes.widgetHeight * 1.5,
+              height: AppSizes.widgetHeight * 1.2,
 
               child: Expanded(
                 child: ListView(
@@ -142,16 +164,16 @@ class _LeftSideState extends State<LeftSide> {
               ),
             ),
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
-            Row(children: [Text('Products', style: CustomTextStyles.header2)]),
+            Row(children: [Text('Products', style: CustomTextStyles.titleText(context))]),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
 
             Expanded(
               child: GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  crossAxisSpacing: AppSizes.horiSpacesBetweenElements,
-                  mainAxisSpacing: AppSizes.horiSpacesBetweenElements,
-                  childAspectRatio: 0.9,
+                     crossAxisCount: crossAxisCount,
+                  crossAxisSpacing: spacing,
+                  mainAxisSpacing: spacing,
+                  childAspectRatio: context.isDesktop? 0.9: 0.8,
                 ),
                 children: [
                   FoodCard(
@@ -299,9 +321,9 @@ class _RightSideState extends State<RightSide> {
 
             Padding(
               padding: EdgeInsets.only(
-                left: AppSizes.screenPadding / 2,
-                right: AppSizes.screenPadding / 2,
-                top: AppSizes.screenPadding / 2,
+                left: AppSizes.horizontalPadding / 2,
+                right: AppSizes.horizontalPadding / 2,
+                top: AppSizes.verticalPadding / 2,
               ),
               child: Container(
                 child: Row(
@@ -318,7 +340,7 @@ class _RightSideState extends State<RightSide> {
 
                         Text(
                           'Ganeral Customer',
-                          style: CustomTextStyles.header2,
+                          style: CustomTextStyles.meduimText(context),
                         ),
                       ],
                     ),
@@ -386,8 +408,8 @@ class _RightSideState extends State<RightSide> {
 
             Container(
               padding: EdgeInsets.only(
-                right: AppSizes.screenPadding / 2,
-                left: AppSizes.screenPadding / 2,
+                right: AppSizes.horizontalPadding / 2,
+                left: AppSizes.horizontalPadding / 2,
               ),
               decoration: BoxDecoration(
                 color: AppColors.white,
@@ -449,22 +471,18 @@ class _RightSideState extends State<RightSide> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Payment:', style: CustomTextStyles.buttonTextStyle),
+                    Text('Payment:', style: CustomTextStyles.buttonText(context)),
                     SizedBox(width: AppSizes.horiSpacesBetweenElements),
                     SvgPicture.asset(
                       AppImages.rial,
-                      width: AppSizes.fontSize2,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
                       color: AppColors.white,
                     ),
                     SizedBox(width: AppSizes.horiSpacesBetweentTexts),
 
                     Text(
                       '260',
-                      style: TextStyle(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: AppSizes.fontSize2,
-                      ),
+                      style: CustomTextStyles.buttonText(context)
                     ),
                   ],
                 ),

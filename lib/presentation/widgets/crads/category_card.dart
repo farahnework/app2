@@ -1,10 +1,7 @@
-import 'package:app/presentation/widgets/custom_container.dart';
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
-import 'package:app/shared/styles/box_decoration.dart';
-import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 class CategoryCard extends StatefulWidget {
   final String image;
@@ -26,7 +23,7 @@ class _CategoryCardState extends State<CategoryCard> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-       onEnter: (event) {
+      onEnter: (event) {
         setState(() {
           currentColor = AppColors.lightYellow.withOpacity(0.3);
         });
@@ -37,8 +34,7 @@ class _CategoryCardState extends State<CategoryCard> {
         });
       },
       child: Container(
-        // height: AppSizes.widgetHeight,
-        height: 1,
+        height: AppSizes.widgetHeight *2,
         margin: EdgeInsets.only(right: AppSizes.horiSpacesBetweenElements),
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: BoxDecoration(
@@ -57,46 +53,68 @@ class _CategoryCardState extends State<CategoryCard> {
           ),
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.height * 0.1,
-              height: MediaQuery.of(context).size.height * 0.1,
+              width: AppSizes.widgetHeight *1.2,
+              height: AppSizes.widgetHeight *1.2,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),
+                borderRadius: BorderRadius.circular(
+                  context.responsiveBorderRadius(AppSizes.radius16),
+                ),
                 child: Image.asset(widget.image, fit: BoxFit.cover),
               ),
             ),
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(widget.categoryName, style: CustomTextStyles.header2),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Contains ',
+                      widget.categoryName,
                       style: TextStyle(
-                        fontSize: AppSizes.fontSize3,
+                        fontSize: context.responsiveFontSize(AppSizes.fontSize4),
+                        color: AppColors.black,
+                        fontWeight: AppSizes.fontWeight1,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Contain ',
+                      style: TextStyle(
+                        fontSize: context.responsiveFontSize(
+                          AppSizes.fontSize4,
+                        ),
                         color: AppColors.darkGray,
                       ),
                     ),
                     Text(
                       widget.itemsNum.toString(),
                       style: TextStyle(
-                        fontSize: AppSizes.fontSize3,
+                        fontSize: context.responsiveFontSize(
+                          AppSizes.fontSize4,
+                        ),
                         color: AppColors.darkGray,
                       ),
                     ),
                     Text(
-                      ' Items',
+                      ' item',
                       style: TextStyle(
-                        fontSize: AppSizes.fontSize3,
+                        fontSize: context.responsiveFontSize(
+                          AppSizes.fontSize4,
+                        ),
                         color: AppColors.darkGray,
                       ),
                     ),
+
+                   
                   ],
                 ),
               ],

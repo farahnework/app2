@@ -1,6 +1,6 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/styles/custom_text_styles.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 class CustomDialogButton extends StatefulWidget {
@@ -48,7 +48,7 @@ class _CustomDialogButtonState extends State<CustomDialogButton> {
           onPressed: () {
            widget.dialog(context);
           },
-          child: Text(widget.text, style: TextStyle(color: widget.textColor, fontSize: AppSizes.fontSize2)),
+          child: Text(widget.text, style: TextStyle(color: widget.textColor, fontSize: context.responsiveFontSize(AppSizes.fontSize4))),
         ),
       ),
     );

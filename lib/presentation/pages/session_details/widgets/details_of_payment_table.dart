@@ -1,7 +1,8 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/session_details/widgets/custom_data_cell.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 class DetailOfPaymentTable extends StatefulWidget {
@@ -48,7 +49,7 @@ class _DetailOfPaymentTableState extends State<DetailOfPaymentTable> {
                         label: Center(
                           child: Text(
                             'Payment Method',
-                            style: CustomTextStyles.tableHeader,
+                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
@@ -56,7 +57,7 @@ class _DetailOfPaymentTableState extends State<DetailOfPaymentTable> {
                         label: Center(
                           child: Text(
                             "Sales",
-                            style: CustomTextStyles.tableHeader,
+                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
@@ -64,7 +65,7 @@ class _DetailOfPaymentTableState extends State<DetailOfPaymentTable> {
                         label: Center(
                           child: Text(
                             'Payoff',
-                            style: CustomTextStyles.tableHeader,
+                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
@@ -72,7 +73,7 @@ class _DetailOfPaymentTableState extends State<DetailOfPaymentTable> {
                         label: Center(
                           child: Text(
                             "Net",
-                            style: CustomTextStyles.tableHeader,
+                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
@@ -80,34 +81,34 @@ class _DetailOfPaymentTableState extends State<DetailOfPaymentTable> {
                     rows: [
                       DataRow(
                         cells: <DataCell>[
-                          customDataCell('Cash', false, true),
-                          customDataCell('600', true, false),
-                          customDataCell('600', true, false),
-                          customDataCell('100000', true, true),
+                          customDataCell('Cash', false, true, context),
+                          customDataCell('600', true, false, context),
+                          customDataCell('600', true, false, context),
+                          customDataCell('100000', true, true, context),
                         ],
                       ),
                       DataRow(
                         cells: <DataCell>[
-                          customDataCell('Card', false, true),
-                          customDataCell('600', true, false),
-                          customDataCell('600', true, false),
-                          customDataCell('100000', true, true),
+                          customDataCell('Card', false, true, context),
+                          customDataCell('600', true, false, context),
+                          customDataCell('600', true, false, context),
+                          customDataCell('100000', true, true, context),
                         ],
                       ),
                       DataRow(
                         cells: <DataCell>[
-                          customDataCell('Debt', false, true),
-                          customDataCell('600', true, false),
-                          customDataCell('600', true, false),
-                          customDataCell('100000', true, true),
+                          customDataCell('Debt', false, true, context),
+                          customDataCell('600', true, false, context),
+                          customDataCell('600', true, false, context),
+                          customDataCell('100000', true, true, context),
                         ],
                       ),
                       DataRow(
                         cells: <DataCell>[
-                          customDataCell('Total', false, true),
-                          customDataCell('600', true, false),
-                          customDataCell('600', true, false),
-                          customDataCell('100000', true, true),
+                          customDataCell('Total', false, true, context),
+                          customDataCell('600', true, false, context),
+                          customDataCell('600', true, false, context),
+                          customDataCell('100000', true, true, context),
                         ],
                       ),
                     ],

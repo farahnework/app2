@@ -1,6 +1,3 @@
-import 'package:app/presentation/pages/sell/sell_page.dart';
-import 'package:app/presentation/widgets/buttons/custom_icon_button.dart';
-import 'package:app/presentation/widgets/fields/custom_search_field.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/utils/app_sizes.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
@@ -23,13 +20,13 @@ class _CustomersAppBarState extends State<CustomersAppBar> {
         border: Border(bottom: BorderSide(color: AppColors.grey, width: AppSizes.borderSize)),
       ),
       padding: EdgeInsets.only(
-        top: AppSizes.screenPadding/2,
-        bottom: AppSizes.screenPadding/2,
+        top: AppSizes.horiScreenPadding/2,
+        bottom: AppSizes.verScreenPadding/2,
       ),
 
       width: MediaQuery.of(context).size.width,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppSizes.screenPadding),
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.horiScreenPadding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,

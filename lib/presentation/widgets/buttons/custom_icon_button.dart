@@ -1,4 +1,5 @@
-import 'package:app/shared/utils/app_sizes.dart';
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/utils/app_colors.dart';
@@ -36,14 +37,14 @@ class _CustomIconButtonState extends State<CustomIconButton> {
         child: IconButton(
             onPressed: (){
             },
-            icon: Icon(widget.icon, color: widget.iconColor, size: AppSizes.iconSize2,),
+            icon: Icon(widget.icon, color: widget.iconColor, size: context.responsiveIconSize(AppSizes.iconSize2),),
   
           style: ElevatedButton.styleFrom(
             
             padding: EdgeInsets.zero,
             fixedSize: Size(40, 40),
             backgroundColor: widget.color,
-            shape:  RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(AppSizes.textFieldRadius)))
+            shape:  RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(context.responsiveBorderRadius(AppSizes.radius12))))
           )
         ),
       ),

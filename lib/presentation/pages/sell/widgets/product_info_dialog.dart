@@ -1,7 +1,9 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/widgets/custom_container.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart' show AppColors;
-import 'package:app/shared/utils/app_sizes.dart';
+import 'package:app/shared/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
@@ -16,14 +18,14 @@ void productInfoDialog(BuildContext context) {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
           color: AppColors.white,
-          width: MediaQuery.of(context).size.width * 0.6,
-          height: MediaQuery.of(context).size.width * 0.4,
+         width: context.screenWidth / (context.isDesktop ? 1.8 : 1.5),
+            height: context.screenHeight / 1.4,
           child: Column(
             children: [
               Container(
                 padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.screenPadding,
-                  vertical: AppSizes.screenPadding / 2.5,
+                  horizontal: AppSizes.horizontalPadding,
+                  vertical: AppSizes.verticalPadding / 2.5,
                 ),
                 color: AppColors.lightPurple,
                 child: Row(
@@ -35,28 +37,29 @@ void productInfoDialog(BuildContext context) {
                       },
                       icon: Icon(IconsaxPlusLinear.close_circle),
                     ),
-                    Text('Product Name', style: CustomTextStyles.header2),
+                    Text('Product Name', style: CustomTextStyles.tableHeader(context)),
                   ],
                 ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.screenPadding,
-                  vertical: AppSizes.screenPadding / 2,
+                  horizontal: AppSizes.horizontalPadding,
+                  vertical: AppSizes.verticalPadding / 2,
                 ),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        infoCard('Total Stock', IconsaxPlusLinear.box, 256),
+                        infoCard('Total Stock', IconsaxPlusLinear.box, 256, context),
                         infoCard(
                           'Total pieces sold',
                           IconsaxPlusLinear.bag_2,
                           125,
+                          context
                         ),
-                        infoCard('Selling price', IconsaxPlusLinear.coin, 115),
-                        infoCard('Purchase Price', IconsaxPlusLinear.coin, 100),
+                        infoCard('Selling price', IconsaxPlusLinear.coin, 115, context),
+                        infoCard('Purchase Price', IconsaxPlusLinear.coin, 100, context),
                       ],
                     ),
                     SizedBox(height: AppSizes.verSpacesBetweenContainers),
@@ -65,7 +68,7 @@ void productInfoDialog(BuildContext context) {
                       children: [
                         Text(
                           'Product Information',
-                          style: CustomTextStyles.header2,
+                          style: CustomTextStyles.meduimText(context),
                         ),
                       ],
                     ),
@@ -92,7 +95,7 @@ void productInfoDialog(BuildContext context) {
                                       ),
                                       Text(
                                         'SKU:',
-                                        style: CustomTextStyles.header2,
+                                        style: CustomTextStyles.meduimText(context),
                                       ),
                                     ],
                                   ),
@@ -112,7 +115,7 @@ void productInfoDialog(BuildContext context) {
                                       ),
                                       Text(
                                         'Barcode:',
-                                        style: CustomTextStyles.header2,
+                                        style: CustomTextStyles.meduimText(context),
                                       ),
                                     ],
                                   ),
@@ -132,7 +135,7 @@ void productInfoDialog(BuildContext context) {
                                       ),
                                       Text(
                                         'Brand:',
-                                        style: CustomTextStyles.header2,
+                                        style: CustomTextStyles.meduimText(context),
                                       ),
                                     ],
                                   ),
@@ -146,7 +149,7 @@ void productInfoDialog(BuildContext context) {
                                 children: [
                                   Row(
                                     children: [
-                                      Text('55', style: CustomTextStyles.body),
+                                      Text('55', style: CustomTextStyles.meduimText(context)),
                                     ],
                                   ),
                                   SizedBox(
@@ -156,7 +159,7 @@ void productInfoDialog(BuildContext context) {
                                     children: [
                                       Text(
                                         '252555554',
-                                        style: CustomTextStyles.body,
+                                        style: CustomTextStyles.meduimText(context),
                                       ),
                                     ],
                                   ),
@@ -168,7 +171,7 @@ void productInfoDialog(BuildContext context) {
                                     children: [
                                       Text(
                                         'Apple',
-                                        style: CustomTextStyles.body,
+                                        style: CustomTextStyles.meduimText(context),
                                       ),
                                     ],
                                   ),
@@ -194,7 +197,7 @@ void productInfoDialog(BuildContext context) {
                                       ),
                                       Text(
                                         'Category:',
-                                        style: CustomTextStyles.header2,
+                                        style: CustomTextStyles.meduimText(context),
                                       ),
                                     ],
                                   ),
@@ -213,7 +216,7 @@ void productInfoDialog(BuildContext context) {
                                       ),
                                       Text(
                                         'Description:',
-                                        style: CustomTextStyles.header2,
+                                        style: CustomTextStyles.meduimText(context),
                                       ),
                                     ],
                                   ),
@@ -229,7 +232,7 @@ void productInfoDialog(BuildContext context) {
                                     children: [
                                       Text(
                                         'Mobile',
-                                        style: CustomTextStyles.body,
+                                        style: CustomTextStyles.meduimText(context),
                                       ),
                                     ],
                                   ),
@@ -240,7 +243,7 @@ void productInfoDialog(BuildContext context) {
                                     children: [
                                       Text(
                                         'Iphone 16 ',
-                                        style: CustomTextStyles.body,
+                                        style: CustomTextStyles.meduimText(context),
                                       ),
                                     ],
                                   ),
@@ -262,11 +265,11 @@ void productInfoDialog(BuildContext context) {
   );
 }
 
-Widget infoCard(String title, IconData icon, int number) {
+Widget infoCard(String title, IconData icon, int number, BuildContext context) {
   return Container(
     padding: EdgeInsets.symmetric(
-      horizontal: AppSizes.screenPadding / 1.5,
-      vertical: AppSizes.screenPadding / 2,
+      horizontal: AppSizes.horizontalPadding / 1.5,
+      vertical: AppSizes.verticalPadding / 2,
     ),
     decoration: BoxDecoration(
       color: AppColors.white,
@@ -285,9 +288,9 @@ Widget infoCard(String title, IconData icon, int number) {
       children: [
         Row(
           children: [
-            Icon(icon, color: AppColors.darkPurple),
+            Icon(icon, color: AppColors.darkPurple, weight: context.responsiveIconSize(AppSizes.iconSize),),
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
-            Text(number.toString(), style: CustomTextStyles.header2),
+            Text(number.toString(), style: CustomTextStyles.titleText(context)),
           ],
         ),
         SizedBox(height: AppSizes.verSpacesBetweenElements / 2),
@@ -295,7 +298,7 @@ Widget infoCard(String title, IconData icon, int number) {
           title,
           style: TextStyle(
             color: AppColors.darkGray,
-            fontSize: AppSizes.fontSize3,
+            fontSize: context.responsiveFontSize(AppSizes.fontSize4),
           ),
         ),
       ],

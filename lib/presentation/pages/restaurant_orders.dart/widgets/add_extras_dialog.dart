@@ -1,4 +1,3 @@
-import 'package:app/presentation/widgets/custom_container.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart' show AppColors;
 import 'package:app/shared/utils/app_sizes.dart';
@@ -22,8 +21,8 @@ void addExtrasDialog(BuildContext context, String image) {
             children: [
               Container(
                 padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.screenPadding,
-                  vertical: AppSizes.screenPadding / 2.5,
+                  horizontal: AppSizes.horiScreenPadding,
+                  vertical: AppSizes.verScreenPadding / 2.5,
                 ),
                 color: AppColors.lightPurple,
                 child: Row(
@@ -40,8 +39,8 @@ void addExtrasDialog(BuildContext context, String image) {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.screenPadding,
-                  vertical: AppSizes.screenPadding / 2,
+                  horizontal: AppSizes.horiScreenPadding,
+                  vertical: AppSizes.verScreenPadding / 2,
                 ),
                 child: Column(
                   children: [
@@ -95,8 +94,8 @@ Widget extraCard(String item, double price) {
   return Container(
     margin: EdgeInsets.only(right: AppSizes.horiSpacesBetweenElements),
     padding: EdgeInsets.symmetric(
-      horizontal: AppSizes.screenPadding / 2.5,
-      vertical: AppSizes.screenPadding / 3.5,
+      horizontal: AppSizes.horiScreenPadding / 2.5,
+      vertical: AppSizes.verScreenPadding / 3.5,
     ),
     decoration: BoxDecoration(
       color: AppColors.white,
@@ -109,7 +108,7 @@ Widget extraCard(String item, double price) {
         SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
         Container(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.screenPadding / 4),
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.horiScreenPadding / 4),
           decoration: BoxDecoration(
             color: AppColors.yellow,
             borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),

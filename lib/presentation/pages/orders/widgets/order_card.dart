@@ -1,12 +1,9 @@
-import 'package:app/presentation/pages/sell/widgets/product_info_dialog.dart';
-import 'package:app/shared/utils/app_images.dart';
-import 'package:app/shared/utils/app_sizes.dart';
-import 'package:app/shared/styles/box_decoration.dart';
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
+import 'package:app/shared/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../shared/utils/app_colors.dart';
 
@@ -25,11 +22,11 @@ class _OrderCardState extends State<OrderCard> {
    Color getOrderColor() {
     switch (widget.type.toLowerCase()) {
       case 'dine in':
-        return AppColors.yellow;
+        return AppColors.lightYellow;
       case 'delivery':
-        return Colors.lightBlueAccent.withAlpha(150);
+        return AppColors.lightBlue;
       case 'takeaway':
-        return Colors.lightGreenAccent;
+        return AppColors.lightGreen;
       default:
         return AppColors.white;
     }
@@ -50,7 +47,7 @@ class _OrderCardState extends State<OrderCard> {
         });
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: AppSizes.screenPadding, vertical: AppSizes.screenPadding/2),
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding, vertical: AppSizes.verticalPadding),
         decoration: BoxDecoration(
           color: currentColor,
           border: Border.all(color: AppColors.grey, width: AppSizes.borderSize, ),
@@ -61,33 +58,29 @@ class _OrderCardState extends State<OrderCard> {
           children: [
             Text(
               widget.orderId,
-              style: TextStyle(fontSize: AppSizes.fontSize2),
+              style: CustomTextStyles.meduimText(context),
             ),
             Text(
               widget.date,
-              style: TextStyle(fontSize: AppSizes.fontSize2),
+              style: CustomTextStyles.meduimText(context),
             ),
             Row(
               children: [
-                SvgPicture.asset(AppImages.rial, width: AppSizes.fontSize3, color: AppColors.darkPurple,),
+                SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6), color: AppColors.darkPurple,),
                 SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                 Text(
                   widget.price.toString(),
-                  style: TextStyle(
-                    color: AppColors.darkPurple,
-                    fontWeight: FontWeight.w900,
-                    fontSize: AppSizes.fontSize2,
-                  ),
+                  style: CustomTextStyles.meduimText(context).copyWith(color: AppColors.darkPurple, fontWeight: AppSizes.fontWeight1)
                 ),
               ],
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: AppSizes.screenPadding/2, vertical: AppSizes.screenPadding/5),
+              padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding/2, vertical: AppSizes.verticalPadding/5),
               decoration:  BoxDecoration(
                 color: getOrderColor(),
                 borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),
               ),
-              child: Center(child: Text(widget.type, style: TextStyle(fontSize: AppSizes.fontSize2),)),
+              child: Center(child: Text(widget.type, style: CustomTextStyles.meduimText(context))),
             )
           ],
         ),

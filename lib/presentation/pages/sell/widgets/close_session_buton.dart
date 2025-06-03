@@ -1,9 +1,10 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/home/home_page.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_outlined_button.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
@@ -26,18 +27,19 @@ class _CloseSessionButtonState extends State<CloseSessionButton> {
     context: context,
     builder: (BuildContext dialogContext) {
       return Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(context.responsiveBorderRadius(AppSizes.radius16))),
         backgroundColor: AppColors.white,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
           color: AppColors.white,
-          width: MediaQuery.of(context).size.width * 0.4,
-          height: MediaQuery.of(context).size.width * 0.2,
+          width: context.width * 0.5,
+          height: context.height *0.5,
           padding: EdgeInsets.symmetric(
-           horizontal:  AppSizes.screenPadding,
-           vertical: AppSizes.screenPadding/2
+           horizontal:  AppSizes.horizontalPadding,
+           vertical: AppSizes.verticalPadding/2,
            ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -47,20 +49,30 @@ class _CloseSessionButtonState extends State<CloseSessionButton> {
                   }, icon: Icon(IconsaxPlusLinear.close_circle)),
                 ],
               ),
-              SizedBox(height: AppSizes.verSpacesBetweenContainers),
-              Text('Do you want to close this session?', style: CustomTextStyles.header1,),
-              SizedBox(height: AppSizes.verSpacesBetweenContainers),
-          
-              
-              SizedBox(height: AppSizes.verSpacesBetweenElements),
-     
-          
-              Row(
+            Spacer(),
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomButton(text: 'Close this session', radius: true, width: 200, page: HomePage(), height: AppSizes.widgetHeight,),
-                  SizedBox(width: AppSizes.horiSpacesBetweenElements,),
-                  CustomOutlinedButton(text: 'Session pause', page: HomePage(),)
+                  Text('Do you want to close this session?', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize1), fontWeight: AppSizes.fontWeight1)),
+                  SizedBox(height: AppSizes.verSpacesBetweenContainers), 
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomButton(text: 'Close this session', radius: true, width: 200, page: HomePage(), height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
+                      SizedBox(width: AppSizes.horiSpacesBetweenElements,),
+                      CustomOutlinedButton(text: 'Session pause', page: HomePage(),)
+                    ],
+                  ),
+                ],
+              ),
+            Spacer(),
+
+               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(onPressed: (){
+                    Get.back();
+                  }, icon: Icon(IconsaxPlusLinear.close_circle, color: AppColors.white,)),
                 ],
               ),
             ],
@@ -91,7 +103,7 @@ class _CloseSessionButtonState extends State<CloseSessionButton> {
             onPressed: (){
               customDialog(context);
             },
-            icon: Icon(widget.icon, color: widget.iconColor, size: AppSizes.iconSize2,),
+            icon: Icon(widget.icon, color: widget.iconColor, size: context.responsiveIconSize(AppSizes.iconSize2),),
   
           style: ElevatedButton.styleFrom(
             

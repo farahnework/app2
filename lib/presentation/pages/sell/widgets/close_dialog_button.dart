@@ -1,7 +1,8 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CloseDialogButton extends StatefulWidget {
   final String text;
@@ -37,7 +38,7 @@ class _CloseDialogButtonState extends State<CloseDialogButton> {
             backgroundColor: AppColors.darkPurple,
             shape:  widget.radius?
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderRadius: BorderRadius.circular(context.responsiveBorderRadius(AppSizes.radius12)),
             ):
             RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(0)),
@@ -46,7 +47,7 @@ class _CloseDialogButtonState extends State<CloseDialogButton> {
           onPressed: () {
              Navigator.pop(widget.context);
           },
-          child: Text(widget.text, style: CustomTextStyles.buttonTextStyle),
+          child: Text(widget.text, style: CustomTextStyles.buttonText(context)),
         ),
       ),
     );

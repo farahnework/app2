@@ -33,7 +33,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
         ),
         child: Padding(
-          padding:  EdgeInsets.all(AppSizes.screenPadding /2),
+          padding:  EdgeInsets.symmetric(
+           horizontal:  AppSizes.horiScreenPadding /2,
+           vertical: AppSizes.textFieldRadius /2),
           child: Column(
             mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

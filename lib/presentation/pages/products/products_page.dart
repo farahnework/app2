@@ -54,9 +54,9 @@ class _ProductsBodyState extends State<ProductsBody> {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(
-          top: AppSizes.screenPadding,
-          left: AppSizes.screenPadding,
-          right: AppSizes.screenPadding,
+          top: AppSizes.verScreenPadding,
+          left: AppSizes.horiScreenPadding,
+          right: AppSizes.horiScreenPadding,
         ),
         child: Column(
           children: [

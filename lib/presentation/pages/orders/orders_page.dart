@@ -1,3 +1,5 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/orders/widgets/order_details.dart';
 import 'package:app/presentation/pages/restaurant_orders.dart/restaurant_orders_page.dart';
 import 'package:app/presentation/pages/sell/sell_page.dart';
@@ -6,7 +8,6 @@ import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/pages/orders/widgets/order_card.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 class OrdersPage extends StatefulWidget {
@@ -33,13 +34,13 @@ class _OrdersPageState extends State<OrdersPage> {
                   SizedBox(height: AppSizes.verSpacesBetweenContainers),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: AppSizes.screenPadding,
+                      horizontal: AppSizes.horizontalPadding,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width / 4,
+                          width: context.screenWidth/ 3,
                           height: AppSizes.widgetHeight,
                           decoration: CustomBoxDecoration.boxDecoration,
                           child: TabBar(
@@ -52,12 +53,12 @@ class _OrdersPageState extends State<OrdersPage> {
 
                             unselectedLabelStyle: TextStyle(
                               color: AppColors.darkGray,
-                              fontSize: AppSizes.fontSize2,
+                              fontSize: context.responsiveFontSize(AppSizes.fontSize4),
                             ),
                             labelStyle: TextStyle(
                               color: AppColors.darkPurple,
-                              fontSize: AppSizes.fontSize2,
-                              fontWeight: FontWeight.bold,
+                              fontSize: context.responsiveFontSize(AppSizes.fontSize4),
+                              fontWeight: AppSizes.fontWeight2,
                             ),
                             tabs: [
                               Tab(text: "All Orders"),
@@ -75,6 +76,8 @@ class _OrdersPageState extends State<OrdersPage> {
                               width: 100,
                               page: SellPage(),
                               height: AppSizes.widgetHeight,
+                              color: AppColors.darkPurple,
+                              textColor: AppColors.white,
                             ),
                             SizedBox(width: AppSizes.horiSpacesBetweenElements),
                             CustomButton(
@@ -83,6 +86,8 @@ class _OrdersPageState extends State<OrdersPage> {
                               width: 120,
                               page: RestaurantOrdersPage(),
                               height: AppSizes.widgetHeight,
+                              color: AppColors.darkPurple,
+                              textColor: AppColors.white,
                             ),
                           ],
                         ),
@@ -129,9 +134,9 @@ class _View1State extends State<View1> {
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
-          right: AppSizes.screenPadding,
-          bottom: AppSizes.screenPadding,
-          left: AppSizes.screenPadding,
+          right: AppSizes.horizontalPadding,
+          bottom: AppSizes.verticalPadding,
+          left: AppSizes.horizontalPadding,
         ),
 
         child: ListView(
@@ -217,9 +222,9 @@ class _View2State extends State<View2> {
     return  Expanded(
       child: Padding(
         padding: EdgeInsets.only(
-          right: AppSizes.screenPadding,
-          bottom: AppSizes.screenPadding,
-          left: AppSizes.screenPadding,
+          right: AppSizes.horizontalPadding,
+          bottom: AppSizes.verticalPadding,
+          left: AppSizes.horizontalPadding,
         ),
 
         child: ListView(
@@ -305,9 +310,9 @@ class _View3State extends State<View3> {
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
-          right: AppSizes.screenPadding,
-          bottom: AppSizes.screenPadding,
-          left: AppSizes.screenPadding,
+          right: AppSizes.horizontalPadding,
+          bottom: AppSizes.verticalPadding,
+          left: AppSizes.horizontalPadding,
         ),
 
         child: ListView(
@@ -393,9 +398,9 @@ class _View4State extends State<View4> {
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
-          right: AppSizes.screenPadding,
-          bottom: AppSizes.screenPadding,
-          left: AppSizes.screenPadding,
+          right: AppSizes.horizontalPadding,
+          bottom: AppSizes.verticalPadding,
+          left: AppSizes.horizontalPadding,
         ),
 
         child: ListView(

@@ -46,7 +46,9 @@ class _CustomersBodyState extends State<CustomersBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(AppSizes.screenPadding),
+      padding: EdgeInsets.symmetric(
+       horizontal:  AppSizes.horiScreenPadding,
+       vertical: AppSizes.verScreenPadding),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -61,13 +63,13 @@ class _CustomersBodyState extends State<CustomersBody> {
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
             Column(children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: AppSizes.screenPadding),
+                padding: EdgeInsets.symmetric(horizontal: AppSizes.horiScreenPadding),
                 width: MediaQuery.of(context).size.width,
                 height: AppSizes.widgetHeight,
                 color: AppColors.lightPurple,
                 child: Row(
                   children: [
-                    Text('Customers', style: CustomTextStyles.tableHeader,),
+                    Text('Customers', style: CustomTextStyles.tableHeader(context),),
                     
                   ],
                 ),

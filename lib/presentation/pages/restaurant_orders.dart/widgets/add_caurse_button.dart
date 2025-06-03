@@ -1,4 +1,5 @@
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
+import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,6 @@ class _AddCaurseButtonState extends State<AddCaurseButton> {
       onTap: () {
         
       },
-      child: CustomButton(text: 'Caurse', radius: true, width: 100, height: AppSizes.iconButtonSize));
+      child: CustomButton(text: 'Caurse', radius: true, width: 100, height: AppSizes.iconButtonSize, color: AppColors.darkPurple, textColor: AppColors.white,));
   }
 }

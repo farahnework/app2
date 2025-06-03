@@ -1,9 +1,9 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
+import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
-import 'package:app/shared/styles/box_decoration.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
 
 class CustomDropDownButton extends StatefulWidget {
   final String title;
@@ -48,8 +48,9 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         },
         child: Container(
           height: widget.height,
-          width:  widget.width,
-          child: DropdownButton2(
+          width: widget.width,
+          child: 
+          DropdownButton2(
             underline: SizedBox.shrink(),
             buttonStyleData: ButtonStyleData(
               
@@ -60,7 +61,8 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
                   width: AppSizes.borderSize,
                 ),
                 borderRadius: BorderRadius.all(
-                  Radius.circular(AppSizes.textFieldRadius),
+                  
+                  Radius.circular(context.responsiveBorderRadius(AppSizes.radius12)),
                 ),
               ),
             ),
@@ -68,15 +70,15 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadius.all(
-                  Radius.circular(AppSizes.textFieldRadius),
+                  Radius.circular(context.responsiveBorderRadius(AppSizes.radius12)),
                 ),
               ),
             ),
             value: newSelect,
-            hint: Text(widget.title),
+            hint: Text(widget.title,style: CustomTextStyles.smallText(context)),
             items:
                 widget.list.map((item) {
-                  return DropdownMenuItem(value: item, child: Text(item));
+                  return DropdownMenuItem(value: item, child: Text(item, style: CustomTextStyles.smallText(context)));
                 }).toList(),
             isExpanded: true,
             onChanged: (value) {

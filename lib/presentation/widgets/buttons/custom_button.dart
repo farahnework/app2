@@ -1,3 +1,4 @@
+import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,16 +11,19 @@ class CustomButton extends StatefulWidget {
   final double width;
   final double height;
   final Widget? page;
-  const CustomButton({super.key, required this.text, required this.radius, required this.width, this.page, required this.height});
+  final Color color;
+  final Color textColor;
+  const CustomButton({super.key, required this.text, required this.radius, required this.width, this.page, required this.height, required this.color, required this.textColor});
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
 }
 
 class _CustomButtonState extends State<CustomButton> {
-  Color color = AppColors.darkPurple;
+  
   @override
   Widget build(BuildContext context) {
+    Color color = widget.color;
     return MouseRegion(
       onEnter: (event) {
         setState(() {
@@ -28,7 +32,7 @@ class _CustomButtonState extends State<CustomButton> {
       },
         onExit: (event) {
         setState(() {
-          color = AppColors.darkPurple;
+          color = widget.color;
         });
       },
       child: Container(
@@ -38,7 +42,7 @@ class _CustomButtonState extends State<CustomButton> {
             backgroundColor: color,
             shape:  widget.radius?
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderRadius: BorderRadius.all(Radius.circular(AppSizes.radius16)),
             ):
             RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(0)),
@@ -48,7 +52,7 @@ class _CustomButtonState extends State<CustomButton> {
           onPressed: () {
             Get.to(widget.page);
           },
-          child: Text(widget.text, style: CustomTextStyles.buttonTextStyle),
+          child: Center(child: Text(widget.text, style: CustomTextStyles.buttonText(context).copyWith(color: widget.textColor),)),
         ),
       ),
     );

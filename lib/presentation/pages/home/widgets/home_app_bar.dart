@@ -1,24 +1,34 @@
+import 'package:app/controllers/side_bar_controller.dart';
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/widgets/fields/custom_search_field.dart';
+import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
-import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
-  const HomeAppBar({super.key,});
+class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const HomeAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        border: Border(bottom: BorderSide(color: AppColors.grey, width: AppSizes.borderSize)),
+    return Container(
+      // decoration: BoxDecoration(
+      //   color: AppColors.white,
+      //   border: Border(
+      //     bottom: BorderSide(color: AppColors.grey, width: AppSizes.borderSize),
+      //   ),
+      // ),
+      decoration: CustomBoxDecoration.boxDecoration.copyWith(
+        borderRadius: BorderRadius.circular(0),
+        border: Border(bottom: BorderSide(width: AppSizes.borderSize, color: AppColors.grey))
       ),
       padding: EdgeInsets.symmetric(
-          horizontal:  AppSizes.screenPadding,
-          vertical: AppSizes.screenPadding/3),
+        horizontal: AppSizes.horizontalPadding,
+        vertical: AppSizes.verticalPadding / 2,
+      ),
 
       width: MediaQuery.of(context).size.width,
       child: Row(
@@ -28,44 +38,74 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // CustomMenuButton(icon: Icons.settings),
-              Container(
-                   height: AppSizes.iconButtonSize,
-                  width: AppSizes.iconButtonSize,
-                decoration: BoxDecoration(
-                  color: AppColors.lightPurple,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(AppSizes.textFieldRadius),
-                  ),
+              if (context.isMobile)
+                InkWell(
+                  onTap: () {
+                    final sidebarController = Provider.of<SideBarController>(
+                      context,
+                      listen: false,
+                    );
+                    sidebarController.toggleSidebar();
+                  },
+                  child: const Icon(Iconsax.menu),
                 ),
-                child: Center(child: Text('T', style: CustomTextStyles.header1)),
+              SizedBox(width: AppSizes.horiSpacesBetweenElements),
+              
+               SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+               if(!context.isMobile)
+               Text(
+                    'Dashboard',
+                    style: TextStyle(
+                      fontSize: context.responsiveFontSize(AppSizes.fontSize1,),
+                      fontWeight: AppSizes.fontWeight1,
+                      color: AppColors.darkPurple
+                    ),
+                  ),
+               SizedBox(width: AppSizes.horiSpacesBetweenElements*2),
+
+              CustomSearchField(text: 'Search'),
+
+            ],
+          ),
+
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(width: AppSizes.horiSpacesBetweenElements),
+              SizedBox(
+                height: context.responsiveWidgetHeight,
+                child: CircleAvatar(
+                  child: Image.asset('lib/assets/images/user.jpg'),
+                ),
               ),
+
               SizedBox(width: AppSizes.horiSpacesBetweentTexts),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Tareq Taha', style: CustomTextStyles.header2),
+                  Text(
+                    'Tareq Taha',
+                    style: TextStyle(
+                      fontSize: context.responsiveFontSize(AppSizes.fontSize3),
+                      fontWeight: AppSizes.fontWeight1,
+                    ),
+                  ),
                   Text(
                     '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}',
+                    style: TextStyle(
+                      fontSize: context.responsiveFontSize(AppSizes.fontSize5),
+                    ),
                   ),
                 ],
               ),
-            ],
-          ),
-          Row(
-            children: [
-              // CustomIconButton(icon: Icons.notifications, page: SellPage(),),
-              SizedBox(width: AppSizes.horiSpacesBetweenElements),
-              CustomSearchField(text: 'Search',),
             ],
           ),
         ],
       ),
     );
   }
-  
+
   @override
-  // TODO: implement preferredSize
-  Size get preferredSize => throw UnimplementedError();
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

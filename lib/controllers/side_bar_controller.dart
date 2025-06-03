@@ -1,23 +1,18 @@
+import 'package:flutter/material.dart';
 
-// import 'package:get/get.dart';
 
-// class SideBarController extends GetxController {
-//   final hoverItem = ''.obs;
-//   final activeItem = '/dashboard'.obs;
 
-//   void changeActiveItem(String page) => activeItem.value = page;
+class SideBarController extends ChangeNotifier {
+  GlobalKey<ScaffoldState>? scaffoldKey;
 
-//   void changeHoverItem(String page) {
-//     if (activeItem.value != page) hoverItem.value = page;
-//   }
+  void setScaffoldKey(GlobalKey<ScaffoldState> key) {
+    scaffoldKey = key;
+  }
 
-//   bool isActive(String page) => activeItem.value == page;
-//   bool isHovering(String page) => hoverItem.value == page;
-
-//   void menuOnTap(String page) {
-//     if (!isActive(page)) {
-//       changeActiveItem(page);
-//       Get.toNamed(page);
-//     }
-//   }
-// }
+  void toggleSidebar() {
+    if (scaffoldKey?.currentState?.isDrawerOpen == false) {
+      scaffoldKey?.currentState?.openDrawer();
+      notifyListeners();
+    }
+  }
+}

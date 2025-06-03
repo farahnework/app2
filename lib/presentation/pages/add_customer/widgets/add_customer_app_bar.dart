@@ -26,13 +26,13 @@ class _AddCustomerAppBarState extends State<AddCustomerAppBar> {
         ),
       ),
       padding: EdgeInsets.only(
-        top: AppSizes.screenPadding / 2,
-        bottom: AppSizes.screenPadding / 2,
+        top: AppSizes.horiScreenPadding / 2,
+        bottom: AppSizes.verScreenPadding / 2,
       ),
 
       width: MediaQuery.of(context).size.width,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppSizes.screenPadding),
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.horiScreenPadding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,

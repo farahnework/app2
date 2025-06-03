@@ -1,10 +1,12 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/sell/widgets/product_info_dialog.dart';
 import 'package:app/shared/utils/app_images.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_utils/src/extensions/export.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../shared/utils/app_colors.dart';
@@ -39,7 +41,7 @@ class _ProductCardState extends State<ProductCard> {
         });
       },
       child: Container(
-        margin: EdgeInsets.only(right: AppSizes.horiSpacesBetweenElements),
+        // margin: EdgeInsets.(right: AppSizes.horiSpacesBetweenElements),
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: CustomBoxDecoration.boxDecoration,
 
@@ -49,7 +51,7 @@ class _ProductCardState extends State<ProductCard> {
             Stack(
               children: [
                 SizedBox(
-                  width: MediaQuery.of(context).size.width,
+                  width: context.width,
                   height: 120,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(
@@ -75,25 +77,20 @@ class _ProductCardState extends State<ProductCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(widget.productName, style: CustomTextStyles.header2),
+                Text(widget.productName, style: CustomTextStyles.meduimText(context)),
               ],
             ),
-            // SizedBox(height: AppSizes.verSpacesBetweenElements),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Price: "),
+                Text("Price: " , style: CustomTextStyles.smallText(context)),
                 Row(
                   children: [
-                    SvgPicture.asset(AppImages.rial, width: AppSizes.fontSize3,),
+                    SvgPicture.asset(AppImages.rial, width:  context.responsiveFontSize(AppSizes.fontSize5,),),
                     SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
                     Text(
                       widget.price.toString(),
-                      style: TextStyle(
-                        color: AppColors.black,
-                        fontWeight: FontWeight.w900,
-                        fontSize: AppSizes.fontSize2,
-                      ),
+                      style: CustomTextStyles.smallText(context)
                     ),
                   ],
                 ),

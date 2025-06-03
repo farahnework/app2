@@ -33,19 +33,21 @@ class _SigninPageState extends State<SigninPage> {
             ),
           ),
           Positioned(
-            left: AppSizes.screenPadding * 2,
-            top: AppSizes.screenPadding * 2,
+            left: AppSizes.horiScreenPadding * 2,
+            top: AppSizes.horiScreenPadding * 2,
             child: Container(
               height: 50,
               child: Image.asset('lib/assets/images/logo.png'),
             ),
           ),
           Positioned(
-            right: AppSizes.screenPadding * 2,
-            top: AppSizes.screenPadding * 2,
-            bottom: AppSizes.screenPadding * 2,
+            right: AppSizes.horiScreenPadding * 2,
+            top: AppSizes.verScreenPadding * 2,
+            bottom: AppSizes.verScreenPadding * 2,
             child: Container(
-              padding: EdgeInsets.all(AppSizes.screenPadding * 3),
+              padding: EdgeInsets.symmetric(
+               horizontal:  AppSizes.horiScreenPadding * 3,
+               vertical: AppSizes.verScreenPadding *3),
               width: MediaQuery.of(context).size.width / 2,
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
@@ -89,7 +91,7 @@ class _SigninPageState extends State<SigninPage> {
                       CustomTextField(hintText: 'Password', icon: Icons.lock, width: width,enabled: true, ),
                     ],
                   ),
-                  CustomButton(text: 'Sign in', radius: true, width: MediaQuery.of(context).size.width, page: HomePage(), height: AppSizes.widgetHeight,),
+                  CustomButton(text: 'Sign in', radius: true, width: MediaQuery.of(context).size.width, page: HomePage(), height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
                   Divider(color: AppColors.grey),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -104,7 +106,7 @@ class _SigninPageState extends State<SigninPage> {
                         onTap: () {
                           Get.off(SignupPage());
                         },
-                        child: Text('Sign up', style: CustomTextStyles.tableHeader)),
+                        child: Text('Sign up',)),
                     ],
                   ),
                 ],

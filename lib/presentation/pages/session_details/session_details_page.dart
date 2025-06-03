@@ -1,3 +1,5 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/sell/sell_page.dart';
 import 'package:app/presentation/pages/session_details/widgets/details_of_payment_table.dart';
 import 'package:app/presentation/pages/session_details/widgets/payment_methods_table.dart';
@@ -8,7 +10,6 @@ import 'package:app/presentation/widgets/custom_container.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
@@ -32,13 +33,13 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
             SessionAppBar(),
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSizes.screenPadding),
+              padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding),
 
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width / 2,
+                    width: context.screenWidth / 2,
                     height: AppSizes.widgetHeight,
                     decoration: CustomBoxDecoration.boxDecoration,
                     child: TabBar(
@@ -51,11 +52,11 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
 
                       unselectedLabelStyle: TextStyle(
                         color: AppColors.darkGray,
-                        fontSize: AppSizes.fontSize2,
+                        fontSize:context.responsiveFontSize(AppSizes.fontSize3),
                       ),
                       labelStyle: TextStyle(
                         color: AppColors.darkPurple,
-                        fontSize: AppSizes.fontSize2,
+                        fontSize: context.responsiveFontSize(AppSizes.fontSize3),
                         fontWeight: FontWeight.bold,
                       ),
                       tabs: [
@@ -74,6 +75,8 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                         width: 100,
                         page: SellPage(),
                         height: AppSizes.widgetHeight,
+                        textColor: AppColors.white,
+                        color: AppColors.darkPurple,
                       ),
                       SizedBox(width: AppSizes.horiSpacesBetweenElements),
                       CustomButton(
@@ -82,6 +85,8 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                         width: 120,
                         page: SellPage(),
                         height: AppSizes.widgetHeight,
+                        color: AppColors.darkPurple,
+                        textColor: AppColors.white,
                       ),
                     ],
                   ),
@@ -114,30 +119,30 @@ class _View1State extends State<View1> {
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
-            right: AppSizes.screenPadding,
-            bottom: AppSizes.screenPadding,
-            left: AppSizes.screenPadding,
+            right: AppSizes.horizontalPadding,
+            bottom: AppSizes.verticalPadding,
+            left: AppSizes.horizontalPadding,
           ),
           child: CustomContainer(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Session Deatils:', style: CustomTextStyles.header2),
+                Text('Session Deatils:',style: CustomTextStyles.titleText(context)),
                 SizedBox(height: AppSizes.verSpacesBetweenElements),
                 SessionDetailsTable(),
                 SizedBox(height: AppSizes.verSpacesBetweenContainers),
 
                 Text(
-                  'Summery of Payment Method:',
-                  style: CustomTextStyles.header2,
+                  'Summery of Payment Method:'
+                  , style: CustomTextStyles.titleText(context)
                 ),
                 SizedBox(height: AppSizes.verSpacesBetweenElements),
                 PaymentMethodsTable(),
                 SizedBox(height: AppSizes.verSpacesBetweenContainers),
 
                 Text(
-                  'Payment Method Details for Sales:',
-                  style: CustomTextStyles.header2,
+                  'Payment Method Details for Sales:'
+                  ,style:  CustomTextStyles.titleText(context),
                 ),
                 SizedBox(height: AppSizes.verSpacesBetweenElements),
                 DetailOfPaymentTable(),

@@ -1,10 +1,11 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/customers/customers_page.dart';
 import 'package:app/presentation/pages/kitchen_display/kichen_display_page.dart';
 import 'package:app/presentation/pages/restaurant_orders.dart/restaurant_orders_page.dart';
 import 'package:app/presentation/pages/sell/sell_page.dart';
 import 'package:app/presentation/pages/signin_page.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
@@ -20,6 +21,7 @@ class _SideBarState extends State<SideBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 250,
       decoration: BoxDecoration(
         color: AppColors.white,
 
@@ -29,8 +31,8 @@ class _SideBarState extends State<SideBar> {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(
-          vertical: AppSizes.screenPadding,
-          horizontal: AppSizes.screenPadding / 2,
+          vertical: AppSizes.verticalPadding,
+          horizontal: AppSizes.horizontalPadding /2,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -161,9 +163,10 @@ class _CustomListTileState extends State<CustomListTile> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.off(widget.page);
-      },
+     onTap: () {
+  Get.off(() => widget.page);
+}
+,
       child: MouseRegion(
         onEnter: (event) {
           setState(() {
@@ -189,7 +192,7 @@ class _CustomListTileState extends State<CustomListTile> {
                   child: ListTile(
                     leading: Icon(
                       widget.icon,
-                      size: AppSizes.iconSize,
+                      size: context.responsiveIconSize(AppSizes.iconSize2),
                       color: AppColors.white,
                     ),
                     title: Text(
@@ -198,7 +201,7 @@ class _CustomListTileState extends State<CustomListTile> {
                         letterSpacing: 1.1,
                         color: AppColors.white,
                         fontWeight: FontWeight.w900,
-                        fontSize: AppSizes.fontSize2,
+                        fontSize: context.responsiveFontSize(AppSizes.fontSize4),
                       ),
                     ),
                   ),
@@ -211,7 +214,7 @@ class _CustomListTileState extends State<CustomListTile> {
                   child: ListTile(
                     leading: Icon(
                       widget.icon,
-                      size: AppSizes.iconSize,
+                      size: context.responsiveIconSize(AppSizes.iconSize2),
                       color: AppColors.darkGray,
                     ),
                     title: Text(
@@ -219,7 +222,7 @@ class _CustomListTileState extends State<CustomListTile> {
                       style: TextStyle(
                         color: AppColors.darkGray,
                         fontWeight: FontWeight.w500,
-                        fontSize: AppSizes.fontSize2,
+                        fontSize: context.responsiveFontSize(AppSizes.fontSize4),
                       ),
                     ),
                   ),

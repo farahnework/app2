@@ -1,7 +1,8 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/session_details/widgets/custom_data_cell.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 class SessionDetailsTable extends StatefulWidget {
@@ -47,8 +48,8 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            'Shift',
-                            style: CustomTextStyles.tableHeader,
+                            'Shift'
+                            , style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
@@ -56,7 +57,7 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                         label: Center(
                           child: Text(
                             "Shift Number",
-                            style: CustomTextStyles.tableHeader,
+                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
@@ -64,7 +65,7 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                         label: Center(
                           child: Text(
                             'Opening Time',
-                            style: CustomTextStyles.tableHeader,
+                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
@@ -72,7 +73,7 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                         label: Center(
                           child: Text(
                             "Device",
-                            style: CustomTextStyles.tableHeader,
+                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
@@ -80,7 +81,7 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                         label: Center(
                           child: Text(
                             "Employee",
-                            style: CustomTextStyles.tableHeader,
+                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
@@ -88,7 +89,7 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                         label: Center(
                           child: Text(
                             "Closing Time",
-                            style: CustomTextStyles.tableHeader,
+                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
@@ -96,12 +97,12 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                     rows: [
                       DataRow(
                         cells: [
-                          customDataCell('Main Shift', false, false),
-                          customDataCell('2', false, false),
-                          customDataCell('11/2/2025 10:20', false, false),
-                          customDataCell('Device 1', false, false),
-                          customDataCell('Mohammed', false, false),
-                          customDataCell('-', false, false),
+                          customDataCell('Main Shift', false, false, context),
+                          customDataCell('2', false, false, context),
+                          customDataCell('11/2/2025 10:20', false, false, context),
+                          customDataCell('Device 1', false, false, context),
+                          customDataCell('Mohammed', false, false, context),
+                          customDataCell('-', false, false, context),
                         ],
                       ),
                     ],

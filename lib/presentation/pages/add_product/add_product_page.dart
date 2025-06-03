@@ -4,7 +4,6 @@ import 'package:app/presentation/widgets/bars/side_bar.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_cancel_outlined_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_drop_down_button.dart';
-import 'package:app/presentation/widgets/buttons/custom_outlined_button.dart';
 import 'package:app/presentation/widgets/custom_container.dart';
 import 'package:app/presentation/widgets/fields/custom_text_field.dart';
 import 'package:app/shared/utils/app_colors.dart';
@@ -56,8 +55,8 @@ class _AddProductBodyState extends State<AddProductBody> {
     double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.only(
-        left: AppSizes.screenPadding,
-        right: AppSizes.screenPadding,
+        left: AppSizes.horiScreenPadding,
+        right: AppSizes.horiScreenPadding,
       ),
       child: Column(
         children: [
@@ -236,6 +235,8 @@ class _AddProductBodyState extends State<AddProductBody> {
                 width: 200,
                 page: CustomersPage(),
                 height: AppSizes.widgetHeight,
+                color: AppColors.darkPurple,
+                textColor: AppColors.white,
               ),
               SizedBox(width: AppSizes.horiSpacesBetweenElements),
               CustomCancelOutlinedButton(text: 'Cancel'),

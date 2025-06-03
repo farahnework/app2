@@ -1,6 +1,7 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/utils/app_images.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -46,7 +47,7 @@ class _SellItemCardState extends State<SellItemCard> {
             bottom: AppSizes.verSpacesBetweenElements / 2,
           ),
           padding: EdgeInsets.symmetric(
-            horizontal: AppSizes.screenPadding / 2,
+            horizontal: AppSizes.horizontalPadding,
             vertical: 5,
           ),
           height: 60,
@@ -63,42 +64,29 @@ class _SellItemCardState extends State<SellItemCard> {
                     width: 50,
                     height: 50,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),
+                      borderRadius: BorderRadius.circular(context.responsiveBorderRadius(AppSizes.radius12)),
                       child: Image.asset(widget.image, fit: BoxFit.cover),
                     ),
                   ),
                   SizedBox(width: AppSizes.horiSpacesBetweenElements * 2),
                   Text(
                     widget.amount.toString(),
-                    style: CustomTextStyles.header2,
+                    style: CustomTextStyles.meduimText(context),
                   ),
                   SizedBox(width: AppSizes.horiSpacesBetweenElements * 2),
                   Text(
                     widget.productName,
-                    style: TextStyle(
-                      fontSize: AppSizes.fontSize2,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: CustomTextStyles.meduimText(context)
                   ),
                 ],
               ),
               Row(
                 children: [
-                  SizedBox(
-                    width: AppSizes.fontSize2,
-                    height: AppSizes.fontSize2,
-                    child: SvgPicture.asset(
-                      AppImages.rial,
-                      color: AppColors.darkPurple,
-                    ),
-                  ),
+                  SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize5), color: AppColors.darkPurple,),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
                   Text(
                     widget.price.toString(),
-                    style: TextStyle(
-                      color: AppColors.darkPurple,
-                      fontSize: AppSizes.fontSize1,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: CustomTextStyles.tableHeader(context)
                   ),
                 ],
               ),

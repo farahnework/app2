@@ -1,7 +1,7 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/sell/widgets/close_session_buton.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
-import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
@@ -18,40 +18,31 @@ class SessionAppBar extends StatelessWidget {
           bottom: BorderSide(color: AppColors.grey, width: AppSizes.borderSize),
         ),
       ),
-      width: MediaQuery.of(context).size.width,
+      width: context.screenWidth,
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: AppSizes.screenPadding,
-          vertical: AppSizes.screenPadding / 3,
+          horizontal: AppSizes.horizontalPadding,
+          vertical: AppSizes.verticalPadding /2 ,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
+           Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  height: AppSizes.iconButtonSize,
-                  width: AppSizes.iconButtonSize,
-
-                  decoration: BoxDecoration(
-                    color: AppColors.lightPurple,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(AppSizes.textFieldRadius),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text('T', style: CustomTextStyles.header1),
-                  ),
-                ),
+                SizedBox(
+                  height: context.responsiveWidgetHeight,
+                  child: CircleAvatar(child: Image.asset('lib/assets/images/user.jpg'), )),
+               
                 SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Tareq Taha', style: CustomTextStyles.header2),
+                    Text('Tareq Taha', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
                     Text(
-                      '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}',
+                      '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}'
+                      , style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize4)),
                     ),
                   ],
                 ),
@@ -59,15 +50,15 @@ class SessionAppBar extends StatelessWidget {
             ),
             Row(
               children: [
-                Text('Current Session: ', style: CustomTextStyles.header2),
+                Text('Current Session: ',  style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
                 Text(
                   'Main shift',
-                  style: TextStyle(fontSize: AppSizes.fontSize2),
+                   style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2)),
                 ),
-                Text(', ', style: TextStyle(fontSize: AppSizes.fontSize2)),
+                Text(', ',  style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2)),),
                 Text(
                   'Device 1',
-                  style: TextStyle(fontSize: AppSizes.fontSize2),
+                   style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2)),
                 ),
               ],
             ),

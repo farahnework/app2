@@ -1,10 +1,8 @@
 import 'package:app/presentation/pages/add_customer/widgets/add_customer_app_bar.dart';
 import 'package:app/presentation/pages/customers/customers_page.dart';
-import 'package:app/presentation/pages/customers/widgets/customers_app_bar.dart';
 import 'package:app/presentation/widgets/bars/side_bar.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_cancel_outlined_button.dart';
-import 'package:app/presentation/widgets/buttons/custom_outlined_button.dart';
 import 'package:app/presentation/widgets/custom_container.dart';
 import 'package:app/presentation/widgets/fields/custom_text_field.dart';
 import 'package:app/shared/utils/app_colors.dart';
@@ -51,9 +49,9 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
     double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.only(
-        top: AppSizes.screenPadding,
-        left: AppSizes.screenPadding,
-        right: AppSizes.screenPadding,
+        top: AppSizes.verScreenPadding,
+        left: AppSizes.horiScreenPadding,
+        right: AppSizes.horiScreenPadding,
       ),
       child: Column(
         children: [
@@ -131,7 +129,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                   ),
                 ),
               ),
-              SizedBox(width: AppSizes.screenPadding),
+              SizedBox(width: AppSizes.horiScreenPadding),
           
               Expanded(
                 flex: 2,
@@ -178,7 +176,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
           SizedBox(height: AppSizes.verSpacesBetweenContainers,),
           Row(
             children: [
-              CustomButton(text: 'Save', radius: true, width: 200, page: CustomersPage(), height: AppSizes.widgetHeight,),
+              CustomButton(text: 'Save', radius: true, width: 200, page: CustomersPage(), height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
               SizedBox(width: AppSizes.horiSpacesBetweenElements,),
               CustomCancelOutlinedButton(text: 'Cancel')
             ],

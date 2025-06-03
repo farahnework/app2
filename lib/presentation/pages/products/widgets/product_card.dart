@@ -108,7 +108,7 @@ class _ProductCardState extends State<ProductCard> {
                               style: TextStyle(
                                 fontSize: AppSizes.fontSize2,
                                 fontWeight: FontWeight.bold,
-                                color: widget.stock < 5  ? AppColors.red : AppColors.green
+                                color: widget.stock < 5  ? AppColors.red : AppColors.lightGreen
                               ),
                             ),
                             SizedBox(width: AppSizes.horiSpacesBetweentTexts,),

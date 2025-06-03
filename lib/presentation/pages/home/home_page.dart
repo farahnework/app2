@@ -1,17 +1,23 @@
+import 'package:app/controllers/side_bar_controller.dart';
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
+import 'package:app/core/responsive/screen_layouts.dart';
 import 'package:app/presentation/pages/home/widgets/home_app_bar.dart';
 import 'package:app/presentation/pages/home/widgets/home_table.dart';
 import 'package:app/presentation/pages/sell/sell_page.dart';
-import 'package:app/presentation/widgets/bars/custom_drawer.dart';
+import 'package:app/presentation/widgets/bars/icon_side_bar.dart';
 import 'package:app/presentation/widgets/bars/side_bar.dart';
 import 'package:app/presentation/widgets/buttons/custom_drop_down_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_icon_text_button.dart';
 import 'package:app/presentation/widgets/custom_container.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
+import 'package:app/shared/utils/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -21,33 +27,42 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      scaffoldKey.currentState?.openDrawer(); // Opens drawer after build
-    });
-  }
+@override
+void initState() {
+  super.initState();
+  Provider.of<SideBarController>(context, listen: false)
+      .setScaffoldKey(scaffoldKey);
+}
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       drawerScrimColor: Colors.transparent,
+      drawer: context.isDesktop ? null : SideBar(),
 
-      // appBar: AppBar(),
-      // drawer: Expanded(child: CustomDrawer()),
+      
       backgroundColor: AppColors.lightGrey,
       body: Row(
         children: [
-          Expanded(flex: 2, child: SideBar()),
+          
+          context.isDesktop?
+          Expanded(flex:1 , child: SideBar()):
+           context.isLargeTablet?
+          IconSideBar():
+           context.isSmallTablet?
+          IconSideBar():
+          Container(),
+
+
           Expanded(
-            flex: 10,
-            child: SingleChildScrollView(
-              child: Column(children: [HomeAppBar(), HomeBody()]),
-            ),
+            flex: 5,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [HomeAppBar(), HomeBody()]),
           ),
         ],
       ),
@@ -59,120 +74,146 @@ class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: AppSizes.screenPadding,
-        vertical: AppSizes.screenPadding,
-      ),
+    // تحديد عدد الأعمدة بناءً على نوع الجهاز
+  int crossAxisCount = context.isMobile
+      ? ScreenLayouts.mobileCrossAxisCount
+      : context.isLargeTablet
+          ? ScreenLayouts.tabletCrossAxisCount
+          : ScreenLayouts.desktopCrossAxisCount;
+          
+  // تحديد نسبة الأبعاد بناءً على نوع الجهاز
+  double childAspectRatio = context.isMobile
+      ? ScreenLayouts.mobileChildAspectRatio
+      : context.isLargeTablet
+          ? ScreenLayouts.tabletChildAspectRatio
+          : ScreenLayouts.desktopChildAspectRatio;
+    return Expanded(
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomContainer(
-              child: Row(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: AppSizes.horizontalPadding,
+            vertical: AppSizes.verticalPadding,
+          ),
+          child: Column(
+            children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CustomServiceCard(
-                    color: AppColors.darkPurple,
-                    icon: Icons.money,
-                    text: "Income",
-                    number: '25450',
-                    iconAppear: true,
-                  ),
-                  Container(
-                    height: 100,
-                    child: VerticalDivider(
-                      color: AppColors.grey,
-                      thickness: AppSizes.borderSize,
+                  Expanded(
+                    child: CustomServiceCard(
+                      color: AppColors.lightGreen,
+                      icon: IconsaxPlusLinear.money_recive,
+                      text: "Income",
+                      number: '25450',
+                      iconAppear: true,
+                      iconColor: AppColors.darkGreen,
+                              
                     ),
                   ),
-                  CustomServiceCard(
-                    color: AppColors.darkPurple,
-                    icon: Icons.sticky_note_2_rounded,
-                    text: "Invoices",
-                    number: '512',
-                    iconAppear: false,
-                  ),
-                  Container(
-                    height: 100,
-                    child: VerticalDivider(
-                      color: AppColors.grey,
-                      thickness: AppSizes.borderSize,
+                 SizedBox(width: AppSizes.horiSpacesBetweenElements*2,),
+                  Expanded(
+                    child: CustomServiceCard(
+                      color: AppColors.lightPurple,
+                      icon: IconsaxPlusLinear.receipt_1,
+                      text: "Invoices",
+                      number: '512',
+                      iconAppear: false,
+                      iconColor: AppColors.darkPurple,
+                              
                     ),
                   ),
-                  CustomServiceCard(
-                    color: AppColors.darkPurple,
-                    icon: Icons.sticky_note_2_rounded,
-                    text: "returned products",
-                    number: '14',
-                    iconAppear: false,
+                 SizedBox(width: AppSizes.horiSpacesBetweenElements*2,),
+                 
+                  Expanded(
+                    child: CustomServiceCard(
+                      color: AppColors.lightBlue,
+                      icon: IconsaxPlusLinear.people,
+                      text: "Total Customers",
+                      number: '14',
+                      iconAppear: false,
+                      iconColor: AppColors.darkBlue,
+                              
+                    ),
                   ),
+                 SizedBox(width: AppSizes.horiSpacesBetweenElements*2,),
+
+                   Expanded(
+                     child: CustomServiceCard(
+                      color: AppColors.lightYellow,
+                      icon: IconsaxPlusLinear.user,
+                      text: "New Customers",
+                      number: '14',
+                      iconAppear: false,
+                       iconColor: AppColors.yellow,
+                                       ),
+                   ),
                 ],
               ),
-            ),
-            SizedBox(height: AppSizes.verSpacesBetweenContainers),
-            CustomContainer(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Rigesters', style: CustomTextStyles.header2),
-                    ],
-                  ),
-                  SizedBox(height: AppSizes.verSpacesBetweenContainers),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                        children: [
-                          CustomDropDownButton(
-                            icon: IconsaxPlusLinear.tag,
-                            color: AppColors.white,
-                            title: "Shift",
-                            list: ["Any Shift", "Main Shift"],
-                            selected: 'Any Shift',
-                            width: 200,
-                            height: AppSizes.widgetHeight,
-                          ),
-                          SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                          CustomDropDownButton(
-                            icon: IconsaxPlusLinear.tag,
-                            color: AppColors.white,
-                            title: "Device",
-                            list: ["Any Device", "Device 1", 'Device 2'],
-                            selected: 'اي جهاز',
-                            width: 200,
-                            height: AppSizes.widgetHeight,
-                          ),
-                          SizedBox(width: AppSizes.horiSpacesBetweenElements),
-
-                          CustomDropDownButton(
-                            icon: IconsaxPlusLinear.tag,
-                            color: AppColors.white,
-                            title: "Status",
-                            list: [" Any Status ", "Status 2", 'Status1 '],
-                            selected: " Any Status ",
-                            width: 200,
-                            height: AppSizes.widgetHeight,
-                          ),
-                        ],
-                      ),
-                      CustomIconTextButton(
-                        text: 'Search',
-                        icon: Icons.search,
-                        page: SellPage(),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: AppSizes.verSpacesBetweenContainers),
-                  HomeTable(),
-                ],
+              SizedBox(height: AppSizes.verSpacesBetweenContainers),
+              CustomContainer(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Rigesters', style: CustomTextStyles.titleText(context)),
+                      ],
+                    ),
+                    SizedBox(height: AppSizes.verSpacesBetweenContainers),
+        
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomDropDownButton(
+                              icon: IconsaxPlusLinear.tag,
+                              color: AppColors.white,
+                              title: "Shift",
+                              list: ["Any Shift", "Main Shift"],
+                              selected: 'Any Shift',
+                              width: 200,
+                              height: AppSizes.widgetHeight,
+                            ),
+                            SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                            CustomDropDownButton(
+                              icon: IconsaxPlusLinear.tag,
+                              color: AppColors.white,
+                              title: "Device",
+                              list: ["Any Device", "Device 1", 'Device 2'],
+                              selected: 'اي جهاز',
+                              width: 200,
+                              height: AppSizes.widgetHeight,
+                            ),
+                            SizedBox(width: AppSizes.horiSpacesBetweenElements),
+          
+                            CustomDropDownButton(
+                              icon: IconsaxPlusLinear.tag,
+                              color: AppColors.white,
+                              title: "Status",
+                              list: [" Any Status ", "Status 2", 'Status1 '],
+                              selected: " Any Status ",
+                              width: 200,
+                              height: AppSizes.widgetHeight,
+                            ),
+                            
+                          ],
+                        ),
+                        CustomIconTextButton(
+                          text: 'Search',
+                          icon: IconsaxPlusLinear.search_normal_1,
+                          page: SellPage(),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: AppSizes.verSpacesBetweenContainers),
+                    HomeTable(),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -180,18 +221,19 @@ class HomeBody extends StatelessWidget {
 }
 
 class CustomServiceCard extends StatefulWidget {
-  final Color? color;
+  final Color color;
+  final Color iconColor;
   final IconData icon;
   final String text;
   final String number;
   final bool iconAppear;
   const CustomServiceCard({
     super.key,
-    this.color,
+    required this.color,
     required this.icon,
     required this.text,
     required this.number,
-    required this.iconAppear,
+    required this.iconAppear, required this.iconColor,
   });
 
   @override
@@ -215,36 +257,18 @@ class _CustomServiceCardState extends State<CustomServiceCard> {
         });
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: AppSizes.screenPadding),
+        margin: EdgeInsets.symmetric(vertical: AppSizes.verticalPadding),
+        padding: EdgeInsets.symmetric(vertical:  context.responsivePadding(AppSizes.horizontalPadding)),
         decoration: BoxDecoration(
-          // border: Border.all(color: currentColor),
-          color: AppColors.white,
+          color: widget.color,
           borderRadius: BorderRadius.all(
-            Radius.circular(AppSizes.textFieldRadius),
+            Radius.circular(context.responsiveIconSize(AppSizes.radius16)),
           ),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.black12,
-          //     offset: Offset(0, 2),
-          //     spreadRadius: 1,
-          //     blurRadius: 2,
-          //   ),
-          // ],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 65,
-              height: 65,
-              decoration: BoxDecoration(
-                color: AppColors.lightPurple,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(AppSizes.textFieldRadius),
-                ),
-              ),
-              child: Icon(size: 30, widget.icon, color: widget.color),
-            ),
+            Icon(size: context.responsiveIconSize(30), widget.icon, color: widget.iconColor),
             SizedBox(width: AppSizes.horiSpacesBetweenElements * 2),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -253,10 +277,8 @@ class _CustomServiceCardState extends State<CustomServiceCard> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     widget.iconAppear
-                        ? SizedBox(
-                          height: 18,
-                          child: Image.asset('lib/assets/icons/rial.png'),
-                        )
+                        ? 
+                        SvgPicture.asset(AppImages.rial, height: context.responsiveFontSize(AppSizes.fontSize2),)
                         : SizedBox(),
                     widget.iconAppear
                         ? SizedBox(width: AppSizes.horiSpacesBetweentTexts)
@@ -264,7 +286,7 @@ class _CustomServiceCardState extends State<CustomServiceCard> {
                     Text(
                       widget.number,
                       style: TextStyle(
-                        fontSize: AppSizes.fontSize1,
+                        fontSize: context.responsiveFontSize( AppSizes.fontSize1),
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -273,8 +295,8 @@ class _CustomServiceCardState extends State<CustomServiceCard> {
                 Text(
                   widget.text,
                   style: TextStyle(
-                    color: AppColors.grey,
-                    fontSize: AppSizes.fontSize2,
+                    color: AppColors.darkGray,
+                    fontSize: context.responsiveFontSize( AppSizes.fontSize3),
                   ),
                 ),
               ],
@@ -326,7 +348,7 @@ class _CustomListTileState extends State<CustomListTile> {
         child: Container(
           color: isHovered ? AppColors.lightGrey : AppColors.lightPurple,
           child: ListTile(
-            leading: Icon(widget.icon),
+            leading: Icon(widget.icon, size: context.responsiveIconSize(30),),
             title: Text(widget.text, style: CustomTextStyles.header2),
           ),
         ),

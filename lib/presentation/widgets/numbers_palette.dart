@@ -1,5 +1,8 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
+import 'package:app/presentation/widgets/fields/custom_text_field.dart';
+import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 class NumbersPalette extends StatefulWidget {
@@ -13,7 +16,7 @@ class _NumbersPaletteState extends State<NumbersPalette> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.screenPadding / 2),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding / 2),
       child: Column(
         children: [
           Row(
@@ -96,16 +99,12 @@ class _NumberState extends State<Number> {
         height: 30,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(AppSizes.textFieldRadius / 2),
+          borderRadius: BorderRadius.circular(context.responsiveBorderRadius(AppSizes.radius12) / 2),
         ),
         child: Center(
           child: Text(
           widget.number,
-            style: TextStyle(
-              color: AppColors.black,
-              fontSize: AppSizes.fontSize2,
-              fontWeight: FontWeight.w600,
-            ),
+            style: CustomTextStyles.meduimText(context)
           ),
         ),
       ),
