@@ -47,7 +47,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
           });
         },
         child: Container(
-          height: widget.height,
+          height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: widget.height),
           width: widget.width,
           child: 
           DropdownButton2(

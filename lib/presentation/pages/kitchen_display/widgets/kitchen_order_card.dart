@@ -143,10 +143,10 @@ class KitchenOrderCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: CustomButton(
-                      text: 'Next Step',
+                      text: 'Next',
                       radius: true,
                       width: MediaQuery.of(context).size.width,
-                      height: context.responsiveWidgetHeight,
+                      height: AppSizes.widgetHeight,
                       color: getOrderColor(),
                       textColor: getTextColor(),
                     ),
@@ -156,7 +156,7 @@ class KitchenOrderCard extends StatelessWidget {
                     text: 'Previos Step',
                     radius: true,
                     width: context.screenWidth,
-                    height: context.responsiveWidgetHeight,
+                    height: AppSizes.widgetHeight,
                     color: AppColors.grey,
                     textColor: AppColors.white,
                   ),

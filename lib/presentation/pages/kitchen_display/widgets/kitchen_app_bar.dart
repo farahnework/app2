@@ -3,6 +3,7 @@ import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/sell/widgets/close_session_buton.dart';
 import 'package:app/presentation/pages/session_details/session_details_page.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
+import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
@@ -14,17 +15,15 @@ class KitchenAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        border: Border(
-          bottom: BorderSide(color: AppColors.grey, width: AppSizes.borderSize),
-        ),
+     decoration: CustomBoxDecoration.boxDecoration.copyWith(
+        borderRadius: BorderRadius.circular(0),
+        border: Border(bottom: BorderSide(width: AppSizes.borderSize, color: AppColors.grey))
       ),
       width: context.screenWidth,
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: AppSizes.horizontalPadding,
-          vertical: AppSizes.verticalPadding,
+          vertical: AppSizes.verticalPadding/2,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,7 +78,7 @@ class KitchenAppBar extends StatelessWidget {
                   radius: true,
                   width: 150,
                   page: SessionDetailsPage(),
-                  height: AppSizes.iconButtonSize,
+                  height: AppSizes.widgetHeight,
                   color: AppColors.darkPurple,
                   textColor: AppColors.white,
                 ),

@@ -63,17 +63,16 @@ class _SellProductCardState extends State<SellProductCard> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                width: context.responsiveIconSize(AppSizes.widgetHeight/1.1),
-                height: context.responsiveIconSize(AppSizes.widgetHeight/1.1),
+                width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight *1.2),
+                height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight*1.2),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),
                   child: Image.asset(widget.image, fit: BoxFit.cover),
                 ),
               ),
-              SizedBox(width: AppSizes.horiSpacesBetweenElements * 2),
+              SizedBox(width: context.responsiveSpacing(AppSizes.horiSpacesBetweenElements )),
               Expanded(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,59 +81,59 @@ class _SellProductCardState extends State<SellProductCard> {
                           widget.productName,
                           style: CustomTextStyles.meduimText(context)
                         ),
-                       Icon(
-                            Iconsax.trash,
-                            color: AppColors.red,
-                            size: context.responsiveIconSize(AppSizes.iconSize2),
-                          ),
+                       Text('52', style: CustomTextStyles.meduimText(context),)
                       ],
                     ),
-                    SizedBox(height: AppSizes.verticalPadding,),
+                    SizedBox(height: context.responsiveSpacing(AppSizes.horiSpacesBetweenElements*0.5)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
-                            if(context.isDesktop)
-                            CustomIconButton(
-                              icon: Iconsax.minus,
-                              iconColor: AppColors.white,
-                              color: AppColors.grey,
-                              size: 30,
+                            Row(
+                              children: [
+                                if(context.isDesktop)
+                                CustomIconButton(
+                                  icon: Iconsax.minus,
+                                  iconColor: AppColors.white,
+                                  color: AppColors.grey,
+                                  size: AppSizes.widgetHeight *0.7,
+                                ),
+                                if(context.isDesktop)
+                            
+                                SizedBox(
+                                  width: AppSizes.horiSpacesBetweenElements,
+                                ),
+                            
+                                Text(
+                                  widget.amount.toString(),
+                                  style: CustomTextStyles.meduimText(context),
+                                ),
+                                if(context.isDesktop)
+                            
+                                SizedBox(
+                                  width: AppSizes.horiSpacesBetweenElements,
+                                ),
+                                if(context.isDesktop)
+                                CustomIconButton(
+                                  icon: Iconsax.add,
+                                  iconColor: AppColors.darkPurple,
+                                  size: AppSizes.widgetHeight *0.7,
+                                  color: AppColors.lightPurple ,
+                                ),
+                              ],
                             ),
-                            if(context.isDesktop)
-                        
-                            SizedBox(
-                              width: AppSizes.horiSpacesBetweenElements,
-                            ),
-                        
-                            Text(
-                              widget.amount.toString(),
-                              style: CustomTextStyles.meduimText(context),
-                            ),
-                            if(context.isDesktop)
-                        
-                            SizedBox(
-                              width: AppSizes.horiSpacesBetweenElements,
-                            ),
-                            if(context.isDesktop)
-                            CustomIconButton(
-                              icon: Iconsax.add,
-                              iconColor: AppColors.darkPurple,
-                              size: 30,
-                              color: AppColors.lightPurple,
+                            SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                            CustomDropDownButton(
+                              icon: IconsaxPlusLinear.tag,
+                              color: AppColors.white,
+                              height: AppSizes.widgetHeight *0.7,
+                              title: "Unit",
+                              list: ["Kilo", "Peace"],
+                              selected: "Peace",
+                              width: 100,
                             ),
                           ],
-                        ),
-                        SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-                        CustomDropDownButton(
-                          icon: IconsaxPlusLinear.tag,
-                          color: AppColors.white,
-                          height: 30,
-                          title: "Unit",
-                          list: ["Kilo", "Peace"],
-                          selected: "Peace",
-                          width: 100,
                         ),
 
                         Row(

@@ -77,7 +77,7 @@ class _FoodCardState extends State<FoodCard> {
                     addExtrasDialog(context, 'lib/assets/images/food5.jpg');
                   },
                   child: CircleAvatar(
-                    child: Icon(Iconsax.add, size: AppSizes.iconSize2),
+                    child: Icon(Iconsax.add, size: context.responsiveIconSize(AppSizes.iconSize)),
                     backgroundColor: AppColors.yellow,
                   ),
                 ),
@@ -96,14 +96,14 @@ class _FoodCardState extends State<FoodCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Price: ", style: CustomTextStyles.meduimText(context),),
+                Text("Price: ", style: CustomTextStyles.smallText(context)),
                 Row(
                   children: [
-                    SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6)),
+                    SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6) , color: AppColors.darkPurple,),
                     SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                     Text(
                       widget.price.toString(),
-                      style: CustomTextStyles.meduimText(context)
+                       style:CustomTextStyles.smallText(context).copyWith(color: AppColors.darkPurple, fontWeight: AppSizes.fontWeight1)
                     ),
                   ],
                 ),

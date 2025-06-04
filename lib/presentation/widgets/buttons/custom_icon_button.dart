@@ -32,8 +32,8 @@ class _CustomIconButtonState extends State<CustomIconButton> {
       //   });
       // },
       child: Container(
-        width: widget.size,
-        height: widget.size,
+        width:  context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: widget.size),
+        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: widget.size),
         child: IconButton(
             onPressed: (){
             },

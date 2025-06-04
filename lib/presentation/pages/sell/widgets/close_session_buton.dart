@@ -97,8 +97,8 @@ class _CloseSessionButtonState extends State<CloseSessionButton> {
       //   });
       // },
       child: Container(
-        width: widget.size,
-        height: widget.size,
+        width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         child: IconButton(
             onPressed: (){
               customDialog(context);

@@ -1,10 +1,12 @@
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/customers/customers_page.dart';
+import 'package:app/presentation/pages/home/home_page.dart';
 import 'package:app/presentation/pages/kitchen_display/kichen_display_page.dart';
 import 'package:app/presentation/pages/restaurant_orders.dart/restaurant_orders_page.dart';
 import 'package:app/presentation/pages/sell/sell_page.dart';
 import 'package:app/presentation/pages/signin_page.dart';
+import 'package:app/presentation/pages/support/support_page.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,12 +42,10 @@ class _IconSideBarState extends State<IconSideBar> {
           children: [
             Column(
               children: [
-                // SizedBox(
-                //   height: 45,
-                //   width: 45,
-                //   child: Image.asset('lib/assets/images/logo.png', fit: BoxFit.cover,),
-                // ),
-                // Divider(color: AppColors.grey),
+                SizedBox(
+                  width: 35,
+                  child: Image.asset('lib/assets/images/logo_icon.png', fit: BoxFit.cover,),
+                ),
                 SizedBox(height: AppSizes.verSpacesBetweenContainers * 2),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,8 +55,8 @@ class _IconSideBarState extends State<IconSideBar> {
                       child: CustomListTile(
                         icon: IconsaxPlusLinear.status,
                       
-                        page: CustomersPage(),
-                        to: true,
+                        page: HomePage(),
+                        to: false,
                         selected: true,
                       ),
                     ),
@@ -68,22 +68,19 @@ class _IconSideBarState extends State<IconSideBar> {
                       selected: false,
                     ),
                     CustomListTile(
-                      icon: IconsaxPlusLinear.receipt_2_1,
-               
+                      icon: IconsaxPlusLinear.keyboard_open,
                       page: RestaurantOrdersPage(),
                       to: true,
                       selected: false,
                     ),
                     CustomListTile(
-                      icon: IconsaxPlusLinear.receipt_2_1,
-                   
+                       icon: IconsaxPlusLinear.receipt_2_1,
                       page: KitchenDisplayPage(),
                       to: true,
                       selected: false,
                     ),
                     CustomListTile(
                       icon: IconsaxPlusLinear.user,
-                   
                       page: CustomersPage(),
                       to: true,
                       selected: false,
@@ -96,17 +93,16 @@ class _IconSideBarState extends State<IconSideBar> {
             Column(
               children: [
                 CustomListTile(
-                  icon: IconsaxPlusLinear.info_circle,
+                  icon: IconsaxPlusLinear.headphone,
              
-                  page: SigninPage(),
-                  to: false,
+                  page: SupportPage(),
+                  to: true,
                   selected: false,
                 ),
                 CustomListTile(
                   icon: IconsaxPlusLinear.logout,
-              
                   page: SigninPage(),
-                  to: false,
+                  to: true,
                   selected: false,
                 ),
               ],
@@ -142,8 +138,11 @@ class _CustomListTileState extends State<CustomListTile> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      
       onTap: () {
-        Get.off(widget.page);
+        widget.to?
+        Get.off(widget.page):
+        '';
       },
       child: MouseRegion(
         onEnter: (event) {

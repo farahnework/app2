@@ -4,6 +4,7 @@ import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_connect.dart';
 
 class SellDropDownButton extends StatefulWidget {
   final String title;
@@ -47,7 +48,7 @@ class _SellDropDownButtonState extends State<SellDropDownButton> {
           });
         },
         child: Container(
-          height: widget.height,
+          height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
           child: 
           DropdownButton2(
             underline: SizedBox.shrink(),

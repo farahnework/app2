@@ -74,19 +74,6 @@ class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
   @override
   Widget build(BuildContext context) {
-    // تحديد عدد الأعمدة بناءً على نوع الجهاز
-  int crossAxisCount = context.isMobile
-      ? ScreenLayouts.mobileCrossAxisCount
-      : context.isLargeTablet
-          ? ScreenLayouts.tabletCrossAxisCount
-          : ScreenLayouts.desktopCrossAxisCount;
-          
-  // تحديد نسبة الأبعاد بناءً على نوع الجهاز
-  double childAspectRatio = context.isMobile
-      ? ScreenLayouts.mobileChildAspectRatio
-      : context.isLargeTablet
-          ? ScreenLayouts.tabletChildAspectRatio
-          : ScreenLayouts.desktopChildAspectRatio;
     return Expanded(
       child: SingleChildScrollView(
         child: Padding(

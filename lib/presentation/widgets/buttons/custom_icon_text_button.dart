@@ -23,7 +23,7 @@ class _CustomIconTextButtonState extends State<CustomIconTextButton> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: AppSizes.verSpacesBetweenElements),
-      height: AppSizes.widgetHeight,
+      height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
       child: ElevatedButton.icon(
         style: TextButton.styleFrom(backgroundColor: AppColors.darkPurple,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(context.responsiveBorderRadius(AppSizes.radius16))))),

@@ -99,7 +99,7 @@ class _LeftSideState extends State<LeftSide> {
                   radius: true,
                   width: 100,
                   page: OrdersPage(),
-                  height: AppSizes.iconButtonSize,
+                  height: AppSizes.widgetHeight,
                   color: AppColors.darkPurple,
                   textColor: AppColors.white,
                 ),
@@ -115,14 +115,13 @@ class _LeftSideState extends State<LeftSide> {
                 ),
               ],
             ),
-            SizedBox(height: AppSizes.verSpacesBetweenContainers),
+             SizedBox(height: AppSizes.verSpacesBetweenContainers),
             Row(
               children: [Text('Categories', style: CustomTextStyles.titleText(context))],
             ),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
             SizedBox(
-              height: AppSizes.widgetHeight * 1.2,
-
+              height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight* 1.3), 
               child: Expanded(
                 child: ListView(
                   scrollDirection: Axis.horizontal,
@@ -173,7 +172,7 @@ class _LeftSideState extends State<LeftSide> {
                      crossAxisCount: crossAxisCount,
                   crossAxisSpacing: spacing,
                   mainAxisSpacing: spacing,
-                  childAspectRatio: context.isDesktop? 0.9: 0.8,
+                  childAspectRatio: context.isDesktop? 0.95: 0.8,
                 ),
                 children: [
                   FoodCard(
@@ -284,12 +283,12 @@ class _RightSideState extends State<RightSide> {
         child: Column(
           children: [
             SizedBox(
-              height: AppSizes.widgetHeight,
+              height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
               child: Row(
                 children: [
                   Container(
-                    width: AppSizes.widgetHeight,
-                    height: AppSizes.widgetHeight,
+                    width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+                    height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
                     decoration: BoxDecoration(color: AppColors.darkPurple),
                     child: IconButton(
                       color: AppColors.darkPurple,
@@ -299,7 +298,7 @@ class _RightSideState extends State<RightSide> {
                   ),
                   Expanded(
                     child: Container(
-                      height: AppSizes.widgetHeight,
+                      height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
@@ -350,14 +349,14 @@ class _RightSideState extends State<RightSide> {
                           icon: Iconsax.printer,
                           color: AppColors.lightPurple,
                           iconColor: AppColors.darkPurple,
-                          size: AppSizes.iconButtonSize,
+                          size: AppSizes.widgetHeight,
                         ),
                         SizedBox(width: AppSizes.horiSpacesBetweenElements),
                         CustomIconButton(
                           icon: Iconsax.trash,
                           color: AppColors.lightPurple,
                           iconColor: AppColors.darkPurple,
-                          size: AppSizes.iconButtonSize,
+                          size: AppSizes.widgetHeight,
                         ),
                       ],
                     ),
@@ -431,21 +430,20 @@ class _RightSideState extends State<RightSide> {
                         color: AppColors.yellow,
                         textColor: AppColors.black,
                         text: 'Add Note',
-                        width: 100,
                         dialog: addNoteDialog,
-                        height: AppSizes.iconButtonSize,
+                        height: AppSizes.widgetHeight,
                       ),
                       SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
                       Expanded(
                         child: CustomDropDownButton(
-                          color: AppColors.lightYellow,
+                          color: AppColors.lightBlue,
 
                           title: 'Order Type',
                           list: ['Dine in', 'Take away', 'Delivery'],
                           selected: 'Dine in',
                           width: 300,
-                          height: AppSizes.iconButtonSize,
+                          height: AppSizes.widgetHeight,
                           icon: IconsaxPlusLinear.activity,
                         ),
                       ),
@@ -482,7 +480,7 @@ class _RightSideState extends State<RightSide> {
 
                     Text(
                       '260',
-                      style: CustomTextStyles.buttonText(context)
+                      style: CustomTextStyles.buttonText(context).copyWith(fontWeight: AppSizes.fontWeight1,)
                     ),
                   ],
                 ),

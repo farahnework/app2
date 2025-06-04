@@ -21,6 +21,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return Expanded(
       child: SizedBox(
+        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         child: TextField( 
           enabled: widget.enabled,
           decoration: InputDecoration(

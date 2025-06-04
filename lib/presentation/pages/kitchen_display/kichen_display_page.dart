@@ -1,5 +1,6 @@
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
+import 'package:app/core/responsive/responsive_sizing.dart';
 import 'package:app/core/responsive/screen_layouts.dart';
 import 'package:app/presentation/pages/kitchen_display/widgets/kitchen_app_bar.dart';
 import 'package:app/presentation/pages/kitchen_display/widgets/kitchen_order_card.dart';
@@ -197,6 +198,19 @@ class View2 extends StatefulWidget {
 class _View2State extends State<View2> {
   @override
   Widget build(BuildContext context) {
+     int crossAxisCount =
+        context.isMobile
+            ? ScreenLayouts.mobileCrossAxisCount
+            : ResponsiveSizing.isTablet(context)
+            ? ScreenLayouts.tabletCrossAxisCount
+            : ScreenLayouts.desktopCrossAxisCount;
+
+    double spacing =
+        context.isMobile
+            ? ScreenLayouts.mobileSpacing
+            : ResponsiveSizing.isTablet(context)
+            ? ScreenLayouts.tabletSpacing
+            : ScreenLayouts.desktopSpacing;
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
@@ -207,9 +221,9 @@ class _View2State extends State<View2> {
 
         child: GridView(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            crossAxisSpacing: AppSizes.horiSpacesBetweenElements * 2,
-            mainAxisSpacing: AppSizes.verSpacesBetweenElements * 2,
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing:spacing,
+            mainAxisSpacing: spacing,
           ),
           scrollDirection: Axis.vertical,
           children: [
@@ -271,6 +285,19 @@ class View3 extends StatefulWidget {
 class _View3State extends State<View3> {
   @override
   Widget build(BuildContext context) {
+     int crossAxisCount =
+        context.isMobile
+            ? ScreenLayouts.mobileCrossAxisCount
+            : ResponsiveSizing.isTablet(context)
+            ? ScreenLayouts.tabletCrossAxisCount
+            : ScreenLayouts.desktopCrossAxisCount;
+
+    double spacing =
+        context.isMobile
+            ? ScreenLayouts.mobileSpacing
+            : ResponsiveSizing.isTablet(context)
+            ? ScreenLayouts.tabletSpacing
+            : ScreenLayouts.desktopSpacing;
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
@@ -281,9 +308,9 @@ class _View3State extends State<View3> {
 
         child: GridView(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            crossAxisSpacing: AppSizes.horiSpacesBetweenElements * 2,
-            mainAxisSpacing: AppSizes.verSpacesBetweenElements * 2,
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: spacing,
+            mainAxisSpacing: spacing,
           ),
           scrollDirection: Axis.vertical,
           children: [
@@ -335,6 +362,19 @@ class View4 extends StatefulWidget {
 class _View4State extends State<View4> {
   @override
   Widget build(BuildContext context) {
+     int crossAxisCount =
+        context.isMobile
+            ? ScreenLayouts.mobileCrossAxisCount
+            : ResponsiveSizing.isTablet(context)
+            ? ScreenLayouts.tabletCrossAxisCount
+            : ScreenLayouts.desktopCrossAxisCount;
+
+    double spacing =
+        context.isMobile
+            ? ScreenLayouts.mobileSpacing
+            : ResponsiveSizing.isTablet(context)
+            ? ScreenLayouts.tabletSpacing
+            : ScreenLayouts.desktopSpacing;
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
@@ -345,9 +385,9 @@ class _View4State extends State<View4> {
 
         child: GridView(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            crossAxisSpacing: AppSizes.horiSpacesBetweenElements * 2,
-            mainAxisSpacing: AppSizes.verSpacesBetweenElements * 2,
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: spacing,
+            mainAxisSpacing: spacing,
           ),
           scrollDirection: Axis.vertical,
           children: [

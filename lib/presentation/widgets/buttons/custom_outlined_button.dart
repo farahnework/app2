@@ -17,7 +17,7 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+     height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           

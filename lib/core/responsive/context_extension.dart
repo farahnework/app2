@@ -83,6 +83,46 @@ extension ContextExtension on BuildContext {
         vertical: vertical,
       );
 
+/// حساب حجم العنصر نسبة إلى الحاوية الأب
+  /// يُستخدم لضبط حجم الأزرار وحقول الإدخال داخل الحاويات
+  ///
+  /// [containerSize]: حجم الحاوية (عرض أو ارتفاع)
+  /// [percentage]: النسبة المئوية من حجم الحاوية
+  /// [baseSize]: الحجم الأساسي إذا كان الحساب النسبي صغيرًا جدًا
+  /// [maxSize]: الحد الأقصى للحجم
+  double relativeToContainerSize({
+    required double containerSize,
+    required double percentage,
+    double baseSize = 40,
+    double? maxSize,
+  }) =>
+      ResponsiveSizing.getRelativeToContainerSize(
+        containerSize: containerSize,
+        percentage: percentage,
+        baseSize: baseSize,
+        maxSize: maxSize,
+      );
+
+  /// حساب الحجم النسبي للحاوية مع مراعاة نوع الجهاز
+  ///
+  /// [containerSize]: حجم الحاوية (عرض أو ارتفاع)
+  /// [percentage]: النسبة المئوية من حجم الحاوية
+  /// [minSize]: الحد الأدنى للحجم
+  /// [maxSize]: الحد الأقصى للحجم
+  double responsiveRelativeSize({
+    required double containerSize,
+    required double percentage,
+    double? minSize,
+    double? maxSize,
+  }) =>
+      ResponsiveSizing.getResponsiveRelativeSize(
+        context: this,
+        containerSize: containerSize,
+        percentage: percentage,
+        minSize: minSize,
+        maxSize: maxSize,
+      );
+
   // Theme related
   ThemeData get theme => Theme.of(this);
   TextTheme get textTheme => theme.textTheme;

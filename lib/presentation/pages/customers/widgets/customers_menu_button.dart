@@ -1,6 +1,8 @@
+import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/add_customer/add_customer_page.dart';
+import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
@@ -14,7 +16,7 @@ class CustomersMenuButton extends StatefulWidget {
 }
 
 class _CustomersMenuButtonState extends State<CustomersMenuButton> {
- Color currentColor = AppColors.white;
+  Color currentColor = AppColors.white;
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -50,49 +52,67 @@ class _CustomersMenuButtonState extends State<CustomersMenuButton> {
                 PopupMenuItem(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Row(
                         children: [
-                          Icon(IconsaxPlusLinear.eye, size: AppSizes.iconSize,),
+                          Icon(
+                            IconsaxPlusLinear.eye,
+                            size: context.responsiveIconSize(
+                              AppSizes.iconSize2,
+                            ),
+                          ),
                           SizedBox(width: AppSizes.horiSpacesBetweentTexts),
 
-                          Text("Show" , style: TextStyle(fontSize: AppSizes.fontSize2) ),
+                          Text(
+                            "Show",
+                            style: CustomTextStyles.meduimText(context),
+                          ),
                         ],
                       ),
                     ],
                   ),
                 ),
 
-                 PopupMenuItem(
-                 onTap: () {
-                   Get.to(AddCustomerPage());
-                 }, 
+                PopupMenuItem(
+                  onTap: () {
+                    Get.to(AddCustomerPage());
+                  },
                   child: Row(
                     children: [
-                      Icon(IconsaxPlusLinear.edit_2, size: AppSizes.iconSize,),
+                      Icon(
+                        IconsaxPlusLinear.edit_2,
+                        size: context.responsiveIconSize(AppSizes.iconSize2),
+                      ),
                       SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-                      Text("Edit", style: TextStyle(fontSize: AppSizes.fontSize2)),
+                      Text("Edit", style: CustomTextStyles.meduimText(context)),
                     ],
                   ),
                 ),
                 PopupMenuItem(
                   child: Row(
                     children: [
-                      Icon(IconsaxPlusLinear.trash, size: AppSizes.iconSize,),
+                      Icon(
+                        IconsaxPlusLinear.trash,
+                        size: context.responsiveIconSize(AppSizes.iconSize2),
+                      ),
                       SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-                      Text("Delete", style: TextStyle(fontSize: AppSizes.fontSize2)),
+                      Text(
+                        "Delete",
+                        style: CustomTextStyles.meduimText(context),
+                      ),
                     ],
                   ),
                 ),
               ],
             );
           },
-focusColor: currentColor,
+          focusColor: currentColor,
 
-          icon: Icon(widget.icon, color: AppColors.darkPurple,),
+          icon: Icon(widget.icon, color: AppColors.darkPurple),
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.zero,
-            fixedSize:Size( AppSizes.widgetHeight,  AppSizes.widgetHeight),
+            fixedSize: Size(AppSizes.widgetHeight, AppSizes.widgetHeight),
             iconColor: AppColors.white,
             backgroundColor: currentColor,
             shape: RoundedRectangleBorder(

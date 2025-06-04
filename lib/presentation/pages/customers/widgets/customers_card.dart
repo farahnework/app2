@@ -1,6 +1,6 @@
+import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/presentation/pages/customers/widgets/customers_menu_button.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/utils/app_sizes.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +46,7 @@ class _CustomerCardState extends State<CustomerCard> {
           ),
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: AppSizes.horiScreenPadding,
+          horizontal: AppSizes.horizontalPadding,
           vertical: 10,
         ),
         margin: EdgeInsets.only(bottom: 3),
@@ -58,8 +58,8 @@ class _CustomerCardState extends State<CustomerCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(widget.name, style: CustomTextStyles.header2),
-                Row(children: [Text('${widget.city}, '), Text(widget.country)]),
+                Text(widget.name, style: CustomTextStyles.largeText(context)),
+                Row(children: [Text('${widget.city}, ', style: CustomTextStyles.meduimText(context), ), Text(widget.country, style: CustomTextStyles.meduimText(context),)]),
               ],
             ),
             CustomersMenuButton(icon: Icons.more_vert_outlined),

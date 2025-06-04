@@ -40,7 +40,7 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                 children: [
                   Container(
                     width: context.screenWidth / 2,
-                    height: AppSizes.widgetHeight,
+                    height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage:  AppSizes.widgetHeight),
                     decoration: CustomBoxDecoration.boxDecoration,
                     child: TabBar(
                       dividerColor: Colors.transparent,
@@ -69,16 +69,16 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                   ),
                   Row(
                     children: [
-                      CustomButton(
-                        text: 'Sessions',
-                        radius: true,
-                        width: 100,
-                        page: SellPage(),
-                        height: AppSizes.widgetHeight,
-                        textColor: AppColors.white,
-                        color: AppColors.darkPurple,
-                      ),
-                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                      // CustomButton(
+                      //   text: 'Sessions',
+                      //   radius: true,
+                      //   width: 100,
+                      //   page: SellPage(),
+                      //   height: AppSizes.widgetHeight,
+                      //   textColor: AppColors.white,
+                      //   color: AppColors.darkPurple,
+                      // ),
+                      // SizedBox(width: AppSizes.horiSpacesBetweenElements),
                       CustomButton(
                         text: 'Sale Screen',
                         radius: true,
@@ -167,13 +167,11 @@ class _View2State extends State<View2> {
   Widget build(BuildContext context) {
     return  Column(
       children: [
-        Icon(IconsaxPlusLinear.warning_2),
+        Icon(IconsaxPlusLinear.warning_2, size: context.responsiveIconSize(AppSizes.iconSize),),
+        SizedBox(height: AppSizes.verSpacesBetweenElements,),
         Text(
           'There is No Data',
-          style: TextStyle(
-            color: AppColors.darkGray,
-            fontSize: AppSizes.fontSize2,
-          ),
+          style: CustomTextStyles.smallText(context),
         ),
       ],
     );
@@ -190,15 +188,13 @@ class View3 extends StatefulWidget {
 class _View3State extends State<View3> {
   @override
   Widget build(BuildContext context) {
-    return  Column(
+   return  Column(
       children: [
-        Icon(IconsaxPlusLinear.warning_2),
+        Icon(IconsaxPlusLinear.warning_2, size: context.responsiveIconSize(AppSizes.iconSize),),
+        SizedBox(height: AppSizes.verSpacesBetweenElements,),
         Text(
           'There is No Data',
-          style: TextStyle(
-            color: AppColors.darkGray,
-            fontSize: AppSizes.fontSize2,
-          ),
+          style: CustomTextStyles.smallText(context),
         ),
       ],
     );
@@ -215,15 +211,13 @@ class View4 extends StatefulWidget {
 class _View4State extends State<View4> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+   return  Column(
       children: [
-        Icon(IconsaxPlusLinear.warning_2),
+        Icon(IconsaxPlusLinear.warning_2, size: context.responsiveIconSize(AppSizes.iconSize),),
+        SizedBox(height: AppSizes.verSpacesBetweenElements,),
         Text(
           'There is No Data',
-          style: TextStyle(
-            color: AppColors.darkGray,
-            fontSize: AppSizes.fontSize2,
-          ),
+          style: CustomTextStyles.smallText(context),
         ),
       ],
     );

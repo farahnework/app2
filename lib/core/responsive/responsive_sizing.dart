@@ -167,6 +167,74 @@ class ResponsiveSizing {
     }
   }
 
+
+  /// حساب حجم العنصر بالنسبة للحاوية التي تحتويه
+  /// يستخدم لتحديد حجم الأزرار وحقول الإدخال بشكل نسبي للحاوية وليس الشاشة
+  ///
+  /// [containerSize]: حجم الحاوية (العرض أو الارتفاع)
+  /// [percentage]: النسبة المئوية من حجم الحاوية
+  /// [baseSize]: الحجم الأساسي للعنصر إذا كان الحساب النسبي صغيرًا جدًا
+  /// [maxSize]: الحد الأقصى لحجم العنصر
+  static double getRelativeToContainerSize({
+    required double containerSize,
+    required double percentage,
+    double baseSize = 40,
+    double? maxSize,
+  }) {
+    // حساب الحجم النسبي للعنصر داخل الحاوية
+    final calculatedSize = containerSize * (percentage / 100);
+
+    // استخدام القيمة الأكبر بين الحجم المحسوب والحجم الأساسي
+    double result = calculatedSize > baseSize ? calculatedSize : baseSize;
+
+    // التأكد من أن الحجم لا يتجاوز الحد الأقصى إذا تم تحديده
+    if (maxSize != null && result > maxSize) {
+      result = maxSize;
+    }
+
+    return result;
+  }
+
+  /// حساب أبعاد العناصر بشكل نسبي للحاوية الأب مع مراعاة نوع الجهاز
+  ///
+  /// [context]: سياق البناء للوصول إلى معلومات الشاشة
+  /// [containerSize]: حجم الحاوية (العرض أو الارتفاع)
+  /// [percentage]: النسبة المئوية من حجم الحاوية
+  /// [minSize]: الحد الأدنى لحجم العنصر
+  /// [maxSize]: الحد الأقصى لحجم العنصر
+  static double getResponsiveRelativeSize({
+    required BuildContext context,
+    required double containerSize,
+    required double percentage,
+    double? minSize,
+    double? maxSize,
+  }) {
+    // ضبط النسبة المئوية بناء على نوع الجهاز
+    double adjustedPercentage = percentage;
+
+    if (isDesktop(context)) {
+      // تقليل النسبة للشاشات الكبيرة لتجنب العناصر الكبيرة جدًا
+      adjustedPercentage = percentage * 0.85;
+    } else if (isTablet(context)) {
+      // ضبط طفيف للأجهزة اللوحية
+      adjustedPercentage = percentage * 0.9;
+    }
+
+    // حساب الحجم النسبي
+    double size = containerSize * (adjustedPercentage / 100);
+
+    // تطبيق الحدود الدنيا والقصوى إذا تم تحديدها
+    if (minSize != null && size < minSize) {
+      size = minSize;
+    }
+
+    if (maxSize != null && size > maxSize) {
+      size = maxSize;
+    }
+
+    return size;
+  }
+
   /// الحصول على قيمة ارتفاع الزر المتجاوب
   static double getResponsiveButtonHeight(BuildContext context) {
     if (isDesktop(context)) {

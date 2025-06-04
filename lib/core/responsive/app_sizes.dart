@@ -62,7 +62,7 @@ class AppSizes {
   static const double verSpacesBetweenContainers = 32.0;
 
   // Desktop heights
-  static const double widgetHeight = 50.0;
+  static const double widgetHeight = 7.5;
 
   // Desktop sizes
   static const double iconSize = 20.0;

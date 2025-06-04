@@ -51,49 +51,48 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
               child: Column(
                 children: [
                   Container(
-                    height: AppSizes.widgetHeight,
-                    width: width,
                     color: AppColors.lightPurple,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
+                    padding:  EdgeInsets.symmetric(
                         horizontal: AppSizes.horizontalPadding,
+                        // vertical: AppSizes.verticalPadding/3,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          
-                        children: [
-                          Row(
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Get.back();
-                                },
-                                child: Icon(
-                                  IconsaxPlusLinear.close_circle,
-                                  size: context.responsiveIconSize(
-                                    AppSizes.iconSize2,
-                                  ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Icon(
+                                color: AppColors.darkPurple,
+                                IconsaxPlusLinear.close_circle,
+                                size: context.responsiveIconSize(
+                                  AppSizes.iconSize,
+                                  
                                 ),
                               ),
-                              SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                              Text(
-                                "Add Customer",
-                                style: CustomTextStyles.tableHeader(context),
-                              ),
-                            ],
-                          ),
-          
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              IconsaxPlusLinear.save_2,
-                              size: context.responsiveIconSize(
-                                AppSizes.iconSize2,
-                              ),
+                            ),
+                            SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                            Text(
+                              "Add Customer",
+                              style: CustomTextStyles.titleText(context).copyWith(color: AppColors.darkPurple,),
+                              
+                            ),
+                          ],
+                        ),
+                              
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            IconsaxPlusLinear.save_2,
+                            size: context.responsiveIconSize(
+                              AppSizes.iconSize2,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   Expanded(
@@ -112,13 +111,15 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                             children: [
                               Text(
                                 "Customer Informaion",
-                                style: CustomTextStyles.meduimText(context),
+                                style: CustomTextStyles.titleText(context),
                               ),
                             ],
                           ),
+                          SizedBox(height: AppSizes.verSpacesBetweenContainers,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              Text('Customer Type:', style: CustomTextStyles.largeText(context),),
                               Radio(
                                 value: 'Individual',
                                 groupValue: _selectedOption,
@@ -128,7 +129,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                                   });
                                 },
                               ),
-                              Text('Individual'),
+                              Text('Individual', style: CustomTextStyles.meduimText(context),),
           
                               Radio(
                                 value: 'Company',
@@ -139,9 +140,10 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                                   });
                                 },
                               ),
-                              Text('Company'),
+                              Text('Company', style: CustomTextStyles.meduimText(context),),
                             ],
                           ),
+                          SizedBox(height: AppSizes.verSpacesBetweenElements,),
                           SizedBox(
                             width: 100,
                             height: 100,

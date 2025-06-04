@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_utils/src/extensions/export.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../shared/utils/app_colors.dart';
 
 class ProductCard extends StatefulWidget {
@@ -41,7 +40,6 @@ class _ProductCardState extends State<ProductCard> {
         });
       },
       child: Container(
-        // margin: EdgeInsets.(right: AppSizes.horiSpacesBetweenElements),
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: CustomBoxDecoration.boxDecoration,
 
@@ -65,8 +63,10 @@ class _ProductCardState extends State<ProductCard> {
                     productInfoDialog(context);
                   },
                   child: CircleAvatar(
-                    child: Icon(Iconsax.info_circle),
-                    backgroundColor: Colors.amberAccent,
+
+                    child: Icon(Iconsax.info_circle, size: context.responsiveIconSize(AppSizes.iconSize),),
+                    backgroundColor: AppColors.yellow,
+
                   ),
                 ),
               ],
@@ -86,11 +86,11 @@ class _ProductCardState extends State<ProductCard> {
                 Text("Price: " , style: CustomTextStyles.smallText(context)),
                 Row(
                   children: [
-                    SvgPicture.asset(AppImages.rial, width:  context.responsiveFontSize(AppSizes.fontSize5,),),
+                    SvgPicture.asset(AppImages.rial, width:  context.responsiveFontSize(AppSizes.fontSize6,), color: AppColors.darkPurple,),
                     SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
                     Text(
                       widget.price.toString(),
-                      style: CustomTextStyles.smallText(context)
+                      style: CustomTextStyles.smallText(context).copyWith(color: AppColors.darkPurple, fontWeight: AppSizes.fontWeight1)
                     ),
                   ],
                 ),

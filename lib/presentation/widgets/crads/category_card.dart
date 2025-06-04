@@ -34,7 +34,7 @@ class _CategoryCardState extends State<CategoryCard> {
         });
       },
       child: Container(
-        height: AppSizes.widgetHeight *2,
+        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight* 1.2),
         margin: EdgeInsets.only(right: AppSizes.horiSpacesBetweenElements),
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: BoxDecoration(
@@ -56,8 +56,8 @@ class _CategoryCardState extends State<CategoryCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: AppSizes.widgetHeight *1.2,
-              height: AppSizes.widgetHeight *1.2,
+              width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight ),
+              height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(
                   context.responsiveBorderRadius(AppSizes.radius16),

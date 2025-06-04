@@ -1,6 +1,7 @@
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/sell/widgets/close_session_buton.dart';
+import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
@@ -12,11 +13,9 @@ class SessionAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        border: Border(
-          bottom: BorderSide(color: AppColors.grey, width: AppSizes.borderSize),
-        ),
+     decoration: CustomBoxDecoration.boxDecoration.copyWith(
+        borderRadius: BorderRadius.circular(0),
+        border: Border(bottom: BorderSide(width: AppSizes.borderSize, color: AppColors.grey))
       ),
       width: context.screenWidth,
       child: Padding(
@@ -68,7 +67,7 @@ class SessionAppBar extends StatelessWidget {
                   icon: IconsaxPlusLinear.logout,
                   color: AppColors.darkPurple,
                   iconColor: AppColors.lightPurple,
-                  size: AppSizes.iconButtonSize,
+                  size: AppSizes.widgetHeight,
                 ),
                 SizedBox(width: AppSizes.horiSpacesBetweenElements),
               ],

@@ -8,8 +8,7 @@ class CloseDialogButton extends StatefulWidget {
   final String text;
   final BuildContext context;
   final bool radius;
-  final double width;
-  const CloseDialogButton({super.key, required this.text, required this.radius, required this.width, required this.context,});
+  const CloseDialogButton({super.key, required this.text, required this.radius, required this.context,});
 
   @override
   State<CloseDialogButton> createState() => _CloseDialogButtonState();
@@ -31,8 +30,7 @@ class _CloseDialogButtonState extends State<CloseDialogButton> {
         });
       },
       child: Container(
-        height: 50,
-        width: widget.width,
+        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: AppColors.darkPurple,

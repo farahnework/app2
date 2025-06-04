@@ -65,6 +65,39 @@ mixin ResponsiveWidgetMixin {
     return context.responsiveSpacing(spacing);
   }
 
+/// حساب حجم العنصر نسبة إلى الحاوية الأب
+  /// يستخدم هذا للأزرار وحقول الإدخال داخل الحاويات بدلاً من استخدام حجم الشاشة
+  double getRelativeToContainerSize(
+    BuildContext context, {
+    required double containerSize,
+    required double percentage,
+    double baseSize = 40,
+    double? maxSize,
+  }) {
+    return context.relativeToContainerSize(
+      containerSize: containerSize,
+      percentage: percentage,
+      baseSize: baseSize,
+      maxSize: maxSize,
+    );
+  }
+
+  /// حساب الحجم النسبي للحاوية مع مراعاة نوع الجهاز
+  double getResponsiveRelativeSize(
+    BuildContext context, {
+    required double containerSize,
+    required double percentage,
+    double? minSize,
+    double? maxSize,
+  }) {
+    return context.responsiveRelativeSize(
+      containerSize: containerSize,
+      percentage: percentage,
+      minSize: minSize,
+      maxSize: maxSize,
+    );
+  }
+
   /// Get default responsive values for common properties
   Map<String, dynamic> getDefaultResponsiveValues(BuildContext context) {
     return {

@@ -19,7 +19,7 @@ void chooseDeviceDialog(BuildContext context) {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
           color: AppColors.lightGrey,
-          width: context.screenWidth* 0.6,
+          width: context.screenWidth*(context.isDesktop? 0.5: 0.6),
           height: context.screenHeight *( context.isDesktop? 0.5: 0.6) ,
           padding: EdgeInsets.symmetric(
             horizontal: AppSizes.horizontalPadding *4,
@@ -71,7 +71,6 @@ void chooseDeviceDialog(BuildContext context) {
                   CloseDialogButton(
                     text: 'Start the session',
                     radius: true,
-                    width: 200,
                     context: dialogContext,
                   ),
                   SizedBox(width: AppSizes.horiSpacesBetweenElements),

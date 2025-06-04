@@ -8,6 +8,7 @@ class CustomTextStyles{
   static TextStyle tableHeader(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple);
   static TextStyle smallText(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize4,),);
   static TextStyle meduimText(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize4, ),fontWeight: AppSizes.fontWeight2);
+  static TextStyle largeText(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3, ),fontWeight: AppSizes.fontWeight2);
   static TextStyle titleText(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize2,), fontWeight: AppSizes.fontWeight1);
   static TextStyle buttonText(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,),  color: AppColors.white);
 

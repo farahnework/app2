@@ -1,4 +1,3 @@
-import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/utils/app_sizes.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:flutter/material.dart';

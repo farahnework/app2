@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 
 class CustomDialogButton extends StatefulWidget {
   final String text;
-  final double width;
   final double height;
   final  dialog;
   final Color color;
   final Color textColor;
-  const CustomDialogButton({super.key, required this.text,  required this.width,required this.dialog, required this.height, required this.color, required this.textColor});
+  const CustomDialogButton({super.key, required this.text,required this.dialog, required this.height, required this.color, required this.textColor});
 
   @override
   State<CustomDialogButton> createState() => _CustomDialogButtonState();
@@ -33,8 +32,8 @@ class _CustomDialogButtonState extends State<CustomDialogButton> {
         });
       },
       child: Container(
-        height: widget.height,
-        width: widget.width,
+        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: widget.height),
+     
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: color,

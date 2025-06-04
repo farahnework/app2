@@ -5,6 +5,7 @@ import 'package:app/presentation/pages/kitchen_display/kichen_display_page.dart'
 import 'package:app/presentation/pages/restaurant_orders.dart/restaurant_orders_page.dart';
 import 'package:app/presentation/pages/sell/sell_page.dart';
 import 'package:app/presentation/pages/signin_page.dart';
+import 'package:app/presentation/pages/support/support_page.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,7 +57,7 @@ class _SideBarState extends State<SideBar> {
                         icon: IconsaxPlusLinear.status,
                         text: 'Dashboard',
                         page: CustomersPage(),
-                        to: true,
+                        to: false,
                         selected: true,
                       ),
                     ),
@@ -68,7 +69,7 @@ class _SideBarState extends State<SideBar> {
                       selected: false,
                     ),
                     CustomListTile(
-                      icon: IconsaxPlusLinear.receipt_2_1,
+                       icon: IconsaxPlusLinear.keyboard_open,
                       text: 'Restaurant Orders',
                       page: RestaurantOrdersPage(),
                       to: true,
@@ -116,16 +117,16 @@ class _SideBarState extends State<SideBar> {
               children: [
                 CustomListTile(
                   icon: IconsaxPlusLinear.info_circle,
-                  text: 'Help',
-                  page: SigninPage(),
-                  to: false,
+                  text: 'Support',
+                  page: SupportPage(),
+                  to: true,
                   selected: false,
                 ),
                 CustomListTile(
                   icon: IconsaxPlusLinear.logout,
                   text: 'Log Out',
                   page: SigninPage(),
-                  to: false,
+                  to: true,
                   selected: false,
                 ),
               ],
@@ -164,9 +165,10 @@ class _CustomListTileState extends State<CustomListTile> {
   Widget build(BuildContext context) {
     return InkWell(
      onTap: () {
-  Get.off(() => widget.page);
-}
-,
+        widget.to?
+        Get.off(widget.page):
+        '';
+      },
       child: MouseRegion(
         onEnter: (event) {
           setState(() {

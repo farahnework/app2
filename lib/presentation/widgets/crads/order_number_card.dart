@@ -1,4 +1,5 @@
 import 'package:app/core/responsive/app_sizes.dart';
+import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,8 @@ class _OrderNumberCardState extends State<OrderNumberCard> {
           left: BorderSide(color: AppColors.white),
           )
        ),
-      width: AppSizes.widgetHeight +20,
-      height: AppSizes.widgetHeight,
+      width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight +2),
+     height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
       child: Center(
         child: Text('# ${widget.orderNumber}', style: CustomTextStyles.smallText(context)),
       ),
