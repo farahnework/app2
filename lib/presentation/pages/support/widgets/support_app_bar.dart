@@ -5,7 +5,10 @@ import 'package:app/core/theming/app_colors.dart';
 import 'package:app/presentation/widgets/fields/custom_search_field.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -38,23 +41,20 @@ class SupportAppBar extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (context.isMobile)
+             if (!context.isDesktop)
                 InkWell(
                   onTap: () {
-                    final sidebarController = Provider.of<SideBarController>(
-                      context,
-                      listen: false,
-                    );
-                    sidebarController.toggleSidebar();
+                    Get.back();
+                    
                   },
-                  child: const Icon(Iconsax.menu),
+                  child: const Icon(IconsaxPlusLinear.arrow_left_1),
                 ),
               SizedBox(width: AppSizes.horiSpacesBetweenElements),
               
                SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-               if(!context.isMobile)
+              
                Text(
-                    'Support',
+                    'Customers Support',
                     style: TextStyle(
                       fontSize: context.responsiveFontSize(AppSizes.fontSize1,),
                       fontWeight: AppSizes.fontWeight1,
