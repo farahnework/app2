@@ -32,12 +32,12 @@ class _CustomIconButtonState extends State<CustomIconButton> {
       //   });
       // },
       child: Container(
-        width:  context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: widget.size),
-        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: widget.size),
+        width:  context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         child: IconButton(
             onPressed: (){
             },
-            icon: Icon(widget.icon, color: widget.iconColor, size: context.responsiveIconSize(AppSizes.iconSize2),),
+            icon: Icon(widget.icon, color: widget.iconColor, size: context.responsiveIconSize(AppSizes.iconSize),),
   
           style: ElevatedButton.styleFrom(
             

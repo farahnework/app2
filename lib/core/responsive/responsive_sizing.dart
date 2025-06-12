@@ -33,7 +33,7 @@ class ResponsiveSizing {
 
     if (adjustedWidth < mobileMaxWidth) {
       // للجوال: مقياس خطي من 0.8 إلى 1.0 بناءً على العرض
-      scaleFactor = 0.8 + (adjustedWidth / mobileMaxWidth) * 0.2;
+      scaleFactor = 1.7 + (adjustedWidth / mobileMaxWidth) * 2;
     } else if (adjustedWidth < tabletMaxWidth) {
       // للأجهزة اللوحية: مقياس خطي من 1.0 إلى 1.2
       scaleFactor = 1.0 +
@@ -111,7 +111,7 @@ class ResponsiveSizing {
     } else if (isTablet(context)) {
       return basePadding * 1.2;
     } else {
-      return basePadding;
+      return basePadding *0.7;
     }
   }
 
@@ -149,9 +149,9 @@ class ResponsiveSizing {
     if (isDesktop(context)) {
       return baseSize * 1.5;
     } else if (isTablet(context)) {
-      return baseSize * 1.2;
+      return baseSize * 1;
     } else {
-      return baseSize;
+      return baseSize *1.1;
     }
   }
 
@@ -218,6 +218,8 @@ class ResponsiveSizing {
     } else if (isTablet(context)) {
       // ضبط طفيف للأجهزة اللوحية
       adjustedPercentage = percentage * 0.9;
+    } else if (isMobile(context)) {
+      adjustedPercentage = percentage * 0.7;
     }
 
     // حساب الحجم النسبي

@@ -141,7 +141,7 @@ class _CustomListTileState extends State<CustomListTile> {
       
       onTap: () {
         widget.to?
-        Get.off(widget.page):
+        Get.to(widget.page):
         '';
       },
       child: MouseRegion(

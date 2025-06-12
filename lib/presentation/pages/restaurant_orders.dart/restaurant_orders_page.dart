@@ -1,3 +1,4 @@
+import 'package:app/controllers/toggle_button_controller.dart';
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/core/responsive/responsive_sizing.dart';
@@ -25,9 +26,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:provider/provider.dart';
 
 class RestaurantOrdersPage extends StatefulWidget {
-  const RestaurantOrdersPage({super.key});
+   const RestaurantOrdersPage({super.key});
 
   @override
   State<RestaurantOrdersPage> createState() => _RestaurantOrdersPageState();
@@ -40,16 +42,25 @@ class _RestaurantOrdersPageState extends State<RestaurantOrdersPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       chooseDeviceDialog(context);
     });
-    return Scaffold(
-      backgroundColor: AppColors.lightGrey,
-      body: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Column(children: [RestaurantAppBar(), LeftSide()]),
-          ),
-          RightSide(),
-        ],
+     final sideToggle = Provider.of<SideToggleProvider>(context);
+
+   
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.lightGrey,
+        body: Row(
+          children: [
+           if(!context.isMobile)
+            Expanded(
+              flex: 2,
+              child: 
+             
+              Column(children: [RestaurantAppBar(), LeftSide()])
+            
+            ),
+            RightSide(), 
+          ],
+        ),
       ),
     );
   }
@@ -271,8 +282,11 @@ class RightSide extends StatefulWidget {
 }
 
 class _RightSideState extends State<RightSide> {
+  
   @override
   Widget build(BuildContext context) {
+    final sideToggle = Provider.of<SideToggleProvider>(context);
+
     return Expanded(
       flex: 1,
       child: Container(
@@ -286,6 +300,30 @@ class _RightSideState extends State<RightSide> {
               height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
               child: Row(
                 children: [
+                  if(context.isMobile)
+                  Container(
+                      width: context.responsiveRelativeSize(
+                        containerSize: context.screenHeight,
+                        percentage: AppSizes.widgetHeight,
+                      ),
+                      height: context.responsiveRelativeSize(
+                        containerSize: context.screenHeight,
+                        percentage: AppSizes.widgetHeight,
+                      ),
+                      decoration: BoxDecoration(color: AppColors.darkBlue),
+                      child: IconButton(
+                        color: AppColors.darkPurple,
+                        onPressed: () {
+                          setState(() {
+                           sideToggle.toggleSide();
+                          });
+                        },
+                        icon: Icon(
+                          IconsaxPlusLinear.box,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
                   Container(
                     width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
                     height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),

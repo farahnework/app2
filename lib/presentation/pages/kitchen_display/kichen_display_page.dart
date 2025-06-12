@@ -20,54 +20,72 @@ class _KitchenDisplayPageState extends State<KitchenDisplayPage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      child: Scaffold(
-        backgroundColor: AppColors.lightGrey,
-        body: Column(
-          children: [
-            KitchenAppBar(),
-            SizedBox(height: AppSizes.verSpacesBetweenContainers),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppSizes.horizontalPadding,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    width:context.screenWidth / 2,
-                    height: context.responsiveWidgetHeight,
-                    decoration: CustomBoxDecoration.boxDecoration,
-                    child: TabBar(
-                      dividerColor: Colors.transparent,
-                      overlayColor: MaterialStateProperty.all(
-                        Colors.transparent,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: AppColors.lightGrey,
+          body: Column(
+            children: [
+              KitchenAppBar(),
+              SizedBox(height: AppSizes.verSpacesBetweenContainers),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSizes.horizontalPadding,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      width:
+                          context.isMobile
+                              ? context.responsiveRelativeSize(
+                                containerSize: context.screenWidth,
+                                percentage: 120,
+                              )
+                              : context.responsiveRelativeSize(
+                                containerSize: context.screenWidth,
+                                percentage: 50,
+                              ),
+                      height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+                      decoration: CustomBoxDecoration.boxDecoration,
+                      child: TabBar(
+                        dividerColor: Colors.transparent,
+                        overlayColor: MaterialStateProperty.all(
+                          Colors.transparent,
+                        ),
+                        indicatorSize: TabBarIndicatorSize.label,
+                        labelPadding: EdgeInsets.symmetric(horizontal: 0),
+                        unselectedLabelStyle: TextStyle(
+                          color: AppColors.darkGray,
+                          fontSize: context.responsiveFontSize(
+                            AppSizes.fontSize3,
+                          ),
+                        ),
+                        labelStyle: TextStyle(
+                          color: AppColors.darkPurple,
+                          fontSize: context.responsiveFontSize(
+                            AppSizes.fontSize3,
+                          ),
+                          fontWeight: FontWeight.bold,
+                        ),
+                        tabs: [
+                          Tab(text: "All Orders"),
+                          Tab(text: "To Cook"),
+                          Tab(text: "Ready"),
+                          Tab(text: "Completed"),
+                        ],
                       ),
-                      indicatorSize: TabBarIndicatorSize.label,
-                      labelPadding: EdgeInsets.symmetric(horizontal: 0),
-                      unselectedLabelStyle: TextStyle(
-                        color: AppColors.darkGray,
-                        fontSize: context.responsiveFontSize(AppSizes.fontSize3),
-                      ),
-                      labelStyle: TextStyle(
-                        color: AppColors.darkPurple,
-                        fontSize: context.responsiveFontSize(AppSizes.fontSize3),
-                        fontWeight: FontWeight.bold,
-                      ),
-                      tabs: [
-                        Tab(text: "All Orders"),
-                        Tab(text: "To Cook"),
-                        Tab(text: "Ready"),
-                        Tab(text: "Completed"),
-                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: AppSizes.verSpacesBetweenContainers),
-            Expanded(
-              child: TabBarView(children: [View1(), View2(), View3(), View4()]),
-            ),
-          ],
+              SizedBox(height: AppSizes.verSpacesBetweenContainers),
+              Expanded(
+                child: TabBarView(
+                  children: [View1(), View2(), View3(), View4()],
+                ),
+              ),
+              
+            ],
+          ),
         ),
       ),
     );
@@ -97,18 +115,21 @@ class _View1State extends State<View1> {
             : context.isTablet
             ? ScreenLayouts.tabletSpacing
             : ScreenLayouts.desktopSpacing;
+
+    double childAspectRatio =
+        context.isMobile
+            ? 0.8
+            : 1;
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSizes.horizontalPadding,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding),
 
         child: GridView(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: spacing,
             mainAxisSpacing: spacing,
-            childAspectRatio: 1,
+            childAspectRatio: childAspectRatio,
           ),
           scrollDirection: Axis.vertical,
           children: [
@@ -198,7 +219,7 @@ class View2 extends StatefulWidget {
 class _View2State extends State<View2> {
   @override
   Widget build(BuildContext context) {
-     int crossAxisCount =
+    int crossAxisCount =
         context.isMobile
             ? ScreenLayouts.mobileCrossAxisCount
             : ResponsiveSizing.isTablet(context)
@@ -211,6 +232,10 @@ class _View2State extends State<View2> {
             : ResponsiveSizing.isTablet(context)
             ? ScreenLayouts.tabletSpacing
             : ScreenLayouts.desktopSpacing;
+             double childAspectRatio =
+        context.isMobile
+            ? 0.8
+            : 1;
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
@@ -222,8 +247,9 @@ class _View2State extends State<View2> {
         child: GridView(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
-            crossAxisSpacing:spacing,
+            crossAxisSpacing: spacing,
             mainAxisSpacing: spacing,
+            childAspectRatio: childAspectRatio,
           ),
           scrollDirection: Axis.vertical,
           children: [
@@ -285,7 +311,7 @@ class View3 extends StatefulWidget {
 class _View3State extends State<View3> {
   @override
   Widget build(BuildContext context) {
-     int crossAxisCount =
+    int crossAxisCount =
         context.isMobile
             ? ScreenLayouts.mobileCrossAxisCount
             : ResponsiveSizing.isTablet(context)
@@ -298,6 +324,10 @@ class _View3State extends State<View3> {
             : ResponsiveSizing.isTablet(context)
             ? ScreenLayouts.tabletSpacing
             : ScreenLayouts.desktopSpacing;
+             double childAspectRatio =
+        context.isMobile
+            ? 0.8
+            : 1;
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
@@ -311,6 +341,7 @@ class _View3State extends State<View3> {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: spacing,
             mainAxisSpacing: spacing,
+            childAspectRatio: childAspectRatio
           ),
           scrollDirection: Axis.vertical,
           children: [
@@ -362,7 +393,7 @@ class View4 extends StatefulWidget {
 class _View4State extends State<View4> {
   @override
   Widget build(BuildContext context) {
-     int crossAxisCount =
+    int crossAxisCount =
         context.isMobile
             ? ScreenLayouts.mobileCrossAxisCount
             : ResponsiveSizing.isTablet(context)
@@ -375,6 +406,10 @@ class _View4State extends State<View4> {
             : ResponsiveSizing.isTablet(context)
             ? ScreenLayouts.tabletSpacing
             : ScreenLayouts.desktopSpacing;
+             double childAspectRatio =
+        context.isMobile
+            ? 0.8
+            : 1;
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
@@ -388,6 +423,7 @@ class _View4State extends State<View4> {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: spacing,
             mainAxisSpacing: spacing,
+            childAspectRatio: childAspectRatio
           ),
           scrollDirection: Axis.vertical,
           children: [

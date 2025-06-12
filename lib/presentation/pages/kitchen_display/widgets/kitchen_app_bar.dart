@@ -1,8 +1,6 @@
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/sell/widgets/close_session_buton.dart';
-import 'package:app/presentation/pages/session_details/session_details_page.dart';
-import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +34,7 @@ class KitchenAppBar extends StatelessWidget {
                   child: CircleAvatar(child: Image.asset('lib/assets/images/user.jpg'), )),
                
                 SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                if(!context.isMobile)
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,6 +48,7 @@ class KitchenAppBar extends StatelessWidget {
                 ),
               ],
             ),
+            if(!context.isMobile)
             Row(
               children: [
                 Text('Current Session: ',  style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
@@ -71,17 +71,17 @@ class KitchenAppBar extends StatelessWidget {
                   iconColor: AppColors.lightPurple,
                   size: AppSizes.iconButtonSize,
                 ),
-                SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                // SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
-                CustomButton(
-                  text: 'Session Details',
-                  radius: true,
-                  width: 150,
-                  page: SessionDetailsPage(),
-                  height: AppSizes.widgetHeight,
-                  color: AppColors.darkPurple,
-                  textColor: AppColors.white,
-                ),
+                // CustomButton(
+                //   text: 'Session Details',
+                //   radius: true,
+                //   width: 150,
+                //   page: SessionDetailsPage(),
+                //   height: AppSizes.widgetHeight,
+                //   color: AppColors.darkPurple,
+                //   textColor: AppColors.white,
+                // ),
               ],
             ),
           ],

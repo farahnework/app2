@@ -19,16 +19,32 @@ void chooseDeviceDialog(BuildContext context) {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
           color: AppColors.lightGrey,
-          width: context.screenWidth*(context.isDesktop? 0.5: 0.6),
-          height: context.screenHeight *( context.isDesktop? 0.5: 0.6) ,
+          width:
+              context.screenWidth *
+              (context.isDesktop
+                  ? 0.5
+                  : context.isTablet
+                  ? 0.6
+                  : 1),
+          height:
+              context.screenHeight *
+              (context.isDesktop
+                  ? 0.5
+                  : context.isTablet
+                  ? 0.6
+                  : 0.5),
           padding: EdgeInsets.symmetric(
-            horizontal: AppSizes.horizontalPadding *4,
-            vertical: AppSizes.verticalPadding / 2,
+            horizontal:
+                context.responsivePadding(AppSizes.horizontalPadding) * 4,
+            vertical: context.responsivePadding(AppSizes.horizontalPadding) / 2,
           ),
           child: Column(
             children: [
               SizedBox(height: AppSizes.verSpacesBetweenContainers),
-              Text('Select session details', style: CustomTextStyles.titleText(context)),
+              Text(
+                'Select session details',
+                style: CustomTextStyles.titleText(context),
+              ),
               SizedBox(height: AppSizes.verSpacesBetweenContainers),
 
               Row(
@@ -46,7 +62,7 @@ void chooseDeviceDialog(BuildContext context) {
                   ),
                 ],
               ),
-              SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+              SizedBox(height: AppSizes.verSpacesBetweenElements * 2),
 
               Row(
                 children: [
@@ -63,20 +79,38 @@ void chooseDeviceDialog(BuildContext context) {
                   ),
                 ],
               ),
-              SizedBox(height: AppSizes.verSpacesBetweenContainers*1.5),
+              SizedBox(height: AppSizes.verSpacesBetweenContainers * 1.5),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CloseDialogButton(
-                    text: 'Start the session',
-                    radius: true,
-                    context: dialogContext,
+                  
+                  Expanded(
+                    child: CloseDialogButton(
+                      text: 'Start the session',
+                      radius: true,
+                      context: dialogContext,
+                    ),
                   ),
-                  SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                  CustomOutlinedButton(text: 'Cancel', page: HomePage()),
+                  if (!context.isMobile)
+                    SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                  if (!context.isMobile)
+                    CustomOutlinedButton(text: 'Cancel', page: HomePage()),
                 ],
               ),
+              if (context.isMobile)
+                SizedBox(height: AppSizes.verSpacesBetweenElements),
+              if (context.isMobile)
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomOutlinedButton(
+                        text: 'Cancel',
+                        page: HomePage(),
+                      ),
+                    ),
+                  ],
+                ),
             ],
           ),
         ),

@@ -1,6 +1,8 @@
 import 'package:app/controllers/side_bar_controller.dart';
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
+import 'package:app/core/responsive/responsive_sizing.dart';
+import 'package:app/core/responsive/screen_layouts.dart';
 import 'package:app/presentation/pages/home/home_page.dart';
 import 'package:app/presentation/pages/support/widgets/support_app_bar.dart';
 import 'package:app/presentation/widgets/bars/icon_side_bar.dart';
@@ -32,32 +34,34 @@ void initState() {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      drawerScrimColor: Colors.transparent,
-      drawer: context.isDesktop ? null : SideBar(),
-
+    return SafeArea(
+      child: Scaffold(
+        key: scaffoldKey,
+        drawerScrimColor: Colors.transparent,
+        drawer: context.isDesktop ? null : SideBar(),
       
-      backgroundColor: AppColors.lightGrey,
-      body: Row(
-        children: [
-          
-          context.isDesktop?
-          Expanded(flex:1 , child: SideBar()):
-           context.isLargeTablet?
-          IconSideBar():
-           context.isSmallTablet?
-          IconSideBar():
-          Container(),
-
-
-          Expanded(
-            flex: 5,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [SupportAppBar(), SupportBody()]),
-          ),
-        ],
+        
+        backgroundColor: AppColors.lightGrey,
+        body: Row(
+          children: [
+            
+            context.isDesktop?
+            Expanded(flex:1 , child: SideBar()):
+             context.isLargeTablet?
+            IconSideBar():
+             context.isSmallTablet?
+            IconSideBar():
+            Container(),
+      
+      
+            Expanded(
+              flex: 5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [SupportAppBar(), SupportBody()]),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -68,6 +72,26 @@ class SupportBody extends StatelessWidget {
   const SupportBody({super.key});
   @override
   Widget build(BuildContext context) {
+    int crossAxisCount =
+        context.isMobile
+            ? ScreenLayouts.mobileCrossAxisCount
+            : ResponsiveSizing.isTablet(context)
+            ? ScreenLayouts.tabletCrossAxisCount
+            : 4;
+
+    double spacing =
+        context.isMobile
+            ? ScreenLayouts.mobileSpacing
+            : ResponsiveSizing.isTablet(context)
+            ? ScreenLayouts.tabletSpacing
+            : ScreenLayouts.desktopSpacing;
+
+    double childAspectRatio =
+        context.isMobile
+            ? 1.5
+            : ResponsiveSizing.isTablet(context)
+            ? 1.5
+            : 1.7;
     return Expanded(
       child: SingleChildScrollView(
         child: Padding(
@@ -83,10 +107,20 @@ class SupportBody extends StatelessWidget {
               SizedBox(height: AppSizes.verSpacesBetweenContainers,),
               Center(child: Image.asset('lib/assets/images/support.png')),
               SizedBox(height: AppSizes.verSpacesBetweenContainers,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+              Container(
+                width: double.infinity,
+                child: GridView(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 1 ,
+                    mainAxisSpacing: 0,
+                    childAspectRatio: childAspectRatio,
+                  ),
+                  children: [
+                    Row(
                     children: [
                       Icon(IconsaxPlusLinear.mask_2, size: context.responsiveIconSize(AppSizes.iconSize), color: AppColors.darkPurple,),
                       SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
@@ -114,8 +148,10 @@ class SupportBody extends StatelessWidget {
                       Text('info@as-it.com.sa', style: CustomTextStyles.largeText(context),),
                     ],
                   ),
-                ],
+                  ],
+                ),
               ),
+             
               ],
             ),
           ),

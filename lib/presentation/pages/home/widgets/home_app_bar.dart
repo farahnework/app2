@@ -23,7 +23,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       // ),
       decoration: CustomBoxDecoration.boxDecoration.copyWith(
         borderRadius: BorderRadius.circular(0),
-        border: Border(bottom: BorderSide(width: AppSizes.borderSize, color: AppColors.grey))
+        border: Border(
+          bottom: BorderSide(width: AppSizes.borderSize, color: AppColors.grey),
+        ),
       ),
       padding: EdgeInsets.symmetric(
         horizontal: AppSizes.horizontalPadding,
@@ -49,22 +51,20 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                   },
                   child: const Icon(Iconsax.menu),
                 ),
+                if (!context.isMobile)
               SizedBox(width: AppSizes.horiSpacesBetweenElements),
-              
-               SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-               if(!context.isMobile)
-               Text(
-                    'Dashboard',
-                    style: TextStyle(
-                      fontSize: context.responsiveFontSize(AppSizes.fontSize1,),
-                      fontWeight: AppSizes.fontWeight1,
-                      color: AppColors.darkPurple
-                    ),
+              if (!context.isMobile)
+                Text(
+                  'Dashboard',
+                  style: TextStyle(
+                    fontSize: context.responsiveFontSize(AppSizes.fontSize1),
+                    fontWeight: AppSizes.fontWeight1,
+                    color: AppColors.darkPurple,
                   ),
-               SizedBox(width: AppSizes.horiSpacesBetweenElements*2),
+                ),
+              SizedBox(width: context.responsiveSpacing(AppSizes.horiSpacesBetweentTexts)),
 
               CustomSearchField(text: 'Search'),
-
             ],
           ),
 
@@ -78,27 +78,32 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                   child: Image.asset('lib/assets/images/user.jpg'),
                 ),
               ),
-
-              SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Tareq Taha',
-                    style: TextStyle(
-                      fontSize: context.responsiveFontSize(AppSizes.fontSize3),
-                      fontWeight: AppSizes.fontWeight1,
+              if (!context.isMobile)
+                SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+              if (!context.isMobile)
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Tareq Taha',
+                      style: TextStyle(
+                        fontSize: context.responsiveFontSize(
+                          AppSizes.fontSize3,
+                        ),
+                        fontWeight: AppSizes.fontWeight1,
+                      ),
                     ),
-                  ),
-                  Text(
-                    '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}',
-                    style: TextStyle(
-                      fontSize: context.responsiveFontSize(AppSizes.fontSize5),
+                    Text(
+                      '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}',
+                      style: TextStyle(
+                        fontSize: context.responsiveFontSize(
+                          AppSizes.fontSize5,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
             ],
           ),
         ],

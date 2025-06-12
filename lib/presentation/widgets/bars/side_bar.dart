@@ -116,7 +116,7 @@ class _SideBarState extends State<SideBar> {
             Column(
               children: [
                 CustomListTile(
-                  icon: IconsaxPlusLinear.info_circle,
+                  icon: IconsaxPlusLinear.headphone,
                   text: 'Support',
                   page: SupportPage(),
                   to: true,
@@ -166,7 +166,7 @@ class _CustomListTileState extends State<CustomListTile> {
     return InkWell(
      onTap: () {
         widget.to?
-        Get.off(widget.page):
+        Get.to(widget.page):
         '';
       },
       child: MouseRegion(

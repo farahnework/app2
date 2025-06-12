@@ -2,8 +2,6 @@ import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/core/responsive/responsive_sizing.dart';
 import 'package:app/core/responsive/screen_layouts.dart';
-import 'package:app/core/theming/app_styles.dart';
-import 'package:app/presentation/pages/restaurant_orders.dart/widgets/add_caurse_button.dart';
 import 'package:app/presentation/pages/restaurant_orders.dart/widgets/add_note_dialog.dart';
 import 'package:app/presentation/pages/sell/widgets/add_customer_button.dart';
 import 'package:app/presentation/pages/sell/widgets/choose_device_dialog.dart';
@@ -13,7 +11,6 @@ import 'package:app/presentation/widgets/buttons/custom_cancel_outlined_button.d
 import 'package:app/presentation/widgets/buttons/custom_dialog_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_drop_down_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_icon_button.dart';
-import 'package:app/presentation/widgets/buttons/custom_icon_text_button.dart';
 import 'package:app/presentation/widgets/crads/category_card.dart';
 import 'package:app/presentation/widgets/crads/order_number_card.dart';
 import 'package:app/presentation/widgets/fields/custom_search_field.dart';
@@ -49,15 +46,26 @@ class _SellPageState extends State<SellPage> {
       child: Scaffold(
         backgroundColor: AppColors.lightGrey,
         resizeToAvoidBottomInset: true,
-        body: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Column(children: [CustomAppBar(), LeftSide()]),
-            ),
-            RightSide(),
-          ],
-        ),
+        body:
+            context.isMobile
+                ? Row(
+                  children: [
+                    // Expanded(
+                    //   flex: 2,
+                    //   child: Column(children: [CustomAppBar(), LeftSide()]),
+                    // ),
+                    RightSide(),
+                  ],
+                )
+                : Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Column(children: [CustomAppBar(), LeftSide()]),
+                    ),
+                    RightSide(),
+                  ],
+                ),
       ),
     );
   }
@@ -305,6 +313,26 @@ class _RightSideState extends State<RightSide> {
               ),
               child: Row(
                 children: [
+                  if (context.isMobile)
+                    Container(
+                      width: context.responsiveRelativeSize(
+                        containerSize: context.screenHeight,
+                        percentage: AppSizes.widgetHeight,
+                      ),
+                      height: context.responsiveRelativeSize(
+                        containerSize: context.screenHeight,
+                        percentage: AppSizes.widgetHeight,
+                      ),
+                      decoration: BoxDecoration(color: AppColors.darkBlue),
+                      child: IconButton(
+                        color: AppColors.darkPurple,
+                        onPressed: () {},
+                        icon: Icon(
+                          IconsaxPlusLinear.box,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
                   Container(
                     width: context.responsiveRelativeSize(
                       containerSize: context.screenHeight,
@@ -348,9 +376,12 @@ class _RightSideState extends State<RightSide> {
 
             Padding(
               padding: EdgeInsets.only(
-                left: AppSizes.horizontalPadding / 2,
-                right: AppSizes.horizontalPadding / 2,
-                top: AppSizes.verticalPadding / 2,
+                left:
+                    context.responsiveSpacing(AppSizes.horizontalPadding) / 1.5,
+                right:
+                    context.responsiveSpacing(AppSizes.horizontalPadding) / 1.5,
+                top:
+                    context.responsiveSpacing(AppSizes.horizontalPadding) / 1.5,
               ),
               child: Container(
                 child: Row(
@@ -361,7 +392,7 @@ class _RightSideState extends State<RightSide> {
                         Icon(
                           Iconsax.user,
                           color: AppColors.darkPurple,
-                          size: context.responsiveIconSize(AppSizes.iconSize2),
+                          size: context.responsiveIconSize(AppSizes.iconSize),
                         ),
                         SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
@@ -500,9 +531,9 @@ class _RightSideState extends State<RightSide> {
                 ],
               ),
             ),
-            SizedBox(height: AppSizes.verSpacesBetweenElements*1.5),
+            SizedBox(height: AppSizes.verSpacesBetweenElements * 1.5),
             NumbersPalette(),
-            SizedBox(height: AppSizes.verSpacesBetweenElements*1.5),
+            SizedBox(height: AppSizes.verSpacesBetweenElements * 1.5),
             Container(
               width: MediaQuery.of(context).size.width,
               height: 50,
@@ -518,7 +549,9 @@ class _RightSideState extends State<RightSide> {
                   children: [
                     Text(
                       'Payment:',
-                      style: CustomTextStyles.buttonText(context).copyWith(fontWeight: AppSizes.fontWeight1,),
+                      style: CustomTextStyles.buttonText(
+                        context,
+                      ).copyWith(fontWeight: AppSizes.fontWeight1),
                     ),
                     SizedBox(width: AppSizes.horiSpacesBetweenElements),
                     SvgPicture.asset(
@@ -528,7 +561,12 @@ class _RightSideState extends State<RightSide> {
                     ),
                     SizedBox(width: AppSizes.horiSpacesBetweentTexts),
 
-                    Text('260', style: CustomTextStyles.buttonText(context).copyWith(fontWeight: AppSizes.fontWeight1,)),
+                    Text(
+                      '260',
+                      style: CustomTextStyles.buttonText(
+                        context,
+                      ).copyWith(fontWeight: AppSizes.fontWeight1),
+                    ),
                   ],
                 ),
                 onPressed: () {
@@ -563,14 +601,20 @@ class _CustomDialogState extends State<CustomDialog> {
       backgroundColor: AppColors.white,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: SizedBox(
-        width: context.screenWidth / (context.isDesktop ? 1.8 : 1.5),
+        width:
+            context.screenWidth /
+            (context.isDesktop
+                ? 1.5
+                : context.isDesktop
+                ? 1.5
+                : 1),
         height: context.screenHeight / 1.3,
         child: Column(
           children: [
             Container(
               padding: EdgeInsets.symmetric(
                 horizontal: AppSizes.horizontalPadding,
-                vertical: AppSizes.verticalPadding,
+                vertical: AppSizes.verticalPadding /2,
               ),
               color: AppColors.lightPurple,
               child: Row(
@@ -584,14 +628,18 @@ class _CustomDialogState extends State<CustomDialog> {
                       color: AppColors.darkPurple,
                       size: context.responsiveIconSize(AppSizes.iconSize),
                     ),
-                    
                   ),
-                  SizedBox(width: AppSizes.horiSpacesBetweenElements,),
-                  Text('Payment', style: CustomTextStyles.titleText(context).copyWith(color: AppColors.darkPurple),)
+                  SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                  Text(
+                    'Payment',
+                    style: CustomTextStyles.titleText(
+                      context,
+                    ).copyWith(color: AppColors.darkPurple),
+                  ),
                 ],
               ),
             ),
-            DialogBody(),
+            Expanded(child: DialogBody()),
           ],
         ),
       ),
@@ -614,29 +662,51 @@ class _DialogBodyState extends State<DialogBody> {
         horizontal: AppSizes.horizontalPadding,
         vertical: AppSizes.verticalPadding,
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(flex: 2, child: dialogleftSide(context)),
-          Container(
-            width: 40,
-            decoration: BoxDecoration(color: AppColors.black),
-          ),
+      child:
+          context.isMobile
+              ? Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      dialogleftSide(context),
+                      Container(
+                        width: 40,
+                        decoration: BoxDecoration(color: AppColors.black),
+                      ),
 
-          Expanded(
-            flex: 3,
-            child: StatefulBuilder(
-              builder: (context, setState) {
-                TabController tabController = TabController(
-                  length: 4,
-                  vsync: Navigator.of(context),
-                );
-                return dialogRightSide(tabController, context);
-              },
-            ),
-          ),
-        ],
-      ),
+                      StatefulBuilder(
+                        builder: (context, setState) {
+                          TabController tabController = TabController(
+                            length: 4,
+                            vsync: Navigator.of(context),
+                          );
+                          return dialogRightSide(tabController, context);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              )
+              : Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(flex: 2, child: dialogleftSide(context)),
+                  SizedBox(width: AppSizes.horiSpacesBetweenElements * 2),
+                  Expanded(
+                    flex: 3,
+                    child: StatefulBuilder(
+                      builder: (context, setState) {
+                        TabController tabController = TabController(
+                          length: 4,
+                          vsync: Navigator.of(context),
+                        );
+                        return dialogRightSide(tabController, context);
+                      },
+                    ),
+                  ),
+                ],
+              ),
     );
   }
 }
@@ -790,22 +860,104 @@ Widget tab2(BuildContext context) {
           Radius.circular(AppSizes.textFieldRadius),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Payed:", style: CustomTextStyles.titleText(context)),
-          SizedBox(height: AppSizes.verSpacesBetweenElements),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SvgPicture.asset(
-                AppImages.rial,
-                width: context.responsiveFontSize(AppSizes.fontSize5),
+              Text('Subtotal:', style: CustomTextStyles.meduimText(context)),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text('Discount:', style: CustomTextStyles.meduimText(context)),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text('VAT:', style: CustomTextStyles.meduimText(context)),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text('Total:', style: CustomTextStyles.meduimText(context)),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text(
+                'Payed:',
+                style: CustomTextStyles.largeText(
+                  context,
+                ).copyWith(color: AppColors.darkGreen),
               ),
-              SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+              
+            ],
+          ),
+          SizedBox(width: AppSizes.verSpacesBetweenContainers),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
 
-              Text("2000", style: CustomTextStyles.titleText(context)),
+            children: [
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    AppImages.rial,
+                    width: context.responsiveFontSize(AppSizes.fontSize6),
+                  ),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+
+                  Text('1520', style: CustomTextStyles.smallText(context)),
+                ],
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Row(
+                children: [
+                  SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: Image.asset("lib/assets/icons/rial.png"),
+                  ),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+
+                  Text('200', style: CustomTextStyles.smallText(context)),
+                ],
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Row(
+                children: [
+                  SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: Image.asset("lib/assets/icons/rial.png"),
+                  ),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+
+                  Text('350', style: CustomTextStyles.smallText(context)),
+                ],
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    AppImages.rial,
+                    width: context.responsiveFontSize(AppSizes.fontSize6),
+                  ),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+
+                  Text('1800', style: CustomTextStyles.smallText(context)),
+                ],
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    AppImages.rial,
+                    width: context.responsiveFontSize(AppSizes.fontSize6),
+                    color: AppColors.darkGreen,
+                  ),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+
+                  Text(
+                    '2000',
+                    style: CustomTextStyles.largeText(
+                      context,
+                    ).copyWith(color: AppColors.darkGreen),
+                  ),
+                ],
+              ),
+             
             ],
           ),
         ],
@@ -886,7 +1038,7 @@ Widget tab3(BuildContext context) {
 }
 
 Widget tab4(BuildContext context) {
-  return Center(
+   return Center(
     child: Container(
       padding: EdgeInsets.all(AppSizes.cardPadding),
       decoration: BoxDecoration(
@@ -895,22 +1047,79 @@ Widget tab4(BuildContext context) {
           Radius.circular(AppSizes.textFieldRadius),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Payed:", style: CustomTextStyles.titleText(context)),
-          SizedBox(height: AppSizes.verSpacesBetweenElements),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SvgPicture.asset(
-                AppImages.rial,
-                width: context.responsiveFontSize(AppSizes.fontSize5),
-              ),
-              SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+              Text('Subtotal:', style: CustomTextStyles.meduimText(context)),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text('Discount:', style: CustomTextStyles.meduimText(context)),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text('VAT:', style: CustomTextStyles.meduimText(context)),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text('Total:', style: CustomTextStyles.meduimText(context)),
+            
+            ],
+          ),
+          SizedBox(width: AppSizes.verSpacesBetweenContainers),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
 
-              Text("2000", style: CustomTextStyles.titleText(context)),
+            children: [
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    AppImages.rial,
+                    width: context.responsiveFontSize(AppSizes.fontSize6),
+                  ),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+
+                  Text('1520', style: CustomTextStyles.smallText(context)),
+                ],
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Row(
+                children: [
+                  SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: Image.asset("lib/assets/icons/rial.png"),
+                  ),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+
+                  Text('200', style: CustomTextStyles.smallText(context)),
+                ],
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Row(
+                children: [
+                  SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: Image.asset("lib/assets/icons/rial.png"),
+                  ),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+
+                  Text('350', style: CustomTextStyles.smallText(context)),
+                ],
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    AppImages.rial,
+                    width: context.responsiveFontSize(AppSizes.fontSize6),
+                  ),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+
+                  Text('1800', style: CustomTextStyles.smallText(context)),
+                ],
+              ),
+             
             ],
           ),
         ],
@@ -923,6 +1132,15 @@ Widget dialogleftSide(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
+      if(context.isMobile)
+      Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text('Customer Information:', style: CustomTextStyles.titleText(context),),
+        ],
+      ),
+      if(context.isMobile)
+      SizedBox(height: AppSizes.verSpacesBetweenElements,),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -933,7 +1151,7 @@ Widget dialogleftSide(BuildContext context) {
             size: AppSizes.iconButtonSize,
           ),
           SizedBox(
-            width: context.screenWidth / 8,
+            width: context.responsiveRelativeSize(containerSize: context.screenWidth, percentage: context.isMobile?70:25),
             child: CustomDropDownButton(
               icon: IconsaxPlusLinear.tag,
               color: AppColors.white,
@@ -988,14 +1206,25 @@ Widget dialogRightSide(TabController tabController, BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
+      if(context.isMobile)
+      SizedBox(height: AppSizes.verSpacesBetweenContainers,),
+      if(context.isMobile)
+      Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text('Payment Method:', style: CustomTextStyles.titleText(context),),
+        ],
+      ),
+      if(context.isMobile)
+      SizedBox(height: AppSizes.verSpacesBetweenElements,),
       Container(
-        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+        height: context.responsiveRelativeSize(
+          containerSize: context.screenHeight,
+          percentage: AppSizes.widgetHeight,
+        ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppSizes.radius12),
-          ),
+          borderRadius: BorderRadius.all(Radius.circular(AppSizes.radius12)),
           border: Border.all(color: AppColors.grey),
-          
         ),
         child: TabBar(
           indicatorSize: TabBarIndicatorSize.tab,
@@ -1004,9 +1233,7 @@ Widget dialogRightSide(TabController tabController, BuildContext context) {
           overlayColor: MaterialStateProperty.all(Colors.transparent),
           indicator: BoxDecoration(
             color: AppColors.darkPurple,
-            borderRadius: BorderRadius.all(
-              Radius.circular(AppSizes.radius12),
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(AppSizes.radius12)),
           ),
           automaticIndicatorColorAdjustment: true,
           labelColor: AppColors.white,

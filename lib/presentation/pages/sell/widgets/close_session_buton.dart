@@ -3,7 +3,6 @@ import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/home/home_page.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_outlined_button.dart';
-import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,7 +31,7 @@ class _CloseSessionButtonState extends State<CloseSessionButton> {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
           color: AppColors.white,
-          width: context.width * 0.5,
+          width:  context.width * (context.isMobile? 0.9:0.5),
           height: context.height *0.5,
           padding: EdgeInsets.symmetric(
            horizontal:  AppSizes.horizontalPadding,
@@ -53,8 +52,21 @@ class _CloseSessionButtonState extends State<CloseSessionButton> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Do you want to close this session?', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize1), fontWeight: AppSizes.fontWeight1)),
+                  Wrap(children: [Text('Do you want to close this session?', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize1), fontWeight: AppSizes.fontWeight1))], ),
                   SizedBox(height: AppSizes.verSpacesBetweenContainers), 
+                  context.isMobile?
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomButton(text: 'Close this session', radius: true, width: 200, page: HomePage(), height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
+                      SizedBox(height: AppSizes.verSpacesBetweenElements,),
+                      Row(
+                        children: [
+                          Expanded(child: CustomOutlinedButton(text: 'Session pause', page: HomePage(),)),
+                        ],
+                      )
+                    ],
+                  ):
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -62,7 +74,7 @@ class _CloseSessionButtonState extends State<CloseSessionButton> {
                       SizedBox(width: AppSizes.horiSpacesBetweenElements,),
                       CustomOutlinedButton(text: 'Session pause', page: HomePage(),)
                     ],
-                  ),
+                  )
                 ],
               ),
             Spacer(),

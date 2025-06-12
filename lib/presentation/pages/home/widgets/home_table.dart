@@ -16,8 +16,185 @@ class HomeTable extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(color: AppColors.white),
-            width: MediaQuery.of(context).size.width,
-            child: Expanded(
+            width: context.screenWidth,
+            child:
+            context.isMobile?
+             Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),
+                  child: DataTable(
+                    headingRowColor: MaterialStateProperty.all(
+                      AppColors.lightPurple,
+                    ),
+                    columns: [
+                      DataColumn(
+                        label: Center(
+                          child: Text(
+                            'Number',
+                            style: CustomTextStyles.tableHeader(context),
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Center(
+                          child: Text(
+                            "Shift",
+                            style: CustomTextStyles.tableHeader(context),
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Center(
+                          child: Text(
+                            'Device',
+                            style: CustomTextStyles.tableHeader(context),
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Center(
+                          child: Text(
+                            "Status",
+                            style: CustomTextStyles.tableHeader(context),
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Center(
+                          child: Text(
+                            "Balance",
+                            style: CustomTextStyles.tableHeader(context),
+                          ),
+                        ),
+                      ),
+                    ],
+                    rows: [
+                      DataRow(
+                        cells: [
+                          DataCell(
+                            Text(
+                              '1',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              'Main Shift',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              '11/2/2025',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              'Open',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              '1000',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(
+                            Text(
+                              '2',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              'Main Shift',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              '11/2/2025',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              'Open',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              '1000',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(
+                            Text(
+                              '3',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            MouseRegion(
+                              child: Text(
+                                'Main Shift',
+                                textAlign: TextAlign.center,
+                                style: CustomTextStyles.smallText(context),
+                              ),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              '11/2/2025',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              'Open',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              '1000',
+                              textAlign: TextAlign.center,
+                              style: CustomTextStyles.smallText(context),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ): Expanded(
               child: SingleChildScrollView(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),

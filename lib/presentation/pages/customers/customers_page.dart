@@ -23,23 +23,25 @@ class CustomersPage extends StatefulWidget {
 class _CustomersPageState extends State<CustomersPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.lightGrey,
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-           context.isDesktop?
-          Expanded(flex:1 , child: SideBar()):
-           context.isLargeTablet?
-          IconSideBar():
-           context.isSmallTablet?
-          IconSideBar():
-          Container(),
-          Expanded(
-            flex: 5,
-            child: Column(children: [CustomersAppBar(), CustomersBody()]),
-          ),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.lightGrey,
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+             context.isDesktop?
+            Expanded(flex:1 , child: SideBar()):
+             context.isLargeTablet?
+            IconSideBar():
+             context.isSmallTablet?
+            IconSideBar():
+            Container(),
+            Expanded(
+              flex: 5,
+              child: Column(children: [CustomersAppBar(), CustomersBody()]),
+            ),
+          ],
+        ),
       ),
     );
   }

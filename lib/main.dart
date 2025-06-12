@@ -1,6 +1,7 @@
 import 'package:app/controllers/side_bar_controller.dart';
+import 'package:app/controllers/toggle_button_controller.dart';
 import 'package:app/presentation/pages/home/home_page.dart';
-import 'package:app/presentation/pages/kitchen_display/kichen_display_page.dart';
+import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,11 +9,18 @@ import 'package:provider/provider.dart';
 
 void main() {
    WidgetsFlutterBinding.ensureInitialized();
-   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky); 
-   
+  //  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky); 
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: AppColors.white, 
+    statusBarIconBrightness: Brightness.dark,
+  ));
+
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider<SideBarController>(create: (_) =>SideBarController(),)],
+      providers: [
+        ChangeNotifierProvider<SideBarController>(create: (_) =>SideBarController(),),
+        ChangeNotifierProvider<SideToggleProvider>(create: (_) => SideToggleProvider()),
+        ],
       child: const MyApp()));
 }
 

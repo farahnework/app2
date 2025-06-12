@@ -1,6 +1,6 @@
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/core/responsive/responsive_sizing.dart';
-import 'package:app/presentation/widgets/buttons/custom_button.dart';
+import 'package:app/presentation/widgets/buttons/custom_icon_button.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
@@ -58,9 +58,9 @@ class KitchenOrderCard extends StatelessWidget {
           children: [
             Container(
               width: context.screenWidth,
+              height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
               padding: EdgeInsets.symmetric(
                 horizontal: context.responsivePadding(AppSizes.horizontalPadding),
-                vertical: context.responsivePadding(AppSizes.verticalPadding/2),
               ),
               decoration: BoxDecoration(color: getOrderColor()),
               child: Row(
@@ -141,25 +141,19 @@ class KitchenOrderCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: CustomButton(
-                      text: 'Next',
-                      radius: true,
-                      width: MediaQuery.of(context).size.width,
-                      height: AppSizes.widgetHeight,
-                      color: getOrderColor(),
-                      textColor: getTextColor(),
-                    ),
-                  ),
+                  
+                  Expanded(child: CustomIconButton(icon: Icons.keyboard_double_arrow_left_rounded, color: getOrderColor(), iconColor: getTextColor(), size: AppSizes.iconSize)),
+
                   SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                  CustomButton(
-                    text: 'Previos Step',
-                    radius: true,
-                    width: context.screenWidth,
-                    height: AppSizes.widgetHeight,
-                    color: AppColors.grey,
-                    textColor: AppColors.white,
-                  ),
+                  Expanded(child: CustomIconButton(icon: Icons.keyboard_double_arrow_right_rounded, color: AppColors.grey, iconColor: AppColors.white, size: AppSizes.iconSize)),
+                  // CustomButton(
+                  //   text: 'Previos Step',
+                  //   radius: true,
+                  //   width: context.screenWidth,
+                  //   height: AppSizes.widgetHeight,
+                  //   color: AppColors.grey,
+                  //   textColor: AppColors.white,
+                  // ),
                 ],
               ),
             ),

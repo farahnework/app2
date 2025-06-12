@@ -46,7 +46,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: Container(
               color: AppColors.white,
-              width: context.screenWidth / (context.isDesktop ? 1.8 : 1.5),
+              width: context.screenWidth / (context.isMobile ? 1 : 1.5),
               height: context.screenHeight / 1.3,
               child: Column(
                 children: [
@@ -116,10 +116,14 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                             ],
                           ),
                           SizedBox(height: AppSizes.verSpacesBetweenContainers,),
+
+                        SizedBox(
+                          width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: 20),
+                          height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: 20),
+                          child: CircleAvatar(child: Icon(IconsaxPlusLinear.user),)),
+                          SizedBox(height: AppSizes.verSpacesBetweenContainers,),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text('Customer Type:', style: CustomTextStyles.largeText(context),),
                               Radio(
                                 value: 'Individual',
                                 groupValue: _selectedOption,
@@ -130,7 +134,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                                 },
                               ),
                               Text('Individual', style: CustomTextStyles.meduimText(context),),
-          
+                                        
                               Radio(
                                 value: 'Company',
                                 groupValue: _selectedOption,
@@ -142,19 +146,6 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                               ),
                               Text('Company', style: CustomTextStyles.meduimText(context),),
                             ],
-                          ),
-                          SizedBox(height: AppSizes.verSpacesBetweenElements,),
-                          SizedBox(
-                            width: 100,
-                            height: 100,
-                            child: CircleAvatar(
-                              child: Icon(
-                                IconsaxPlusLinear.user,
-                                size: context.responsiveIconSize(
-                                  AppSizes.iconSize,
-                                ),
-                              ),
-                            ),
                           ),
                           SizedBox(height: AppSizes.verSpacesBetweenContainers),
           
@@ -177,7 +168,108 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
   }
 
   Widget _buildIndividual() {
-    return Column(
+    return 
+    context.isMobile?
+    Column(
+      children: [
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Name',
+              icon: IconsaxPlusLinear.user,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Name in English',
+              icon: IconsaxPlusLinear.user,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Phone No.',
+              icon: IconsaxPlusLinear.call,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Address',
+              icon: IconsaxPlusLinear.location,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Street',
+              icon: IconsaxPlusLinear.location,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Country',
+              icon: IconsaxPlusLinear.map,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'City',
+              icon: IconsaxPlusLinear.building,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Neighborhood',
+              icon: IconsaxPlusLinear.global,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+
+       
+      ],
+    ):Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -268,7 +360,234 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
   }
 
   Widget _buildCompany() {
-    return Column(
+    return 
+    context.isMobile?
+    Column(
+      children: [
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Name',
+              icon: IconsaxPlusLinear.user,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Name in English',
+              icon: IconsaxPlusLinear.user,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        Row(
+          children: [
+            Expanded(
+              child: SellDropDownButton(
+                title: 'Customer Group',
+                list: ['Group 1', 'Group 2', 'Group 3'],
+                selected: 'Group 1',
+                width: context.screenWidth / 3.8,
+                height: AppSizes.widgetHeight,
+                icon: IconsaxPlusLinear.user_tag,
+                color: AppColors.white,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Address',
+              icon: IconsaxPlusLinear.location,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Street',
+              icon: IconsaxPlusLinear.location,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'City',
+              icon: IconsaxPlusLinear.map,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Neighborhood',
+              icon: IconsaxPlusLinear.building,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+       SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Country',
+              icon: IconsaxPlusLinear.global,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Phone No.',
+              icon: IconsaxPlusLinear.call,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+       SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Email Address',
+              icon: IconsaxPlusLinear.sms,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+       SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Build No.',
+              icon: IconsaxPlusLinear.user,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Tax No.',
+              icon: IconsaxPlusLinear.bank,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Postal Code',
+              icon: IconsaxPlusLinear.document,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Company Commercial Record No.',
+              icon: IconsaxPlusLinear.archive_1,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Additional No.',
+              icon: IconsaxPlusLinear.hashtag_1,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        Row(
+          children: [
+            Expanded(
+              child: SellDropDownButton(
+                title: "Payment Method",
+                list: ['Cash', 'Debt'],
+                selected: "Cash",
+                width: context.screenWidth / 3.8,
+                height: AppSizes.widgetHeight,
+                icon: Icons.add_ic_call,
+                color: AppColors.white,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Credit Limt',
+              icon: IconsaxPlusLinear.card,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+       SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+        
+        Row(
+          children: [
+            CustomTextField(
+              hintText: 'Note',
+              icon: IconsaxPlusLinear.note_2,
+              width: context.screenWidth / 3.8,
+              enabled: true,
+            ),
+          ],
+        ),
+        SizedBox(height: AppSizes.verSpacesBetweenElements*2),
+      ],
+    ):Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -484,8 +803,8 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
       //   });
       // },
       child: Container(
-        width: widget.size,
-        height: widget.size,
+        width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         child: IconButton(
           onPressed: () {
             customDialog(context);

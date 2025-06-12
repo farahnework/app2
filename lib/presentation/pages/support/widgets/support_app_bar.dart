@@ -77,6 +77,7 @@ class SupportAppBar extends StatelessWidget {
               ),
 
               SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+              if(!context.isMobile)
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,

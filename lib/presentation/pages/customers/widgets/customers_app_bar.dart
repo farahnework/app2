@@ -1,12 +1,13 @@
 import 'package:app/controllers/side_bar_controller.dart';
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
-import 'package:app/presentation/widgets/fields/custom_search_field.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -47,13 +48,10 @@ class _CustomersAppBarState extends State<CustomersAppBar> {
               if (context.isMobile)
                 InkWell(
                   onTap: () {
-                    final sidebarController = Provider.of<SideBarController>(
-                      context,
-                      listen: false,
-                    );
-                    sidebarController.toggleSidebar();
+                    Get.back();
+                    
                   },
-                  child: const Icon(Iconsax.menu),
+                  child: const Icon(IconsaxPlusLinear.arrow_left_1),
                 ),
               SizedBox(width: AppSizes.horiSpacesBetweenElements),
               
@@ -84,6 +82,7 @@ class _CustomersAppBarState extends State<CustomersAppBar> {
               ),
 
               SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+               if(!context.isMobile)
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
