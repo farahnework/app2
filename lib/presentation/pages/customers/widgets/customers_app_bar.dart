@@ -1,15 +1,11 @@
-import 'package:app/controllers/side_bar_controller.dart';
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class CustomersAppBar extends StatefulWidget {
   const CustomersAppBar({super.key});
@@ -45,7 +41,7 @@ class _CustomersAppBarState extends State<CustomersAppBar> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (context.isMobile)
+              if (!context.isDesktop)
                 InkWell(
                   onTap: () {
                     Get.back();
@@ -56,7 +52,6 @@ class _CustomersAppBarState extends State<CustomersAppBar> {
               SizedBox(width: AppSizes.horiSpacesBetweenElements),
               
                SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-               if(!context.isMobile)
                Text(
                     'Customers',
                     style: TextStyle(

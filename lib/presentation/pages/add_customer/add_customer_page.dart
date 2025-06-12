@@ -1,5 +1,6 @@
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
+import 'package:app/presentation/pages/add_customer/widgets/add_customer_app_bar.dart';
 import 'package:app/presentation/pages/customers/customers_page.dart';
 import 'package:app/presentation/pages/customers/widgets/customers_app_bar.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
@@ -25,7 +26,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.lightGrey,
-        body: Column(children: [CustomersAppBar(), AddCustomerBody()]),
+        body: Column(children: [AddCustomerAppBar(), AddCustomerBody()]),
       ),
     );
   }
