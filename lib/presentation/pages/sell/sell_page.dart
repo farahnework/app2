@@ -8,7 +8,6 @@ import 'package:app/presentation/pages/sell/widgets/choose_device_dialog.dart';
 import 'package:app/presentation/pages/sell/widgets/sell_app_bar.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_cancel_outlined_button.dart';
-import 'package:app/presentation/widgets/buttons/custom_dialog_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_drop_down_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_icon_button.dart';
 import 'package:app/presentation/widgets/crads/category_card.dart';
@@ -36,6 +35,7 @@ class SellPage extends StatefulWidget {
 }
 
 class _SellPageState extends State<SellPage> {
+  final ValueNotifier<bool> showCategories = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -48,31 +48,75 @@ class _SellPageState extends State<SellPage> {
         resizeToAvoidBottomInset: true,
         body:
             context.isMobile
-                ? Row(
+                // ? Row(
+                //   children: [
+                //     RightSide(),
+                //   ],
+                // )
+                ? Stack(
                   children: [
-                    // Expanded(
-                    //   flex: 2,
-                    //   child: Column(children: [CustomAppBar(), LeftSide()]),
-                    // ),
-                    RightSide(),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: RightSide(menuNotifier: showCategories),
+                    ),
+                    if (context.isMobile)
+                      ValueListenableBuilder<bool>(
+                        valueListenable: showCategories,
+                        builder: (context, visible, _) {
+                          return AnimatedPositioned(
+                            duration: Duration(milliseconds: 300),
+                            left:
+                                visible
+                                    ? 0
+                                    : -MediaQuery.of(context).size.width,
+                            width: MediaQuery.of(context).size.width,
+                            top: 0,
+                            bottom: 0,
+                            child: Column(
+                              children: [
+                                CustomAppBar(),
+                                LeftSide(
+                                  onClose: () => showCategories.value = false,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                   ],
                 )
                 : Row(
                   children: [
                     Expanded(
                       flex: 2,
-                      child: Column(children: [CustomAppBar(), LeftSide()]),
+                      child: Column(
+                        children: [
+                          CustomAppBar(),
+                          LeftSide(onClose: () => showCategories.value = false),
+                        ],
+                      ),
                     ),
-                    RightSide(),
+                    Flexible(
+                      flex: 1,
+                      child: RightSide(menuNotifier: showCategories),
+                    ),
                   ],
                 ),
       ),
     );
   }
+
+  @override
+  void dispose() {
+    showCategories.dispose();
+    super.dispose();
+  }
 }
 
 class LeftSide extends StatefulWidget {
-  const LeftSide({super.key});
+  final VoidCallback onClose;
+
+  const LeftSide({super.key, required this.onClose});
 
   @override
   State<LeftSide> createState() => _LeftSideState();
@@ -81,6 +125,13 @@ class LeftSide extends StatefulWidget {
 class _LeftSideState extends State<LeftSide> {
   @override
   Widget build(BuildContext context) {
+    int categoriesCrossAxisCount =
+        context.isMobile
+            ? 2
+            : ResponsiveSizing.isTablet(context)
+            ? 3
+            : 4;
+
     int crossAxisCount =
         context.isMobile
             ? ScreenLayouts.mobileCrossAxisCount
@@ -95,191 +146,288 @@ class _LeftSideState extends State<LeftSide> {
             ? ScreenLayouts.tabletSpacing
             : ScreenLayouts.desktopSpacing;
     return Expanded(
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: AppSizes.horizontalPadding,
-          right: AppSizes.horizontalPadding,
-          top: AppSizes.verticalPadding / 2,
-        ),
+      child: Container(
+        color: AppColors.lightGrey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    CustomSearchField(text: 'Search'),
-                    SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                    CustomIconButton(
-                      icon: IconsaxPlusLinear.scan_barcode,
-                      color: AppColors.lightPurple,
-                      iconColor: AppColors.darkPurple,
-                      size: AppSizes.widgetHeight,
-                    ),
-                  ],
+            SizedBox(height: AppSizes.verSpacesBetweenContainers),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.responsivePadding(
+                  AppSizes.horizontalPadding,
                 ),
-                Row(
-                  children: [
-                    Icon(
-                      IconsaxPlusLinear.home_2,
-                      color: AppColors.darkPurple,
-                      size: context.responsiveIconSize(AppSizes.iconSize2),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      if (context.isMobile)
+                        Container(
+                          width: context.responsiveRelativeSize(
+                            containerSize: context.screenHeight,
+                            percentage: AppSizes.widgetHeight,
+                          ),
+                          height: context.responsiveRelativeSize(
+                            containerSize: context.screenHeight,
+                            percentage: AppSizes.widgetHeight,
+                          ),
+                          decoration: BoxDecoration(color: AppColors.darkBlue, borderRadius: BorderRadius.circular(context.responsiveBorderRadius(AppSizes.radius12))),
+                          child: IconButton(
+                            color: AppColors.darkPurple,
+
+                            onPressed: () {
+                              widget.onClose();
+                            },
+
+                            icon: Icon(
+                              IconsaxPlusLinear.arrow_left_1,
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ), SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                      CustomIconButton(
+                        onPresse: addNoteDialog,
+                        icon: IconsaxPlusLinear.scan_barcode,
+                        color: AppColors.lightPurple,
+                        iconColor: AppColors.darkPurple,
+                        size: AppSizes.widgetHeight,
+                      ),
+                       SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                      CustomSearchField(text: 'Search'),
+
+                     
+                    ],
+                  ),
+                  if (!context.isMobile)
+                    Row(
+                      children: [
+                        Icon(
+                          IconsaxPlusLinear.home_2,
+                          color: AppColors.darkPurple,
+                          size: context.responsiveIconSize(AppSizes.iconSize),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
-            Row(
-              children: [
-                Text('Categories', style: CustomTextStyles.titleText(context)),
-              ],
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.responsivePadding(
+                  AppSizes.horizontalPadding,
+                ),
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    'Categories',
+                    style: CustomTextStyles.titleText(context),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
-            SizedBox(
-              height: context.responsiveRelativeSize(
-                containerSize: context.screenHeight,
-                percentage: AppSizes.widgetHeight * 1.3,
-              ),
-              child: Expanded(
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.responsivePadding(
+                    AppSizes.horizontalPadding,
+                  ),
+                ),
+                child: GridView(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: categoriesCrossAxisCount,
+                    crossAxisSpacing: spacing,
+                    mainAxisSpacing: spacing,
+                    childAspectRatio: 4,
+                  ),
                   children: [
                     CategoryCard(
                       image: 'lib/assets/images/pens.webp',
-                      categoryName: 'Pens',
+                      category: 'Pens',
                       itemsNum: 10,
                     ),
                     CategoryCard(
                       image: 'lib/assets/images/pencils.webp',
-                      categoryName: 'Pencils',
+                      category: 'Pencils',
                       itemsNum: 23,
                     ),
 
                     CategoryCard(
                       image: 'lib/assets/images/notebooks.jpg',
-                      categoryName: 'Notebooks',
+                      category: 'Notebooks',
                       itemsNum: 12,
                     ),
                     CategoryCard(
                       image: 'lib/assets/images/highlights.jpg',
-                      categoryName: 'Highlights',
+                      category: 'Highlights',
                       itemsNum: 3,
                     ),
                     CategoryCard(
                       image: 'lib/assets/images/pens.webp',
-                      categoryName: 'Pens',
+                      category: 'Pens',
                       itemsNum: 10,
                     ),
                     CategoryCard(
                       image: 'lib/assets/images/eraser.jpg',
-                      categoryName: 'Eraser',
+                      category: 'Eraser',
                       itemsNum: 6,
+                    ),
+                    CategoryCard(
+                      image: 'lib/assets/images/pencils.webp',
+                      category: 'Pencils',
+                      itemsNum: 23,
+                    ),
+
+                    CategoryCard(
+                      image: 'lib/assets/images/notebooks.jpg',
+                      category: 'Notebooks',
+                      itemsNum: 12,
+                    ),
+                    CategoryCard(
+                      image: 'lib/assets/images/highlights.jpg',
+                      category: 'Highlights',
+                      itemsNum: 3,
+                    ),
+                    CategoryCard(
+                      image: 'lib/assets/images/highlights.jpg',
+                      category: 'Highlights',
+                      itemsNum: 3,
+                    ),
+                    CategoryCard(
+                      image: 'lib/assets/images/pens.webp',
+                      category: 'Pens',
+                      itemsNum: 10,
+                    ),
+                    CategoryCard(
+                      image: 'lib/assets/images/eraser.jpg',
+                      category: 'Eraser',
+                      itemsNum: 6,
+                    ),
+                    CategoryCard(
+                      image: 'lib/assets/images/pencils.webp',
+                      category: 'Pencils',
+                      itemsNum: 23,
+                    ),
+
+                    CategoryCard(
+                      image: 'lib/assets/images/notebooks.jpg',
+                      category: 'Notebooks',
+                      itemsNum: 12,
                     ),
                   ],
                 ),
               ),
             ),
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
-            Row(
-              children: [
-                Text('Products', style: CustomTextStyles.titleText(context)),
-              ],
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.responsivePadding(
+                  AppSizes.horizontalPadding,
+                ),
+              ),
+              child: Row(
+                children: [
+                  Text('Products', style: CustomTextStyles.titleText(context)),
+                ],
+              ),
             ),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
 
             Expanded(
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: spacing,
-                  mainAxisSpacing: spacing,
-                  childAspectRatio: context.isDesktop ? 0.95 : 0.8,
+              flex: 2,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.responsivePadding(
+                    AppSizes.horizontalPadding,
+                  ),
                 ),
-                children: [
-                  ProductCard(
-                    image: 'lib/assets/images/eraser.jpg',
-                    productName: 'Color Pencils',
-                    price: 6,
+                child: GridView(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: spacing,
+                    mainAxisSpacing: spacing,
+                    childAspectRatio:
+                        context.isDesktop
+                            ? 0.95
+                            : context.isMobile
+                            ? 1
+                            : 0.75,
                   ),
-                  ProductCard(
-                    image: 'lib/assets/images/eraser2.jpg',
-                    productName: 'Color Pencils',
-                    price: 3,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/image8.jpg',
-                    productName: 'Color Pencils',
-                    price: 5,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/highlights.jpg',
-                    productName: 'Color Pencils',
-                    price: 6,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/image2.jpg',
-                    productName: 'Color Pencils',
-                    price: 2,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/image4.jpg',
-                    productName: 'Color Pencils',
-                    price: 8,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/image3.jpg',
-                    productName: 'Color Pencils',
-                    price: 11,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/image6.jpg',
-                    productName: 'Color Pencils',
-                    price: 4,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/image5.jpg',
-                    productName: 'Color Pencils',
-                    price: 9,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/image1.jpg',
-                    productName: 'Color Pencils',
-                    price: 7,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/image2.jpg',
-                    productName: 'Color Pencils',
-                    price: 5,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/image8.jpg',
-                    productName: 'Color Pencils',
-                    price: 12,
-                  ),
-                  ProductCard(
-                    image: 'lib/assets/images/image7.jpg',
-                    productName: 'Color Pencils',
-                    price: 22,
-                  ),
-                ],
+                  children: [
+                    ProductCard(
+                      image: 'lib/assets/images/eraser.jpg',
+                      productName: 'Color Pencils',
+                      price: 6,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/eraser2.jpg',
+                      productName: 'Color Pencils',
+                      price: 3,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/image8.jpg',
+                      productName: 'Color Pencils',
+                      price: 5,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/highlights.jpg',
+                      productName: 'Color Pencils',
+                      price: 6,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/image2.jpg',
+                      productName: 'Color Pencils',
+                      price: 2,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/image4.jpg',
+                      productName: 'Color Pencils',
+                      price: 8,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/image3.jpg',
+                      productName: 'Color Pencils',
+                      price: 11,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/image6.jpg',
+                      productName: 'Color Pencils',
+                      price: 4,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/image5.jpg',
+                      productName: 'Color Pencils',
+                      price: 9,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/image1.jpg',
+                      productName: 'Color Pencils',
+                      price: 7,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/image2.jpg',
+                      productName: 'Color Pencils',
+                      price: 5,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/image8.jpg',
+                      productName: 'Color Pencils',
+                      price: 12,
+                    ),
+                    ProductCard(
+                      image: 'lib/assets/images/image7.jpg',
+                      productName: 'Color Pencils',
+                      price: 22,
+                    ),
+                  ],
+                ),
               ),
             ),
-            // Expanded(
-            //   child: GridView.builder(
-            //     itemCount: 30,
-            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //       crossAxisCount: 5,
-            //       crossAxisSpacing: AppSizes.horiSpacesBetweenElements,
-            //       mainAxisSpacing: AppSizes.horiSpacesBetweenElements,
-            //     ),
-            //     itemBuilder: (context, index) {
-            //       return ProductCard();
-            //     },
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -288,7 +436,8 @@ class _LeftSideState extends State<LeftSide> {
 }
 
 class RightSide extends StatefulWidget {
-  const RightSide({super.key});
+  final ValueNotifier<bool> menuNotifier;
+  const RightSide({super.key, required this.menuNotifier});
 
   @override
   State<RightSide> createState() => _RightSideState();
@@ -326,7 +475,10 @@ class _RightSideState extends State<RightSide> {
                       decoration: BoxDecoration(color: AppColors.darkBlue),
                       child: IconButton(
                         color: AppColors.darkPurple,
-                        onPressed: () {},
+                        onPressed: () {
+                          widget.menuNotifier.value = true;
+                        },
+
                         icon: Icon(
                           IconsaxPlusLinear.box,
                           color: AppColors.white,
@@ -405,10 +557,11 @@ class _RightSideState extends State<RightSide> {
                     Row(
                       children: [
                         CustomIconButton(
-                          icon: Iconsax.printer,
+                          icon: IconsaxPlusLinear.note_2,
                           color: AppColors.lightPurple,
                           iconColor: AppColors.darkPurple,
                           size: AppSizes.widgetHeight,
+                          onPresse: addNoteDialog,
                         ),
                         SizedBox(width: AppSizes.horiSpacesBetweenElements),
                         CustomIconButton(
@@ -416,6 +569,7 @@ class _RightSideState extends State<RightSide> {
                           color: AppColors.lightPurple,
                           iconColor: AppColors.darkPurple,
                           size: AppSizes.widgetHeight,
+                          onPresse: addNoteDialog,
                         ),
                       ],
                     ),
@@ -464,12 +618,7 @@ class _RightSideState extends State<RightSide> {
             ),
 
             Container(
-              padding: EdgeInsets.only(
-                right: AppSizes.horizontalPadding / 2,
-                left: AppSizes.horizontalPadding / 2,
-              ),
               decoration: BoxDecoration(
-                color: AppColors.white,
                 border: Border(
                   top: BorderSide(
                     color: AppColors.darkPurple,
@@ -480,103 +629,56 @@ class _RightSideState extends State<RightSide> {
               child: Column(
                 children: [
                   SizedBox(height: AppSizes.verSpacesBetweenElements * 1.5),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CustomButton(
-                          text: 'Delete',
-                          radius: true,
-                          width: 20,
-                          height: AppSizes.widgetHeight * 0.8,
-                          color: AppColors.red,
-                          textColor: AppColors.white,
+                  NumbersPalette(),
+                  SizedBox(height: AppSizes.verSpacesBetweenElements * 1.5),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 50,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: AppColors.darkPurple,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(0)),
                         ),
                       ),
-                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Payment:',
+                            style: CustomTextStyles.buttonText(
+                              context,
+                            ).copyWith(fontWeight: AppSizes.fontWeight1),
+                          ),
+                          SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                          SvgPicture.asset(
+                            AppImages.rial,
+                            width: context.responsiveFontSize(
+                              AppSizes.fontSize6,
+                            ),
+                            color: AppColors.white,
+                          ),
+                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
 
-                      Expanded(
-                        child: CustomButton(
-                          text: 'Price',
-                          radius: true,
-                          width: 20,
-                          height: AppSizes.widgetHeight * 0.8,
-                          color: AppColors.lightGreen,
-                          textColor: AppColors.darkGreen,
-                        ),
+                          Text(
+                            '260',
+                            style: CustomTextStyles.buttonText(
+                              context,
+                            ).copyWith(fontWeight: AppSizes.fontWeight1),
+                          ),
+                        ],
                       ),
-                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
-
-                      Expanded(
-                        child: CustomButton(
-                          text: 'Amount',
-                          radius: true,
-                          width: 20,
-                          height: AppSizes.widgetHeight * 0.8,
-                          color: AppColors.lightBlue,
-                          textColor: AppColors.darkBlue,
-                        ),
-                      ),
-                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                      Expanded(
-                        child: CustomDialogButton(
-                          color: AppColors.lightYellow,
-                          textColor: AppColors.yellow,
-                          text: 'Note',
-                          dialog: addNoteDialog,
-                          height: AppSizes.widgetHeight * 0.8,
-                        ),
-                      ),
-                    ],
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CustomDialog();
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ],
-              ),
-            ),
-            SizedBox(height: AppSizes.verSpacesBetweenElements * 1.5),
-            NumbersPalette(),
-            SizedBox(height: AppSizes.verSpacesBetweenElements * 1.5),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 50,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: AppColors.darkPurple,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(0)),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Payment:',
-                      style: CustomTextStyles.buttonText(
-                        context,
-                      ).copyWith(fontWeight: AppSizes.fontWeight1),
-                    ),
-                    SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                    SvgPicture.asset(
-                      AppImages.rial,
-                      width: context.responsiveFontSize(AppSizes.fontSize6),
-                      color: AppColors.white,
-                    ),
-                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                    Text(
-                      '260',
-                      style: CustomTextStyles.buttonText(
-                        context,
-                      ).copyWith(fontWeight: AppSizes.fontWeight1),
-                    ),
-                  ],
-                ),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return CustomDialog();
-                    },
-                  );
-                },
               ),
             ),
           ],
@@ -614,7 +716,7 @@ class _CustomDialogState extends State<CustomDialog> {
             Container(
               padding: EdgeInsets.symmetric(
                 horizontal: AppSizes.horizontalPadding,
-                vertical: AppSizes.verticalPadding /2,
+                vertical: AppSizes.verticalPadding / 2,
               ),
               color: AppColors.lightPurple,
               child: Row(
@@ -881,7 +983,6 @@ Widget tab2(BuildContext context) {
                   context,
                 ).copyWith(color: AppColors.darkGreen),
               ),
-              
             ],
           ),
           SizedBox(width: AppSizes.verSpacesBetweenContainers),
@@ -957,7 +1058,6 @@ Widget tab2(BuildContext context) {
                   ),
                 ],
               ),
-             
             ],
           ),
         ],
@@ -1038,7 +1138,7 @@ Widget tab3(BuildContext context) {
 }
 
 Widget tab4(BuildContext context) {
-   return Center(
+  return Center(
     child: Container(
       padding: EdgeInsets.all(AppSizes.cardPadding),
       decoration: BoxDecoration(
@@ -1061,7 +1161,6 @@ Widget tab4(BuildContext context) {
               Text('VAT:', style: CustomTextStyles.meduimText(context)),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
               Text('Total:', style: CustomTextStyles.meduimText(context)),
-            
             ],
           ),
           SizedBox(width: AppSizes.verSpacesBetweenContainers),
@@ -1119,7 +1218,6 @@ Widget tab4(BuildContext context) {
                   Text('1800', style: CustomTextStyles.smallText(context)),
                 ],
               ),
-             
             ],
           ),
         ],
@@ -1132,15 +1230,17 @@ Widget dialogleftSide(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
-      if(context.isMobile)
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text('Customer Information:', style: CustomTextStyles.titleText(context),),
-        ],
-      ),
-      if(context.isMobile)
-      SizedBox(height: AppSizes.verSpacesBetweenElements,),
+      if (context.isMobile)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              'Customer Information:',
+              style: CustomTextStyles.titleText(context),
+            ),
+          ],
+        ),
+      if (context.isMobile) SizedBox(height: AppSizes.verSpacesBetweenElements),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1151,7 +1251,10 @@ Widget dialogleftSide(BuildContext context) {
             size: AppSizes.iconButtonSize,
           ),
           SizedBox(
-            width: context.responsiveRelativeSize(containerSize: context.screenWidth, percentage: context.isMobile?70:25),
+            width: context.responsiveRelativeSize(
+              containerSize: context.screenWidth,
+              percentage: context.isMobile ? 70 : 25,
+            ),
             child: CustomDropDownButton(
               icon: IconsaxPlusLinear.tag,
               color: AppColors.white,
@@ -1206,17 +1309,16 @@ Widget dialogRightSide(TabController tabController, BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      if(context.isMobile)
-      SizedBox(height: AppSizes.verSpacesBetweenContainers,),
-      if(context.isMobile)
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text('Payment Method:', style: CustomTextStyles.titleText(context),),
-        ],
-      ),
-      if(context.isMobile)
-      SizedBox(height: AppSizes.verSpacesBetweenElements,),
+      if (context.isMobile)
+        SizedBox(height: AppSizes.verSpacesBetweenContainers),
+      if (context.isMobile)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Payment Method:', style: CustomTextStyles.titleText(context)),
+          ],
+        ),
+      if (context.isMobile) SizedBox(height: AppSizes.verSpacesBetweenElements),
       Container(
         height: context.responsiveRelativeSize(
           containerSize: context.screenHeight,

@@ -214,7 +214,7 @@ class ResponsiveSizing {
 
     if (isDesktop(context)) {
       // تقليل النسبة للشاشات الكبيرة لتجنب العناصر الكبيرة جدًا
-      adjustedPercentage = percentage * 0.85;
+      adjustedPercentage = percentage * 0.77;
     } else if (isTablet(context)) {
       // ضبط طفيف للأجهزة اللوحية
       adjustedPercentage = percentage * 0.9;

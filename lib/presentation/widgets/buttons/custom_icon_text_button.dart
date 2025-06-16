@@ -26,7 +26,7 @@ class _CustomIconTextButtonState extends State<CustomIconTextButton> {
       height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
       child: ElevatedButton.icon(
         style: TextButton.styleFrom(backgroundColor: AppColors.darkPurple,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(context.responsiveBorderRadius(AppSizes.radius16))))),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(context.responsiveBorderRadius(AppSizes.radius12))))),
         onPressed: (){Get.to(widget.page);},
         icon: Icon(widget.icon, color: AppColors.white , size: context.responsiveIconSize(AppSizes.iconSize2),),
        label: Text(widget.text, style: TextStyle(color: AppColors.white, fontSize: context.responsiveFontSize(AppSizes.fontSize3)

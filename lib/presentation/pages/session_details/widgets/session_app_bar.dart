@@ -34,6 +34,7 @@ class SessionAppBar extends StatelessWidget {
                   child: CircleAvatar(child: Image.asset('lib/assets/images/user.jpg'), )),
                
                 SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                if(context.isDesktop)
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,6 +48,7 @@ class SessionAppBar extends StatelessWidget {
                 ),
               ],
             ),
+            if(context.isDesktop)
             Row(
               children: [
                 Text('Current Session: ',  style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),

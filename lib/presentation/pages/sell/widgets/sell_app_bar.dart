@@ -41,6 +41,7 @@ class CustomAppBar extends StatelessWidget {
 
               SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                 SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                if(!context.isMobile)
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,6 +63,7 @@ class CustomAppBar extends StatelessWidget {
                 ),
               ],
             ),
+            if(!context.isMobile)
             Row(
               children: [
                 Text('Current Session: ',  style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),

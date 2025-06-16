@@ -11,6 +11,7 @@ import 'package:app/presentation/widgets/custom_container.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:provider/provider.dart';
@@ -122,7 +123,7 @@ class SupportBody extends StatelessWidget {
                   children: [
                     Row(
                     children: [
-                      Icon(IconsaxPlusLinear.mask_2, size: context.responsiveIconSize(AppSizes.iconSize), color: AppColors.darkPurple,),
+                      SvgPicture.asset('lib/assets/icons/whatsapp-logo.svg', color: AppColors.darkPurple, height: context.responsiveIconSize(AppSizes.iconSize2),),
                       SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
                       Text('0583659392', style: CustomTextStyles.largeText(context),),
                     ],

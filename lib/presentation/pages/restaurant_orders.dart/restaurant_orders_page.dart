@@ -76,6 +76,12 @@ class LeftSide extends StatefulWidget {
 class _LeftSideState extends State<LeftSide> {
   @override
   Widget build(BuildContext context) {
+     int categoriesCrossAxisCount =
+        context.isMobile
+            ? 2
+            : ResponsiveSizing.isTablet(context)
+            ? 3
+            : 4;
     int crossAxisCount =
         context.isMobile
             ? ScreenLayouts.mobileCrossAxisCount
@@ -127,57 +133,64 @@ class _LeftSideState extends State<LeftSide> {
               ],
             ),
              SizedBox(height: AppSizes.verSpacesBetweenContainers),
-            Row(
-              children: [Text('Categories', style: CustomTextStyles.titleText(context))],
+              Row(
+              children: [
+                Text('Categories', style: CustomTextStyles.titleText(context)),
+              ],
             ),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
-            SizedBox(
-              height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight* 1.3), 
-              child: Expanded(
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-
-                  children: [
+             Expanded(
+              flex: 1,
+              child: GridView(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: categoriesCrossAxisCount,
+                  crossAxisSpacing: spacing,
+                  mainAxisSpacing: spacing,
+                  childAspectRatio: 4,
+                ),
+                children: [
+                  
                     CategoryCard(
                       image: 'lib/assets/images/food2.jpg',
-                      categoryName: 'Sweets',
+                      category: 'Sweets',
                       itemsNum: 10,
                     ),
                     CategoryCard(
                       image: 'lib/assets/images/food7.jpg',
-                      categoryName: 'Sanwishes',
+                      category: 'Sanwishes',
                       itemsNum: 23,
                     ),
 
                     CategoryCard(
                       image: 'lib/assets/images/food3.jpg',
-                      categoryName: 'Healthy',
+                      category: 'Healthy',
                       itemsNum: 12,
                     ),
                     CategoryCard(
                       image: 'lib/assets/images/food9.jpg',
-                      categoryName: 'Breakfast',
+                      category: 'Breakfast',
                       itemsNum: 3,
                     ),
                     CategoryCard(
                       image: 'lib/assets/images/food12.jpg',
-                      categoryName: 'Fast Food',
+                      category: 'Fast Food',
                       itemsNum: 10,
                     ),
                     CategoryCard(
                       image: 'lib/assets/images/food6.jpg',
-                      categoryName: 'Rice',
+                      category: 'Rice',
                       itemsNum: 6,
                     ),
                   ],
-                ),
               ),
             ),
+           
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
             Row(children: [Text('Products', style: CustomTextStyles.titleText(context))]),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
 
             Expanded(
+              flex: 2,
               child: GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                      crossAxisCount: crossAxisCount,
@@ -383,14 +396,16 @@ class _RightSideState extends State<RightSide> {
                     ),
                     Row(
                       children: [
-                        CustomIconButton(
-                          icon: Iconsax.printer,
+                         CustomIconButton(
+                          icon: IconsaxPlusLinear.note_2,
                           color: AppColors.lightPurple,
                           iconColor: AppColors.darkPurple,
                           size: AppSizes.widgetHeight,
+                          onPresse: addNoteDialog,
                         ),
                         SizedBox(width: AppSizes.horiSpacesBetweenElements),
                         CustomIconButton(
+                          onPresse: addNoteDialog,
                           icon: Iconsax.trash,
                           color: AppColors.lightPurple,
                           iconColor: AppColors.darkPurple,

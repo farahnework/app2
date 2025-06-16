@@ -118,8 +118,8 @@ class HomeBody extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: crossAxisCount,
-                    crossAxisSpacing: 10 ,
-                    mainAxisSpacing: 1,
+                    crossAxisSpacing: spacing ,
+                    mainAxisSpacing: spacing,
                     childAspectRatio: childAspectRatio,
                   ),
                   children: [
@@ -367,7 +367,6 @@ class _CustomServiceCardState extends State<CustomServiceCard> {
         });
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: AppSizes.verticalPadding),
         padding: EdgeInsets.symmetric(
           vertical: context.responsivePadding(AppSizes.verticalPadding),
           horizontal: context.responsivePadding(AppSizes.horizontalPadding),

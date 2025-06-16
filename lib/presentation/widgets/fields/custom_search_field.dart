@@ -11,7 +11,7 @@ class CustomSearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: context.responsiveRelativeSize(containerSize: context.screenWidth, percentage: 50),
+      width: context.responsiveRelativeSize(containerSize: context.screenWidth, percentage: context.isMobile? 80: 50),
       height:context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
       child: Center(
         child: TextField(

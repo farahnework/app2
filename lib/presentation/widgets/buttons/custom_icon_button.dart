@@ -9,8 +9,9 @@ class CustomIconButton extends StatefulWidget {
   final Color color;
   final Color iconColor;
   final double size;
+  final  onPresse;
 
-  const CustomIconButton({super.key, required this.icon, required this.color, required this.iconColor, required this.size});
+  const CustomIconButton({super.key, required this.icon, required this.color, required this.iconColor, required this.size, required this.onPresse});
 
   @override
   State<CustomIconButton> createState() => _CustomIconButtonState();
@@ -36,6 +37,7 @@ class _CustomIconButtonState extends State<CustomIconButton> {
         height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         child: IconButton(
             onPressed: (){
+              widget.onPresse(context);
             },
             icon: Icon(widget.icon, color: widget.iconColor, size: context.responsiveIconSize(AppSizes.iconSize),),
   

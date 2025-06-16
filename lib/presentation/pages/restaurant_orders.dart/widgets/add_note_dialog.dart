@@ -64,3 +64,52 @@ void addNoteDialog(BuildContext context) {
     },
   );
 }
+
+
+// class AddNoteButton extends StatefulWidget {
+//   final IconData icon;
+//   final Color color;
+//   final Color iconColor;
+//   final double size;
+
+//   const AddNoteButton({super.key, required this.icon, required this.color, required this.iconColor, required this.size});
+
+//   @override
+//   State<AddNoteButton> createState() => _AddNoteButtonState();
+// }
+
+// class _AddNoteButtonState extends State<AddNoteButton> {
+//   var currentColor = AppColors.grey;
+//   @override
+//   Widget build(BuildContext context) {
+//     return MouseRegion(
+//       // onEnter: (event) {
+//       //   setState(() {
+//       //     currentColor= AppColors.lightPurple;
+//       //   });
+//       // },
+//       // onExit: (event) {
+//       //   setState(() {
+//       //     currentColor= AppColors.lightGrey;
+//       //   });
+//       // },
+//       child: Container(
+//         width:  context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+//         height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+//         child: IconButton(
+//             onPressed: (){
+//             },
+//             icon: Icon(widget.icon, color: widget.iconColor, size: context.responsiveIconSize(AppSizes.iconSize),),
+  
+//           style: ElevatedButton.styleFrom(
+            
+//             padding: EdgeInsets.zero,
+//             fixedSize: Size(40, 40),
+//             backgroundColor: widget.color,
+//             shape:  RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(context.responsiveBorderRadius(AppSizes.radius12))))
+//           )
+//         ),
+//       ),
+//     );
+//   }
+// }

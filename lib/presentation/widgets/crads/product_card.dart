@@ -41,8 +41,8 @@ class _ProductCardState extends State<ProductCard> {
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        decoration: CustomBoxDecoration.boxDecoration,
-
+        decoration: CustomBoxDecoration.boxDecoration.copyWith(border: Border.all(color: currentColor, width: AppSizes.borderSize)),
+    
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -63,17 +63,17 @@ class _ProductCardState extends State<ProductCard> {
                     productInfoDialog(context);
                   },
                   child: CircleAvatar(
-
+    
                     child: Icon(Iconsax.info_circle, size: context.responsiveIconSize(AppSizes.iconSize),),
                     backgroundColor: AppColors.yellow,
-
+    
                   ),
                 ),
               ],
             ),
-
+    
             SizedBox(height: AppSizes.verSpacesBetweenElements),
-
+    
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

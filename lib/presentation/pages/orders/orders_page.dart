@@ -41,7 +41,7 @@ class _OrdersPageState extends State<OrdersPage> {
                       children: [
                         Container(
                           width: context.screenWidth/ 3,
-                          height: AppSizes.widgetHeight,
+                          height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
                           decoration: CustomBoxDecoration.boxDecoration,
                           child: TabBar(
                             dividerColor: Colors.transparent,
@@ -70,15 +70,15 @@ class _OrdersPageState extends State<OrdersPage> {
                         ),
                         Row(
                           children: [
-                            CustomButton(
-                              text: 'Sessions',
-                              radius: true,
-                              width: 100,
-                              page: SellPage(),
-                              height: AppSizes.widgetHeight,
-                              color: AppColors.darkPurple,
-                              textColor: AppColors.white,
-                            ),
+                            // CustomButton(
+                            //   text: 'Sessions',
+                            //   radius: true,
+                            //   width: 100,
+                            //   page: SellPage(),
+                            //   height: AppSizes.widgetHeight,
+                            //   color: AppColors.darkPurple,
+                            //   textColor: AppColors.white,
+                            // ),
                             SizedBox(width: AppSizes.horiSpacesBetweenElements),
                             CustomButton(
                               text: 'Sale Screen',

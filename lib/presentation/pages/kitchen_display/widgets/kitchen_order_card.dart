@@ -1,5 +1,6 @@
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/core/responsive/responsive_sizing.dart';
+import 'package:app/presentation/pages/restaurant_orders.dart/widgets/add_note_dialog.dart';
 import 'package:app/presentation/widgets/buttons/custom_icon_button.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
@@ -142,10 +143,10 @@ class KitchenOrderCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   
-                  Expanded(child: CustomIconButton(icon: Icons.keyboard_double_arrow_left_rounded, color: getOrderColor(), iconColor: getTextColor(), size: AppSizes.iconSize)),
+                  Expanded(child: CustomIconButton(icon: Icons.keyboard_double_arrow_left_rounded, color: getOrderColor(), iconColor: getTextColor(), size: AppSizes.iconSize, onPresse: addNoteDialog,)),
 
                   SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                  Expanded(child: CustomIconButton(icon: Icons.keyboard_double_arrow_right_rounded, color: AppColors.grey, iconColor: AppColors.white, size: AppSizes.iconSize)),
+                  Expanded(child: CustomIconButton(icon: Icons.keyboard_double_arrow_right_rounded, color: AppColors.grey, iconColor: AppColors.white, size: AppSizes.iconSize, onPresse: addNoteDialog,)),
                   // CustomButton(
                   //   text: 'Previos Step',
                   //   radius: true,

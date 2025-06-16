@@ -18,7 +18,8 @@ class _CustomContainerState extends State<CustomContainer> {
       padding: EdgeInsets.symmetric(
         horizontal: 
         context.responsivePadding(AppSizes.horiScreenPadding),
-         vertical: context.responsivePadding(AppSizes.horiScreenPadding),),
+         vertical: context.responsivePadding(AppSizes.horiScreenPadding),
+        ),
       decoration: CustomBoxDecoration.boxDecoration,
       child: widget.child,
     );

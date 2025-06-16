@@ -25,18 +25,18 @@ class FoodCard extends StatefulWidget {
 }
 
 class _FoodCardState extends State<FoodCard> {
-  Color currentColor = AppColors.white;
+  Color currentColor = AppColors.grey;
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (event) {
         setState(() {
-          currentColor = AppColors.lightYellow.withOpacity(0.3);
+          currentColor = AppColors.darkPurple;
         });
       },
       onExit: (event) {
         setState(() {
-          currentColor = AppColors.white;
+          currentColor = AppColors.grey;
         });
       },
       child: Container(
@@ -50,8 +50,8 @@ class _FoodCardState extends State<FoodCard> {
               spreadRadius: 1,
             ),
           ],
-          color: currentColor,
-          border: Border.all(color: AppColors.grey, width: 0.4),
+          color: AppColors.white,
+          border: Border.all(color: currentColor, width: AppSizes.borderSize),
           borderRadius: BorderRadius.all(
             Radius.circular(AppSizes.textFieldRadius),
           ),

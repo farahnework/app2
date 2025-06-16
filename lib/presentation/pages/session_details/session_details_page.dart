@@ -25,80 +25,82 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      child: Scaffold(
-        backgroundColor: AppColors.lightGrey,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SessionAppBar(),
-            SizedBox(height: AppSizes.verSpacesBetweenContainers),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding),
-
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: context.screenWidth / 2,
-                    height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage:  AppSizes.widgetHeight),
-                    decoration: CustomBoxDecoration.boxDecoration,
-                    child: TabBar(
-                      dividerColor: Colors.transparent,
-                      overlayColor: MaterialStateProperty.all(
-                        Colors.transparent,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: AppColors.lightGrey,
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SessionAppBar(),
+              SizedBox(height: AppSizes.verSpacesBetweenContainers),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding),
+        
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: context.screenWidth / 2,
+                      height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage:  AppSizes.widgetHeight),
+                      decoration: CustomBoxDecoration.boxDecoration,
+                      child: TabBar(
+                        dividerColor: Colors.transparent,
+                        overlayColor: MaterialStateProperty.all(
+                          Colors.transparent,
+                        ),
+                        indicatorSize: TabBarIndicatorSize.label,
+                        labelPadding: EdgeInsets.symmetric(horizontal: 0),
+        
+                        unselectedLabelStyle: TextStyle(
+                          color: AppColors.darkGray,
+                          fontSize:context.responsiveFontSize(AppSizes.fontSize3),
+                        ),
+                        labelStyle: TextStyle(
+                          color: AppColors.darkPurple,
+                          fontSize: context.responsiveFontSize(AppSizes.fontSize3),
+                          fontWeight: FontWeight.bold,
+                        ),
+                        tabs: [
+                          Tab(text: "Summary"),
+                          Tab(text: "Money Movments"),
+                          Tab(text: "Transactions"),
+                          Tab(text: "Payable"),
+                        ],
                       ),
-                      indicatorSize: TabBarIndicatorSize.label,
-                      labelPadding: EdgeInsets.symmetric(horizontal: 0),
-
-                      unselectedLabelStyle: TextStyle(
-                        color: AppColors.darkGray,
-                        fontSize:context.responsiveFontSize(AppSizes.fontSize3),
-                      ),
-                      labelStyle: TextStyle(
-                        color: AppColors.darkPurple,
-                        fontSize: context.responsiveFontSize(AppSizes.fontSize3),
-                        fontWeight: FontWeight.bold,
-                      ),
-                      tabs: [
-                        Tab(text: "Summary"),
-                        Tab(text: "Money Movments"),
-                        Tab(text: "Transactions"),
-                        Tab(text: "Payable"),
+                    ),
+                    Row(
+                      children: [
+                        // CustomButton(
+                        //   text: 'Sessions',
+                        //   radius: true,
+                        //   width: 100,
+                        //   page: SellPage(),
+                        //   height: AppSizes.widgetHeight,
+                        //   textColor: AppColors.white,
+                        //   color: AppColors.darkPurple,
+                        // ),
+                        // SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                        CustomButton(
+                          text: 'Sale Screen',
+                          radius: true,
+                          width: 120,
+                          page: SellPage(),
+                          height: AppSizes.widgetHeight,
+                          color: AppColors.darkPurple,
+                          textColor: AppColors.white,
+                        ),
                       ],
                     ),
-                  ),
-                  Row(
-                    children: [
-                      // CustomButton(
-                      //   text: 'Sessions',
-                      //   radius: true,
-                      //   width: 100,
-                      //   page: SellPage(),
-                      //   height: AppSizes.widgetHeight,
-                      //   textColor: AppColors.white,
-                      //   color: AppColors.darkPurple,
-                      // ),
-                      // SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                      CustomButton(
-                        text: 'Sale Screen',
-                        radius: true,
-                        width: 120,
-                        page: SellPage(),
-                        height: AppSizes.widgetHeight,
-                        color: AppColors.darkPurple,
-                        textColor: AppColors.white,
-                      ),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: AppSizes.verSpacesBetweenContainers),
-
-            Expanded(
-              child: TabBarView(children: [View1(), View2(), View3(), View4()]),
-            ),
-          ],
+              SizedBox(height: AppSizes.verSpacesBetweenContainers),
+        
+              Expanded(
+                child: TabBarView(children: [View1(), View2(), View3(), View4()]),
+              ),
+            ],
+          ),
         ),
       ),
     );
