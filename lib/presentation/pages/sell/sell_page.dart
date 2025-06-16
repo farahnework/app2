@@ -245,6 +245,7 @@ class _LeftSideState extends State<LeftSide> {
                     mainAxisSpacing: spacing,
                     childAspectRatio: 4,
                   ),
+                  shrinkWrap: true,
                   children: [
                     CategoryCard(
                       image: 'lib/assets/images/pens.webp',
@@ -298,11 +299,7 @@ class _LeftSideState extends State<LeftSide> {
                       category: 'Highlights',
                       itemsNum: 3,
                     ),
-                    CategoryCard(
-                      image: 'lib/assets/images/pens.webp',
-                      category: 'Pens',
-                      itemsNum: 10,
-                    ),
+                   
                     CategoryCard(
                       image: 'lib/assets/images/eraser.jpg',
                       category: 'Eraser',

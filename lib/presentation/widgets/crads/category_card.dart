@@ -30,7 +30,8 @@ class _CategoryCardState extends State<CategoryCard> {
           currentColor = AppColors.grey;
         });
       },
-      child: Container(
+      child: 
+      Container(
        
         padding: EdgeInsets.symmetric(
           horizontal: context.responsivePadding(AppSizes.horizontalPadding / 4),
@@ -56,62 +57,50 @@ class _CategoryCardState extends State<CategoryCard> {
               ),
             ),
             SizedBox(width: context.responsiveSpacing(AppSizes.horiSpacesBetweenElements),),
-             Row(
+            
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       widget.category,
                       style: TextStyle(
-                        fontSize: context.responsiveFontSize(AppSizes.fontSize4),
+                        fontSize:14,
                         color: AppColors.black,
                         fontWeight: AppSizes.fontWeight1,
                       ),
                     ),
                   ],
                 ),
-            Column(
-              // crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.start,
-                //   children: [
-                //     Text(
-                //       widget.category,
-                //       style: TextStyle(
-                //         fontSize:14,
-                //         color: AppColors.black,
-                //         fontWeight: AppSizes.fontWeight1,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.start,
-                //   children: [
-                //     Text(
-                //       'Contain ',
-                //       style: TextStyle(
-                //         fontSize: 14,
-                //         color: AppColors.darkGray,
-                //       ),
-                //     ),
-                //     Text(
-                //       widget.itemsNum.toString(),
-                //       style: TextStyle(
-                //         fontSize: 14,
-                //         color: AppColors.darkGray,
-                //       ),
-                //     ),
-                //     Text(
-                //       ' item',
-                //       style: TextStyle(
-                //         fontSize: 14,
-                //         color: AppColors.darkGray,
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Contain ',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: AppColors.darkGray,
+                      ),
+                    ),
+                    Text(
+                      widget.itemsNum.toString(),
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: AppColors.darkGray,
+                      ),
+                    ),
+                    Text(
+                      ' item',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: AppColors.darkGray,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
