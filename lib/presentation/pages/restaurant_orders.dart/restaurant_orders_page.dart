@@ -9,6 +9,7 @@ import 'package:app/presentation/pages/restaurant_orders.dart/widgets/add_note_d
 import 'package:app/presentation/pages/restaurant_orders.dart/widgets/restaurant_app_bar.dart';
 import 'package:app/presentation/pages/sell/sell_page.dart';
 import 'package:app/presentation/pages/sell/widgets/choose_device_dialog.dart';
+import 'package:app/presentation/pages/sell/widgets/sell_app_bar.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_dialog_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_drop_down_button.dart';
@@ -39,26 +40,60 @@ class _RestaurantOrdersPageState extends State<RestaurantOrdersPage> {
   
   @override
   Widget build(BuildContext context) {
+    final ValueNotifier<bool> showCategories = ValueNotifier(false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       chooseDeviceDialog(context);
     });
-     final sideToggle = Provider.of<SideToggleProvider>(context);
 
    
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.lightGrey,
-        body: Row(
+        body:
+         context.isMobile
+                
+                ? Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: RightSide(menuNotifier: showCategories),
+                    ),
+                    if (context.isMobile)
+                      ValueListenableBuilder<bool>(
+                        valueListenable: showCategories,
+                        builder: (context, visible, _) {
+                          return AnimatedPositioned(
+                            duration: Duration(milliseconds: 300),
+                            left:
+                                visible
+                                    ? 0
+                                    : -MediaQuery.of(context).size.width,
+                            width: MediaQuery.of(context).size.width,
+                            top: 0,
+                            bottom: 0,
+                            child: Column(
+                              children: [
+                                CustomAppBar(),
+                                LeftSide(
+                                  onClose: () => showCategories.value = false,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                  ],
+                ):
+         Row(
           children: [
-           if(!context.isMobile)
             Expanded(
               flex: 2,
               child: 
              
-              Column(children: [RestaurantAppBar(), LeftSide()])
+              Column(children: [RestaurantAppBar(), LeftSide(onClose: () => showCategories.value = false)])
             
             ),
-            RightSide(), 
+            RightSide(menuNotifier: showCategories), 
           ],
         ),
       ),
@@ -67,7 +102,8 @@ class _RestaurantOrdersPageState extends State<RestaurantOrdersPage> {
 }
 
 class LeftSide extends StatefulWidget {
-  const LeftSide({super.key});
+  final VoidCallback onClose;
+  const LeftSide({super.key , required this.onClose});
 
   @override
   State<LeftSide> createState() => _LeftSideState();
@@ -96,191 +132,222 @@ class _LeftSideState extends State<LeftSide> {
             ? ScreenLayouts.tabletSpacing
             : ScreenLayouts.desktopSpacing;
     return Expanded(
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: AppSizes.horizontalPadding,
-          right: AppSizes.horizontalPadding,
-          top: AppSizes.verticalPadding ,
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    CustomSearchField(text: 'Search'),
-                    SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                    CustomButton(
-                  text: 'Orders',
-                  radius: true,
-                  width: 100,
-                  page: OrdersPage(),
-                  height: AppSizes.widgetHeight,
-                  color: AppColors.darkPurple,
-                  textColor: AppColors.white,
-                ),
-                   
-                  ],
-                ),
-                Row(
-                  children: [
-                    // Icon(IconsaxPlusLinear.arrow_left_1, color: AppColors.darkGray,),
-                    // SizedBox(width: AppSizes.horiSpacesBetweenElements,),
-                    Icon(IconsaxPlusLinear.home_2, color: AppColors.darkPurple),
-                  ],
-                ),
-              ],
-            ),
-             SizedBox(height: AppSizes.verSpacesBetweenContainers),
+      child: Container(
+        color: AppColors.lightGrey,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: AppSizes.horizontalPadding,
+            right: AppSizes.horizontalPadding,
+            top: AppSizes.verticalPadding ,
+          ),
+          child: Column(
+            children: [
               Row(
-              children: [
-                Text('Categories', style: CustomTextStyles.titleText(context)),
-              ],
-            ),
-            SizedBox(height: AppSizes.verSpacesBetweenElements),
-             Expanded(
-              flex: 1,
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: categoriesCrossAxisCount,
-                  crossAxisSpacing: spacing,
-                  mainAxisSpacing: spacing,
-                  childAspectRatio: 4,
-                ),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  
-                    CategoryCard(
-                      image: 'lib/assets/images/food2.jpg',
-                      category: 'Sweets',
-                      itemsNum: 10,
-                    ),
-                    CategoryCard(
-                      image: 'lib/assets/images/food7.jpg',
-                      category: 'Sanwishes',
-                      itemsNum: 23,
-                    ),
-
-                    CategoryCard(
-                      image: 'lib/assets/images/food3.jpg',
-                      category: 'Healthy',
-                      itemsNum: 12,
-                    ),
-                    CategoryCard(
-                      image: 'lib/assets/images/food9.jpg',
-                      category: 'Breakfast',
-                      itemsNum: 3,
-                    ),
-                    CategoryCard(
-                      image: 'lib/assets/images/food12.jpg',
-                      category: 'Fast Food',
-                      itemsNum: 10,
-                    ),
-                    CategoryCard(
-                      image: 'lib/assets/images/food6.jpg',
-                      category: 'Rice',
-                      itemsNum: 6,
-                    ),
-                  ],
-              ),
-            ),
-           
-            SizedBox(height: AppSizes.verSpacesBetweenContainers),
-            Row(children: [Text('Products', style: CustomTextStyles.titleText(context))]),
-            SizedBox(height: AppSizes.verSpacesBetweenElements),
-
-            Expanded(
-              flex: 2,
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                     crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: spacing,
-                  mainAxisSpacing: spacing,
-                  childAspectRatio: context.isDesktop? 0.95: 0.8,
-                ),
-                children: [
-                  FoodCard(
-                    image: 'lib/assets/images/food5.jpg',
-                    productName: 'Color Pencils',
-                    price: 6,
+                  Row(
+                    children: [
+                       if (context.isMobile)
+                          Container(
+                            width: context.responsiveRelativeSize(
+                              containerSize: context.screenHeight,
+                              percentage: AppSizes.widgetHeight,
+                            ),
+                            height: context.responsiveRelativeSize(
+                              containerSize: context.screenHeight,
+                              percentage: AppSizes.widgetHeight,
+                            ),
+                            decoration: BoxDecoration(color: AppColors.darkBlue, borderRadius: BorderRadius.circular(context.responsiveBorderRadius(AppSizes.radius12))),
+                            child: IconButton(
+                              color: AppColors.darkPurple,
+        
+                              onPressed: () {
+                                widget.onClose();
+                              },
+        
+                              icon: Icon(
+                                IconsaxPlusLinear.arrow_left_1,
+                                color: AppColors.white,
+                              ),
+                            ),
+                          ), SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                      CustomSearchField(text: 'Search'),
+                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                      CustomButton(
+                    text: 'Orders',
+                    radius: true,
+                    width: 100,
+                    page: OrdersPage(),
+                    height: AppSizes.widgetHeight,
+                    color: AppColors.darkPurple,
+                    textColor: AppColors.white,
                   ),
-                  FoodCard(
-                    image: 'lib/assets/images/food2.jpg',
-                    productName: 'Color Pencils',
-                    price: 3,
+                     
+                    ],
                   ),
-                  FoodCard(
-                    image: 'lib/assets/images/food3.jpg',
-                    productName: 'Color Pencils',
-                    price: 5,
-                  ),
-                  FoodCard(
-                    image: 'lib/assets/images/food1.jpg',
-                    productName: 'Color Pencils',
-                    price: 6,
-                  ),
-                  FoodCard(
-                    image: 'lib/assets/images/food4.jpg',
-                    productName: 'Color Pencils',
-                    price: 2,
-                  ),
-                  FoodCard(
-                    image: 'lib/assets/images/food6.jpg',
-                    productName: 'Color Pencils',
-                    price: 8,
-                  ),
-                  FoodCard(
-                    image: 'lib/assets/images/food7.jpg',
-                    productName: 'Color Pencils',
-                    price: 11,
-                  ),
-                  FoodCard(
-                    image: 'lib/assets/images/food8.jpg',
-                    productName: 'Color Pencils',
-                    price: 4,
-                  ),
-                  FoodCard(
-                    image: 'lib/assets/images/food9.jpg',
-                    productName: 'Color Pencils',
-                    price: 9,
-                  ),
-                  FoodCard(
-                    image: 'lib/assets/images/food10.jpg',
-                    productName: 'Color Pencils',
-                    price: 7,
-                  ),
-                  FoodCard(
-                    image: 'lib/assets/images/food11.jpg',
-                    productName: 'Color Pencils',
-                    price: 5,
-                  ),
-                  FoodCard(
-                    image: 'lib/assets/images/food12.jpg',
-                    productName: 'Color Pencils',
-                    price: 12,
-                  ),
-                  FoodCard(
-                    image: 'lib/assets/images/food1.jpg',
-                    productName: 'Color Pencils',
-                    price: 22,
+                  if(!context.isMobile)
+                  Row(
+                    children: [
+                      // Icon(IconsaxPlusLinear.arrow_left_1, color: AppColors.darkGray,),
+                      // SizedBox(width: AppSizes.horiSpacesBetweenElements,),
+                      Icon(IconsaxPlusLinear.home_2, color: AppColors.darkPurple),
+                    ],
                   ),
                 ],
               ),
-            ),
-            // Expanded(
-            //   child: GridView.builder(
-            //     itemCount: 30,
-            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //       crossAxisCount: 5,
-            //       crossAxisSpacing: AppSizes.horiSpacesBetweenElements,
-            //       mainAxisSpacing: AppSizes.horiSpacesBetweenElements,
-            //     ),
-            //     itemBuilder: (context, index) {
-            //       return FoodCard();
-            //     },
-            //   ),
-            // ),
-          ],
+               SizedBox(height: AppSizes.verSpacesBetweenContainers),
+                Row(
+                children: [
+                  Text('Categories', style: CustomTextStyles.titleText(context)),
+                ],
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+               Expanded(
+                flex: 1,
+                child: GridView(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: categoriesCrossAxisCount,
+                    crossAxisSpacing: spacing,
+                    mainAxisSpacing: spacing,
+                    childAspectRatio: 4,
+                  ),
+                  children: [
+                    
+                      CategoryCard(
+                        image: 'lib/assets/images/food2.jpg',
+                        category: 'Sweets',
+                        itemsNum: 10,
+                      ),
+                      CategoryCard(
+                        image: 'lib/assets/images/food7.jpg',
+                        category: 'Sanwishes',
+                        itemsNum: 23,
+                      ),
+        
+                      CategoryCard(
+                        image: 'lib/assets/images/food3.jpg',
+                        category: 'Healthy',
+                        itemsNum: 12,
+                      ),
+                      CategoryCard(
+                        image: 'lib/assets/images/food9.jpg',
+                        category: 'Breakfast',
+                        itemsNum: 3,
+                      ),
+                      CategoryCard(
+                        image: 'lib/assets/images/food12.jpg',
+                        category: 'Fast Food',
+                        itemsNum: 10,
+                      ),
+                      CategoryCard(
+                        image: 'lib/assets/images/food6.jpg',
+                        category: 'Rice',
+                        itemsNum: 6,
+                      ),
+                    ],
+                ),
+              ),
+             
+              SizedBox(height: AppSizes.verSpacesBetweenContainers),
+              Row(children: [Text('Products', style: CustomTextStyles.titleText(context))]),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+        
+              Expanded(
+                flex: 2,
+                child: GridView(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                       crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: spacing,
+                    mainAxisSpacing: spacing,
+                    childAspectRatio: context.isDesktop? 0.9
+                            : context.isMobile
+                            ? 0.95
+                            : 0.75,
+                  ),
+                  children: [
+                    FoodCard(
+                      image: 'lib/assets/images/food5.jpg',
+                      productName: 'Color Pencils',
+                      price: 6,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food2.jpg',
+                      productName: 'Color Pencils',
+                      price: 3,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food3.jpg',
+                      productName: 'Color Pencils',
+                      price: 5,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food1.jpg',
+                      productName: 'Color Pencils',
+                      price: 6,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food4.jpg',
+                      productName: 'Color Pencils',
+                      price: 2,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food6.jpg',
+                      productName: 'Color Pencils',
+                      price: 8,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food7.jpg',
+                      productName: 'Color Pencils',
+                      price: 11,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food8.jpg',
+                      productName: 'Color Pencils',
+                      price: 4,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food9.jpg',
+                      productName: 'Color Pencils',
+                      price: 9,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food10.jpg',
+                      productName: 'Color Pencils',
+                      price: 7,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food11.jpg',
+                      productName: 'Color Pencils',
+                      price: 5,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food12.jpg',
+                      productName: 'Color Pencils',
+                      price: 12,
+                    ),
+                    FoodCard(
+                      image: 'lib/assets/images/food1.jpg',
+                      productName: 'Color Pencils',
+                      price: 22,
+                    ),
+                  ],
+                ),
+              ),
+              // Expanded(
+              //   child: GridView.builder(
+              //     itemCount: 30,
+              //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisCount: 5,
+              //       crossAxisSpacing: AppSizes.horiSpacesBetweenElements,
+              //       mainAxisSpacing: AppSizes.horiSpacesBetweenElements,
+              //     ),
+              //     itemBuilder: (context, index) {
+              //       return FoodCard();
+              //     },
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
@@ -288,7 +355,8 @@ class _LeftSideState extends State<LeftSide> {
 }
 
 class RightSide extends StatefulWidget {
-  const RightSide({super.key});
+  final ValueNotifier<bool> menuNotifier;
+  const RightSide({super.key, required this.menuNotifier,});
 
   @override
   State<RightSide> createState() => _RightSideState();
@@ -313,8 +381,8 @@ class _RightSideState extends State<RightSide> {
               height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
               child: Row(
                 children: [
-                  if(context.isMobile)
-                  Container(
+                   if (context.isMobile)
+                    Container(
                       width: context.responsiveRelativeSize(
                         containerSize: context.screenHeight,
                         percentage: AppSizes.widgetHeight,
@@ -327,10 +395,9 @@ class _RightSideState extends State<RightSide> {
                       child: IconButton(
                         color: AppColors.darkPurple,
                         onPressed: () {
-                          setState(() {
-                           sideToggle.toggleSide();
-                          });
+                          widget.menuNotifier.value = true;
                         },
+
                         icon: Icon(
                           IconsaxPlusLinear.box,
                           color: AppColors.white,
