@@ -350,7 +350,7 @@ class _LeftSideState extends State<LeftSide> {
                     mainAxisSpacing: spacing,
                     childAspectRatio:
                         context.isDesktop
-                            ? 0.95
+                            ? 0.9
                             : context.isMobile
                             ? 1
                             : 0.75,
