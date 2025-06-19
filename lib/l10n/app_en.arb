@@ -1,0 +1,73 @@
+{
+    "sign_in": "Sign In",
+     "@sign_in": {
+         "description": "text"
+     },
+     "welcome": "Welcome",
+     "@welcome": {
+        "description": "text"
+     },
+     "home_page_card": "{service}",
+     "@home_page_card": {
+         "placeholders": {
+            "service": {
+                "type": "String"
+            }
+        }
+     },
+     "email": "Email",
+     "@email": {
+         "description": "text"
+     },
+     "password": "Password",
+     "@password": {
+         "description": "text"
+     },
+     "income": "Income",
+     "@income": {
+         "description": "text"
+     },
+     "invoices": "Invoices",
+     "@invoices": {
+         "description": "text"
+     },
+     "total_customers": "Total Customers",
+     "@total_customers": {
+         "description": "text"
+     },
+     "new_customers": "New Customers",
+     "@new_customers": {
+         "description": "text"
+     },
+     "rigesters": "Rigesters",
+     "@rigesters": {
+         "description": "text"
+     },
+     
+     "shift": "Shift",
+     "@shift": {
+         "description": "تصنيف الوردية"
+
+     },
+     "device": "Device",
+     "@device": {
+         "description": "text"
+     },
+     "status": "Status",
+     "@status": {
+         "description": "text"
+     },
+     "search": "Search",
+     "@search": {
+         "description": "text"
+     },
+     "number": "Number",
+     "@number": {
+         "description": "text"
+     },
+     "balance": "Balance",
+     "@balance": {
+         "description": "text"
+     }
+    
+}

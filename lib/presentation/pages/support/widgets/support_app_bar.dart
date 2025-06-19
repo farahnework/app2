@@ -1,16 +1,11 @@
-import 'package:app/controllers/side_bar_controller.dart';
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/core/theming/app_colors.dart';
-import 'package:app/presentation/widgets/fields/custom_search_field.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SupportAppBar extends StatelessWidget {
   const SupportAppBar({super.key});
@@ -54,7 +49,7 @@ class SupportAppBar extends StatelessWidget {
                SizedBox(width: AppSizes.horiSpacesBetweentTexts),
               
                Text(
-                    'Customers Support',
+                    StringTranslateExtension('customer_support').tr(),
                     style: TextStyle(
                       fontSize: context.responsiveFontSize(AppSizes.fontSize1,),
                       fontWeight: AppSizes.fontWeight1,
@@ -64,7 +59,6 @@ class SupportAppBar extends StatelessWidget {
               
             ],
           ),
-
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -72,7 +66,7 @@ class SupportAppBar extends StatelessWidget {
               SizedBox(
                 height: context.responsiveWidgetHeight,
                 child: CircleAvatar(
-                  child: Image.asset('lib/assets/images/user.jpg'),
+                  child: Image.asset('assets/images/user.jpg'),
                 ),
               ),
 
@@ -90,7 +84,7 @@ class SupportAppBar extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}',
+                    '${DateFormat.yMMMEd('en').format(DateTime.now())}',
                     style: TextStyle(
                       fontSize: context.responsiveFontSize(AppSizes.fontSize5),
                     ),

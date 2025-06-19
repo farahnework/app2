@@ -8,6 +8,7 @@ import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -35,7 +36,7 @@ class CustomAppBar extends StatelessWidget {
                SizedBox(
                 height: context.responsiveWidgetHeight,
                 child: CircleAvatar(
-                  child: Image.asset('lib/assets/images/user.jpg'),
+                  child: Image.asset('assets/images/user.jpg'),
                 ),
               ),
 
@@ -54,7 +55,7 @@ class CustomAppBar extends StatelessWidget {
                     ),
                   ),
                     Text(
-                    '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}',
+                    '${DateFormat.yMMMEd('en').format(DateTime.now())}',
                     style: TextStyle(
                       fontSize: context.responsiveFontSize(AppSizes.fontSize5),
                     ),
@@ -66,7 +67,9 @@ class CustomAppBar extends StatelessWidget {
             if(!context.isMobile)
             Row(
               children: [
-                Text('Current Session: ',  style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
+                Text(StringTranslateExtension('current_session').tr(),  style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
+                Text(':', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
+                SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
                 Text(
                   'Main shift',
                    style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2)),
@@ -90,7 +93,7 @@ class CustomAppBar extends StatelessWidget {
                 SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
                 CustomButton(
-                  text: 'Session Details',
+                  text:StringTranslateExtension('session_details').tr(),
                   radius: true,
                   width: 150,
                   page: SessionDetailsPage(),

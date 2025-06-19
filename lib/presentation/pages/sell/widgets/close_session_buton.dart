@@ -7,6 +7,7 @@ import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CloseSessionButton extends StatefulWidget {
   final IconData icon;
@@ -52,7 +53,7 @@ class _CloseSessionButtonState extends State<CloseSessionButton> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Wrap(children: [Text('Do you want to close this session?', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize1), fontWeight: AppSizes.fontWeight1))], ),
+                  Wrap(children: [Text(StringTranslateExtension('do_you_want_to_close_this_session').tr(),style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize1), fontWeight: AppSizes.fontWeight1))], ),
                   SizedBox(height: AppSizes.verSpacesBetweenContainers), 
                   context.isMobile?
                   Column(
@@ -70,9 +71,9 @@ class _CloseSessionButtonState extends State<CloseSessionButton> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CustomButton(text: 'Close this session', radius: true, width: 200, page: HomePage(), height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
+                      CustomButton(text: StringTranslateExtension('close_this_session').tr(), radius: true, width: 200, page: HomePage(), height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
                       SizedBox(width: AppSizes.horiSpacesBetweenElements,),
-                      CustomOutlinedButton(text: 'Session pause', page: HomePage(),)
+                      CustomOutlinedButton(text: StringTranslateExtension('session_pause').tr(), page: HomePage(),)
                     ],
                   )
                 ],

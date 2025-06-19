@@ -21,11 +21,18 @@ class OrderCard extends StatefulWidget {
 class _OrderCardState extends State<OrderCard> {
    Color getOrderColor() {
     switch (widget.type.toLowerCase()) {
-      case 'dine in':
+     case 'dine_in':
         return AppColors.lightYellow;
+      case 'في المطعم':
+        return AppColors.lightYellow;
+
       case 'delivery':
         return AppColors.lightBlue;
+      case 'توصيل':
+        return AppColors.lightBlue;
       case 'takeaway':
+        return AppColors.lightGreen;
+      case 'سفري':
         return AppColors.lightGreen;
       default:
         return AppColors.white;
@@ -64,15 +71,18 @@ class _OrderCardState extends State<OrderCard> {
               widget.date,
               style: CustomTextStyles.meduimText(context),
             ),
-            Row(
-              children: [
-                SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6), color: AppColors.darkPurple,),
-                SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-                Text(
-                  widget.price.toString(),
-                  style: CustomTextStyles.meduimText(context).copyWith(color: AppColors.darkPurple, fontWeight: AppSizes.fontWeight1)
-                ),
-              ],
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                children: [
+                  SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6), color: AppColors.darkPurple,),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                  Text(
+                    widget.price.toString(),
+                    style: CustomTextStyles.meduimText(context).copyWith(color: AppColors.darkPurple, fontWeight: AppSizes.fontWeight1)
+                  ),
+                ],
+              ),
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding/2, vertical: AppSizes.verticalPadding/5),

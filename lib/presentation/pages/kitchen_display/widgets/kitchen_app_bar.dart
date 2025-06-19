@@ -6,6 +6,7 @@ import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class KitchenAppBar extends StatelessWidget {
   const KitchenAppBar({super.key});
@@ -31,7 +32,7 @@ class KitchenAppBar extends StatelessWidget {
               children: [
                 SizedBox(
                   height: context.responsiveWidgetHeight,
-                  child: CircleAvatar(child: Image.asset('lib/assets/images/user.jpg'), )),
+                  child: CircleAvatar(child: Image.asset('assets/images/user.jpg'), )),
                
                 SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                 if(!context.isMobile)
@@ -41,7 +42,7 @@ class KitchenAppBar extends StatelessWidget {
                   children: [
                     Text('Tareq Taha', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
                     Text(
-                      '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}'
+                      '${DateFormat.yMMMEd('en').format(DateTime.now())}'
                       , style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize4)),
                     ),
                   ],
@@ -51,7 +52,8 @@ class KitchenAppBar extends StatelessWidget {
             if(!context.isMobile)
             Row(
               children: [
-                Text('Current Session: ',  style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
+                Text(StringTranslateExtension('current_session').tr(), style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
+                Text(': ', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
                 Text(
                   'Main shift',
                    style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2)),

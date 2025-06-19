@@ -1,4 +1,4 @@
 class AppImages{
-  static final String rial = 'lib/assets/icons/riyal.svg';
+  static final String rial = 'assets/icons/riyal.svg';
 
 }

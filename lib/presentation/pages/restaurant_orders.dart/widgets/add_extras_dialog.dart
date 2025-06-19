@@ -5,9 +5,8 @@ import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart' show AppColors;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 void addExtrasDialog(BuildContext context, String image) {
   showDialog(
     context: context,
@@ -34,10 +33,10 @@ void addExtrasDialog(BuildContext context, String image) {
                       onPressed: () {
                         Get.back();
                       },
-                      icon: Icon(IconsaxPlusLinear.close_circle, color: AppColors.black,),
+                      icon: Icon(IconsaxPlusLinear.close_circle, color: AppColors.darkPurple,),
                     ),
                     SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
-                    Text('Add Toppings', style: CustomTextStyles.titleText(context),)
+                    Text(StringTranslateExtension('add_toppings').tr(), style: CustomTextStyles.titleText(context).copyWith(color: AppColors.darkPurple),)
 
                   ],
                 ),
@@ -52,7 +51,7 @@ void addExtrasDialog(BuildContext context, String image) {
                     SizedBox(height: AppSizes.verSpacesBetweenElements),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [Text('Toppings', style: CustomTextStyles.titleText(context))],
+                      children: [Text(StringTranslateExtension('toppings').tr(),style: CustomTextStyles.titleText(context))],
                     ),
                     SizedBox(height: AppSizes.verSpacesBetweenElements),
                     SizedBox(
@@ -69,12 +68,12 @@ void addExtrasDialog(BuildContext context, String image) {
                     SizedBox(height: AppSizes.verSpacesBetweenContainers),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [Text('Add Note', style: CustomTextStyles.titleText(context))],
+                      children: [Text(StringTranslateExtension('add_note').tr(),style: CustomTextStyles.titleText(context))],
                     ),
                     SizedBox(height: AppSizes.verSpacesBetweenElements,),
                     SizedBox(
                       width: context.screenWidth,
-                      child: CustomTextField(hintText: 'Note', icon: IconsaxPlusLinear.note_2, width: 2, enabled: true))
+                      child: CustomTextField(hintText: StringTranslateExtension('note').tr(), icon: IconsaxPlusLinear.note_2, width: 2, enabled: true))
                   ],
                 ),
               ),

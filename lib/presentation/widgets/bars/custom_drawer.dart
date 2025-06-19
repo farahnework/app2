@@ -45,7 +45,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   SizedBox(height: AppSizes.verSpacesBetweenElements,),
                   SizedBox(
                     height: 45,
-                    child: Image.asset('lib/assets/images/logo.png'),
+                    child: Image.asset('assets/images/logo.png'),
                   ),
                   SizedBox(height: AppSizes.verSpacesBetweenElements*5,),
 

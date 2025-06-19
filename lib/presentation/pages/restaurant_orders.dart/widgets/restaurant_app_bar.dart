@@ -8,6 +8,7 @@ import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class RestaurantAppBar extends StatelessWidget {
   const RestaurantAppBar({super.key});
@@ -35,7 +36,7 @@ class RestaurantAppBar extends StatelessWidget {
                 SizedBox(
                   height: context.responsiveWidgetHeight,
                   child: CircleAvatar(
-                    child: Image.asset('lib/assets/images/user.jpg'),
+                    child: Image.asset('assets/images/user.jpg'),
                   ),
                 ),
 
@@ -55,7 +56,8 @@ class RestaurantAppBar extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}',
+                      '${DateFormat.yMMMEd('en').format(DateTime.now())}',
+                      // '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}',
                       style: TextStyle(
                         fontSize: context.responsiveFontSize(
                           AppSizes.fontSize5,
@@ -68,15 +70,11 @@ class RestaurantAppBar extends StatelessWidget {
             ),
             Row(
               children: [
+               Text(StringTranslateExtension('current_session').tr(),  style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
+                Text(':', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
+                SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
                 Text(
-                  'Current Session: ',
-                  style: TextStyle(
-                    fontSize: context.responsiveFontSize(AppSizes.fontSize2),
-                    fontWeight: AppSizes.fontWeight1,
-                  ),
-                ),
-                Text(
-                  'Main shift',
+                  'Main shift', 
                   style: TextStyle(
                     fontSize: context.responsiveFontSize(AppSizes.fontSize2),
                   ),
@@ -107,7 +105,7 @@ class RestaurantAppBar extends StatelessWidget {
                 if (context.isDesktop)
                   SizedBox(width: AppSizes.horiSpacesBetweenElements),
                 CustomButton(
-                  text: 'Session Details',
+                  text: StringTranslateExtension('session_details').tr(),
                   radius: true,
                   width: 150,
                   page: SessionDetailsPage(),

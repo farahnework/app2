@@ -3,6 +3,7 @@ import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CategoryCard extends StatefulWidget {
   final String category;
@@ -79,21 +80,21 @@ class _CategoryCardState extends State<CategoryCard> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Contain ',
+                      StringTranslateExtension('contain').tr(),
                       style: TextStyle(
                         fontSize: 14,
                         color: AppColors.darkGray,
                       ),
                     ),
                     Text(
-                      widget.itemsNum.toString(),
+                      ' ${widget.itemsNum.toString()} ',
                       style: TextStyle(
                         fontSize: 14,
                         color: AppColors.darkGray,
                       ),
                     ),
                     Text(
-                      ' item',
+                      StringTranslateExtension('item').tr(),
                       style: TextStyle(
                         fontSize: 14,
                         color: AppColors.darkGray,

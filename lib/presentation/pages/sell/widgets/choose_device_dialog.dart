@@ -8,6 +8,7 @@ import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 void chooseDeviceDialog(BuildContext context) {
   showDialog(
@@ -42,7 +43,8 @@ void chooseDeviceDialog(BuildContext context) {
             children: [
               SizedBox(height: AppSizes.verSpacesBetweenContainers),
               Text(
-                'Select session details',
+                StringTranslateExtension('select_setion_details').tr(),
+                
                 style: CustomTextStyles.titleText(context),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenContainers),
@@ -52,7 +54,7 @@ void chooseDeviceDialog(BuildContext context) {
                   Expanded(
                     child: CustomDropDownButton(
                       color: AppColors.white,
-                      title: 'Shift',
+                      title: StringTranslateExtension('shift').tr(),
                       list: ['Main Shift', 'Shift 2'],
                       selected: 'Main Shift',
                       width: 400,
@@ -69,7 +71,7 @@ void chooseDeviceDialog(BuildContext context) {
                   Expanded(
                     child: CustomDropDownButton(
                       color: AppColors.white,
-                      title: 'Device',
+                      title:StringTranslateExtension('device').tr(),
                       list: ['Device 1', 'Device 2'],
                       selected: 'Device 1',
                       width: 400,
@@ -87,7 +89,7 @@ void chooseDeviceDialog(BuildContext context) {
                   
                   Expanded(
                     child: CloseDialogButton(
-                      text: 'Start the session',
+                      text:  StringTranslateExtension('start_the_setion').tr(),
                       radius: true,
                       context: dialogContext,
                     ),
@@ -95,7 +97,7 @@ void chooseDeviceDialog(BuildContext context) {
                   if (!context.isMobile)
                     SizedBox(width: AppSizes.horiSpacesBetweenElements),
                   if (!context.isMobile)
-                    CustomOutlinedButton(text: 'Cancel', page: HomePage()),
+                    CustomOutlinedButton(text: StringTranslateExtension('cancel').tr(), page: HomePage()),
                 ],
               ),
               if (context.isMobile)
@@ -105,7 +107,7 @@ void chooseDeviceDialog(BuildContext context) {
                   children: [
                     Expanded(
                       child: CustomOutlinedButton(
-                        text: 'Cancel',
+                        text: StringTranslateExtension('cancel').tr(),
                         page: HomePage(),
                       ),
                     ),

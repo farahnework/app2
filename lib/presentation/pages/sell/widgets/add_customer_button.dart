@@ -7,6 +7,7 @@ import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AddCustomerButton extends StatefulWidget {
   final Color color;
@@ -76,7 +77,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                             ),
                             SizedBox(width: AppSizes.horiSpacesBetweenElements),
                             Text(
-                              "Add Customer",
+                              StringTranslateExtension('add_customer').tr(),
                               style: CustomTextStyles.titleText(context).copyWith(color: AppColors.darkPurple,),
                               
                             ),
@@ -110,7 +111,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           
                             children: [
                               Text(
-                                "Customer Informaion",
+                                StringTranslateExtension('customer_information').tr(),
                                 style: CustomTextStyles.titleText(context),
                               ),
                             ],
@@ -133,7 +134,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                                   });
                                 },
                               ),
-                              Text('Individual', style: CustomTextStyles.meduimText(context),),
+                              Text( StringTranslateExtension('individual').tr(), style: CustomTextStyles.meduimText(context),),
                                         
                               Radio(
                                 value: 'Company',
@@ -144,7 +145,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                                   });
                                 },
                               ),
-                              Text('Company', style: CustomTextStyles.meduimText(context),),
+                              Text( StringTranslateExtension('company').tr(),style: CustomTextStyles.meduimText(context),),
                             ],
                           ),
                           SizedBox(height: AppSizes.verSpacesBetweenContainers),
@@ -175,7 +176,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Name',
+              hintText:  StringTranslateExtension('name').tr(),
               icon: IconsaxPlusLinear.user,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -186,7 +187,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Name in English',
+              hintText: StringTranslateExtension('name_in_english').tr(),
               icon: IconsaxPlusLinear.user,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -197,7 +198,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Phone No.',
+              hintText:  StringTranslateExtension('phone_no').tr(),
               icon: IconsaxPlusLinear.call,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -210,7 +211,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Address',
+              hintText: StringTranslateExtension('address').tr(),
               icon: IconsaxPlusLinear.location,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -222,7 +223,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Street',
+              hintText:  StringTranslateExtension('street').tr(),
               icon: IconsaxPlusLinear.location,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -234,7 +235,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Country',
+              hintText: StringTranslateExtension('country').tr(),
               icon: IconsaxPlusLinear.map,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -246,7 +247,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'City',
+              hintText: StringTranslateExtension('city').tr(),
               icon: IconsaxPlusLinear.building,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -258,7 +259,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Neighborhood',
+              hintText:  StringTranslateExtension('neighborhood').tr(),
               icon: IconsaxPlusLinear.global,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -275,14 +276,14 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Name',
+              hintText: StringTranslateExtension('name').tr(),
               icon: IconsaxPlusLinear.user,
               width: context.screenWidth / 3.8,
               enabled: true,
             ),
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
             CustomTextField(
-              hintText: 'Name in English',
+              hintText:  StringTranslateExtension('name_in_english').tr(),
               icon: IconsaxPlusLinear.user,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -294,7 +295,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Phone No.',
+              hintText:  StringTranslateExtension('phone_no').tr(),
               icon: IconsaxPlusLinear.call,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -303,7 +304,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
             CustomTextField(
-              hintText: 'Address',
+              hintText:  StringTranslateExtension('address').tr(),
               icon: IconsaxPlusLinear.location,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -316,7 +317,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Street',
+              hintText: StringTranslateExtension('street').tr(),
               icon: IconsaxPlusLinear.location,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -324,7 +325,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
             CustomTextField(
-              hintText: 'Country',
+              hintText:  StringTranslateExtension('country').tr(),
               icon: IconsaxPlusLinear.map,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -337,7 +338,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'City',
+              hintText:  StringTranslateExtension('city').tr(),
               icon: IconsaxPlusLinear.building,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -345,7 +346,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
             CustomTextField(
-              hintText: 'Neighborhood',
+              hintText:  StringTranslateExtension('neighborhood').tr(),
               icon: IconsaxPlusLinear.global,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -367,7 +368,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Name',
+              hintText: StringTranslateExtension('name').tr(),
               icon: IconsaxPlusLinear.user,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -378,7 +379,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Name in English',
+              hintText:  StringTranslateExtension('name_in_english').tr(),
               icon: IconsaxPlusLinear.user,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -390,7 +391,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           children: [
             Expanded(
               child: SellDropDownButton(
-                title: 'Customer Group',
+                title: StringTranslateExtension('customers_group').tr(),
                 list: ['Group 1', 'Group 2', 'Group 3'],
                 selected: 'Group 1',
                 width: context.screenWidth / 3.8,
@@ -406,7 +407,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Address',
+              hintText:StringTranslateExtension('address').tr(),
               icon: IconsaxPlusLinear.location,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -418,7 +419,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Street',
+              hintText:StringTranslateExtension('street').tr(),
               icon: IconsaxPlusLinear.location,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -430,7 +431,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'City',
+              hintText: StringTranslateExtension('city').tr(),
               icon: IconsaxPlusLinear.map,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -442,7 +443,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Neighborhood',
+              hintText:StringTranslateExtension('neighborhood').tr(),
               icon: IconsaxPlusLinear.building,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -454,7 +455,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Country',
+              hintText: StringTranslateExtension('country').tr(),
               icon: IconsaxPlusLinear.global,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -466,7 +467,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Phone No.',
+              hintText: StringTranslateExtension('phone_no').tr(),
               icon: IconsaxPlusLinear.call,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -478,7 +479,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Email Address',
+              hintText:  StringTranslateExtension('email').tr(),
               icon: IconsaxPlusLinear.sms,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -490,7 +491,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Build No.',
+              hintText: StringTranslateExtension('building_no').tr(),
               icon: IconsaxPlusLinear.user,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -502,7 +503,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Tax No.',
+              hintText: StringTranslateExtension('tax_no').tr(),
               icon: IconsaxPlusLinear.bank,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -514,7 +515,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Postal Code',
+              hintText: StringTranslateExtension('postal_code').tr(),
               icon: IconsaxPlusLinear.document,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -526,7 +527,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Company Commercial Record No.',
+              hintText:  StringTranslateExtension('company_commercial').tr(),
               icon: IconsaxPlusLinear.archive_1,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -538,7 +539,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Additional No.',
+              hintText:   StringTranslateExtension('additional_no').tr(),
               icon: IconsaxPlusLinear.hashtag_1,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -550,7 +551,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           children: [
             Expanded(
               child: SellDropDownButton(
-                title: "Payment Method",
+                title:  StringTranslateExtension('payment_method').tr(),
                 list: ['Cash', 'Debt'],
                 selected: "Cash",
                 width: context.screenWidth / 3.8,
@@ -566,7 +567,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Credit Limt',
+              hintText: StringTranslateExtension('credit_limt').tr(),
               icon: IconsaxPlusLinear.card,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -578,7 +579,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
         Row(
           children: [
             CustomTextField(
-              hintText: 'Note',
+              hintText:  StringTranslateExtension('note').tr(),
               icon: IconsaxPlusLinear.note_2,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -593,14 +594,14 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Name',
+              hintText: StringTranslateExtension('name').tr(),
               icon: IconsaxPlusLinear.user,
               width: context.screenWidth / 3.8,
               enabled: true,
             ),
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
             CustomTextField(
-              hintText: 'Name in English',
+              hintText: StringTranslateExtension('name_in_english').tr(),
               icon: IconsaxPlusLinear.user,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -613,7 +614,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           children: [
             Expanded(
               child: SellDropDownButton(
-                title: 'Customer Group',
+                title:StringTranslateExtension('customers_group').tr(),
                 list: ['Group 1', 'Group 2', 'Group 3'],
                 selected: 'Group 1',
                 width: context.screenWidth / 3.8,
@@ -625,7 +626,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
             CustomTextField(
-              hintText: 'Address',
+              hintText:StringTranslateExtension('address').tr(),
               icon: IconsaxPlusLinear.location,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -638,7 +639,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Street',
+              hintText: StringTranslateExtension('street').tr(),
               icon: IconsaxPlusLinear.location,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -646,7 +647,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
             CustomTextField(
-              hintText: 'City',
+              hintText:  StringTranslateExtension('city').tr(),
               icon: IconsaxPlusLinear.map,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -659,7 +660,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Neighborhood',
+              hintText: StringTranslateExtension('neighborhood').tr(),
               icon: IconsaxPlusLinear.building,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -667,7 +668,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
             CustomTextField(
-              hintText: 'Country',
+              hintText: StringTranslateExtension('country').tr(),
               icon: IconsaxPlusLinear.global,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -680,7 +681,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Phone No.',
+              hintText:  StringTranslateExtension('phone_no').tr(),
               icon: IconsaxPlusLinear.call,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -688,7 +689,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
             CustomTextField(
-              hintText: 'Email Address',
+              hintText:  StringTranslateExtension('email').tr(),
               icon: IconsaxPlusLinear.sms,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -701,7 +702,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Build No.',
+              hintText: StringTranslateExtension('building_no').tr(),
               icon: IconsaxPlusLinear.user,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -709,7 +710,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
             CustomTextField(
-              hintText: 'Tax No.',
+              hintText: StringTranslateExtension('tax_no').tr(),
               icon: IconsaxPlusLinear.bank,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -722,7 +723,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Postal Code',
+              hintText:  StringTranslateExtension('postal_code').tr(),
               icon: IconsaxPlusLinear.document,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -730,7 +731,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
             CustomTextField(
-              hintText: 'Company Commercial Record No.',
+              hintText: StringTranslateExtension('company_commercial').tr(),
               icon: IconsaxPlusLinear.archive_1,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -743,7 +744,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Additional No.',
+              hintText: StringTranslateExtension('additional_no').tr(),
               icon: IconsaxPlusLinear.hashtag_1,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -751,9 +752,9 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
             Expanded(
               child: SellDropDownButton(
-                title: "Payment Method",
-                list: ['Cash', 'Debt'],
-                selected: "Cash",
+                title: StringTranslateExtension('payment_method').tr(),
+                list: [StringTranslateExtension('cash').tr(), StringTranslateExtension('debt').tr(),],
+                selected: StringTranslateExtension('cash').tr(),
                 width: context.screenWidth / 3.8,
                 height: AppSizes.widgetHeight,
                 icon: Icons.add_ic_call,
@@ -768,7 +769,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTextField(
-              hintText: 'Credit Limt',
+              hintText:  StringTranslateExtension('credit_limt').tr(),
               icon: IconsaxPlusLinear.card,
               width: context.screenWidth / 3.8,
               enabled: true,
@@ -776,7 +777,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
             SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
             CustomTextField(
-              hintText: 'Note',
+              hintText:  StringTranslateExtension('note').tr(),
               icon: IconsaxPlusLinear.note_2,
               width: context.screenWidth / 3.8,
               enabled: true,

@@ -1,0 +1,18 @@
+{
+    "sign_in": "تسجيل دخول",
+    "welcome": "اهلا وسهلا",
+    "home_page_card": "{service}",
+    "email": "ايميل",
+    "password": "كلمة السر",
+    "income": "الدخل",
+    "invoices": "الفواتير",
+    "total_customers": "عدد العملاء",
+    "new_customers": "العملاء الجدد",
+    "rigesters": "الجلسات",
+    "shift": "الوردية",
+    "device": "الجهاز",
+    "status": "الحالة",
+    "search": "البحث",
+    "number": "رقم",
+    "balance": "الميزانية"
+}

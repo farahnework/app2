@@ -3,7 +3,6 @@ import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/core/responsive/responsive_sizing.dart';
 import 'package:app/core/responsive/screen_layouts.dart';
-import 'package:app/presentation/pages/home/home_page.dart';
 import 'package:app/presentation/pages/support/widgets/support_app_bar.dart';
 import 'package:app/presentation/widgets/bars/icon_side_bar.dart';
 import 'package:app/presentation/widgets/bars/side_bar.dart';
@@ -13,8 +12,10 @@ import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SupportPage extends StatefulWidget {
   const SupportPage({super.key});
@@ -24,14 +25,16 @@ class SupportPage extends StatefulWidget {
 }
 
 class _SupportPageState extends State<SupportPage> {
-    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-void initState() {
-  super.initState();
-  Provider.of<SideBarController>(context, listen: false)
-      .setScaffoldKey(scaffoldKey);
-}
+  void initState() {
+    super.initState();
+    Provider.of<SideBarController>(
+      context,
+      listen: false,
+    ).setScaffoldKey(scaffoldKey);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,26 +43,24 @@ void initState() {
         key: scaffoldKey,
         drawerScrimColor: Colors.transparent,
         drawer: context.isDesktop ? null : SideBar(),
-      
-        
+
         backgroundColor: AppColors.lightGrey,
         body: Row(
           children: [
-            
-            context.isDesktop?
-            Expanded(flex:1 , child: SideBar()):
-             context.isLargeTablet?
-            IconSideBar():
-             context.isSmallTablet?
-            IconSideBar():
-            Container(),
-      
-      
+            context.isDesktop
+                ? Expanded(flex: 1, child: SideBar())
+                : context.isLargeTablet
+                ? IconSideBar()
+                : context.isSmallTablet
+                ? IconSideBar()
+                : Container(),
+
             Expanded(
               flex: 5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: [SupportAppBar(), SupportBody()]),
+                children: [SupportAppBar(), SupportBody()],
+              ),
             ),
           ],
         ),
@@ -67,7 +68,6 @@ void initState() {
     );
   }
 }
-
 
 class SupportBody extends StatelessWidget {
   const SupportBody({super.key});
@@ -104,55 +104,91 @@ class SupportBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              Text('We are happy to assist you in enhancing your business management through our support team.', style: CustomTextStyles.titleText(context),),
-              SizedBox(height: AppSizes.verSpacesBetweenContainers,),
-              Center(child: Image.asset('lib/assets/images/support.png')),
-              SizedBox(height: AppSizes.verSpacesBetweenContainers,),
-              Container(
-                width: double.infinity,
-                child: GridView(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: crossAxisCount,
-                    crossAxisSpacing: 1 ,
-                    mainAxisSpacing: 0,
-                    childAspectRatio: childAspectRatio,
-                  ),
+                Row(
                   children: [
-                    Row(
-                    children: [
-                      SvgPicture.asset('lib/assets/icons/whatsapp-logo.svg', color: AppColors.darkPurple, height: context.responsiveIconSize(AppSizes.iconSize2),),
-                      SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
-                      Text('0583659392', style: CustomTextStyles.largeText(context),),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(IconsaxPlusLinear.call, size: context.responsiveIconSize(AppSizes.iconSize), color: AppColors.darkPurple,),
-                      SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
-                      Text('920012279', style: CustomTextStyles.largeText(context),),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(IconsaxPlusLinear.call, size: context.responsiveIconSize(AppSizes.iconSize), color: AppColors.darkPurple,),
-                      SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
-                      Text('0557566573', style: CustomTextStyles.largeText(context),),
-                    ],
-                  ),
-                   Row(
-                    children: [
-                      Icon(Icons.email_outlined, size: context.responsiveIconSize(AppSizes.iconSize), color: AppColors.darkPurple,),
-                      SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
-                      Text('info@as-it.com.sa', style: CustomTextStyles.largeText(context),),
-                    ],
-                  ),
+                    Text(
+                      StringTranslateExtension('support').tr(),
+                      style: CustomTextStyles.titleText(context),
+                    ),
+                    Icon(size: 20, Iconsax.heart5, color: AppColors.red),
                   ],
                 ),
-              ),
-             
+                SizedBox(height: AppSizes.verSpacesBetweenContainers),
+                Center(child: Image.asset('assets/images/support.png')),
+                Container(
+                  width: double.infinity,
+                  child: GridView(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 1,
+                      mainAxisSpacing: 0,
+                      childAspectRatio: childAspectRatio,
+                    ),
+                    children: [
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/icons/whatsapp-logo.svg',
+                            color: AppColors.darkPurple,
+                            height: context.responsiveIconSize(
+                              AppSizes.iconSize2,
+                            ),
+                          ),
+                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                          Text(
+                            '0583659392',
+                            style: CustomTextStyles.largeText(context),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            IconsaxPlusLinear.call,
+                            size: context.responsiveIconSize(AppSizes.iconSize),
+                            color: AppColors.darkPurple,
+                          ),
+                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                          Text(
+                            '920012279',
+                            style: CustomTextStyles.largeText(context),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            IconsaxPlusLinear.call,
+                            size: context.responsiveIconSize(AppSizes.iconSize),
+                            color: AppColors.darkPurple,
+                          ),
+                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                          Text(
+                            '0557566573',
+                            style: CustomTextStyles.largeText(context),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.email_outlined,
+                            size: context.responsiveIconSize(AppSizes.iconSize),
+                            color: AppColors.darkPurple,
+                          ),
+                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                          Text(
+                            'info@as-it.com.sa',
+                            style: CustomTextStyles.largeText(context),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

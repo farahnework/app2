@@ -44,7 +44,7 @@ class _IconSideBarState extends State<IconSideBar> {
               children: [
                 SizedBox(
                   width: 35,
-                  child: Image.asset('lib/assets/images/logo_icon.png', fit: BoxFit.cover,),
+                  child: Image.asset('assets/images/logo_icon.png', fit: BoxFit.cover,),
                 ),
                 SizedBox(height: AppSizes.verSpacesBetweenContainers * 2),
                 Column(

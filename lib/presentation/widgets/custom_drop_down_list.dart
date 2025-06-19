@@ -43,6 +43,9 @@ class _CustomDropDownListState extends State<CustomDropDownList> {
         child: Container(
           width: widget.width,
           child: DropdownButton2(
+         
+
+             alignment: AlignmentDirectional.centerStart,
             customButton: Text(widget.title, style: CustomTextStyles.header2,),
             underline: SizedBox.shrink(),
             buttonStyleData: ButtonStyleData(

@@ -6,6 +6,8 @@ import 'package:app/presentation/widgets/fields/custom_text_field.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:iconsax/iconsax.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -49,7 +51,7 @@ class _SigninPageState extends State<SigninPage> {
                       children: [
                         Container(
                           height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
-                          child: Image.asset('lib/assets/images/logo.png'),
+                          child: Image.asset('assets/images/logo.png'),
                         ),
                       ],
                     ),
@@ -85,7 +87,7 @@ class _SigninPageState extends State<SigninPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Sign In',
+                            StringTranslateExtension('sign_in').tr(),
                             style: TextStyle(
                               fontSize: 40,
                               fontWeight: FontWeight.w900,
@@ -94,10 +96,10 @@ class _SigninPageState extends State<SigninPage> {
                           ),
                           Row(
                             children: [
-                              Text('Welcome Back..'),
+                              Text(StringTranslateExtension('welcome').tr(),),
                               Icon(
                                 size: 20,
-                                Icons.favorite,
+                                Iconsax.heart5,
                                 color: AppColors.red,
                               ),
                             ],
@@ -111,7 +113,7 @@ class _SigninPageState extends State<SigninPage> {
                             children: [
                               Expanded(
                                 child: CustomTextField(
-                                  hintText: 'Email',
+                                  hintText: StringTranslateExtension('email').tr(),
                                   icon: Icons.email,
                                   width: width,
                                   enabled: true,
@@ -125,7 +127,7 @@ class _SigninPageState extends State<SigninPage> {
                             children: [
                               Expanded(
                                 child: CustomTextField(
-                                  hintText: 'Password',
+                                  hintText: StringTranslateExtension('password').tr(),
                                   icon: Icons.lock,
                                   width: width,
                                   enabled: true,
@@ -137,7 +139,7 @@ class _SigninPageState extends State<SigninPage> {
                       ),
                       SizedBox(height: AppSizes.verticalPadding * 3),
                       CustomButton(
-                        text: 'Sign in',
+                        text: StringTranslateExtension('sign_in').tr(),
                         radius: true,
                         width: 2,
                         page: HomePage(),
@@ -171,7 +173,7 @@ class _SigninPageState extends State<SigninPage> {
         //       top: AppSizes.horizontalPadding * 2,
         //       child: Container(
         //         height: 50,
-        //         child: Image.asset('lib/assets/images/logo.png'),
+        //         child: Image.asset('assets/images/logo.png'),
         //       ),
         //     ),
         //     Positioned(

@@ -6,6 +6,8 @@ import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'dart:ui' as ui;
 
 import '../../../shared/utils/app_colors.dart';
 
@@ -74,7 +76,7 @@ class _FoodCardState extends State<FoodCard> {
                 ),
                 InkWell(
                   onTap: () {
-                    addExtrasDialog(context, 'lib/assets/images/food5.jpg');
+                    addExtrasDialog(context, 'assets/images/food5.jpg');
                   },
                   child: CircleAvatar(
                     child: Icon(Iconsax.add, size: context.responsiveIconSize(AppSizes.iconSize)),
@@ -96,16 +98,21 @@ class _FoodCardState extends State<FoodCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Price: ", style: CustomTextStyles.smallText(context)),
-                Row(
-                  children: [
-                    SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6) , color: AppColors.darkPurple,),
-                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-                    Text(
-                      widget.price.toString(),
-                       style:CustomTextStyles.smallText(context).copyWith(color: AppColors.darkPurple, fontWeight: AppSizes.fontWeight1)
-                    ),
-                  ],
+                Text(StringTranslateExtension('price').tr(),style: CustomTextStyles.smallText(context)),
+                Text(':', style: CustomTextStyles.smallText(context)),
+                SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
+                Directionality(
+                  textDirection: ui.TextDirection.ltr,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6) , color: AppColors.darkPurple,),
+                      SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                      Text(
+                        widget.price.toString(),
+                         style:CustomTextStyles.smallText(context).copyWith(color: AppColors.darkPurple, fontWeight: AppSizes.fontWeight1)
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

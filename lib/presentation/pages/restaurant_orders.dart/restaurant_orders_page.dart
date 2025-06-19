@@ -28,6 +28,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class RestaurantOrdersPage extends StatefulWidget {
    const RestaurantOrdersPage({super.key});
@@ -170,11 +171,12 @@ class _LeftSideState extends State<LeftSide> {
                                 color: AppColors.white,
                               ),
                             ),
-                          ), SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                      CustomSearchField(text: 'Search'),
+                          ),
+                           SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                      CustomSearchField(text: StringTranslateExtension('search').tr(),),
                       SizedBox(width: AppSizes.horiSpacesBetweenElements),
                       CustomButton(
-                    text: 'Orders',
+                    text: StringTranslateExtension('orders').tr(),
                     radius: true,
                     width: 100,
                     page: OrdersPage(),
@@ -198,7 +200,7 @@ class _LeftSideState extends State<LeftSide> {
                SizedBox(height: AppSizes.verSpacesBetweenContainers),
                 Row(
                 children: [
-                  Text('Categories', style: CustomTextStyles.titleText(context)),
+                  Text(StringTranslateExtension('categories').tr(),style: CustomTextStyles.titleText(context)),
                 ],
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
@@ -214,33 +216,33 @@ class _LeftSideState extends State<LeftSide> {
                   children: [
                     
                       CategoryCard(
-                        image: 'lib/assets/images/food2.jpg',
+                        image: 'assets/images/food2.jpg',
                         category: 'Sweets',
                         itemsNum: 10,
                       ),
                       CategoryCard(
-                        image: 'lib/assets/images/food7.jpg',
+                        image: 'assets/images/food7.jpg',
                         category: 'Sanwishes',
                         itemsNum: 23,
                       ),
         
                       CategoryCard(
-                        image: 'lib/assets/images/food3.jpg',
+                        image: 'assets/images/food3.jpg',
                         category: 'Healthy',
                         itemsNum: 12,
                       ),
                       CategoryCard(
-                        image: 'lib/assets/images/food9.jpg',
+                        image: 'assets/images/food9.jpg',
                         category: 'Breakfast',
                         itemsNum: 3,
                       ),
                       CategoryCard(
-                        image: 'lib/assets/images/food12.jpg',
+                        image: 'assets/images/food12.jpg',
                         category: 'Fast Food',
                         itemsNum: 10,
                       ),
                       CategoryCard(
-                        image: 'lib/assets/images/food6.jpg',
+                        image: 'assets/images/food6.jpg',
                         category: 'Rice',
                         itemsNum: 6,
                       ),
@@ -249,7 +251,7 @@ class _LeftSideState extends State<LeftSide> {
               ),
              
               SizedBox(height: AppSizes.verSpacesBetweenContainers),
-              Row(children: [Text('Products', style: CustomTextStyles.titleText(context))]),
+              Row(children: [Text(StringTranslateExtension('products').tr(), style: CustomTextStyles.titleText(context))]),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
         
               Expanded(
@@ -266,67 +268,67 @@ class _LeftSideState extends State<LeftSide> {
                   ),
                   children: [
                     FoodCard(
-                      image: 'lib/assets/images/food5.jpg',
+                      image: 'assets/images/food5.jpg',
                       productName: 'Color Pencils',
                       price: 6,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food2.jpg',
+                      image: 'assets/images/food2.jpg',
                       productName: 'Color Pencils',
                       price: 3,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food3.jpg',
+                      image: 'assets/images/food3.jpg',
                       productName: 'Color Pencils',
                       price: 5,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food1.jpg',
+                      image: 'assets/images/food1.jpg',
                       productName: 'Color Pencils',
                       price: 6,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food4.jpg',
+                      image: 'assets/images/food4.jpg',
                       productName: 'Color Pencils',
                       price: 2,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food6.jpg',
+                      image: 'assets/images/food6.jpg',
                       productName: 'Color Pencils',
                       price: 8,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food7.jpg',
+                      image: 'assets/images/food7.jpg',
                       productName: 'Color Pencils',
                       price: 11,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food8.jpg',
+                      image: 'assets/images/food8.jpg',
                       productName: 'Color Pencils',
                       price: 4,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food9.jpg',
+                      image: 'assets/images/food9.jpg',
                       productName: 'Color Pencils',
                       price: 9,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food10.jpg',
+                      image: 'assets/images/food10.jpg',
                       productName: 'Color Pencils',
                       price: 7,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food11.jpg',
+                      image: 'assets/images/food11.jpg',
                       productName: 'Color Pencils',
                       price: 5,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food12.jpg',
+                      image: 'assets/images/food12.jpg',
                       productName: 'Color Pencils',
                       price: 12,
                     ),
                     FoodCard(
-                      image: 'lib/assets/images/food1.jpg',
+                      image: 'assets/images/food1.jpg',
                       productName: 'Color Pencils',
                       price: 22,
                     ),
@@ -373,7 +375,10 @@ class _RightSideState extends State<RightSide> {
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.lightGrey,
-          border: Border(left: BorderSide(color: AppColors.grey)),
+          border: Border(
+            left: BorderSide(color: AppColors.grey,  width: AppSizes.borderSize),
+            right: BorderSide(color: AppColors.grey, width: AppSizes.borderSize),
+            ),
         ),
         child: Column(
           children: [
@@ -456,7 +461,7 @@ class _RightSideState extends State<RightSide> {
                         SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
                         Text(
-                          'Ganeral Customer',
+                          StringTranslateExtension('general_customer').tr(),
                           style: CustomTextStyles.meduimText(context),
                         ),
                       ],
@@ -492,31 +497,31 @@ class _RightSideState extends State<RightSide> {
 
                 children: [
                   SellProductCard(
-                    image: 'lib/assets/images/food5.jpg',
+                    image: 'assets/images/food5.jpg',
                     amount: 1,
                     price: 15,
                     productName: "Rice with checken",
                   ),
                   SellProductCard(
-                    image: 'lib/assets/images/food3.jpg',
+                    image: 'assets/images/food3.jpg',
                     amount: 2,
                     price: 30,
                     productName: "Checken",
                   ),
                   SellProductCard(
-                    image: 'lib/assets/images/food2.jpg',
+                    image: 'assets/images/food2.jpg',
                     amount: 2,
                     price: 30,
                     productName: "Bluebary sweet",
                   ),
                   SellProductCard(
-                    image: 'lib/assets/images/food10.jpg',
+                    image: 'assets/images/food10.jpg',
                     amount: 1,
                     price: 25,
                     productName: "Frid Checken",
                   ),
                   SellProductCard(
-                    image: 'lib/assets/images/food12.jpg',
+                    image: 'assets/images/food12.jpg',
                     amount: 2,
                     price: 10,
                     productName: "Fast Food",
@@ -549,7 +554,7 @@ class _RightSideState extends State<RightSide> {
                       CustomDialogButton(
                         color: AppColors.yellow,
                         textColor: AppColors.black,
-                        text: 'Add Note',
+                        text: StringTranslateExtension('add_note').tr(),
                         dialog: addNoteDialog,
                         height: AppSizes.widgetHeight,
                       ),
@@ -559,7 +564,7 @@ class _RightSideState extends State<RightSide> {
                         child: CustomDropDownButton(
                           color: AppColors.lightBlue,
 
-                          title: 'Order Type',
+                          title: StringTranslateExtension('order_type').tr(),
                           list: ['Dine in', 'Take away', 'Delivery'],
                           selected: 'Dine in',
                           width: 300,
@@ -589,7 +594,7 @@ class _RightSideState extends State<RightSide> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Payment:', style: CustomTextStyles.buttonText(context)),
+                    Text(StringTranslateExtension('payment').tr(), style: CustomTextStyles.buttonText(context)),
                     SizedBox(width: AppSizes.horiSpacesBetweenElements),
                     SvgPicture.asset(
                       AppImages.rial,

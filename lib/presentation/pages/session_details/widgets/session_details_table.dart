@@ -4,6 +4,7 @@ import 'package:app/presentation/pages/session_details/widgets/custom_data_cell.
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SessionDetailsTable extends StatefulWidget {
   const SessionDetailsTable({super.key});
@@ -48,15 +49,7 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            'Shift'
-                            , style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
-                          ),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Center(
-                          child: Text(
-                            "Shift Number",
+                            StringTranslateExtension('shift').tr(),
                             style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
@@ -64,7 +57,7 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            'Opening Time',
+                           StringTranslateExtension('shift_number').tr(),
                             style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
@@ -72,7 +65,7 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            "Device",
+                            StringTranslateExtension('opening_time').tr(),
                             style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
@@ -80,7 +73,7 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            "Employee",
+                            StringTranslateExtension('device').tr(),
                             style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
@@ -88,7 +81,15 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            "Closing Time",
+                            StringTranslateExtension('employee').tr(),
+                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Center(
+                          child: Text(
+                           StringTranslateExtension('closing_time').tr(),
                             style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),

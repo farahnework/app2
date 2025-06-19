@@ -18,8 +18,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'dart:ui' as ui;
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -38,6 +40,11 @@ class _HomePageState extends State<HomePage> {
       context,
       listen: false,
     ).setScaffoldKey(scaffoldKey);
+    //    rootBundle.loadString('assets/languages/ar.json').then((value) {
+    //   print('AR file loaded: $value');
+    // }).catchError((error) {
+    //   print('Error loading AR file: $error');
+    // });
   }
 
   @override
@@ -76,10 +83,18 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
+
+  @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
+    print('Current Locale: ${context.locale}');
+
     int crossAxisCount =
         context.isMobile
             ? ScreenLayouts.mobileCrossAxisCount
@@ -96,10 +111,10 @@ class HomeBody extends StatelessWidget {
 
     double childAspectRatio =
         context.isMobile
-            ? 1.5
+            ? 1.8
             : ResponsiveSizing.isTablet(context)
-            ? 1.5
-            : 1.7;
+            ? 2
+            : 1.9;
 
     return Expanded(
       child: SingleChildScrollView(
@@ -110,6 +125,7 @@ class HomeBody extends StatelessWidget {
           ),
           child: Column(
             children: [
+             
               Container(
                 width: double.infinity,
                 child: GridView(
@@ -118,7 +134,7 @@ class HomeBody extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: crossAxisCount,
-                    crossAxisSpacing: spacing ,
+                    crossAxisSpacing: spacing,
                     mainAxisSpacing: spacing,
                     childAspectRatio: childAspectRatio,
                   ),
@@ -127,7 +143,7 @@ class HomeBody extends StatelessWidget {
                       child: CustomServiceCard(
                         color: AppColors.lightGreen,
                         icon: IconsaxPlusLinear.money_recive,
-                        text: "Income",
+                        text: StringTranslateExtension('income').tr(),
                         number: '25450',
                         iconAppear: true,
                         iconColor: AppColors.darkGreen,
@@ -137,7 +153,7 @@ class HomeBody extends StatelessWidget {
                       child: CustomServiceCard(
                         color: AppColors.lightPurple,
                         icon: IconsaxPlusLinear.receipt_1,
-                        text: "Invoices",
+                        text: StringTranslateExtension('invoices').tr(),
                         number: '512',
                         iconAppear: false,
                         iconColor: AppColors.darkPurple,
@@ -148,7 +164,7 @@ class HomeBody extends StatelessWidget {
                       child: CustomServiceCard(
                         color: AppColors.lightBlue,
                         icon: IconsaxPlusLinear.people,
-                        text: "Total Customers",
+                        text: StringTranslateExtension('total_customers').tr(),
                         number: '14',
                         iconAppear: false,
                         iconColor: AppColors.darkBlue,
@@ -159,7 +175,7 @@ class HomeBody extends StatelessWidget {
                       child: CustomServiceCard(
                         color: AppColors.lightYellow,
                         icon: IconsaxPlusLinear.user,
-                        text: "New Customers",
+                        text: StringTranslateExtension('new_customers').tr(),
                         number: '14',
                         iconAppear: false,
                         iconColor: AppColors.yellow,
@@ -173,11 +189,13 @@ class HomeBody extends StatelessWidget {
               CustomContainer(
                 child: Column(
                   children: [
+                   
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Rigesters',
+                          StringTranslateExtension('registers').tr(),
+
                           style: CustomTextStyles.titleText(context),
                         ),
                       ],
@@ -193,7 +211,7 @@ class HomeBody extends StatelessWidget {
                                   child: CustomDropDownButton(
                                     icon: IconsaxPlusLinear.tag,
                                     color: AppColors.white,
-                                    title: "Shift",
+                                    title: StringTranslateExtension('any_shift').tr(),
                                     list: ["Any Shift", "Main Shift"],
                                     selected: 'Any Shift',
                                     width: 200,
@@ -211,9 +229,12 @@ class HomeBody extends StatelessWidget {
                                   child: CustomDropDownButton(
                                     icon: IconsaxPlusLinear.tag,
                                     color: AppColors.white,
-                                    title: "Device",
+                                    title:
+                                        StringTranslateExtension(
+                                          'registers',
+                                        ).tr(),
                                     list: [
-                                      "Any Device",
+                                     StringTranslateExtension('any_device').tr(),
                                       "Device 1",
                                       'Device 2',
                                     ],
@@ -234,9 +255,10 @@ class HomeBody extends StatelessWidget {
                                   child: CustomDropDownButton(
                                     icon: IconsaxPlusLinear.tag,
                                     color: AppColors.white,
-                                    title: "Status",
+                                    title:
+                                        StringTranslateExtension('status').tr(),
                                     list: [
-                                      " Any Status ",
+                                      StringTranslateExtension('any_status').tr(),
                                       "Status 2",
                                       'Status1 ',
                                     ],
@@ -254,7 +276,8 @@ class HomeBody extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: CustomIconTextButton(
-                                    text: 'Search',
+                                    text:
+                                        StringTranslateExtension('shift').tr(),
                                     icon: IconsaxPlusLinear.search_normal_1,
                                     page: SellPage(),
                                   ),
@@ -272,8 +295,8 @@ class HomeBody extends StatelessWidget {
                                 CustomDropDownButton(
                                   icon: IconsaxPlusLinear.tag,
                                   color: AppColors.white,
-                                  title: "Shift",
-                                  list: ["Any Shift", "Main Shift"],
+                                  title: StringTranslateExtension('shift').tr(),
+                                  list: [StringTranslateExtension('any_shift').tr(),"Main Shift"],
                                   selected: 'Any Shift',
                                   width: 200,
                                   height: AppSizes.widgetHeight,
@@ -284,8 +307,9 @@ class HomeBody extends StatelessWidget {
                                 CustomDropDownButton(
                                   icon: IconsaxPlusLinear.tag,
                                   color: AppColors.white,
-                                  title: "Device",
-                                  list: ["Any Device", "Device 1", 'Device 2'],
+                                  title:
+                                      StringTranslateExtension('device').tr(),
+                                  list: [StringTranslateExtension('any_device').tr(), "Device 1", 'Device 2'],
                                   selected: 'اي جهاز',
                                   width: 200,
                                   height: AppSizes.widgetHeight,
@@ -297,9 +321,10 @@ class HomeBody extends StatelessWidget {
                                 CustomDropDownButton(
                                   icon: IconsaxPlusLinear.tag,
                                   color: AppColors.white,
-                                  title: "Status",
+                                  title:
+                                      StringTranslateExtension('status').tr(),
                                   list: [
-                                    " Any Status ",
+                                   StringTranslateExtension('any_status').tr(),
                                     "Status 2",
                                     'Status1 ',
                                   ],
@@ -310,7 +335,7 @@ class HomeBody extends StatelessWidget {
                               ],
                             ),
                             CustomIconTextButton(
-                              text: 'Search',
+                              text: StringTranslateExtension('search').tr(),
                               icon: IconsaxPlusLinear.search_normal_1,
                               page: SellPage(),
                             ),
@@ -377,54 +402,71 @@ class _CustomServiceCardState extends State<CustomServiceCard> {
             Radius.circular(context.responsiveIconSize(AppSizes.radius16)),
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              size: context.responsiveIconSize(30),
-              widget.icon,
-              color: widget.iconColor,
-            ),
-            SizedBox(width: context.responsiveSpacing(AppSizes.horiSpacesBetweenElements)),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+        child: Directionality(
+          textDirection: ui.TextDirection.ltr,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+
+            children: [
+              Icon(
+                size: context.responsiveIconSize(30),
+                widget.icon,
+                color: widget.iconColor,
+              ),
+              SizedBox(
+                width: context.responsiveSpacing(
+                  AppSizes.horiSpacesBetweenElements,
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    widget.iconAppear
-                        ? SvgPicture.asset(
-                          AppImages.rial,
-                          height: context.responsiveFontSize(
-                            AppSizes.fontSize2,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        widget.iconAppear
+                            ? SvgPicture.asset(
+                              AppImages.rial,
+                              height: context.responsiveFontSize(
+                                AppSizes.fontSize2,
+                              ),
+                            )
+                            : SizedBox(),
+                        widget.iconAppear
+                            ? SizedBox(width: AppSizes.horiSpacesBetweentTexts)
+                            : SizedBox(),
+                        Text(
+                          // AppLocalizations.of(context)!.home_page_card(widget.number),
+                          widget.number,
+                          style: TextStyle(
+                            fontSize: context.responsiveFontSize(
+                              AppSizes.fontSize1,
+                            ),
+                            fontWeight: FontWeight.w900,
                           ),
-                        )
-                        : SizedBox(),
-                    widget.iconAppear
-                        ? SizedBox(width: AppSizes.horiSpacesBetweentTexts)
-                        : SizedBox(),
-                    Text(
-                      widget.number,
-                      style: TextStyle(
-                        fontSize: context.responsiveFontSize(
-                          AppSizes.fontSize1,
                         ),
-                        fontWeight: FontWeight.w900,
+                      ],
+                    ),
+                    Text(
+                      maxLines: null,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
+                      widget.text,
+                      style: TextStyle(
+                        color: AppColors.darkGray,
+                        fontSize: context.responsiveFontSize(
+                          AppSizes.fontSize3,
+                        ),
                       ),
                     ),
                   ],
                 ),
-                Text(
-                  widget.text,
-                  style: TextStyle(
-                    color: AppColors.darkGray,
-                    fontSize: context.responsiveFontSize(AppSizes.fontSize3),
-                  ),
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );

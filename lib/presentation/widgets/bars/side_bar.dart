@@ -44,7 +44,7 @@ class _SideBarState extends State<SideBar> {
               children: [
                 SizedBox(
                   height: 45,
-                  child: Image.asset('lib/assets/images/logo.png'),
+                  child: Image.asset('assets/images/logo.png'),
                 ),
                 // Divider(color: AppColors.grey),
                 SizedBox(height: AppSizes.verSpacesBetweenContainers * 2),

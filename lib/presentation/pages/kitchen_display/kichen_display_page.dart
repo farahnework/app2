@@ -7,6 +7,7 @@ import 'package:app/presentation/pages/kitchen_display/widgets/kitchen_order_car
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class KitchenDisplayPage extends StatefulWidget {
   const KitchenDisplayPage({super.key});
@@ -67,10 +68,10 @@ class _KitchenDisplayPageState extends State<KitchenDisplayPage> {
                           fontWeight: FontWeight.bold,
                         ),
                         tabs: [
-                          Tab(text: "All Orders"),
-                          Tab(text: "To Cook"),
-                          Tab(text: "Ready"),
-                          Tab(text: "Completed"),
+                          Tab(text: StringTranslateExtension('all_orders').tr() ),
+                          Tab(text: StringTranslateExtension('to_cook').tr() ),
+                          Tab(text: StringTranslateExtension('ready').tr() ),
+                          Tab(text: StringTranslateExtension('completed').tr() ),
                         ],
                       ),
                     ),
@@ -135,7 +136,7 @@ class _View1State extends State<View1> {
           children: [
             KitchenOrderCard(
               orderId: 'D-002',
-              type: 'Delivery',
+              type: StringTranslateExtension('delivery').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -150,7 +151,7 @@ class _View1State extends State<View1> {
             ),
             KitchenOrderCard(
               orderId: 'D-002',
-              type: 'Delivery',
+              type: StringTranslateExtension('delivery').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -159,7 +160,7 @@ class _View1State extends State<View1> {
             ),
             KitchenOrderCard(
               orderId: 'D-002',
-              type: 'Takeaway',
+              type: StringTranslateExtension('takeaway').tr(),
               items: [
                 {'name': 'Soda', 'quantity': 2},
                 {'name': 'Soda', 'quantity': 2},
@@ -168,7 +169,7 @@ class _View1State extends State<View1> {
 
             KitchenOrderCard(
               orderId: 'D-002',
-              type: 'Dine in',
+              type:  StringTranslateExtension('dine_in').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -181,7 +182,7 @@ class _View1State extends State<View1> {
             ),
             KitchenOrderCard(
               orderId: 'D-002',
-              type: 'Takeaway',
+              type: StringTranslateExtension('takeaway').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -194,7 +195,7 @@ class _View1State extends State<View1> {
             ),
             KitchenOrderCard(
               orderId: 'D-002',
-              type: 'Delivery',
+              type: StringTranslateExtension('delivery').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -255,7 +256,7 @@ class _View2State extends State<View2> {
           children: [
             KitchenOrderCard(
               orderId: 'D-002',
-              type: 'Delivery',
+              type: StringTranslateExtension('delivery').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -264,7 +265,7 @@ class _View2State extends State<View2> {
             ),
             KitchenOrderCard(
               orderId: 'T-012',
-              type: 'Takeaway',
+              type: StringTranslateExtension('takeaway').tr(),
               items: [
                 {'name': 'Soda', 'quantity': 2},
                 {'name': 'Soda', 'quantity': 2},
@@ -286,7 +287,7 @@ class _View2State extends State<View2> {
             ),
             KitchenOrderCard(
               orderId: 'D-014',
-              type: 'Delivery',
+              type: StringTranslateExtension('delivery').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -347,7 +348,7 @@ class _View3State extends State<View3> {
           children: [
             KitchenOrderCard(
               orderId: 'D-001',
-              type: 'Delivery',
+              type: StringTranslateExtension('delivery').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -356,7 +357,7 @@ class _View3State extends State<View3> {
             ),
             KitchenOrderCard(
               orderId: 'T-045',
-              type: 'Takeaway',
+              type: StringTranslateExtension('takeaway').tr(),
               items: [
                 {'name': 'Soda', 'quantity': 2},
                 {'name': 'Soda', 'quantity': 2},
@@ -365,7 +366,7 @@ class _View3State extends State<View3> {
 
             KitchenOrderCard(
               orderId: 'T-012',
-              type: 'Takeaway',
+              type: StringTranslateExtension('takeaway').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -429,7 +430,7 @@ class _View4State extends State<View4> {
           children: [
             KitchenOrderCard(
               orderId: 'D-004',
-              type: 'Delivery',
+              type: StringTranslateExtension('delivery').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -444,7 +445,7 @@ class _View4State extends State<View4> {
             ),
             KitchenOrderCard(
               orderId: 'D-003',
-              type: 'Delivery',
+              type: StringTranslateExtension('delivery').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},
@@ -467,7 +468,7 @@ class _View4State extends State<View4> {
             ),
             KitchenOrderCard(
               orderId: 'D-002',
-              type: 'Delivery',
+              type: StringTranslateExtension('delivery').tr(),
               items: [
                 {'name': 'Burger', 'quantity': 2},
                 {'name': 'Fries', 'quantity': 1},

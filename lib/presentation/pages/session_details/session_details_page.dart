@@ -12,6 +12,7 @@ import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SessionDetailsPage extends StatefulWidget {
   const SessionDetailsPage({super.key});
@@ -61,10 +62,10 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                           fontWeight: FontWeight.bold,
                         ),
                         tabs: [
-                          Tab(text: "Summary"),
-                          Tab(text: "Money Movments"),
-                          Tab(text: "Transactions"),
-                          Tab(text: "Payable"),
+                          Tab(text: StringTranslateExtension('summary').tr(),),
+                          Tab(text: StringTranslateExtension('money_movments').tr(),),
+                          Tab(text: StringTranslateExtension('transactions').tr(),),
+                          Tab(text:StringTranslateExtension('payable').tr(),),
                         ],
                       ),
                     ),
@@ -81,7 +82,7 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                         // ),
                         // SizedBox(width: AppSizes.horiSpacesBetweenElements),
                         CustomButton(
-                          text: 'Sale Screen',
+                          text: StringTranslateExtension('sale_screen').tr(),
                           radius: true,
                           width: 120,
                           page: SellPage(),
@@ -129,22 +130,22 @@ class _View1State extends State<View1> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Session Deatils:',style: CustomTextStyles.titleText(context)),
+                Text(StringTranslateExtension('session_details').tr(), style: CustomTextStyles.titleText(context)),
                 SizedBox(height: AppSizes.verSpacesBetweenElements),
                 SessionDetailsTable(),
                 SizedBox(height: AppSizes.verSpacesBetweenContainers),
 
                 Text(
-                  'Summery of Payment Method:'
-                  , style: CustomTextStyles.titleText(context)
+                 StringTranslateExtension('summery_of_payment_method').tr(), 
+                 style: CustomTextStyles.titleText(context)
                 ),
                 SizedBox(height: AppSizes.verSpacesBetweenElements),
                 PaymentMethodsTable(),
                 SizedBox(height: AppSizes.verSpacesBetweenContainers),
 
                 Text(
-                  'Payment Method Details for Sales:'
-                  ,style:  CustomTextStyles.titleText(context),
+                   StringTranslateExtension("payment_method_details_for_sales").tr(), 
+                   style:  CustomTextStyles.titleText(context),
                 ),
                 SizedBox(height: AppSizes.verSpacesBetweenElements),
                 DetailOfPaymentTable(),
@@ -172,7 +173,7 @@ class _View2State extends State<View2> {
         Icon(IconsaxPlusLinear.warning_2, size: context.responsiveIconSize(AppSizes.iconSize),),
         SizedBox(height: AppSizes.verSpacesBetweenElements,),
         Text(
-          'There is No Data',
+          StringTranslateExtension("there_is_no_data").tr(), 
           style: CustomTextStyles.smallText(context),
         ),
       ],
@@ -195,7 +196,7 @@ class _View3State extends State<View3> {
         Icon(IconsaxPlusLinear.warning_2, size: context.responsiveIconSize(AppSizes.iconSize),),
         SizedBox(height: AppSizes.verSpacesBetweenElements,),
         Text(
-          'There is No Data',
+          StringTranslateExtension("there_is_no_data").tr(), 
           style: CustomTextStyles.smallText(context),
         ),
       ],
@@ -218,7 +219,7 @@ class _View4State extends State<View4> {
         Icon(IconsaxPlusLinear.warning_2, size: context.responsiveIconSize(AppSizes.iconSize),),
         SizedBox(height: AppSizes.verSpacesBetweenElements,),
         Text(
-          'There is No Data',
+         StringTranslateExtension("there_is_no_data").tr(), 
           style: CustomTextStyles.smallText(context),
         ),
       ],

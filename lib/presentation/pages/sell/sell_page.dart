@@ -24,6 +24,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'dart:ui' as ui;
 
 import '../../widgets/crads/product_card.dart';
 
@@ -123,6 +125,73 @@ class LeftSide extends StatefulWidget {
 }
 
 class _LeftSideState extends State<LeftSide> {
+  final List<CategoryCard> categoryCards = [
+    CategoryCard(
+      image: 'assets/images/pens.webp',
+      category: 'Pens',
+      itemsNum: 10,
+    ),
+    CategoryCard(
+      image: 'assets/images/pencils.webp',
+      category: 'Pencils',
+      itemsNum: 23,
+    ),
+    CategoryCard(
+      image: 'assets/images/notebooks.jpg',
+      category: 'Notebooks',
+      itemsNum: 12,
+    ),
+    CategoryCard(
+      image: 'assets/images/highlights.jpg',
+      category: 'Highlights',
+      itemsNum: 3,
+    ),
+    CategoryCard(
+      image: 'assets/images/pens.webp',
+      category: 'Pens',
+      itemsNum: 10,
+    ),
+    CategoryCard(
+      image: 'assets/images/eraser.jpg',
+      category: 'Eraser',
+      itemsNum: 6,
+    ),
+    CategoryCard(
+      image: 'assets/images/pencils.webp',
+      category: 'Pencils',
+      itemsNum: 23,
+    ),
+    CategoryCard(
+      image: 'assets/images/notebooks.jpg',
+      category: 'Notebooks',
+      itemsNum: 12,
+    ),
+    CategoryCard(
+      image: 'assets/images/highlights.jpg',
+      category: 'Highlights',
+      itemsNum: 3,
+    ),
+    CategoryCard(
+      image: 'assets/images/highlights.jpg',
+      category: 'Highlights',
+      itemsNum: 3,
+    ),
+    CategoryCard(
+      image: 'assets/images/eraser.jpg',
+      category: 'Eraser',
+      itemsNum: 6,
+    ),
+    CategoryCard(
+      image: 'assets/images/pencils.webp',
+      category: 'Pencils',
+      itemsNum: 23,
+    ),
+    CategoryCard(
+      image: 'assets/images/notebooks.jpg',
+      category: 'Notebooks',
+      itemsNum: 12,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     int categoriesCrossAxisCount =
@@ -173,7 +242,12 @@ class _LeftSideState extends State<LeftSide> {
                             containerSize: context.screenHeight,
                             percentage: AppSizes.widgetHeight,
                           ),
-                          decoration: BoxDecoration(color: AppColors.darkBlue, borderRadius: BorderRadius.circular(context.responsiveBorderRadius(AppSizes.radius12))),
+                          decoration: BoxDecoration(
+                            color: AppColors.darkBlue,
+                            borderRadius: BorderRadius.circular(
+                              context.responsiveBorderRadius(AppSizes.radius12),
+                            ),
+                          ),
                           child: IconButton(
                             color: AppColors.darkPurple,
 
@@ -186,7 +260,8 @@ class _LeftSideState extends State<LeftSide> {
                               color: AppColors.white,
                             ),
                           ),
-                        ), SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                        ),
+                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
                       CustomIconButton(
                         onPresse: addNoteDialog,
                         icon: IconsaxPlusLinear.scan_barcode,
@@ -194,10 +269,10 @@ class _LeftSideState extends State<LeftSide> {
                         iconColor: AppColors.darkPurple,
                         size: AppSizes.widgetHeight,
                       ),
-                       SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                      CustomSearchField(text: 'Search'),
-
-                     
+                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                      CustomSearchField(
+                        text: StringTranslateExtension('search').tr(),
+                      ),
                     ],
                   ),
                   if (!context.isMobile)
@@ -223,7 +298,7 @@ class _LeftSideState extends State<LeftSide> {
               child: Row(
                 children: [
                   Text(
-                    'Categories',
+                    StringTranslateExtension('categories').tr(),
                     style: CustomTextStyles.titleText(context),
                   ),
                 ],
@@ -248,71 +323,71 @@ class _LeftSideState extends State<LeftSide> {
                   shrinkWrap: true,
                   children: [
                     CategoryCard(
-                      image: 'lib/assets/images/pens.webp',
+                      image: 'assets/images/pens.webp',
                       category: 'Pens',
                       itemsNum: 10,
                     ),
                     CategoryCard(
-                      image: 'lib/assets/images/pencils.webp',
+                      image: 'assets/images/pencils.webp',
                       category: 'Pencils',
                       itemsNum: 23,
                     ),
 
                     CategoryCard(
-                      image: 'lib/assets/images/notebooks.jpg',
+                      image: 'assets/images/notebooks.jpg',
                       category: 'Notebooks',
                       itemsNum: 12,
                     ),
                     CategoryCard(
-                      image: 'lib/assets/images/highlights.jpg',
+                      image: 'assets/images/highlights.jpg',
                       category: 'Highlights',
                       itemsNum: 3,
                     ),
                     CategoryCard(
-                      image: 'lib/assets/images/pens.webp',
+                      image: 'assets/images/pens.webp',
                       category: 'Pens',
                       itemsNum: 10,
                     ),
                     CategoryCard(
-                      image: 'lib/assets/images/eraser.jpg',
+                      image: 'assets/images/eraser.jpg',
                       category: 'Eraser',
                       itemsNum: 6,
                     ),
                     CategoryCard(
-                      image: 'lib/assets/images/pencils.webp',
+                      image: 'assets/images/pencils.webp',
                       category: 'Pencils',
                       itemsNum: 23,
                     ),
 
                     CategoryCard(
-                      image: 'lib/assets/images/notebooks.jpg',
+                      image: 'assets/images/notebooks.jpg',
                       category: 'Notebooks',
                       itemsNum: 12,
                     ),
                     CategoryCard(
-                      image: 'lib/assets/images/highlights.jpg',
+                      image: 'assets/images/highlights.jpg',
                       category: 'Highlights',
                       itemsNum: 3,
                     ),
                     CategoryCard(
-                      image: 'lib/assets/images/highlights.jpg',
+                      image: 'assets/images/highlights.jpg',
                       category: 'Highlights',
                       itemsNum: 3,
                     ),
-                   
+
                     CategoryCard(
-                      image: 'lib/assets/images/eraser.jpg',
+                      image: 'assets/images/eraser.jpg',
                       category: 'Eraser',
                       itemsNum: 6,
                     ),
                     CategoryCard(
-                      image: 'lib/assets/images/pencils.webp',
+                      image: 'assets/images/pencils.webp',
                       category: 'Pencils',
                       itemsNum: 23,
                     ),
 
                     CategoryCard(
-                      image: 'lib/assets/images/notebooks.jpg',
+                      image: 'assets/images/notebooks.jpg',
                       category: 'Notebooks',
                       itemsNum: 12,
                     ),
@@ -320,6 +395,7 @@ class _LeftSideState extends State<LeftSide> {
                 ),
               ),
             ),
+
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
             Padding(
               padding: EdgeInsets.symmetric(
@@ -329,7 +405,10 @@ class _LeftSideState extends State<LeftSide> {
               ),
               child: Row(
                 children: [
-                  Text('Products', style: CustomTextStyles.titleText(context)),
+                  Text(
+                    StringTranslateExtension('products').tr(),
+                    style: CustomTextStyles.titleText(context),
+                  ),
                 ],
               ),
             ),
@@ -357,67 +436,67 @@ class _LeftSideState extends State<LeftSide> {
                   ),
                   children: [
                     ProductCard(
-                      image: 'lib/assets/images/eraser.jpg',
+                      image: 'assets/images/eraser.jpg',
                       productName: 'Color Pencils',
                       price: 6,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/eraser2.jpg',
+                      image: 'assets/images/eraser2.jpg',
                       productName: 'Color Pencils',
                       price: 3,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/image8.jpg',
+                      image: 'assets/images/image8.jpg',
                       productName: 'Color Pencils',
                       price: 5,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/highlights.jpg',
+                      image: 'assets/images/highlights.jpg',
                       productName: 'Color Pencils',
                       price: 6,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/image2.jpg',
+                      image: 'assets/images/image2.jpg',
                       productName: 'Color Pencils',
                       price: 2,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/image4.jpg',
+                      image: 'assets/images/image4.jpg',
                       productName: 'Color Pencils',
                       price: 8,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/image3.jpg',
+                      image: 'assets/images/image3.jpg',
                       productName: 'Color Pencils',
                       price: 11,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/image6.jpg',
+                      image: 'assets/images/image6.jpg',
                       productName: 'Color Pencils',
                       price: 4,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/image5.jpg',
+                      image: 'assets/images/image5.jpg',
                       productName: 'Color Pencils',
                       price: 9,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/image1.jpg',
+                      image: 'assets/images/image1.jpg',
                       productName: 'Color Pencils',
                       price: 7,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/image2.jpg',
+                      image: 'assets/images/image2.jpg',
                       productName: 'Color Pencils',
                       price: 5,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/image8.jpg',
+                      image: 'assets/images/image8.jpg',
                       productName: 'Color Pencils',
                       price: 12,
                     ),
                     ProductCard(
-                      image: 'lib/assets/images/image7.jpg',
+                      image: 'assets/images/image7.jpg',
                       productName: 'Color Pencils',
                       price: 22,
                     ),
@@ -448,7 +527,10 @@ class _RightSideState extends State<RightSide> {
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.lightGrey,
-          border: Border(left: BorderSide(color: AppColors.grey)),
+          border: Border(
+            left: BorderSide(color: AppColors.grey , width: AppSizes.borderSize),
+            right: BorderSide(color: AppColors.grey, width: AppSizes.borderSize),
+            ),
         ),
         child: Column(
           children: [
@@ -500,6 +582,7 @@ class _RightSideState extends State<RightSide> {
                   ),
                   Expanded(
                     child: Container(
+                      
                       height: context.responsiveRelativeSize(
                         containerSize: context.screenHeight,
                         percentage: AppSizes.widgetHeight,
@@ -533,6 +616,7 @@ class _RightSideState extends State<RightSide> {
                     context.responsiveSpacing(AppSizes.horizontalPadding) / 1.5,
               ),
               child: Container(
+               
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -546,7 +630,7 @@ class _RightSideState extends State<RightSide> {
                         SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
                         Text(
-                          'Ganeral Customer',
+                           StringTranslateExtension('general_customer').tr(),
                           style: CustomTextStyles.meduimText(context),
                         ),
                       ],
@@ -581,31 +665,31 @@ class _RightSideState extends State<RightSide> {
                 scrollDirection: Axis.vertical,
                 children: [
                   SellProductCard(
-                    image: 'lib/assets/images/eraser.jpg',
+                    image: 'assets/images/eraser.jpg',
                     amount: 1,
                     price: 2000,
                     productName: "Asus Laptop",
                   ),
                   SellProductCard(
-                    image: 'lib/assets/images/image1.jpg',
+                    image: 'assets/images/image1.jpg',
                     amount: 2,
                     price: 20,
                     productName: "Pens",
                   ),
                   SellProductCard(
-                    image: 'lib/assets/images/image2.jpg',
+                    image: 'assets/images/image2.jpg',
                     amount: 2,
                     price: 3,
                     productName: "Pens",
                   ),
                   SellProductCard(
-                    image: 'lib/assets/images/image3.jpg',
+                    image: 'assets/images/image3.jpg',
                     amount: 1,
                     price: 5,
                     productName: "Pens",
                   ),
                   SellProductCard(
-                    image: 'lib/assets/images/image4.jpg',
+                    image: 'assets/images/image4.jpg',
                     amount: 2,
                     price: 7,
                     productName: "Pens",
@@ -642,26 +726,35 @@ class _RightSideState extends State<RightSide> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Payment:',
+                            StringTranslateExtension('payment').tr(),
                             style: CustomTextStyles.buttonText(
                               context,
                             ).copyWith(fontWeight: AppSizes.fontWeight1),
                           ),
                           SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                          SvgPicture.asset(
-                            AppImages.rial,
-                            width: context.responsiveFontSize(
-                              AppSizes.fontSize6,
-                            ),
-                            color: AppColors.white,
-                          ),
-                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                          Directionality(
+                            textDirection: ui.TextDirection.ltr,
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(
+                                  AppImages.rial,
+                                  width: context.responsiveFontSize(
+                                    AppSizes.fontSize6,
+                                  ),
+                                  color: AppColors.white,
+                                ),
+                                SizedBox(
+                                  width: AppSizes.horiSpacesBetweentTexts,
+                                ),
 
-                          Text(
-                            '260',
-                            style: CustomTextStyles.buttonText(
-                              context,
-                            ).copyWith(fontWeight: AppSizes.fontWeight1),
+                                Text(
+                                  '260',
+                                  style: CustomTextStyles.buttonText(
+                                    context,
+                                  ).copyWith(fontWeight: AppSizes.fontWeight1),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -730,7 +823,7 @@ class _CustomDialogState extends State<CustomDialog> {
                   ),
                   SizedBox(width: AppSizes.horiSpacesBetweenElements),
                   Text(
-                    'Payment',
+                    StringTranslateExtension('payment').tr(),
                     style: CustomTextStyles.titleText(
                       context,
                     ).copyWith(color: AppColors.darkPurple),
@@ -827,23 +920,35 @@ Widget tab1(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Subtotal:', style: CustomTextStyles.meduimText(context)),
-              SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Text('Discount:', style: CustomTextStyles.meduimText(context)),
-              SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Text('VAT:', style: CustomTextStyles.meduimText(context)),
-              SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Text('Total:', style: CustomTextStyles.meduimText(context)),
+              Text(
+                StringTranslateExtension('subtotal').tr(),
+                style: CustomTextStyles.meduimText(context),
+              ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
               Text(
-                'Payed:',
+                StringTranslateExtension('discount').tr(),
+                style: CustomTextStyles.meduimText(context),
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text(
+                StringTranslateExtension('vat').tr(),
+                style: CustomTextStyles.meduimText(context),
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text(
+                StringTranslateExtension('total').tr(),
+                style: CustomTextStyles.meduimText(context),
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text(
+                StringTranslateExtension('payed').tr(),
                 style: CustomTextStyles.largeText(
                   context,
                 ).copyWith(color: AppColors.darkGreen),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
               Text(
-                'Returned:',
+                StringTranslateExtension('returned').tr(),
                 style: CustomTextStyles.largeText(
                   context,
                 ).copyWith(color: AppColors.red),
@@ -856,90 +961,106 @@ Widget tab1(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
 
             children: [
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppImages.rial,
-                    width: context.responsiveFontSize(AppSizes.fontSize6),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('1520', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('1520', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SizedBox(
-                    height: 15,
-                    width: 15,
-                    child: Image.asset("lib/assets/icons/rial.png"),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('200', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('200', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SizedBox(
-                    height: 15,
-                    width: 15,
-                    child: Image.asset("lib/assets/icons/rial.png"),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('350', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('350', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppImages.rial,
-                    width: context.responsiveFontSize(AppSizes.fontSize6),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('1800', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('1800', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppImages.rial,
-                    width: context.responsiveFontSize(AppSizes.fontSize6),
-                    color: AppColors.darkGreen,
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text(
-                    '2000',
-                    style: CustomTextStyles.largeText(
-                      context,
-                    ).copyWith(color: AppColors.darkGreen),
-                  ),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                      color: AppColors.darkGreen,
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text(
+                      '2000',
+                      style: CustomTextStyles.largeText(
+                        context,
+                      ).copyWith(color: AppColors.darkGreen),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppImages.rial,
-                    width: context.responsiveFontSize(AppSizes.fontSize6),
-                    color: AppColors.red,
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text(
-                    '20',
-                    style: CustomTextStyles.largeText(
-                      context,
-                    ).copyWith(color: AppColors.red),
-                  ),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                      color: AppColors.red,
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text(
+                      '20',
+                      style: CustomTextStyles.largeText(
+                        context,
+                      ).copyWith(color: AppColors.red),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -966,16 +1087,28 @@ Widget tab2(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Subtotal:', style: CustomTextStyles.meduimText(context)),
-              SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Text('Discount:', style: CustomTextStyles.meduimText(context)),
-              SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Text('VAT:', style: CustomTextStyles.meduimText(context)),
-              SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Text('Total:', style: CustomTextStyles.meduimText(context)),
+              Text(
+                StringTranslateExtension('subtotal').tr(),
+                style: CustomTextStyles.meduimText(context),
+              ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
               Text(
-                'Payed:',
+                StringTranslateExtension('discount').tr(),
+                style: CustomTextStyles.meduimText(context),
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text(
+                StringTranslateExtension('vat').tr(),
+                style: CustomTextStyles.meduimText(context),
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text(
+                StringTranslateExtension('total').tr(),
+                style: CustomTextStyles.meduimText(context),
+              ),
+              SizedBox(height: AppSizes.verSpacesBetweenElements),
+              Text(
+                StringTranslateExtension('payed').tr(),
                 style: CustomTextStyles.largeText(
                   context,
                 ).copyWith(color: AppColors.darkGreen),
@@ -988,72 +1121,85 @@ Widget tab2(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
 
             children: [
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppImages.rial,
-                    width: context.responsiveFontSize(AppSizes.fontSize6),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('1520', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('1520', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SizedBox(
-                    height: 15,
-                    width: 15,
-                    child: Image.asset("lib/assets/icons/rial.png"),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('200', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('200', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SizedBox(
-                    height: 15,
-                    width: 15,
-                    child: Image.asset("lib/assets/icons/rial.png"),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('350', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('350', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppImages.rial,
-                    width: context.responsiveFontSize(AppSizes.fontSize6),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('1800', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('1800', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppImages.rial,
-                    width: context.responsiveFontSize(AppSizes.fontSize6),
-                    color: AppColors.darkGreen,
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text(
-                    '2000',
-                    style: CustomTextStyles.largeText(
-                      context,
-                    ).copyWith(color: AppColors.darkGreen),
-                  ),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                      color: AppColors.darkGreen,
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text(
+                      '2000',
+                      style: CustomTextStyles.largeText(
+                        context,
+                      ).copyWith(color: AppColors.darkGreen),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -1086,10 +1232,13 @@ Widget tab3(BuildContext context) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                 children: [
-                  Text("Cash:", style: CustomTextStyles.meduimText(context)),
+                  Text(
+                    StringTranslateExtension('cash').tr(),
+                    style: CustomTextStyles.meduimText(context),
+                  ),
                   SizedBox(width: AppSizes.horiSpacesBetweenElements),
                   CustomTextField(
-                    hintText: 'Cash',
+                    hintText: StringTranslateExtension('cash').tr(),
                     width: 250,
                     enabled: true,
                     icon: IconsaxPlusLinear.coin,
@@ -1100,10 +1249,13 @@ Widget tab3(BuildContext context) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Card:", style: CustomTextStyles.meduimText(context)),
+                  Text(
+                    StringTranslateExtension('card').tr(),
+                    style: CustomTextStyles.meduimText(context),
+                  ),
                   SizedBox(width: AppSizes.horiSpacesBetweenElements),
                   CustomTextField(
-                    hintText: 'Card',
+                    hintText: StringTranslateExtension('card').tr(),
                     width: 250,
                     enabled: true,
                     icon: IconsaxPlusLinear.card,
@@ -1116,7 +1268,10 @@ Widget tab3(BuildContext context) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                 children: [
-                  Text("Total:", style: CustomTextStyles.meduimText(context)),
+                  Text(
+                    StringTranslateExtension('total').tr(),
+                    style: CustomTextStyles.meduimText(context),
+                  ),
                   SizedBox(width: AppSizes.horiSpacesBetweenElements),
                   CustomTextField(
                     hintText: '2000',
@@ -1151,13 +1306,13 @@ Widget tab4(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Subtotal:', style: CustomTextStyles.meduimText(context)),
+              Text(StringTranslateExtension('subtotal').tr(), style: CustomTextStyles.meduimText(context)),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Text('Discount:', style: CustomTextStyles.meduimText(context)),
+              Text(StringTranslateExtension('discount').tr(), style: CustomTextStyles.meduimText(context)),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Text('VAT:', style: CustomTextStyles.meduimText(context)),
+              Text(StringTranslateExtension('vat').tr(), style: CustomTextStyles.meduimText(context)),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Text('Total:', style: CustomTextStyles.meduimText(context)),
+              Text(StringTranslateExtension('total').tr(), style: CustomTextStyles.meduimText(context)),
             ],
           ),
           SizedBox(width: AppSizes.verSpacesBetweenContainers),
@@ -1166,54 +1321,64 @@ Widget tab4(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
 
             children: [
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppImages.rial,
-                    width: context.responsiveFontSize(AppSizes.fontSize6),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('1520', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('1520', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SizedBox(
-                    height: 15,
-                    width: 15,
-                    child: Image.asset("lib/assets/icons/rial.png"),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('200', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                   SvgPicture.asset(
+                        AppImages.rial,
+                        width: context.responsiveFontSize(AppSizes.fontSize6),
+                      ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('200', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SizedBox(
-                    height: 15,
-                    width: 15,
-                    child: Image.asset("lib/assets/icons/rial.png"),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('350', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                   SvgPicture.asset(
+                        AppImages.rial,
+                        width: context.responsiveFontSize(AppSizes.fontSize6),
+                      ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('350', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppImages.rial,
-                    width: context.responsiveFontSize(AppSizes.fontSize6),
-                  ),
-                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                  Text('1800', style: CustomTextStyles.smallText(context)),
-                ],
+              Directionality(
+                textDirection: ui.TextDirection.ltr,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.rial,
+                      width: context.responsiveFontSize(AppSizes.fontSize6),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                
+                    Text('1800', style: CustomTextStyles.smallText(context)),
+                  ],
+                ),
               ),
             ],
           ),
@@ -1232,7 +1397,7 @@ Widget dialogleftSide(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              'Customer Information:',
+              StringTranslateExtension('customer_information').tr(),
               style: CustomTextStyles.titleText(context),
             ),
           ],
@@ -1256,7 +1421,7 @@ Widget dialogleftSide(BuildContext context) {
               icon: IconsaxPlusLinear.tag,
               color: AppColors.white,
 
-              title: 'General Customer',
+              title:StringTranslateExtension('general_customer').tr(),
               list: ['Customer 1', 'Customer 2'],
               selected: "Customer 1",
               width: 200,
@@ -1279,20 +1444,25 @@ Widget dialogleftSide(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "General Customer",
+              StringTranslateExtension('general_customer').tr(),
               style: CustomTextStyles.titleText(context),
             ),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
-            Row(
-              children: [
-                SvgPicture.asset(
-                  AppImages.rial,
-                  width: context.responsiveFontSize(AppSizes.fontSize6),
-                ),
-                SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
-                Text("200,444", style: CustomTextStyles.titleText(context)),
-              ],
+            Directionality(
+              textDirection: ui.TextDirection.ltr,
+              child: Row(
+                children: [
+                   Spacer(),
+                  SvgPicture.asset(
+                    AppImages.rial,
+                    width: context.responsiveFontSize(AppSizes.fontSize6),
+                  ),
+                  SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+              
+                  Text("200,444", style: CustomTextStyles.titleText(context)),
+                 
+                ],
+              ),
             ),
           ],
         ),
@@ -1312,7 +1482,7 @@ Widget dialogRightSide(TabController tabController, BuildContext context) {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Payment Method:', style: CustomTextStyles.titleText(context)),
+            Text(StringTranslateExtension("payment_method").tr(), style: CustomTextStyles.titleText(context)),
           ],
         ),
       if (context.isMobile) SizedBox(height: AppSizes.verSpacesBetweenElements),
@@ -1338,16 +1508,16 @@ Widget dialogRightSide(TabController tabController, BuildContext context) {
           labelColor: AppColors.white,
           controller: tabController,
           tabs: [
-            Tab(text: 'Cash'),
-            Tab(text: 'Card'),
-            Tab(text: 'Cash + Card'),
-            Tab(text: 'Debt'),
+            Tab(text: StringTranslateExtension("cash").tr(),),
+            Tab(text: StringTranslateExtension("card").tr(),),
+            Tab(text: "${StringTranslateExtension("cash").tr()} + ${StringTranslateExtension("card").tr()}"),
+            Tab(text: StringTranslateExtension("debt").tr(),),
           ],
         ),
       ),
       SizedBox(height: AppSizes.verSpacesBetweenContainers),
       Container(
-        height: context.screenHeight / 3,
+        height: context.screenHeight / 2.9,
         child: TabBarView(
           controller: tabController,
           children: [
@@ -1362,7 +1532,7 @@ Widget dialogRightSide(TabController tabController, BuildContext context) {
       Row(
         children: [
           CustomButton(
-            text: 'Validate',
+            text: StringTranslateExtension("validate").tr(),
             radius: true,
             width: 200,
             page: SellPage(),
@@ -1371,7 +1541,7 @@ Widget dialogRightSide(TabController tabController, BuildContext context) {
             textColor: AppColors.white,
           ),
           SizedBox(width: AppSizes.horiSpacesBetweenElements),
-          CustomCancelOutlinedButton(text: 'Cancel'),
+          CustomCancelOutlinedButton(text: StringTranslateExtension("cancel").tr(),),
         ],
       ),
     ],

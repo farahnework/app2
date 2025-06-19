@@ -28,21 +28,34 @@ class KitchenOrderCard extends StatelessWidget {
       switch (type.toLowerCase()) {
         case 'dine in':
           return AppColors.lightYellow;
+        case 'في المطعم':
+          return AppColors.lightYellow;
         case 'delivery':
           return AppColors.lightBlue;
+        case 'توصيل':
+          return AppColors.lightBlue;
         case 'takeaway':
+          return AppColors.lightGreen;
+        case 'سفري':
           return AppColors.lightGreen;
         default:
           return AppColors.white;
       }
     }
+
     Color getTextColor() {
       switch (type.toLowerCase()) {
-        case 'dine in':
+         case 'dine in':
+          return AppColors.yellow;
+        case 'في المطعم':
           return AppColors.yellow;
         case 'delivery':
+          return AppColors.lightBlue;
+        case 'توصيل':
           return AppColors.darkBlue;
         case 'takeaway':
+          return AppColors.darkGreen;
+        case 'سفري':
           return AppColors.darkGreen;
         default:
           return AppColors.white;
@@ -59,9 +72,14 @@ class KitchenOrderCard extends StatelessWidget {
           children: [
             Container(
               width: context.screenWidth,
-              height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+              height: context.responsiveRelativeSize(
+                containerSize: context.screenHeight,
+                percentage: AppSizes.widgetHeight,
+              ),
               padding: EdgeInsets.symmetric(
-                horizontal: context.responsivePadding(AppSizes.horizontalPadding),
+                horizontal: context.responsivePadding(
+                  AppSizes.horizontalPadding,
+                ),
               ),
               decoration: BoxDecoration(color: getOrderColor()),
               child: Row(
@@ -69,11 +87,15 @@ class KitchenOrderCard extends StatelessWidget {
                 children: [
                   Text(
                     orderId,
-                    style: CustomTextStyles.titleText(context).copyWith(color: getTextColor())
+                    style: CustomTextStyles.titleText(
+                      context,
+                    ).copyWith(color: getTextColor()),
                   ),
                   Text(
                     type,
-                    style: CustomTextStyles.titleText(context).copyWith(color: getTextColor())
+                    style: CustomTextStyles.titleText(
+                      context,
+                    ).copyWith(color: getTextColor()),
                   ),
                 ],
               ),
@@ -101,8 +123,9 @@ class KitchenOrderCard extends StatelessWidget {
                               ),
                               child: Row(
                                 children: [
+                                  
                                   Text(
-                                    "${item['quantity']}x",
+                                    "${item['quantity']}",
                                     style: TextStyle(
                                       fontWeight: AppSizes.fontWeight2,
                                       fontSize:
@@ -113,7 +136,24 @@ class KitchenOrderCard extends StatelessWidget {
                                       // fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(width: context.responsiveHorizontalSpacing,),
+                                  SizedBox(
+                                    width: context.responsiveSpacing(AppSizes.horiSpacesBetweentTexts),
+                                  ),
+                                  Text(
+                                    'x',
+                                    style: TextStyle(
+                                      fontWeight: AppSizes.fontWeight2,
+                                      fontSize:
+                                          ResponsiveSizing.getResponsiveFontSize(
+                                            context,
+                                            AppSizes.fontSize3,
+                                          ),
+                                      // fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: context.responsiveHorizontalSpacing,
+                                  ),
                                   Text(
                                     item['name'],
                                     style: TextStyle(
@@ -139,23 +179,41 @@ class KitchenOrderCard extends StatelessWidget {
                   AppSizes.horizontalPadding / 2,
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  
-                  Expanded(child: CustomIconButton(icon: Icons.keyboard_double_arrow_left_rounded, color: getOrderColor(), iconColor: getTextColor(), size: AppSizes.iconSize, onPresse: addNoteDialog,)),
-
-                  SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                  Expanded(child: CustomIconButton(icon: Icons.keyboard_double_arrow_right_rounded, color: AppColors.grey, iconColor: AppColors.white, size: AppSizes.iconSize, onPresse: addNoteDialog,)),
-                  // CustomButton(
-                  //   text: 'Previos Step',
-                  //   radius: true,
-                  //   width: context.screenWidth,
-                  //   height: AppSizes.widgetHeight,
-                  //   color: AppColors.grey,
-                  //   textColor: AppColors.white,
-                  // ),
-                ],
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: CustomIconButton(
+                        icon: Icons.keyboard_double_arrow_left_rounded,
+                        color: getOrderColor(),
+                        iconColor: getTextColor(),
+                        size: AppSizes.iconSize,
+                        onPresse: addNoteDialog,
+                      ),
+                    ),
+                
+                    SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                    Expanded(
+                      child: CustomIconButton(
+                        icon: Icons.keyboard_double_arrow_right_rounded,
+                        color: AppColors.grey,
+                        iconColor: AppColors.white,
+                        size: AppSizes.iconSize,
+                        onPresse: addNoteDialog,
+                      ),
+                    ),
+                    // CustomButton(
+                    //   text: 'Previos Step',
+                    //   radius: true,
+                    //   width: context.screenWidth,
+                    //   height: AppSizes.widgetHeight,
+                    //   color: AppColors.grey,
+                    //   textColor: AppColors.white,
+                    // ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: AppSizes.verSpacesBetweenElements),

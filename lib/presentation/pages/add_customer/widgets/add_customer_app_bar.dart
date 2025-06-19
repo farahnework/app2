@@ -67,7 +67,7 @@ class _AddCustomerAppBarState extends State<AddCustomerAppBar> {
               SizedBox(
                 height: context.responsiveWidgetHeight,
                 child: CircleAvatar(
-                  child: Image.asset('lib/assets/images/user.jpg'),
+                  child: Image.asset('assets/images/user.jpg'),
                 ),
               ),
 
@@ -87,7 +87,7 @@ class _AddCustomerAppBarState extends State<AddCustomerAppBar> {
                       ),
                     ),
                     Text(
-                      '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}',
+                      '${DateFormat.yMMMEd('en').format(DateTime.now())}',
                       style: TextStyle(
                         fontSize: context.responsiveFontSize(
                           AppSizes.fontSize5,

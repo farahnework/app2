@@ -3,6 +3,7 @@ import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class NumbersPalette extends StatefulWidget {
   const NumbersPalette({super.key});
@@ -42,7 +43,7 @@ class _NumbersPaletteState extends State<NumbersPalette> {
               Number(number:'6'),
 
               SizedBox(width: AppSizes.verSpacesBetweenElements),
-              Number(number:'Delete'),
+              Number(number: StringTranslateExtension('delete').tr(),),
             ],
           ),
           SizedBox(height: AppSizes.verSpacesBetweenElements),
@@ -57,7 +58,7 @@ class _NumbersPaletteState extends State<NumbersPalette> {
               Number(number:'9'),
 
               SizedBox(width: AppSizes.verSpacesBetweenElements),
-              Number(number:'Enter'),
+              Number(number:  StringTranslateExtension('enter').tr(),),
             ],
           ),
         ],

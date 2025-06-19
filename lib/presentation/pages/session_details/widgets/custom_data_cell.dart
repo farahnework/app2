@@ -7,24 +7,28 @@ import 'package:flutter_svg/svg.dart';
 
 DataCell customDataCell(String number, bool isNumber, bool isTotal, BuildContext context) {
   return DataCell(
-    Row(
-      children: [
-        isNumber?
-        SvgPicture.asset(AppImages.rial, height: context.responsiveFontSize(AppSizes.fontSize5)):Container(),
-        SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-        isTotal&isNumber?
-        Text(number, textAlign: TextAlign.center,
-         style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize4,), fontWeight: AppSizes.fontWeight1, color: AppColors.black),
-         ):
-        !isTotal&isNumber?
-        Text(number, textAlign: TextAlign.center,
-         style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize4,), color: AppColors.black),):
-        isTotal&!isNumber?
-        Text(number, textAlign: TextAlign.center,
-       style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.black),):
-        Text(number, textAlign: TextAlign.center,style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize4,), color: AppColors.black),),
-
-      ],
+    Directionality(
+      textDirection: TextDirection.ltr,
+      child: Row(
+        children: [
+          Spacer(),
+          isNumber?
+          SvgPicture.asset(AppImages.rial, height: context.responsiveFontSize(AppSizes.fontSize5)):Container(),
+          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+          isTotal&isNumber?
+          Text(number, textAlign: TextAlign.center,
+           style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize4,), fontWeight: AppSizes.fontWeight1, color: AppColors.black),
+           ):
+          !isTotal&isNumber?
+          Text(number, textAlign: TextAlign.center,
+           style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize4,), color: AppColors.black),):
+          isTotal&!isNumber?
+          Text(number, textAlign: TextAlign.center,
+         style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.black),):
+          Text(number, textAlign: TextAlign.center,style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize4,), color: AppColors.black),),
+      
+        ],
+      ),
     ),
   );
 }

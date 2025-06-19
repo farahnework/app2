@@ -4,6 +4,7 @@ import 'package:app/presentation/pages/session_details/widgets/custom_data_cell.
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class PaymentMethodsTable extends StatefulWidget {
   const PaymentMethodsTable({super.key});
@@ -46,15 +47,14 @@ class _PaymentMethodsTableState extends State<PaymentMethodsTable> {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            'Payment Method',
+                            StringTranslateExtension('payment_method').tr(),
                             style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
                       ),
                       DataColumn(
                         label: Center(
-                          child: Text(
-                            "Total",
+                          child: Text(StringTranslateExtension('total').tr(),
                            style:TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,), fontWeight: AppSizes.fontWeight1, color: AppColors.darkPurple),
                           ),
                         ),
@@ -63,25 +63,25 @@ class _PaymentMethodsTableState extends State<PaymentMethodsTable> {
                     rows: [
                       DataRow(
                         cells: [
-                            customDataCell('Cash', false, true, context),
+                            customDataCell(StringTranslateExtension('cash').tr(), false, true, context),
                           customDataCell('600', true, true, context),
                         ],
                       ),
                       DataRow(
                         cells: [
-                            customDataCell('Card', false, true, context),
+                            customDataCell(StringTranslateExtension('debt').tr(),  false, true, context),
                           customDataCell('20000', true, true, context),
                         ],
                       ),
                       DataRow(
                         cells: [
-                           customDataCell('Debt', false, true, context),
+                           customDataCell(StringTranslateExtension('debt').tr(), false, true, context),
                           customDataCell('600', true, true, context),
                         ],
                       ),
                       DataRow(
                         cells: [
-                           customDataCell('Total', false, true, context),
+                           customDataCell(StringTranslateExtension('total').tr(), false, true, context),
                           customDataCell('120000', true, true, context),
                          
                         ],

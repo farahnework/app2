@@ -162,7 +162,7 @@ class _ProductsBodyState extends State<ProductsBody> {
                             itemBuilder: (context, i) {
                               return ProductCard(
                                 name: 'Apple',
-                                image: 'lib/assets/images/apple.webp',
+                                image: 'assets/images/apple.webp',
                                 price: '6',
                                 stock: 30,
                               );

@@ -9,6 +9,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get_utils/src/extensions/export.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../shared/utils/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'dart:ui' as ui;
 
 class ProductCard extends StatefulWidget {
   final String image;
@@ -83,16 +85,21 @@ class _ProductCardState extends State<ProductCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Price: " , style: CustomTextStyles.smallText(context)),
-                Row(
-                  children: [
-                    SvgPicture.asset(AppImages.rial, width:  context.responsiveFontSize(AppSizes.fontSize6,), color: AppColors.darkPurple,),
-                    SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
-                    Text(
-                      widget.price.toString(),
-                      style: CustomTextStyles.smallText(context).copyWith(color: AppColors.darkPurple, fontWeight: AppSizes.fontWeight1)
-                    ),
-                  ],
+                Text(StringTranslateExtension('price').tr(),style: CustomTextStyles.smallText(context)),
+                Text(':', style: CustomTextStyles.smallText(context)),
+                SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
+                Directionality(
+                  textDirection: ui.TextDirection.ltr,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(AppImages.rial, width:  context.responsiveFontSize(AppSizes.fontSize6,), color: AppColors.darkPurple,),
+                      SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
+                      Text(
+                        widget.price.toString(),
+                        style: CustomTextStyles.smallText(context).copyWith(color: AppColors.darkPurple, fontWeight: AppSizes.fontWeight1)
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

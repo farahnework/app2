@@ -1,13 +1,19 @@
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/responsive/app_sizes.dart';
 
-class HomeTable extends StatelessWidget {
+class HomeTable extends StatefulWidget {
   const HomeTable({super.key});
 
+  @override
+  State<HomeTable> createState() => _HomeTableState();
+}
+
+class _HomeTableState extends State<HomeTable> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -30,41 +36,33 @@ class HomeTable extends StatelessWidget {
                     ),
                     columns: [
                       DataColumn(
-                        label: Center(
-                          child: Text(
-                            'Number',
-                            style: CustomTextStyles.tableHeader(context),
-                          ),
+                        label: Text(
+                          StringTranslateExtension('number').tr(),
+                          style: CustomTextStyles.tableHeader(context),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          StringTranslateExtension('shift').tr(),
+                          style: CustomTextStyles.tableHeader(context),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          StringTranslateExtension('device').tr(),
+                          style: CustomTextStyles.tableHeader(context),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          StringTranslateExtension('status').tr(),
+                          style: CustomTextStyles.tableHeader(context),
                         ),
                       ),
                       DataColumn(
                         label: Center(
                           child: Text(
-                            "Shift",
-                            style: CustomTextStyles.tableHeader(context),
-                          ),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Center(
-                          child: Text(
-                            'Device',
-                            style: CustomTextStyles.tableHeader(context),
-                          ),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Center(
-                          child: Text(
-                            "Status",
-                            style: CustomTextStyles.tableHeader(context),
-                          ),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Center(
-                          child: Text(
-                            "Balance",
+                            StringTranslateExtension('balence').tr(),
                             style: CustomTextStyles.tableHeader(context),
                           ),
                         ),
@@ -206,7 +204,7 @@ class HomeTable extends StatelessWidget {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            'Number',
+                            StringTranslateExtension('number').tr(),
                             style: CustomTextStyles.tableHeader(context),
                           ),
                         ),
@@ -214,7 +212,7 @@ class HomeTable extends StatelessWidget {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            "Shift",
+                            StringTranslateExtension('shift').tr(),
                             style: CustomTextStyles.tableHeader(context),
                           ),
                         ),
@@ -222,7 +220,7 @@ class HomeTable extends StatelessWidget {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            'Device',
+                            StringTranslateExtension('device').tr(),
                             style: CustomTextStyles.tableHeader(context),
                           ),
                         ),
@@ -230,7 +228,7 @@ class HomeTable extends StatelessWidget {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            "Status",
+                            StringTranslateExtension('status').tr(),
                             style: CustomTextStyles.tableHeader(context),
                           ),
                         ),
@@ -238,7 +236,8 @@ class HomeTable extends StatelessWidget {
                       DataColumn(
                         label: Center(
                           child: Text(
-                            "Balance",
+                            StringTranslateExtension('balance').tr(),
+                       
                             style: CustomTextStyles.tableHeader(context),
                           ),
                         ),

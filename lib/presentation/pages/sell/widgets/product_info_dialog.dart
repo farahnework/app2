@@ -7,6 +7,7 @@ import 'package:app/shared/utils/app_colors.dart' show AppColors;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 void productInfoDialog(BuildContext context) {
   int crossAxisCount =
@@ -57,7 +58,7 @@ void productInfoDialog(BuildContext context) {
                       icon: Icon(IconsaxPlusLinear.close_circle),
                     ),
                     Text(
-                      'Product Name',
+                      StringTranslateExtension('product_name').tr(),
                       style: CustomTextStyles.tableHeader(context),
                     ),
                   ],
@@ -86,7 +87,7 @@ void productInfoDialog(BuildContext context) {
                   children: [
                     Expanded(
                       child: infoCard(
-                        'Total Stock',
+                      StringTranslateExtension('total_stock').tr(),
                         IconsaxPlusLinear.box,
                         256,
                         context,
@@ -96,7 +97,7 @@ void productInfoDialog(BuildContext context) {
                     ),
                     Expanded(
                       child: infoCard(
-                        'sold Items',
+                      StringTranslateExtension('sold_items').tr(),
                         IconsaxPlusLinear.bag_2,
                         125,
                         context,
@@ -106,7 +107,7 @@ void productInfoDialog(BuildContext context) {
                     ),
                     Expanded(
                       child: infoCard(
-                        'Selling price',
+                       StringTranslateExtension('selling_price').tr(),
                         IconsaxPlusLinear.coin,
                         115,
                         context,
@@ -116,7 +117,7 @@ void productInfoDialog(BuildContext context) {
                     ),
                     Expanded(
                       child: infoCard(
-                        'Purchase Price',
+                       StringTranslateExtension('purchase_price').tr(),
                         IconsaxPlusLinear.coin,
                         100,
                         context,
@@ -133,7 +134,7 @@ void productInfoDialog(BuildContext context) {
                 children: [
                   SizedBox(width: AppSizes.horizontalPadding,),
                   Text(
-                    'Product Information',
+                    StringTranslateExtension('product_information').tr(),
                     style: CustomTextStyles.titleText(context),
                   ),
                 ],
@@ -185,7 +186,7 @@ void productInfoDialog(BuildContext context) {
                                     child: Image.asset(
                                       height: context.screenHeight / 4,
                                       width: context.screenHeight / 4,
-                                      'lib/assets/images/image7.jpg',
+                                      'assets/images/image7.jpg',
                                     ),
                                   ),
                                   SizedBox(
@@ -211,7 +212,7 @@ void productInfoDialog(BuildContext context) {
                                                         .horiSpacesBetweentTexts,
                                               ),
                                               Text(
-                                                'SKU:',
+                                                StringTranslateExtension('sku').tr(),
                                                 style:
                                                     CustomTextStyles.meduimText(
                                                       context,
@@ -237,7 +238,7 @@ void productInfoDialog(BuildContext context) {
                                                         .horiSpacesBetweentTexts,
                                               ),
                                               Text(
-                                                'Barcode:',
+                                               StringTranslateExtension('barcode').tr(),
                                                 style:
                                                     CustomTextStyles.meduimText(
                                                       context,
@@ -263,7 +264,7 @@ void productInfoDialog(BuildContext context) {
                                                         .horiSpacesBetweentTexts,
                                               ),
                                               Text(
-                                                'Brand:',
+                                                StringTranslateExtension('brand').tr(),
                                                 style:
                                                     CustomTextStyles.meduimText(
                                                       context,
@@ -289,7 +290,7 @@ void productInfoDialog(BuildContext context) {
                                                         .horiSpacesBetweentTexts,
                                               ),
                                               Text(
-                                                'Category:',
+                                                StringTranslateExtension('category').tr(),
                                                 style:
                                                     CustomTextStyles.meduimText(
                                                       context,
@@ -315,7 +316,7 @@ void productInfoDialog(BuildContext context) {
                                                         .horiSpacesBetweentTexts,
                                               ),
                                               Text(
-                                                'Description:',
+                                                StringTranslateExtension('description').tr(),
                                                 style:
                                                     CustomTextStyles.meduimText(
                                                       context,
@@ -451,7 +452,7 @@ void productInfoDialog(BuildContext context) {
                                     child: Image.asset(
                                       height: context.screenHeight / 4,
                                       width: context.screenHeight / 4,
-                                      'lib/assets/images/image7.jpg',
+                                      'assets/images/image7.jpg',
                                     ),
                                   ),
                                   Row(
@@ -475,7 +476,7 @@ void productInfoDialog(BuildContext context) {
                                                         .horiSpacesBetweentTexts,
                                               ),
                                               Text(
-                                                'SKU:',
+                                                StringTranslateExtension('sku').tr(),
                                                 style:
                                                     CustomTextStyles.meduimText(
                                                       context,
@@ -502,7 +503,7 @@ void productInfoDialog(BuildContext context) {
                                                         .horiSpacesBetweentTexts,
                                               ),
                                               Text(
-                                                'Barcode:',
+                                                StringTranslateExtension('barcode').tr(),
                                                 style:
                                                     CustomTextStyles.meduimText(
                                                       context,
@@ -529,7 +530,7 @@ void productInfoDialog(BuildContext context) {
                                                         .horiSpacesBetweentTexts,
                                               ),
                                               Text(
-                                                'Brand:',
+                                                StringTranslateExtension('brand').tr(),
                                                 style:
                                                     CustomTextStyles.meduimText(
                                                       context,
@@ -550,7 +551,7 @@ void productInfoDialog(BuildContext context) {
                                                         .horiSpacesBetweentTexts,
                                               ),
                                               Text(
-                                                'Category:',
+                                                StringTranslateExtension('category').tr(),
                                                 style:
                                                     CustomTextStyles.meduimText(
                                                       context,
@@ -576,7 +577,7 @@ void productInfoDialog(BuildContext context) {
                                                         .horiSpacesBetweentTexts,
                                               ),
                                               Text(
-                                                'Description:',
+                                               StringTranslateExtension('description').tr(),
                                                 style:
                                                     CustomTextStyles.meduimText(
                                                       context,
@@ -720,6 +721,7 @@ Widget infoCard(
         SizedBox(width: AppSizes.horiSpacesBetweenElements),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,

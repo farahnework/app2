@@ -7,6 +7,7 @@ import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 void addNoteDialog(BuildContext context) {
   showDialog(
@@ -32,7 +33,7 @@ void addNoteDialog(BuildContext context) {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text('Add Note', style: CustomTextStyles.titleText(context)),
+                        Text(StringTranslateExtension('add_note').tr(),style: CustomTextStyles.titleText(context)),
                       ],
                     ),
                     SizedBox(height: AppSizes.verSpacesBetweenContainers,),
@@ -40,7 +41,7 @@ void addNoteDialog(BuildContext context) {
                     SizedBox(
                       width: context.screenWidth/1.5,
                       child: CustomTextField(
-                        hintText: 'Note',
+                        hintText: StringTranslateExtension('note').tr(),
                         icon: IconsaxPlusLinear.note_2,
                         width: MediaQuery.of(context).size.width,
                         enabled: true,
@@ -49,9 +50,9 @@ void addNoteDialog(BuildContext context) {
                     SizedBox(height: AppSizes.verSpacesBetweenContainers,),
                     Row(
                       children: [
-                        CustomButton(text: 'Save', radius: true, width: 200, height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
+                        CustomButton(text: StringTranslateExtension('save').tr(), radius: true, width: 200, height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
                         SizedBox(width: AppSizes.horiSpacesBetweenElements,),
-                        CustomCancelOutlinedButton(text: 'Cancel'),
+                        CustomCancelOutlinedButton(text: StringTranslateExtension('cancel').tr(),),
                       ],
                     )
                   ],

@@ -168,27 +168,30 @@ class _SellProductCardState extends State<SellProductCard> {
                             ],
                           ),
 
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                AppImages.rial,
-                                width: context.responsiveFontSize(
-                                  AppSizes.fontSize4,
-                                ),
-                                color: AppColors.darkPurple,
-                              ),
-                              SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-                              Text(
-                                widget.price.toString(),
-                                style: TextStyle(
-                                  fontSize: context.responsiveFontSize(
-                                    AppSizes.fontSize2,
+                          Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(
+                                  AppImages.rial,
+                                  width: context.responsiveFontSize(
+                                    AppSizes.fontSize4,
                                   ),
-                                  fontWeight: AppSizes.fontWeight2,
                                   color: AppColors.darkPurple,
                                 ),
-                              ),
-                            ],
+                                SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                                Text(
+                                  widget.price.toString(),
+                                  style: TextStyle(
+                                    fontSize: context.responsiveFontSize(
+                                      AppSizes.fontSize2,
+                                    ),
+                                    fontWeight: AppSizes.fontWeight2,
+                                    color: AppColors.darkPurple,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
