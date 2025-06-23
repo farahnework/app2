@@ -5,7 +5,6 @@ import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:intl/intl.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class KitchenAppBar extends StatelessWidget {
@@ -42,7 +41,7 @@ class KitchenAppBar extends StatelessWidget {
                   children: [
                     Text('Tareq Taha', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
                     Text(
-                      '${DateFormat.yMMMEd('en').format(DateTime.now())}'
+                      DateFormat.yMMMEd('en').format(DateTime.now())
                       , style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize4)),
                     ),
                   ],

@@ -12,7 +12,7 @@ class OrderCard extends StatefulWidget {
   final String orderId;
   final String type;
   final String date;
-  const OrderCard({super.key, required this.price, required this.orderId, required this.type, required this.date});
+   const OrderCard({super.key, required this.price, required this.orderId, required this.type, required this.date,});
 
   @override
   State<OrderCard> createState() => _OrderCardState();
@@ -21,7 +21,7 @@ class OrderCard extends StatefulWidget {
 class _OrderCardState extends State<OrderCard> {
    Color getOrderColor() {
     switch (widget.type.toLowerCase()) {
-     case 'dine_in':
+     case 'dine in':
         return AppColors.lightYellow;
       case 'في المطعم':
         return AppColors.lightYellow;
@@ -45,7 +45,7 @@ class _OrderCardState extends State<OrderCard> {
     return MouseRegion(
       onEnter: (event) {
         setState(() {
-          currentColor = AppColors.lightPurple.withOpacity(0.5);
+          currentColor = AppColors.lightPurple.withValues(alpha:  0.5);
         });
       },
       onExit: (event) {
@@ -59,7 +59,7 @@ class _OrderCardState extends State<OrderCard> {
           color: currentColor,
           border: Border.all(color: AppColors.grey, width: AppSizes.borderSize, ),
         ),
-
+    
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -75,7 +75,9 @@ class _OrderCardState extends State<OrderCard> {
               textDirection: TextDirection.ltr,
               child: Row(
                 children: [
-                  SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6), color: AppColors.darkPurple,),
+                  SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6), 
+                  colorFilter: ColorFilter.mode(AppColors.darkPurple, BlendMode.srcIn),
+                  ),
                   SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                   Text(
                     widget.price.toString(),

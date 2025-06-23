@@ -29,7 +29,7 @@ class _DetailOfPaymentTableState extends State<DetailOfPaymentTable> {
                 BoxShadow(
                   blurRadius: 10,
                   offset: Offset(0, 0.5),
-                  color: AppColors.darkPurple.withOpacity(0.05),
+                  color: AppColors.darkPurple.withValues(alpha:  0.05),
                   spreadRadius: 1,
                 ),
               ],
@@ -37,11 +37,12 @@ class _DetailOfPaymentTableState extends State<DetailOfPaymentTable> {
             width: MediaQuery.of(context).size.width,
             child: Expanded(
               child: SingleChildScrollView(
+                scrollDirection: context.isMobile? Axis.horizontal: Axis.vertical,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),
                   child: DataTable(
                     // showBottomBorder: true,
-                    headingRowColor: MaterialStateProperty.all(
+                    headingRowColor: WidgetStateProperty.all(
                       AppColors.lightPurple,
                     ),
                     columns: [

@@ -31,7 +31,7 @@ class _HomeTableState extends State<HomeTable> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),
                   child: DataTable(
-                    headingRowColor: MaterialStateProperty.all(
+                    headingRowColor: WidgetStateProperty.all(
                       AppColors.lightPurple,
                     ),
                     columns: [
@@ -197,7 +197,7 @@ class _HomeTableState extends State<HomeTable> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),
                   child: DataTable(
-                    headingRowColor: MaterialStateProperty.all(
+                    headingRowColor: WidgetStateProperty.all(
                       AppColors.lightPurple,
                     ),
                     columns: [

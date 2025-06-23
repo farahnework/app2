@@ -23,12 +23,10 @@ class AppTheme {
       colorScheme: ColorScheme.light(
         primary: AppColors.darkPurple,
         secondary: AppColors.lightPurple,
-        background: AppColors.lightGrey,
-        surface: AppColors.white,
+        surface: AppColors.lightGrey,
         error: AppColors.red,
         onPrimary: AppColors.white,
         onSecondary: AppColors.darkPurple,
-        onBackground: AppColors.black,
         onSurface: AppColors.black,
         onError: AppColors.white,
       ),
@@ -77,8 +75,8 @@ class AppTheme {
 
       // جدول البيانات
       dataTableTheme: DataTableThemeData(
-        headingRowColor: MaterialStateProperty.all(AppColors.lightPurple),
-        dataRowColor: MaterialStateProperty.all(AppColors.white),
+        headingRowColor: WidgetStateProperty.all(AppColors.lightPurple),
+        dataRowColor: WidgetStateProperty.all(AppColors.white),
         headingTextStyle: TextStyle(
           color: AppColors.darkPurple,
           fontWeight: FontWeightHelper.bold,
@@ -108,14 +106,14 @@ class AppTheme {
 
       // تبديل الوضع
       switchTheme: SwitchThemeData(
-        thumbColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
+        thumbColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
             return AppColors.darkPurple;
           }
           return AppColors.lightGrey;
         }),
-        trackColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
+        trackColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
             return AppColors.lightPurple;
           }
           return AppColors.grey;
@@ -125,16 +123,16 @@ class AppTheme {
       // دائرة التقدم
       progressIndicatorTheme: ProgressIndicatorThemeData(
         color: AppColors.darkPurple,
-        circularTrackColor: AppColors.lightPurple.withOpacity(0.3),
+        circularTrackColor: AppColors.lightPurple.withValues(alpha:  0.3),
       ),
 
       // مؤشر القائمة المنسدلة
       dropdownMenuTheme: DropdownMenuThemeData(
         inputDecorationTheme: _buildInputDecorationTheme(),
         menuStyle: MenuStyle(
-          backgroundColor: MaterialStateProperty.all(AppColors.white),
-          elevation: MaterialStateProperty.all(4),
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          backgroundColor: WidgetStateProperty.all(AppColors.white),
+          elevation: WidgetStateProperty.all(4),
+          shape: WidgetStateProperty.all(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSizes.radius8),
           )),
         ),
@@ -157,12 +155,10 @@ class AppTheme {
       colorScheme: ColorScheme.dark(
         primary: AppColors.lightPurple,
         secondary: AppColors.darkPurple,
-        background: const Color(0xFF121212),
         surface: const Color(0xFF1E1E1E),
         error: AppColors.red,
         onPrimary: Colors.white,
         onSecondary: Colors.white,
-        onBackground: Colors.white,
         onSurface: Colors.white,
         onError: Colors.white,
       ),

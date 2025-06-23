@@ -12,6 +12,7 @@ import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CustomersPage extends StatefulWidget {
   const CustomersPage({super.key});
@@ -68,8 +69,11 @@ class _CustomersBodyState extends State<CustomersBody> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomSearchField(text: 'Search',),
-                CustomIconTextButton(text: 'Add Customer', icon: IconsaxPlusLinear.user_add, page: AddCustomerPage(),),
+                CustomSearchField(text: StringTranslateExtension('search',).tr(),),
+                //  if(!context.isMobile)
+                CustomIconTextButton(text: StringTranslateExtension('add_customer',).tr(),  icon: IconsaxPlusLinear.user_add, page: AddCustomerPage(),),
+                // if(context.isMobile)
+                // CustomIconButton(icon: IconsaxPlusLinear.user_add, color: AppColors.darkPurple, iconColor: AppColors.white, size: AppSizes.widgetHeight, onPresse: AddCustomerPage)
               ],
             ),
             SizedBox(height: AppSizes.verSpacesBetweenContainers),
@@ -81,7 +85,7 @@ class _CustomersBodyState extends State<CustomersBody> {
                 color: AppColors.lightPurple,
                 child: Row(
                   children: [
-                    Text('Customers', style: CustomTextStyles.tableHeader(context),),
+                    Text(StringTranslateExtension('customers',).tr(),style: CustomTextStyles.tableHeader(context),),
                     
                   ],
                 ),
@@ -89,7 +93,7 @@ class _CustomersBodyState extends State<CustomersBody> {
               Row(
                 children: [
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 300,
                       child: ListView(
                         children: [

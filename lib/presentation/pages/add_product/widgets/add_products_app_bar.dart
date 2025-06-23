@@ -94,7 +94,7 @@ class _AddProductAppBarState extends State<AddProductAppBar> {
                   children: [
                     Text('Tareq Taha', style: CustomTextStyles.header2),
                     Text(
-                      '${DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now())}',
+                      DateFormat('yyyy/mm/dd hh:mm').format(DateTime.now()),
                     ),
                   ],
                 ),

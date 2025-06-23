@@ -66,8 +66,9 @@ class _ProductCardState extends State<ProductCard> {
                   },
                   child: CircleAvatar(
     
-                    child: Icon(Iconsax.info_circle, size: context.responsiveIconSize(AppSizes.iconSize),),
                     backgroundColor: AppColors.yellow,
+    
+                    child: Icon(Iconsax.info_circle, size: context.responsiveIconSize(AppSizes.iconSize),),
     
                   ),
                 ),
@@ -92,7 +93,9 @@ class _ProductCardState extends State<ProductCard> {
                   textDirection: ui.TextDirection.ltr,
                   child: Row(
                     children: [
-                      SvgPicture.asset(AppImages.rial, width:  context.responsiveFontSize(AppSizes.fontSize6,), color: AppColors.darkPurple,),
+                      SvgPicture.asset(AppImages.rial, width:  context.responsiveFontSize(AppSizes.fontSize6,),
+                       colorFilter: ColorFilter.mode(AppColors.darkPurple, BlendMode.srcIn),
+                       ),
                       SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
                       Text(
                         widget.price.toString(),

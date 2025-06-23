@@ -13,7 +13,7 @@ class KitchenOrderCard extends StatelessWidget {
   final String orderId;
   final String type;
   final List<Map<String, dynamic>> items;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   KitchenOrderCard({
     super.key,
@@ -50,7 +50,7 @@ class KitchenOrderCard extends StatelessWidget {
         case 'في المطعم':
           return AppColors.yellow;
         case 'delivery':
-          return AppColors.lightBlue;
+          return AppColors.darkBlue;
         case 'توصيل':
           return AppColors.darkBlue;
         case 'takeaway':

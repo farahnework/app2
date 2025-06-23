@@ -11,17 +11,20 @@ import 'package:iconsax/iconsax.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:ui' as ui;
 
+import 'package:iconsax_plus/iconsax_plus.dart';
+
 class OrderDetails extends StatefulWidget {
   final double price;
   final String orderId;
   final String type;
   final String date;
+  final ValueNotifier<bool> menuNotifier;
   const OrderDetails({
     super.key,
     required this.price,
     required this.orderId,
     required this.type,
-    required this.date,
+    required this.date, required this.menuNotifier,
   });
 
   @override
@@ -72,19 +75,53 @@ class _OrderDetailsState extends State<OrderDetails> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      Iconsax.user,
-                      color: AppColors.darkPurple,
-                      size: context.responsiveIconSize(AppSizes.iconSize2),
+                    Row(
+                      children: [
+                        Icon(
+                          Iconsax.user,
+                          color: AppColors.darkPurple,
+                          size: context.responsiveIconSize(AppSizes.iconSize),
+                        ),
+                        SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                              
+                        Text(
+                         StringTranslateExtension('general_customer').tr(),
+                          style: CustomTextStyles.largeText(context),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: AppSizes.horiSpacesBetweenElements),
-      
-                    Text(
-                     StringTranslateExtension('general_customer').tr(),
-                      style: CustomTextStyles.meduimText(context),
-                    ),
-                  ],
+                    if (context.isMobile)
+                    Container(
+                      width: context.responsiveRelativeSize(
+                        containerSize: context.screenHeight,
+                        percentage: AppSizes.widgetHeight,
+                      ),
+                      height: context.responsiveRelativeSize(
+                        containerSize: context.screenHeight,
+                        percentage: AppSizes.widgetHeight,
+                      ),
+                        decoration: BoxDecoration(
+                                  color: AppColors.darkBlue,
+                                  borderRadius: BorderRadius.circular(
+                                    context.responsiveBorderRadius(
+                                      AppSizes.radius12,
+                                    ),
+                                  ),
+                                ),
+                      child: IconButton(
+                        color: AppColors.darkPurple,
+                        onPressed: () {
+                          widget.menuNotifier.value = true;
+                        },
+
+                        icon: Icon(
+                          IconsaxPlusLinear.box,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),                  ],
                 ),
                 SizedBox(height: AppSizes.verSpacesBetweenElements),
                 Row(
@@ -179,7 +216,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             SvgPicture.asset(
                               AppImages.rial,
                               width: context.responsiveFontSize(AppSizes.fontSize5),
-                              color: AppColors.darkPurple,
+                              colorFilter: ColorFilter.mode(AppColors.darkPurple, BlendMode.srcIn),
                             ),
                             SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                         

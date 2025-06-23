@@ -155,7 +155,7 @@ class _ProductsBodyState extends State<ProductsBody> {
                   Row(
                     children: [
                       Expanded(
-                        child: Container(
+                        child: SizedBox(
                           height: MediaQuery.of(context).size.height * 0.5,
                           child: ListView.builder(
                             itemCount: 10,

@@ -15,7 +15,7 @@ class CustomCancelOutlinedButton extends StatefulWidget {
 class _CustomCancelOutlinedButtonState extends State<CustomCancelOutlinedButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(shape:RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))) ),

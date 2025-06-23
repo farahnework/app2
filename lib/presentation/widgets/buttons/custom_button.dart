@@ -2,7 +2,6 @@ import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +35,7 @@ class _CustomButtonState extends State<CustomButton> {
           color = widget.color;
         });
       },
-      child: Container(
+      child: SizedBox(
         height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: widget.height),
         child: TextButton(
           style: TextButton.styleFrom(

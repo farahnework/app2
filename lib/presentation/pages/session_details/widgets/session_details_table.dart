@@ -1,7 +1,6 @@
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/session_details/widgets/custom_data_cell.dart';
-import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -30,7 +29,7 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
                 BoxShadow(
                   blurRadius: 10,
                   offset: Offset(0, 0.5),
-                  color: AppColors.darkPurple.withOpacity(0.05),
+                  color: AppColors.darkPurple.withValues(alpha:  0.05),
                   spreadRadius: 1,
                 ),
               ],
@@ -38,11 +37,14 @@ class _SessionDetailsTableState extends State<SessionDetailsTable> {
             width: MediaQuery.of(context).size.width,
             child: Expanded(
               child: SingleChildScrollView(
+                
+                scrollDirection: context.isMobile? Axis.horizontal: Axis.vertical,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(AppSizes.textFieldRadius),
                   child: DataTable(
                     // showBottomBorder: true,
-                    headingRowColor: MaterialStateProperty.all(
+                    headingRowColor: WidgetStateProperty
+                    .all(
                       AppColors.lightPurple,
                     ),
                     columns: [

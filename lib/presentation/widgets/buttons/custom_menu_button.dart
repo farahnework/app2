@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CustomMenuButton extends StatefulWidget {
   final IconData icon;
-  final onPress;
+  final dynamic onPress;
   const CustomMenuButton({super.key, required this.icon, this.onPress});
 
   @override

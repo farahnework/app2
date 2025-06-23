@@ -4,7 +4,6 @@ import 'package:app/controllers/side_bar_controller.dart';
 import 'package:app/controllers/toggle_button_controller.dart';
 import 'package:app/presentation/pages/home/home_page.dart';
 import 'package:app/shared/utils/app_colors.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -49,8 +48,8 @@ void main() {
       ),
     );
   }, (error, stackTrace) {
-    print("❌ Unhandled Error: $error");
-    print("🛠️ StackTrace: $stackTrace");
+    // print("❌ Unhandled Error: $error");
+    // print("🛠️ StackTrace: $stackTrace");
   });
 }
 

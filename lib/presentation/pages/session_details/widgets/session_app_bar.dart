@@ -1,11 +1,12 @@
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
+import 'package:app/presentation/pages/sell/sell_page.dart';
 import 'package:app/presentation/pages/sell/widgets/close_session_buton.dart';
+import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:intl/intl.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class SessionAppBar extends StatelessWidget {
@@ -30,6 +31,17 @@ class SessionAppBar extends StatelessWidget {
            Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                if(context.isMobile)
+                    CustomButton(
+                      text: StringTranslateExtension('sale_screen').tr(),
+                      radius: true,
+                      width: 120,
+                      page: SellPage(),
+                      height: AppSizes.widgetHeight,
+                      color: AppColors.lightPurple,
+                      textColor: AppColors.darkPurple,
+                    ),
+                    if(!context.isMobile)
                 SizedBox(
                   height: context.responsiveWidgetHeight,
                   child: CircleAvatar(child: Image.asset('assets/images/user.jpg'), )),
@@ -42,7 +54,7 @@ class SessionAppBar extends StatelessWidget {
                   children: [
                     Text('Tareq Taha', style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize2), fontWeight: AppSizes.fontWeight1),),
                     Text(
-                      '${DateFormat.yMMMEd('en').format(DateTime.now())}'
+                      DateFormat.yMMMEd('en').format(DateTime.now())
                       , style: TextStyle(fontSize: context.responsiveFontSize(AppSizes.fontSize4)),
                     ),
                   ],

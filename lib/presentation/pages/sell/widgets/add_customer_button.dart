@@ -27,18 +27,16 @@ class AddCustomerButton extends StatefulWidget {
 
 class _AddCustomerButtonState extends State<AddCustomerButton> {
   void customDialog(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    String _selectedOption = 'Individual';
+    String selectedOption = 'Individual';
     
 
     showDialog(
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha:  0.3),
       context: context,
       
       builder: (BuildContext dialogContext) {
         return StatefulBuilder(
           builder: (context, setState) {
-           
             return Dialog(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
@@ -127,10 +125,10 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                             children: [
                               Radio(
                                 value: 'Individual',
-                                groupValue: _selectedOption,
+                                groupValue: selectedOption,
                                 onChanged: (value) {
                                   setState(() {
-                                    _selectedOption = value.toString();
+                                    selectedOption = value.toString();
                                   });
                                 },
                               ),
@@ -138,10 +136,10 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                                         
                               Radio(
                                 value: 'Company',
-                                groupValue: _selectedOption,
+                                groupValue: selectedOption,
                                 onChanged: (value) {
                                   setState(() {
-                                    _selectedOption = value.toString();
+                                    selectedOption = value.toString();
                                   });
                                 },
                               ),
@@ -150,7 +148,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
                           ),
                           SizedBox(height: AppSizes.verSpacesBetweenContainers),
           
-                          _selectedOption == 'Individual'
+                          selectedOption == 'Individual'
                               ? _buildIndividual()
                               : _buildCompany(),
                         ],
@@ -803,7 +801,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
       //     currentColor= AppColors.lightGrey;
       //   });
       // },
-      child: Container(
+      child: SizedBox(
         width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         child: IconButton(
@@ -813,7 +811,7 @@ class _AddCustomerButtonState extends State<AddCustomerButton> {
           icon: Icon(
             IconsaxPlusLinear.user_add,
             color: widget.iconColor,
-            size: AppSizes.iconSize2,
+            size: context.responsiveIconSize(AppSizes.iconSize2),
           ),
 
           style: ElevatedButton.styleFrom(

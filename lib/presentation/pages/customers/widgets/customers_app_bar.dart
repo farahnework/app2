@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CustomersAppBar extends StatefulWidget {
   const CustomersAppBar({super.key});
@@ -53,7 +54,7 @@ class _CustomersAppBarState extends State<CustomersAppBar> {
               
                SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                Text(
-                    'Customers',
+                   StringTranslateExtension('customers',).tr(),
                     style: TextStyle(
                       fontSize: context.responsiveFontSize(AppSizes.fontSize1,),
                       fontWeight: AppSizes.fontWeight1,
@@ -90,7 +91,7 @@ class _CustomersAppBarState extends State<CustomersAppBar> {
                     ),
                   ),
                   Text(
-                    '${DateFormat.yMMMEd('en').format(DateTime.now())}',
+                    DateFormat.yMMMEd('en').format(DateTime.now()),
                     style: TextStyle(
                       fontSize: context.responsiveFontSize(AppSizes.fontSize5),
                     ),

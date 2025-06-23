@@ -4,7 +4,6 @@ import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect.dart';
 
 class SellDropDownButton extends StatefulWidget {
   final String title;
@@ -30,7 +29,7 @@ class SellDropDownButton extends StatefulWidget {
 }
 
 class _SellDropDownButtonState extends State<SellDropDownButton> {
-  var newSelect;
+  dynamic newSelect;
   var currentColor = AppColors.grey;
   @override
   Widget build(BuildContext context) {
@@ -47,7 +46,7 @@ class _SellDropDownButtonState extends State<SellDropDownButton> {
             currentColor = AppColors.grey;
           });
         },
-        child: Container(
+        child: SizedBox(
           height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
           child: 
           DropdownButton2(

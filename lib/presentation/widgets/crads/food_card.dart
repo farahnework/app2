@@ -48,7 +48,7 @@ class _FoodCardState extends State<FoodCard> {
             BoxShadow(
               blurRadius: 10,
               offset: Offset(0, 0.5),
-              color: AppColors.darkPurple.withOpacity(0.05),
+              color: AppColors.darkPurple.withValues(alpha:  0.05),
               spreadRadius: 1,
             ),
           ],
@@ -79,8 +79,8 @@ class _FoodCardState extends State<FoodCard> {
                     addExtrasDialog(context, 'assets/images/food5.jpg');
                   },
                   child: CircleAvatar(
-                    child: Icon(Iconsax.add, size: context.responsiveIconSize(AppSizes.iconSize)),
                     backgroundColor: AppColors.yellow,
+                    child: Icon(Iconsax.add, size: context.responsiveIconSize(AppSizes.iconSize)),
                   ),
                 ),
               ],
@@ -105,7 +105,9 @@ class _FoodCardState extends State<FoodCard> {
                   textDirection: ui.TextDirection.ltr,
                   child: Row(
                     children: [
-                      SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6) , color: AppColors.darkPurple,),
+                      SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize6) , 
+                      colorFilter: ColorFilter.mode(AppColors.darkPurple, BlendMode.srcIn),
+                      ),
                       SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                       Text(
                         widget.price.toString(),

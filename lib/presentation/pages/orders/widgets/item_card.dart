@@ -11,7 +11,7 @@ class SellItemCard extends StatefulWidget {
   final double price;
   final String productName;
   final String image;
-  SellItemCard({
+  const SellItemCard({
     super.key,
     required this.amount,
     required this.price,
@@ -30,7 +30,7 @@ class _SellItemCardState extends State<SellItemCard> {
     return MouseRegion(
       onEnter: (event) {
         setState(() {
-          currentColor = AppColors.lightPurple.withOpacity(0.3);
+          currentColor = AppColors.lightPurple.withValues(alpha: .3);
         });
       },
       onExit: (event) {
@@ -82,7 +82,9 @@ class _SellItemCardState extends State<SellItemCard> {
               ),
               Row(
                 children: [
-                  SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize5), color: AppColors.darkPurple,),
+                  SvgPicture.asset(AppImages.rial, width: context.responsiveFontSize(AppSizes.fontSize5),
+                   colorFilter: ColorFilter.mode(AppColors.darkPurple, BlendMode.srcIn),
+                   ),
                   SizedBox(width: AppSizes.horiSpacesBetweentTexts,),
                   Text(
                     widget.price.toString(),

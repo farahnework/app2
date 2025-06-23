@@ -28,7 +28,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             floatingLabelBehavior: FloatingLabelBehavior.auto,
             fillColor: AppColors.white,
             filled: true,
-            prefixIcon: Icon(widget.icon, color: AppColors.darkPurple, size: context.responsiveIconSize(AppSizes.iconSize),),
+            prefixIcon: Icon(widget.icon, color: AppColors.darkPurple, size: context.responsiveIconSize(AppSizes.iconSize2),),
             labelText: widget.hintText,
           labelStyle: CustomTextStyles.smallText(context),
             border: OutlineInputBorder(

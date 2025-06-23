@@ -9,7 +9,7 @@ class CustomIconButton extends StatefulWidget {
   final Color color;
   final Color iconColor;
   final double size;
-  final  onPresse;
+  final dynamic onPresse;
 
   const CustomIconButton({super.key, required this.icon, required this.color, required this.iconColor, required this.size, required this.onPresse});
 
@@ -32,7 +32,7 @@ class _CustomIconButtonState extends State<CustomIconButton> {
       //     currentColor= AppColors.lightGrey;
       //   });
       // },
-      child: Container(
+      child: SizedBox(
         width:  context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         child: IconButton(

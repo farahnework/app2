@@ -4,8 +4,8 @@ import 'package:app/shared/styles/box_decoration.dart';
 import 'package:flutter/material.dart';
 
 class CustomContainer extends StatefulWidget {
-  Widget child;
-   CustomContainer({super.key, required this.child});
+  final Widget child;
+   const CustomContainer({super.key, required this.child});
 
   @override
   State<CustomContainer> createState() => _CustomContainerState();

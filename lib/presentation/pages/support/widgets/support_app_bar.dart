@@ -84,7 +84,7 @@ class SupportAppBar extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${DateFormat.yMMMEd('en').format(DateTime.now())}',
+                    DateFormat.yMMMEd('en').format(DateTime.now()),
                     style: TextStyle(
                       fontSize: context.responsiveFontSize(AppSizes.fontSize5),
                     ),

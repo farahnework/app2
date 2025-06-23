@@ -26,7 +26,7 @@ class AppColors {
   static final Color appBarBackground = white;
   static final Color border = grey;
   static final Color fieldBorder = lightGrey;
-  static final Color shadow = black.withOpacity(0.16);
+  static final Color shadow = black.withValues(alpha: 0.16);
   static final Color hint = darkGray;
   static final Color fillColor = white;
 

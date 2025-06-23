@@ -75,21 +75,21 @@ class SupportBody extends StatelessWidget {
   Widget build(BuildContext context) {
     int crossAxisCount =
         context.isMobile
-            ? ScreenLayouts.mobileCrossAxisCount
+            ? 1
             : ResponsiveSizing.isTablet(context)
             ? ScreenLayouts.tabletCrossAxisCount
             : 4;
 
-    double spacing =
-        context.isMobile
-            ? ScreenLayouts.mobileSpacing
-            : ResponsiveSizing.isTablet(context)
-            ? ScreenLayouts.tabletSpacing
-            : ScreenLayouts.desktopSpacing;
+    // double spacing =
+    //     context.isMobile
+    //         ? ScreenLayouts.mobileSpacing
+    //         : ResponsiveSizing.isTablet(context)
+    //         ? ScreenLayouts.tabletSpacing
+    //         : ScreenLayouts.desktopSpacing;
 
     double childAspectRatio =
         context.isMobile
-            ? 1.5
+            ? 5
             : ResponsiveSizing.isTablet(context)
             ? 1.5
             : 1.7;
@@ -101,95 +101,123 @@ class SupportBody extends StatelessWidget {
             vertical: AppSizes.verticalPadding,
           ),
           child: CustomContainer(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      StringTranslateExtension('support').tr(),
+            child: Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichText(
+                    // textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
+                    text: TextSpan(
                       style: CustomTextStyles.titleText(context),
+                      children: [
+                        TextSpan(
+                          text:
+                              '${StringTranslateExtension('support_text').tr()} ',
+                          style: CustomTextStyles.titleText(
+                            context,
+                          ).copyWith(color: AppColors.black),
+                          //  TextStyle(color: AppColors.black,)
+                        ),
+                        WidgetSpan(
+                          alignment: PlaceholderAlignment.middle,
+                          child: Icon(
+                            Iconsax.heart5,
+                            size: 20,
+                            color: AppColors.red,
+                          ),
+                        ),
+                      ],
                     ),
-                    Icon(size: 20, Iconsax.heart5, color: AppColors.red),
-                  ],
-                ),
-                SizedBox(height: AppSizes.verSpacesBetweenContainers),
-                Center(child: Image.asset('assets/images/support.png')),
-                Container(
-                  width: double.infinity,
-                  child: GridView(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: crossAxisCount,
-                      crossAxisSpacing: 1,
-                      mainAxisSpacing: 0,
-                      childAspectRatio: childAspectRatio,
-                    ),
-                    children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/icons/whatsapp-logo.svg',
-                            color: AppColors.darkPurple,
-                            height: context.responsiveIconSize(
-                              AppSizes.iconSize2,
-                            ),
-                          ),
-                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-                          Text(
-                            '0583659392',
-                            style: CustomTextStyles.largeText(context),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            IconsaxPlusLinear.call,
-                            size: context.responsiveIconSize(AppSizes.iconSize),
-                            color: AppColors.darkPurple,
-                          ),
-                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-                          Text(
-                            '920012279',
-                            style: CustomTextStyles.largeText(context),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            IconsaxPlusLinear.call,
-                            size: context.responsiveIconSize(AppSizes.iconSize),
-                            color: AppColors.darkPurple,
-                          ),
-                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-                          Text(
-                            '0557566573',
-                            style: CustomTextStyles.largeText(context),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.email_outlined,
-                            size: context.responsiveIconSize(AppSizes.iconSize),
-                            color: AppColors.darkPurple,
-                          ),
-                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-                          Text(
-                            'info@as-it.com.sa',
-                            style: CustomTextStyles.largeText(context),
-                          ),
-                        ],
-                      ),
-                    ],
                   ),
-                ),
-              ],
+
+                  SizedBox(height: AppSizes.verSpacesBetweenContainers),
+                  Center(child: Image.asset('assets/images/support.png')),
+                  SizedBox(
+                    width: double.infinity,
+                    child: GridView(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: crossAxisCount,
+                        crossAxisSpacing: 1,
+                        mainAxisSpacing: 0,
+                        childAspectRatio: childAspectRatio,
+                      ),
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icons/whatsapp-logo.svg',
+
+                              height: context.responsiveIconSize(
+                                AppSizes.iconSize2,
+                              ),
+                              colorFilter: ColorFilter.mode(
+                                AppColors.darkPurple,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                            SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                            Text(
+                              '0583659392',
+                              style: CustomTextStyles.largeText(context),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              IconsaxPlusLinear.call,
+                              size: context.responsiveIconSize(
+                                AppSizes.iconSize,
+                              ),
+                              color: AppColors.darkPurple,
+                            ),
+                            SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                            Text(
+                              '920012279',
+                              style: CustomTextStyles.largeText(context),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              IconsaxPlusLinear.call,
+                              size: context.responsiveIconSize(
+                                AppSizes.iconSize,
+                              ),
+                              color: AppColors.darkPurple,
+                            ),
+                            SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                            Text(
+                              '0557566573',
+                              style: CustomTextStyles.largeText(context),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              IconsaxPlusLinear.messages,
+                              size: context.responsiveIconSize(
+                                AppSizes.iconSize,
+                              ),
+                              color: AppColors.darkPurple,
+                            ),
+                            SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                            Text(
+                              'info@as-it.com.sa',
+                              style: CustomTextStyles.largeText(context),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

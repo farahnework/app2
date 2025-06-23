@@ -6,11 +6,10 @@ import '../responsive/responsive_sizing.dart';
 import 'font_weight_helper.dart';
 
 class AppStyles {
-  static var textStyle16;
+  static dynamic textStyle16;
 
   const AppStyles._();
 
-  // Desktop specific styles
   static final tableHeader = TextStyle(
       color: AppColors.darkPurple,
       fontWeight: FontWeight.bold,

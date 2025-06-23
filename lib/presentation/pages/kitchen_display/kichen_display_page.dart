@@ -49,7 +49,7 @@ class _KitchenDisplayPageState extends State<KitchenDisplayPage> {
                       decoration: CustomBoxDecoration.boxDecoration,
                       child: TabBar(
                         dividerColor: Colors.transparent,
-                        overlayColor: MaterialStateProperty.all(
+                        overlayColor: WidgetStateProperty.all(
                           Colors.transparent,
                         ),
                         indicatorSize: TabBarIndicatorSize.label,

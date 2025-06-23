@@ -1,4 +1,3 @@
-import 'package:app/controllers/toggle_button_controller.dart';
 import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/core/responsive/responsive_sizing.dart';
@@ -9,7 +8,7 @@ import 'package:app/presentation/pages/restaurant_orders.dart/widgets/add_note_d
 import 'package:app/presentation/pages/restaurant_orders.dart/widgets/restaurant_app_bar.dart';
 import 'package:app/presentation/pages/sell/sell_page.dart';
 import 'package:app/presentation/pages/sell/widgets/choose_device_dialog.dart';
-import 'package:app/presentation/pages/sell/widgets/sell_app_bar.dart';
+import 'package:app/presentation/pages/session_details/session_details_page.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_dialog_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_drop_down_button.dart';
@@ -20,6 +19,7 @@ import 'package:app/presentation/widgets/crads/order_number_card.dart';
 import 'package:app/presentation/widgets/crads/sell_product_card.dart';
 import 'package:app/presentation/widgets/fields/custom_search_field.dart';
 import 'package:app/presentation/widgets/numbers_palette.dart';
+import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/utils/app_images.dart';
@@ -27,18 +27,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'dart:ui' as ui;
 
 class RestaurantOrdersPage extends StatefulWidget {
-   const RestaurantOrdersPage({super.key});
+  const RestaurantOrdersPage({super.key});
 
   @override
   State<RestaurantOrdersPage> createState() => _RestaurantOrdersPageState();
 }
 
 class _RestaurantOrdersPageState extends State<RestaurantOrdersPage> {
-  
   @override
   Widget build(BuildContext context) {
     final ValueNotifier<bool> showCategories = ValueNotifier(false);
@@ -46,13 +45,11 @@ class _RestaurantOrdersPageState extends State<RestaurantOrdersPage> {
       chooseDeviceDialog(context);
     });
 
-   
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.lightGrey,
         body:
-         context.isMobile
-                
+            context.isMobile
                 ? Stack(
                   children: [
                     Align(
@@ -74,7 +71,76 @@ class _RestaurantOrdersPageState extends State<RestaurantOrdersPage> {
                             bottom: 0,
                             child: Column(
                               children: [
-                                CustomAppBar(),
+                                Container(
+                                  decoration: CustomBoxDecoration.boxDecoration
+                                      .copyWith(
+                                        borderRadius: BorderRadius.circular(0),
+                                        border: Border(
+                                          bottom: BorderSide(
+                                            width: AppSizes.borderSize,
+                                            color: AppColors.grey,
+                                          ),
+                                        ),
+                                      ),
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: AppSizes.horizontalPadding,
+                                      vertical: AppSizes.verticalPadding / 2,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: context.responsiveRelativeSize(
+                                            containerSize: context.screenHeight,
+                                            percentage: AppSizes.widgetHeight,
+                                          ),
+                                          height: context
+                                              .responsiveRelativeSize(
+                                                containerSize:
+                                                    context.screenHeight,
+                                                percentage:
+                                                    AppSizes.widgetHeight,
+                                              ),
+                                          decoration: BoxDecoration(
+                                            color: AppColors.darkPurple,
+                                            borderRadius: BorderRadius.circular(
+                                              context.responsiveBorderRadius(
+                                                AppSizes.radius12,
+                                              ),
+                                            ),
+                                          ),
+                                          child: IconButton(
+                                            onPressed:
+                                                () =>
+                                                    showCategories.value =
+                                                        false,
+
+                                            icon: Icon(
+                                              IconsaxPlusLinear.arrow_left_1,
+                                              color: AppColors.white,
+                                            ),
+                                          ),
+                                        ),
+
+                                        CustomButton(
+                                          text:
+                                              StringTranslateExtension(
+                                                'session_details',
+                                              ).tr(),
+                                          radius: true,
+                                          width: 150,
+                                          page: SessionDetailsPage(),
+                                          height: AppSizes.widgetHeight,
+                                          color: AppColors.darkPurple,
+                                          textColor: AppColors.white,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                                 LeftSide(
                                   onClose: () => showCategories.value = false,
                                 ),
@@ -84,19 +150,21 @@ class _RestaurantOrdersPageState extends State<RestaurantOrdersPage> {
                         },
                       ),
                   ],
-                ):
-         Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: 
-             
-              Column(children: [RestaurantAppBar(), LeftSide(onClose: () => showCategories.value = false)])
-            
-            ),
-            RightSide(menuNotifier: showCategories), 
-          ],
-        ),
+                )
+                : Row(
+                  children: [
+                    RightSide(menuNotifier: showCategories),
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        children: [
+                          RestaurantAppBar(),
+                          LeftSide(onClose: () => showCategories.value = false),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
       ),
     );
   }
@@ -104,7 +172,7 @@ class _RestaurantOrdersPageState extends State<RestaurantOrdersPage> {
 
 class LeftSide extends StatefulWidget {
   final VoidCallback onClose;
-  const LeftSide({super.key , required this.onClose});
+  const LeftSide({super.key, required this.onClose});
 
   @override
   State<LeftSide> createState() => _LeftSideState();
@@ -113,7 +181,7 @@ class LeftSide extends StatefulWidget {
 class _LeftSideState extends State<LeftSide> {
   @override
   Widget build(BuildContext context) {
-     int categoriesCrossAxisCount =
+    int categoriesCrossAxisCount =
         context.isMobile
             ? 2
             : ResponsiveSizing.isTablet(context)
@@ -139,7 +207,7 @@ class _LeftSideState extends State<LeftSide> {
           padding: EdgeInsets.only(
             left: AppSizes.horizontalPadding,
             right: AppSizes.horizontalPadding,
-            top: AppSizes.verticalPadding ,
+            top: AppSizes.verticalPadding,
           ),
           child: Column(
             children: [
@@ -147,65 +215,49 @@ class _LeftSideState extends State<LeftSide> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                       if (context.isMobile)
-                          Container(
-                            width: context.responsiveRelativeSize(
-                              containerSize: context.screenHeight,
-                              percentage: AppSizes.widgetHeight,
-                            ),
-                            height: context.responsiveRelativeSize(
-                              containerSize: context.screenHeight,
-                              percentage: AppSizes.widgetHeight,
-                            ),
-                            decoration: BoxDecoration(color: AppColors.darkBlue, borderRadius: BorderRadius.circular(context.responsiveBorderRadius(AppSizes.radius12))),
-                            child: IconButton(
-                              color: AppColors.darkPurple,
-        
-                              onPressed: () {
-                                widget.onClose();
-                              },
-        
-                              icon: Icon(
-                                IconsaxPlusLinear.arrow_left_1,
-                                color: AppColors.white,
-                              ),
-                            ),
-                          ),
-                           SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                      CustomSearchField(text: StringTranslateExtension('search').tr(),),
+                    
+                      CustomSearchField(
+                        text: StringTranslateExtension('search').tr(),
+                      ),
                       SizedBox(width: AppSizes.horiSpacesBetweenElements),
                       CustomButton(
-                    text: StringTranslateExtension('orders').tr(),
-                    radius: true,
-                    width: 100,
-                    page: OrdersPage(),
-                    height: AppSizes.widgetHeight,
-                    color: AppColors.darkPurple,
-                    textColor: AppColors.white,
-                  ),
-                     
+                        text: StringTranslateExtension('orders').tr(),
+                        radius: true,
+                        width: 100,
+                        page: OrdersPage(),
+                        height: AppSizes.widgetHeight,
+                        color: AppColors.lightPurple,
+                        textColor: AppColors.darkPurple,
+                      ),
                     ],
                   ),
-                  if(!context.isMobile)
-                  Row(
-                    children: [
-                      // Icon(IconsaxPlusLinear.arrow_left_1, color: AppColors.darkGray,),
-                      // SizedBox(width: AppSizes.horiSpacesBetweenElements,),
-                      Icon(IconsaxPlusLinear.home_2, color: AppColors.darkPurple),
-                    ],
-                  ),
+                  if (!context.isMobile)
+                    Row(
+                      children: [
+                        // Icon(IconsaxPlusLinear.arrow_left_1, color: AppColors.darkGray,),
+                        // SizedBox(width: AppSizes.horiSpacesBetweenElements,),
+                        Icon(
+                          IconsaxPlusLinear.home_2,
+                          color: AppColors.darkPurple,
+                        ),
+                      ],
+                    ),
                 ],
               ),
-               SizedBox(height: AppSizes.verSpacesBetweenContainers),
-                Row(
+              SizedBox(height: AppSizes.verSpacesBetweenContainers),
+              Row(
                 children: [
-                  Text(StringTranslateExtension('categories').tr(),style: CustomTextStyles.titleText(context)),
+                  Text(
+                    StringTranslateExtension('categories').tr(),
+                    style: CustomTextStyles.titleText(context),
+                  ),
                 ],
               ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-               Expanded(
-                flex: 1,
+              Expanded(
+                flex:  1 ,
                 child: GridView(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: categoriesCrossAxisCount,
@@ -214,54 +266,62 @@ class _LeftSideState extends State<LeftSide> {
                     childAspectRatio: 4,
                   ),
                   children: [
-                    
-                      CategoryCard(
-                        image: 'assets/images/food2.jpg',
-                        category: 'Sweets',
-                        itemsNum: 10,
-                      ),
-                      CategoryCard(
-                        image: 'assets/images/food7.jpg',
-                        category: 'Sanwishes',
-                        itemsNum: 23,
-                      ),
-        
-                      CategoryCard(
-                        image: 'assets/images/food3.jpg',
-                        category: 'Healthy',
-                        itemsNum: 12,
-                      ),
-                      CategoryCard(
-                        image: 'assets/images/food9.jpg',
-                        category: 'Breakfast',
-                        itemsNum: 3,
-                      ),
-                      CategoryCard(
-                        image: 'assets/images/food12.jpg',
-                        category: 'Fast Food',
-                        itemsNum: 10,
-                      ),
-                      CategoryCard(
-                        image: 'assets/images/food6.jpg',
-                        category: 'Rice',
-                        itemsNum: 6,
-                      ),
-                    ],
+                    CategoryCard(
+                      image: 'assets/images/food2.jpg',
+                      category: 'Sweets',
+                      itemsNum: 10,
+                    ),
+                    CategoryCard(
+                      image: 'assets/images/food7.jpg',
+                      category: 'Sanwishes',
+                      itemsNum: 23,
+                    ),
+
+                    CategoryCard(
+                      image: 'assets/images/food3.jpg',
+                      category: 'Healthy',
+                      itemsNum: 12,
+                    ),
+                    CategoryCard(
+                      image: 'assets/images/food9.jpg',
+                      category: 'Breakfast',
+                      itemsNum: 3,
+                    ),
+                    CategoryCard(
+                      image: 'assets/images/food12.jpg',
+                      category: 'Fast Food',
+                      itemsNum: 10,
+                    ),
+                    CategoryCard(
+                      image: 'assets/images/food6.jpg',
+                      category: 'Rice',
+                      itemsNum: 6,
+                    ),
+                  ],
                 ),
               ),
-             
+
               SizedBox(height: AppSizes.verSpacesBetweenContainers),
-              Row(children: [Text(StringTranslateExtension('products').tr(), style: CustomTextStyles.titleText(context))]),
+              Row(
+                children: [
+                  Text(
+                    StringTranslateExtension('products').tr(),
+                    style: CustomTextStyles.titleText(context),
+                  ),
+                ],
+              ),
               SizedBox(height: AppSizes.verSpacesBetweenElements),
-        
+
               Expanded(
-                flex: 2,
+                flex: context.isMobile? 3: 2,
                 child: GridView(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                       crossAxisCount: crossAxisCount,
+                    crossAxisCount: crossAxisCount,
                     crossAxisSpacing: spacing,
                     mainAxisSpacing: spacing,
-                    childAspectRatio: context.isDesktop? 0.9
+                    childAspectRatio:
+                        context.isDesktop
+                            ? 0.9
                             : context.isMobile
                             ? 0.95
                             : 0.75,
@@ -358,17 +418,16 @@ class _LeftSideState extends State<LeftSide> {
 
 class RightSide extends StatefulWidget {
   final ValueNotifier<bool> menuNotifier;
-  const RightSide({super.key, required this.menuNotifier,});
+  const RightSide({super.key, required this.menuNotifier});
 
   @override
   State<RightSide> createState() => _RightSideState();
 }
 
 class _RightSideState extends State<RightSide> {
-  
   @override
   Widget build(BuildContext context) {
-    final sideToggle = Provider.of<SideToggleProvider>(context);
+    // final sideToggle = Provider.of<SideToggleProvider>(context);
 
     return Expanded(
       flex: 1,
@@ -376,17 +435,23 @@ class _RightSideState extends State<RightSide> {
         decoration: BoxDecoration(
           color: AppColors.lightGrey,
           border: Border(
-            left: BorderSide(color: AppColors.grey,  width: AppSizes.borderSize),
-            right: BorderSide(color: AppColors.grey, width: AppSizes.borderSize),
+            left: BorderSide(color: AppColors.grey, width: AppSizes.borderSize),
+            right: BorderSide(
+              color: AppColors.grey,
+              width: AppSizes.borderSize,
             ),
+          ),
         ),
         child: Column(
           children: [
             SizedBox(
-              height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+              height: context.responsiveRelativeSize(
+                containerSize: context.screenHeight,
+                percentage: AppSizes.widgetHeight,
+              ),
               child: Row(
                 children: [
-                   if (context.isMobile)
+                  if (context.isMobile)
                     Container(
                       width: context.responsiveRelativeSize(
                         containerSize: context.screenHeight,
@@ -410,8 +475,14 @@ class _RightSideState extends State<RightSide> {
                       ),
                     ),
                   Container(
-                    width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
-                    height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+                    width: context.responsiveRelativeSize(
+                      containerSize: context.screenHeight,
+                      percentage: AppSizes.widgetHeight,
+                    ),
+                    height: context.responsiveRelativeSize(
+                      containerSize: context.screenHeight,
+                      percentage: AppSizes.widgetHeight,
+                    ),
                     decoration: BoxDecoration(color: AppColors.darkPurple),
                     child: IconButton(
                       color: AppColors.darkPurple,
@@ -420,8 +491,11 @@ class _RightSideState extends State<RightSide> {
                     ),
                   ),
                   Expanded(
-                    child: Container(
-                      height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
+                    child: SizedBox(
+                      height: context.responsiveRelativeSize(
+                        containerSize: context.screenHeight,
+                        percentage: AppSizes.widgetHeight,
+                      ),
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
@@ -447,46 +521,40 @@ class _RightSideState extends State<RightSide> {
                 right: AppSizes.horizontalPadding / 2,
                 top: AppSizes.verticalPadding / 2,
               ),
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Iconsax.user,
-                          color: AppColors.darkPurple,
-                          size: 25,
-                        ),
-                        SizedBox(width: AppSizes.horiSpacesBetweenElements),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Iconsax.user, color: AppColors.darkPurple, size: 25),
+                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
 
-                        Text(
-                          StringTranslateExtension('general_customer').tr(),
-                          style: CustomTextStyles.meduimText(context),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                         CustomIconButton(
-                          icon: IconsaxPlusLinear.note_2,
-                          color: AppColors.lightPurple,
-                          iconColor: AppColors.darkPurple,
-                          size: AppSizes.widgetHeight,
-                          onPresse: addNoteDialog,
-                        ),
-                        SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                        CustomIconButton(
-                          onPresse: addNoteDialog,
-                          icon: Iconsax.trash,
-                          color: AppColors.lightPurple,
-                          iconColor: AppColors.darkPurple,
-                          size: AppSizes.widgetHeight,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      Text(
+                        StringTranslateExtension('general_customer').tr(),
+                        style: CustomTextStyles.meduimText(context),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      CustomIconButton(
+                        icon: IconsaxPlusLinear.note_2,
+                        color: AppColors.lightPurple,
+                        iconColor: AppColors.darkPurple,
+                        size: AppSizes.widgetHeight,
+                        onPresse: addNoteDialog,
+                      ),
+                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                      CustomIconButton(
+                        onPresse: addNoteDialog,
+                        icon: Iconsax.trash,
+                        color: AppColors.lightPurple,
+                        iconColor: AppColors.darkPurple,
+                        size: AppSizes.widgetHeight,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
@@ -581,7 +649,7 @@ class _RightSideState extends State<RightSide> {
             NumbersPalette(),
             SizedBox(height: AppSizes.horiSpacesBetweenElements),
 
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 50,
               child: TextButton(
@@ -594,18 +662,33 @@ class _RightSideState extends State<RightSide> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(StringTranslateExtension('payment').tr(), style: CustomTextStyles.buttonText(context)),
-                    SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                    SvgPicture.asset(
-                      AppImages.rial,
-                      width: context.responsiveFontSize(AppSizes.fontSize6),
-                      color: AppColors.white,
-                    ),
-                    SizedBox(width: AppSizes.horiSpacesBetweentTexts),
-
                     Text(
-                      '260',
-                      style: CustomTextStyles.buttonText(context).copyWith(fontWeight: AppSizes.fontWeight1,)
+                      "${StringTranslateExtension('payment').tr()}:",
+                      style: CustomTextStyles.buttonText(context).copyWith(fontSize: context.responsiveFontSize(AppSizes.fontSize2) ),
+                    ),
+                    SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                    Directionality(
+                      textDirection: ui.TextDirection.ltr,
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            AppImages.rial,
+                            width: context.responsiveFontSize(AppSizes.fontSize6),
+                            colorFilter: ColorFilter.mode(
+                              AppColors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                          SizedBox(width: AppSizes.horiSpacesBetweentTexts),
+                          
+                          Text(
+                            '260',
+                            style: CustomTextStyles.buttonText(
+                              context,
+                            ).copyWith(fontWeight: AppSizes.fontWeight1),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

@@ -151,7 +151,7 @@ class ResponsiveSizing {
     } else if (isTablet(context)) {
       return baseSize * 1;
     } else {
-      return baseSize *1.1;
+      return baseSize *1.3;
     }
   }
 

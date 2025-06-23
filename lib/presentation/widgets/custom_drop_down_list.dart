@@ -23,7 +23,7 @@ class CustomDropDownList extends StatefulWidget {
 }
 
 class _CustomDropDownListState extends State<CustomDropDownList> {
-  var newSelect;
+   dynamic newSelect;
   var currentColor = AppColors.white;
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _CustomDropDownListState extends State<CustomDropDownList> {
             currentColor = AppColors.white;
           });
         },
-        child: Container(
+        child: SizedBox(
           width: widget.width,
           child: DropdownButton2(
          
@@ -59,7 +59,7 @@ class _CustomDropDownListState extends State<CustomDropDownList> {
                 ),
                boxShadow: [
       BoxShadow(
-        color: Colors.black.withOpacity(0.3),
+        color: Colors.black.withValues(alpha: 0.3),
         spreadRadius: 1,
         blurRadius: 5,
         offset: Offset(0, 2), // Adjust shadow position

@@ -7,7 +7,7 @@ import 'orientation_layout.dart';
 import 'responsive_helper.dart';
 
 class ResponsiveExample extends StatelessWidget {
-  const ResponsiveExample({Key? key}) : super(key: key);
+  const ResponsiveExample({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -248,7 +248,7 @@ class ResponsiveExample extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(context.responsivePadding(AppSizes.spacing16)),
       decoration: BoxDecoration(
-        color: AppColors.primary.withOpacity(0.1),
+        color: AppColors.primary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(
           context.responsiveBorderRadius(AppSizes.radius8),
         ),
@@ -315,7 +315,7 @@ class ResponsiveExample extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withValues(alpha:  0.1),
                 blurRadius: 4,
                 offset: const Offset(0, 2),
               ),

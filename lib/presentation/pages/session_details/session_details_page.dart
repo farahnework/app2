@@ -40,57 +40,51 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: context.screenWidth / 2,
-                      height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage:  AppSizes.widgetHeight),
-                      decoration: CustomBoxDecoration.boxDecoration,
-                      child: TabBar(
-                        dividerColor: Colors.transparent,
-                        overlayColor: MaterialStateProperty.all(
-                          Colors.transparent,
+                    Expanded(
+                      child: Container(
+                         width:
+                        context.isMobile? 
+                        context.screenWidth:
+                        context.responsiveRelativeSize(containerSize: context.screenWidth, percentage:  10),
+                        height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage:  AppSizes.widgetHeight),
+                        decoration: CustomBoxDecoration.boxDecoration,
+                        child: TabBar(
+                          dividerColor: Colors.transparent,
+                          overlayColor: WidgetStateProperty.all(
+                            Colors.transparent,
+                          ),
+                          indicatorSize: TabBarIndicatorSize.label,
+                          labelPadding: EdgeInsets.symmetric(horizontal: 0),
+                              
+                          unselectedLabelStyle: TextStyle(
+                            color: AppColors.darkGray,
+                            fontSize:context.responsiveFontSize(AppSizes.fontSize3),
+                          ),
+                          labelStyle: TextStyle(
+                            color: AppColors.darkPurple,
+                            fontSize: context.responsiveFontSize(AppSizes.fontSize3),
+                            fontWeight: FontWeight.bold,
+                          ),
+                          tabs: [
+                            Tab(text: StringTranslateExtension('summary').tr(),),
+                            Tab(text: StringTranslateExtension('money_movments').tr(),),
+                            Tab(text: StringTranslateExtension('transactions').tr(),),
+                            Tab(text:StringTranslateExtension('payable').tr(),),
+                          ],
                         ),
-                        indicatorSize: TabBarIndicatorSize.label,
-                        labelPadding: EdgeInsets.symmetric(horizontal: 0),
-        
-                        unselectedLabelStyle: TextStyle(
-                          color: AppColors.darkGray,
-                          fontSize:context.responsiveFontSize(AppSizes.fontSize3),
-                        ),
-                        labelStyle: TextStyle(
-                          color: AppColors.darkPurple,
-                          fontSize: context.responsiveFontSize(AppSizes.fontSize3),
-                          fontWeight: FontWeight.bold,
-                        ),
-                        tabs: [
-                          Tab(text: StringTranslateExtension('summary').tr(),),
-                          Tab(text: StringTranslateExtension('money_movments').tr(),),
-                          Tab(text: StringTranslateExtension('transactions').tr(),),
-                          Tab(text:StringTranslateExtension('payable').tr(),),
-                        ],
                       ),
                     ),
-                    Row(
-                      children: [
-                        // CustomButton(
-                        //   text: 'Sessions',
-                        //   radius: true,
-                        //   width: 100,
-                        //   page: SellPage(),
-                        //   height: AppSizes.widgetHeight,
-                        //   textColor: AppColors.white,
-                        //   color: AppColors.darkPurple,
-                        // ),
-                        // SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                        CustomButton(
-                          text: StringTranslateExtension('sale_screen').tr(),
-                          radius: true,
-                          width: 120,
-                          page: SellPage(),
-                          height: AppSizes.widgetHeight,
-                          color: AppColors.darkPurple,
-                          textColor: AppColors.white,
-                        ),
-                      ],
+                    if(!context.isMobile)
+                    Spacer(),
+                    if(!context.isMobile)
+                    CustomButton(
+                      text: StringTranslateExtension('sale_screen').tr(),
+                      radius: true,
+                      width: 120,
+                      page: SellPage(),
+                      height: AppSizes.widgetHeight,
+                      color: AppColors.darkPurple,
+                      textColor: AppColors.white,
                     ),
                   ],
                 ),

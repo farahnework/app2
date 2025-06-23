@@ -65,7 +65,7 @@ class _ProductsAppBarState extends State<ProductsAppBar> {
                   children: [
                     Text('Tareq Taha', style: CustomTextStyles.header2),
                     Text(
-                      '${DateFormat.yMMMEd('en').format(DateTime.now())}',
+                      DateFormat.yMMMEd('en').format(DateTime.now()),
                     ),
                   ],
                 ),

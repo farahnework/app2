@@ -59,50 +59,60 @@ class _CategoryCardState extends State<CategoryCard> {
             ),
             SizedBox(width: context.responsiveSpacing(AppSizes.horiSpacesBetweenElements),),
             
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.category,
-                      style: TextStyle(
-                        fontSize:14,
-                        color: AppColors.black,
-                        fontWeight: AppSizes.fontWeight1,
-                      ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.category,
+                    softWrap: false,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontSize: context.responsiveFontSize(AppSizes.fontSize3),
+                      color: AppColors.black,
+                      fontWeight: AppSizes.fontWeight1,
                     ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      StringTranslateExtension('contain').tr(),
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: AppColors.darkGray,
-                      ),
+                  ),
+                  Text(
+                    StringTranslateExtension('contains_x_items' ).tr(namedArgs: {'count': widget.itemsNum.toString()}),
+                    softWrap: false,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontSize: context.responsiveFontSize(AppSizes.fontSize4),
+                      color: AppColors.black,
                     ),
-                    Text(
-                      ' ${widget.itemsNum.toString()} ',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: AppColors.darkGray,
-                      ),
-                    ),
-                    Text(
-                      StringTranslateExtension('item').tr(),
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: AppColors.darkGray,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.start,
+                  //   children: [
+                  //     Text(
+                  //       StringTranslateExtension('contain').tr(),
+                  //       style: TextStyle(
+                  //         fontSize: 14,
+                  //         color: AppColors.darkGray,
+                  //       ),
+                  //     ),
+                  //     Text(
+                  //       ' ${widget.itemsNum.toString()} ',
+                  //       style: TextStyle(
+                  //         fontSize: 14,
+                  //         color: AppColors.darkGray,
+                  //       ),
+                  //     ),
+                  //     Text(
+                  //       StringTranslateExtension('item').tr(),
+                  //       style: TextStyle(
+                  //         fontSize: 14,
+                  //         color: AppColors.darkGray,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                ],
+              ),
             ),
           ],
         ),

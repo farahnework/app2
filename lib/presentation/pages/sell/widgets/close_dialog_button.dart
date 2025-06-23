@@ -29,7 +29,7 @@ class _CloseDialogButtonState extends State<CloseDialogButton> {
           color = AppColors.darkPurple;
         });
       },
-      child: Container(
+      child: SizedBox(
         height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         child: TextButton(
           style: TextButton.styleFrom(

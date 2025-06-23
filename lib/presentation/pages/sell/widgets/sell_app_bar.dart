@@ -7,7 +7,6 @@ import 'package:app/shared/styles/box_decoration.dart';
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:intl/intl.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -32,7 +31,6 @@ class CustomAppBar extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // CustomMenuButton(icon: Icons.settings),
                SizedBox(
                 height: context.responsiveWidgetHeight,
                 child: CircleAvatar(
@@ -55,7 +53,7 @@ class CustomAppBar extends StatelessWidget {
                     ),
                   ),
                     Text(
-                    '${DateFormat.yMMMEd('en').format(DateTime.now())}',
+                    DateFormat.yMMMEd('en').format(DateTime.now()),
                     style: TextStyle(
                       fontSize: context.responsiveFontSize(AppSizes.fontSize5),
                     ),
@@ -98,8 +96,8 @@ class CustomAppBar extends StatelessWidget {
                   width: 150,
                   page: SessionDetailsPage(),
                   height: AppSizes.widgetHeight,
-                  color: AppColors.darkPurple,
-                  textColor: AppColors.white,
+                  color: AppColors.lightPurple,
+                  textColor: AppColors.darkPurple,
                 ),
               ],
             ),

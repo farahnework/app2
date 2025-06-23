@@ -109,7 +109,7 @@ class _CloseSessionButtonState extends State<CloseSessionButton> {
       //     currentColor= AppColors.lightGrey;
       //   });
       // },
-      child: Container(
+      child: SizedBox(
         width: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
         child: IconButton(

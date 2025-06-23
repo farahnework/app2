@@ -157,8 +157,8 @@ void productInfoDialog(BuildContext context) {
                                   BoxShadow(
                                     blurRadius: 10,
                                     offset: Offset(0, 0.5),
-                                    color: AppColors.darkPurple.withOpacity(
-                                      0.05,
+                                    color: AppColors.darkPurple.withValues(
+                                      alpha: 0.05,
                                     ),
                                     spreadRadius: 1,
                                   ),
@@ -423,8 +423,8 @@ void productInfoDialog(BuildContext context) {
                                   BoxShadow(
                                     blurRadius: 10,
                                     offset: Offset(0, 0.5),
-                                    color: AppColors.darkPurple.withOpacity(
-                                      0.05,
+                                    color: AppColors.darkPurple.withValues(
+                                     alpha:  0.05,
                                     ),
                                     spreadRadius: 1,
                                   ),

@@ -1,7 +1,6 @@
 import 'package:app/shared/utils/app_colors.dart';
 import 'package:app/shared/utils/app_sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ProductsPageIconButton extends StatefulWidget {
   final IconData icon;
@@ -26,7 +25,7 @@ class _ProductsPageIconButtonState extends State<ProductsPageIconButton> {
           currentColor= AppColors.lightPurple;
         });
       },
-      child: Container(
+      child: SizedBox(
         width: AppSizes.widgetHeight,
         height: AppSizes.widgetHeight,
         child: IconButton(

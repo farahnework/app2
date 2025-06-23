@@ -29,7 +29,7 @@ class CustomDropDownButton extends StatefulWidget {
 }
 
 class _CustomDropDownButtonState extends State<CustomDropDownButton> {
-  var newSelect;
+  dynamic newSelect;
   var currentColor = AppColors.grey;
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
             currentColor = AppColors.grey;
           });
         },
-        child: Container(
+        child: SizedBox(
           height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: widget.height),
           width: widget.width,
           child: 

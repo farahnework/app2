@@ -50,11 +50,6 @@ class _SellPageState extends State<SellPage> {
         resizeToAvoidBottomInset: true,
         body:
             context.isMobile
-                // ? Row(
-                //   children: [
-                //     RightSide(),
-                //   ],
-                // )
                 ? Stack(
                   children: [
                     Align(
@@ -90,17 +85,19 @@ class _SellPageState extends State<SellPage> {
                 : Row(
                   children: [
                     Expanded(
+                      flex: 1,
+                      child: RightSide(menuNotifier: showCategories),
+                    ),
+                    Flexible(
                       flex: 2,
-                      child: Column(
+                      child:
+                      Column(
                         children: [
                           CustomAppBar(),
                           LeftSide(onClose: () => showCategories.value = false),
                         ],
                       ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: RightSide(menuNotifier: showCategories),
+                       
                     ),
                   ],
                 ),
@@ -183,7 +180,7 @@ class _LeftSideState extends State<LeftSide> {
     ),
     CategoryCard(
       image: 'assets/images/pencils.webp',
-      category: 'Pencils',
+      category: 'Pencils nknlnlkkmll',
       itemsNum: 23,
     ),
     CategoryCard(
@@ -341,7 +338,7 @@ class _LeftSideState extends State<LeftSide> {
                     CategoryCard(
                       image: 'assets/images/highlights.jpg',
                       category: 'Highlights',
-                      itemsNum: 3,
+                      itemsNum: 344,
                     ),
                     CategoryCard(
                       image: 'assets/images/pens.webp',
@@ -581,7 +578,7 @@ class _RightSideState extends State<RightSide> {
                     ),
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       
                       height: context.responsiveRelativeSize(
                         containerSize: context.screenHeight,
@@ -615,47 +612,44 @@ class _RightSideState extends State<RightSide> {
                 top:
                     context.responsiveSpacing(AppSizes.horizontalPadding) / 1.5,
               ),
-              child: Container(
-               
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Iconsax.user,
-                          color: AppColors.darkPurple,
-                          size: context.responsiveIconSize(AppSizes.iconSize),
-                        ),
-                        SizedBox(width: AppSizes.horiSpacesBetweenElements),
-
-                        Text(
-                           StringTranslateExtension('general_customer').tr(),
-                          style: CustomTextStyles.meduimText(context),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        CustomIconButton(
-                          icon: IconsaxPlusLinear.note_2,
-                          color: AppColors.lightPurple,
-                          iconColor: AppColors.darkPurple,
-                          size: AppSizes.widgetHeight,
-                          onPresse: addNoteDialog,
-                        ),
-                        SizedBox(width: AppSizes.horiSpacesBetweenElements),
-                        CustomIconButton(
-                          icon: Iconsax.trash,
-                          color: AppColors.lightPurple,
-                          iconColor: AppColors.darkPurple,
-                          size: AppSizes.widgetHeight,
-                          onPresse: addNoteDialog,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Iconsax.user,
+                        color: AppColors.darkPurple,
+                        size: context.responsiveIconSize(AppSizes.iconSize),
+                      ),
+                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
+              
+                      Text(
+                         StringTranslateExtension('general_customer').tr(),
+                        style: CustomTextStyles.meduimText(context),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      CustomIconButton(
+                        icon: IconsaxPlusLinear.note_2,
+                        color: AppColors.lightPurple,
+                        iconColor: AppColors.darkPurple,
+                        size: AppSizes.widgetHeight,
+                        onPresse: addNoteDialog,
+                      ),
+                      SizedBox(width: AppSizes.horiSpacesBetweenElements),
+                      CustomIconButton(
+                        icon: Iconsax.trash,
+                        color: AppColors.lightPurple,
+                        iconColor: AppColors.darkPurple,
+                        size: AppSizes.widgetHeight,
+                        onPresse: addNoteDialog,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
             SizedBox(height: AppSizes.verSpacesBetweenElements),
@@ -712,7 +706,7 @@ class _RightSideState extends State<RightSide> {
                   SizedBox(height: AppSizes.verSpacesBetweenElements * 1.5),
                   NumbersPalette(),
                   SizedBox(height: AppSizes.verSpacesBetweenElements * 1.5),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: 50,
                     child: TextButton(
@@ -741,7 +735,7 @@ class _RightSideState extends State<RightSide> {
                                   width: context.responsiveFontSize(
                                     AppSizes.fontSize6,
                                   ),
-                                  color: AppColors.white,
+                                  colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
                                 ),
                                 SizedBox(
                                   width: AppSizes.horiSpacesBetweentTexts,
@@ -1028,7 +1022,7 @@ Widget tab1(BuildContext context) {
                     SvgPicture.asset(
                       AppImages.rial,
                       width: context.responsiveFontSize(AppSizes.fontSize6),
-                      color: AppColors.darkGreen,
+                      colorFilter: ColorFilter.mode(AppColors.darkGreen, BlendMode.srcIn),
                     ),
                     SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                 
@@ -1049,7 +1043,7 @@ Widget tab1(BuildContext context) {
                     SvgPicture.asset(
                       AppImages.rial,
                       width: context.responsiveFontSize(AppSizes.fontSize6),
-                      color: AppColors.red,
+                      colorFilter: ColorFilter.mode(AppColors.red, BlendMode.srcIn),
                     ),
                     SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                 
@@ -1188,7 +1182,7 @@ Widget tab2(BuildContext context) {
                     SvgPicture.asset(
                       AppImages.rial,
                       width: context.responsiveFontSize(AppSizes.fontSize6),
-                      color: AppColors.darkGreen,
+                      colorFilter: ColorFilter.mode(AppColors.darkGreen, BlendMode.srcIn),
                     ),
                     SizedBox(width: AppSizes.horiSpacesBetweentTexts),
                 
@@ -1210,7 +1204,7 @@ Widget tab2(BuildContext context) {
 }
 
 Widget tab3(BuildContext context) {
-  ScrollController _scrollController = ScrollController();
+  ScrollController scrollController = ScrollController();
   return Center(
     child: Container(
       padding: EdgeInsets.all(AppSizes.cardPadding),
@@ -1221,10 +1215,10 @@ Widget tab3(BuildContext context) {
         ),
       ),
       child: Scrollbar(
-        controller: _scrollController,
+        controller: scrollController,
         thumbVisibility: true,
         child: SingleChildScrollView(
-          controller: _scrollController,
+          controller: scrollController,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1499,7 +1493,7 @@ Widget dialogRightSide(TabController tabController, BuildContext context) {
           indicatorSize: TabBarIndicatorSize.tab,
           dividerColor: AppColors.white,
           indicatorColor: AppColors.white,
-          overlayColor: MaterialStateProperty.all(Colors.transparent),
+          overlayColor: WidgetStateProperty.all(Colors.transparent),
           indicator: BoxDecoration(
             color: AppColors.darkPurple,
             borderRadius: BorderRadius.all(Radius.circular(AppSizes.radius12)),
@@ -1516,7 +1510,7 @@ Widget dialogRightSide(TabController tabController, BuildContext context) {
         ),
       ),
       SizedBox(height: AppSizes.verSpacesBetweenContainers),
-      Container(
+      SizedBox(
         height: context.screenHeight / 2.9,
         child: TabBarView(
           controller: tabController,

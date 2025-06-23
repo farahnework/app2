@@ -10,6 +10,7 @@ import 'package:app/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
@@ -52,39 +53,37 @@ class _SideBarState extends State<SideBar> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      child: CustomListTile(
-                        icon: IconsaxPlusLinear.status,
-                        text: 'Dashboard',
-                        page: CustomersPage(),
-                        to: false,
-                        selected: true,
-                      ),
+                    CustomListTile(
+                      icon: IconsaxPlusLinear.status,
+                      text: StringTranslateExtension('dashboard').tr(),
+                      page: CustomersPage(),
+                      to: false,
+                      selected: true,
                     ),
                     CustomListTile(
                       icon: IconsaxPlusLinear.shop,
-                      text: 'Start Selling',
+                      text: StringTranslateExtension('start_selling').tr(),
                       page: SellPage(),
                       to: true,
                       selected: false,
                     ),
                     CustomListTile(
                        icon: IconsaxPlusLinear.keyboard_open,
-                      text: 'Restaurant Orders',
+                      text: StringTranslateExtension('restaurant_orders').tr(),
                       page: RestaurantOrdersPage(),
                       to: true,
                       selected: false,
                     ),
                     CustomListTile(
                       icon: IconsaxPlusLinear.receipt_2_1,
-                      text: 'Kitchen Display',
+                      text: StringTranslateExtension('kitchen_display').tr(),
                       page: KitchenDisplayPage(),
                       to: true,
                       selected: false,
                     ),
                     CustomListTile(
                       icon: IconsaxPlusLinear.user,
-                      text: 'Customers',
+                      text: StringTranslateExtension('customers').tr(),
                       page: CustomersPage(),
                       to: true,
                       selected: false,
@@ -117,14 +116,14 @@ class _SideBarState extends State<SideBar> {
               children: [
                 CustomListTile(
                   icon: IconsaxPlusLinear.headphone,
-                  text: 'Support',
+                  text: StringTranslateExtension('support').tr(),
                   page: SupportPage(),
                   to: true,
                   selected: false,
                 ),
                 CustomListTile(
                   icon: IconsaxPlusLinear.logout,
-                  text: 'Log Out',
+                  text: StringTranslateExtension('logout').tr(),
                   page: SigninPage(),
                   to: true,
                   selected: false,

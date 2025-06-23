@@ -10,7 +10,7 @@ class CustomTextStyles{
   static TextStyle meduimText(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize4, ),fontWeight: AppSizes.fontWeight2);
   static TextStyle largeText(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3, ),fontWeight: AppSizes.fontWeight2);
   static TextStyle titleText(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize2,), fontWeight: AppSizes.fontWeight1);
-  static TextStyle buttonText(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,),  color: AppColors.white);
+  static TextStyle buttonText(BuildContext context) => TextStyle(fontSize:  context.responsiveFontSize(AppSizes.fontSize3,),  color: AppColors.white, fontWeight: AppSizes.fontWeight1);
 
 
   static final header1= TextStyle(color: AppColors.black,fontWeight: FontWeight.w900, fontSize: AppSizes.fontSize1);

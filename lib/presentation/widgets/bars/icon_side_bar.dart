@@ -51,14 +51,12 @@ class _IconSideBarState extends State<IconSideBar> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      child: CustomListTile(
-                        icon: IconsaxPlusLinear.status,
-                      
-                        page: HomePage(),
-                        to: false,
-                        selected: true,
-                      ),
+                    CustomListTile(
+                      icon: IconsaxPlusLinear.status,
+                    
+                      page: HomePage(),
+                      to: false,
+                      selected: true,
                     ),
                     CustomListTile(
                       icon: IconsaxPlusLinear.shop,

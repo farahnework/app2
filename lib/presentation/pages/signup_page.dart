@@ -35,7 +35,7 @@ class _SignupPageState extends State<SignupPage> {
           Positioned(
             left: AppSizes.horiScreenPadding *2,
             top: AppSizes.horiScreenPadding *2,
-            child: Container(
+            child: SizedBox(
               height: 50,
               child: Image.asset('assets/images/logo.png')),
           ),

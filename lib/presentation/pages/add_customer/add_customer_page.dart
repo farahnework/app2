@@ -2,7 +2,6 @@ import 'package:app/core/responsive/app_sizes.dart';
 import 'package:app/core/responsive/context_extension.dart';
 import 'package:app/presentation/pages/add_customer/widgets/add_customer_app_bar.dart';
 import 'package:app/presentation/pages/customers/customers_page.dart';
-import 'package:app/presentation/pages/customers/widgets/customers_app_bar.dart';
 import 'package:app/presentation/widgets/buttons/custom_button.dart';
 import 'package:app/presentation/widgets/buttons/custom_cancel_outlined_button.dart';
 import 'package:app/presentation/widgets/custom_container.dart';
@@ -12,6 +11,8 @@ import 'package:app/shared/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+
+import 'package:easy_localization/easy_localization.dart';
 
 class AddCustomerPage extends StatefulWidget {
   const AddCustomerPage({super.key});
@@ -61,7 +62,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                     Row(
                       children: [
                         Text(
-                          'Customer Information',
+                          StringTranslateExtension('customer_information',).tr(),
                           style: CustomTextStyles.titleText(context),
                         ),
                       ],
@@ -71,7 +72,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            hintText: 'Customer Name',
+                            hintText:  StringTranslateExtension('customer_name',).tr(),
                             width: context.screenWidth,
                             enabled: true,
                             icon: IconsaxPlusLinear.user,
@@ -84,7 +85,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            hintText: 'Mobile',
+                            hintText:StringTranslateExtension('phone_no',).tr(),
                             width: context.screenWidth / 4.8,
                             enabled: true,
                             icon: IconsaxPlusLinear.mobile,
@@ -97,7 +98,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            hintText: 'Tellphone',
+                            hintText: StringTranslateExtension('tellphone',).tr(),
                             width: context.screenWidth / 4.8,
                             enabled: true,
                             icon: IconsaxPlusLinear.call,
@@ -110,7 +111,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            hintText: 'Country',
+                            hintText: StringTranslateExtension('country',).tr(),
                             width: context.screenWidth / 4.8,
                             enabled: true,
                             icon: Iconsax.location,
@@ -123,7 +124,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            hintText: 'City',
+                            hintText: StringTranslateExtension('city',).tr(),
                             width: context.screenWidth / 4.8,
                             enabled: true,
                             icon: IconsaxPlusLinear.location,
@@ -137,7 +138,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                                hintText: 'Street',
+                                hintText: StringTranslateExtension('street',).tr(),
                                 width: context.screenWidth / 4.8,
                                 enabled: true,
                                 icon: Iconsax.location,
@@ -156,7 +157,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                     Row(
                       children: [
                         Text(
-                          'Account Information',
+                          StringTranslateExtension('account_information',).tr(),
                           style: CustomTextStyles.titleText(context),
                         ),
                       ],
@@ -166,7 +167,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            hintText: 'Account No.',
+                            hintText:StringTranslateExtension('account_no',).tr(),
                             width: context.screenWidth,
                             enabled: false,
                             icon: IconsaxPlusLinear.hashtag_1,
@@ -179,7 +180,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            hintText: 'Account creation date',
+                            hintText: StringTranslateExtension('account_creation_date',).tr(),
                             width: context.screenWidth,
                             enabled: false,
                             icon: IconsaxPlusLinear.calendar,
@@ -192,7 +193,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            hintText: 'Notes',
+                            hintText: StringTranslateExtension('notes',).tr(),
                             width: context.screenWidth,
                             enabled: true,
                             icon: Iconsax.note,
@@ -208,9 +209,9 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
               SizedBox(height: AppSizes.verSpacesBetweenContainers,),
               Row(
                 children: [
-                  CustomButton(text: 'Save', radius: true, width: 200, page: CustomersPage(), height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
+                  CustomButton(text:  StringTranslateExtension('save',).tr(), radius: true, width: 200, page: CustomersPage(), height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
                   SizedBox(width: AppSizes.horiSpacesBetweenElements,),
-                  CustomCancelOutlinedButton(text: 'Cancel')
+                  CustomCancelOutlinedButton(text: StringTranslateExtension('cancel',).tr(),)
                 ],
               ),
               SizedBox(height: AppSizes.verSpacesBetweenContainers,),
@@ -232,7 +233,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                         Row(
                           children: [
                             Text(
-                              'Customer Information',
+                             StringTranslateExtension('customer_information',).tr(),
                               style: CustomTextStyles.titleText(context),
                             ),
                           ],
@@ -242,7 +243,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                           children: [
                             Expanded(
                               child: CustomTextField(
-                                hintText: 'Customer Name',
+                                hintText: StringTranslateExtension('customer_name',).tr(),
                                 width: context.screenWidth,
                                 enabled: true,
                                 icon: IconsaxPlusLinear.user,
@@ -256,7 +257,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                           children: [
                             Expanded(
                               child: CustomTextField(
-                                hintText: 'Mobile',
+                                hintText:  StringTranslateExtension('phone_no',).tr(),
                                 width: context.screenWidth / 4.8,
                                 enabled: true,
                                 icon: IconsaxPlusLinear.mobile,
@@ -264,7 +265,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                             ),
                             Expanded(
                               child: CustomTextField(
-                                hintText: 'Tellphone',
+                                hintText: StringTranslateExtension('tellphone',).tr(),
                                 width: context.screenWidth / 4.8,
                                 enabled: true,
                                 icon: IconsaxPlusLinear.call,
@@ -278,7 +279,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                           children: [
                             Expanded(
                               child: CustomTextField(
-                                hintText: 'Country',
+                                hintText: StringTranslateExtension('country',).tr(),
                                 width: context.screenWidth / 4.8,
                                 enabled: true,
                                 icon: Iconsax.location,
@@ -286,7 +287,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                             ),
                             Expanded(
                               child: CustomTextField(
-                                hintText: 'City',
+                                hintText: StringTranslateExtension('city',).tr(),
                                 width: context.screenWidth / 4.8,
                                 enabled: true,
                                 icon: IconsaxPlusLinear.location,
@@ -302,7 +303,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                           children: [
                             Expanded(
                               child: CustomTextField(
-                                    hintText: 'Street',
+                                    hintText: StringTranslateExtension('street',).tr(),
                                     width: context.screenWidth / 4.8,
                                     enabled: true,
                                     icon: Iconsax.location,
@@ -324,7 +325,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                         Row(
                           children: [
                             Text(
-                              'Account Information',
+                              StringTranslateExtension('account_information',).tr(),
                               style: CustomTextStyles.titleText(context),
                             ),
                           ],
@@ -334,7 +335,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                           children: [
                             Expanded(
                               child: CustomTextField(
-                                hintText: 'Account No.',
+                                hintText: StringTranslateExtension('account_no',).tr(),
                                 width: context.screenWidth,
                                 enabled: false,
                                 icon: IconsaxPlusLinear.hashtag_1,
@@ -347,7 +348,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                           children: [
                             Expanded(
                               child: CustomTextField(
-                                hintText: 'Account creation date',
+                                hintText: StringTranslateExtension('account_creation_date',).tr(),
                                 width: context.screenWidth,
                                 enabled: false,
                                 icon: IconsaxPlusLinear.calendar,
@@ -360,7 +361,7 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
                           children: [
                             Expanded(
                               child: CustomTextField(
-                                hintText: 'Notes',
+                                hintText: StringTranslateExtension('notes',).tr(),
                                 width: context.screenWidth,
                                 enabled: true,
                                 icon: Iconsax.note,
@@ -379,9 +380,9 @@ class _AddCustomerBodyState extends State<AddCustomerBody> {
             SizedBox(height: AppSizes.verSpacesBetweenContainers,),
             Row(
               children: [
-                CustomButton(text: 'Save', radius: true, width: 200, page: CustomersPage(), height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
+                CustomButton(text:  StringTranslateExtension('save',).tr(), radius: true, width: 200, page: CustomersPage(), height: AppSizes.widgetHeight, color: AppColors.darkPurple, textColor: AppColors.white,),
                 SizedBox(width: AppSizes.horiSpacesBetweenElements,),
-                CustomCancelOutlinedButton(text: 'Cancel')
+                CustomCancelOutlinedButton(text: StringTranslateExtension('cancel',).tr(),)
               ],
             )
           ],

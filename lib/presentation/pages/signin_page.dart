@@ -49,7 +49,7 @@ class _SigninPageState extends State<SigninPage> {
                   ),
                     child: Column(
                       children: [
-                        Container(
+                        SizedBox(
                           height: context.responsiveRelativeSize(containerSize: context.screenHeight, percentage: AppSizes.widgetHeight),
                           child: Image.asset('assets/images/logo.png'),
                         ),

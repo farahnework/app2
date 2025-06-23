@@ -24,7 +24,7 @@ import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -93,7 +93,7 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
-    print('Current Locale: ${context.locale}');
+    
 
     int crossAxisCount =
         context.isMobile
@@ -125,8 +125,7 @@ class _HomeBodyState extends State<HomeBody> {
           ),
           child: Column(
             children: [
-             
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: GridView(
                   physics: NeverScrollableScrollPhysics(),
@@ -277,7 +276,7 @@ class _HomeBodyState extends State<HomeBody> {
                                 Expanded(
                                   child: CustomIconTextButton(
                                     text:
-                                        StringTranslateExtension('shift').tr(),
+                                        StringTranslateExtension('search').tr(),
                                     icon: IconsaxPlusLinear.search_normal_1,
                                     page: SellPage(),
                                   ),
@@ -402,71 +401,78 @@ class _CustomServiceCardState extends State<CustomServiceCard> {
             Radius.circular(context.responsiveIconSize(AppSizes.radius16)),
           ),
         ),
-        child: Directionality(
-          textDirection: ui.TextDirection.ltr,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-
-            children: [
-              Icon(
-                size: context.responsiveIconSize(30),
-                widget.icon,
-                color: widget.iconColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+        
+          children: [
+            Icon(
+              size: context.responsiveIconSize(30),
+              widget.icon,
+              color: widget.iconColor,
+            ),
+            SizedBox(
+              width: context.responsiveSpacing(
+                AppSizes.horiSpacesBetweenElements,
               ),
-              SizedBox(
-                width: context.responsiveSpacing(
-                  AppSizes.horiSpacesBetweenElements,
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        widget.iconAppear
-                            ? SvgPicture.asset(
-                              AppImages.rial,
-                              height: context.responsiveFontSize(
-                                AppSizes.fontSize2,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Directionality(
+                        textDirection: ui.TextDirection.ltr,
+                        child: Row(
+                          children: [
+                            
+                            widget.iconAppear
+                                ? SvgPicture.asset(
+                                  AppImages.rial,
+                                  height: context.responsiveFontSize(
+                                    AppSizes.fontSize2,
+                                  ),
+                                )
+                                : SizedBox(),
+                            widget.iconAppear
+                                ? SizedBox(width: AppSizes.horiSpacesBetweentTexts)
+                                : SizedBox(),
+                            Text(
+                              // AppLocalizations.of(context)!.home_page_card(widget.number),
+                              widget.number,
+                              style: TextStyle(
+                                fontSize: context.responsiveFontSize(
+                                  AppSizes.fontSize1,
+                                ),
+                                fontWeight: FontWeight.w900,
                               ),
-                            )
-                            : SizedBox(),
-                        widget.iconAppear
-                            ? SizedBox(width: AppSizes.horiSpacesBetweentTexts)
-                            : SizedBox(),
-                        Text(
-                          // AppLocalizations.of(context)!.home_page_card(widget.number),
-                          widget.number,
-                          style: TextStyle(
-                            fontSize: context.responsiveFontSize(
-                              AppSizes.fontSize1,
                             ),
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      maxLines: null,
-                      overflow: TextOverflow.visible,
-                      softWrap: true,
-                      widget.text,
-                      style: TextStyle(
-                        color: AppColors.darkGray,
-                        fontSize: context.responsiveFontSize(
-                          AppSizes.fontSize3,
+
+                          ],
                         ),
                       ),
+                      Spacer(),
+
+                    ],
+                  ),
+                  Text(
+                    maxLines: null,
+                    overflow: TextOverflow.visible,
+                    softWrap: true,
+                    widget.text,
+                    style: TextStyle(
+                      color: AppColors.darkGray,
+                      fontSize: context.responsiveFontSize(
+                        AppSizes.fontSize3,
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
